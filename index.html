@@ -418,6 +418,7 @@ in the</span>
 
 <pre class="idl">interface <a href="#performanceresourcetiming">PerformanceResourceTiming</a> : <a href="http://www.w3.org/TR/performance-timeline/#performanceentry">PerformanceEntry</a> {
   readonly attribute DOMString <a href="#dom-performanceresourcetiming-initiatortype" title="initiatorType">initiatorType</a>;
+  readonly attribute DOMString <a href="#dom-performanceresourcetiming-nexthopprotocol" title="nexthopprotocol">nextHopProtocol</a>;
 
   readonly attribute <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> <a href="#dom-performanceresourcetiming-redirectstart" title="redirectstart">redirectStart</a>;
   readonly attribute <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> <a href="#dom-performanceresourcetiming-redirectend" title="redirectend">redirectEnd</a>;
@@ -465,7 +466,6 @@ on getting, the <code><a href="#initiatorType-attribut">initiatorType</a></code>
 
 <p>If the initiator is an XMLHttpRequest object, on getting, the <code><a href="#initiatorType-attribut">initiatorType</a></code> attribute must
 return the DOMString <code>"xmlhttprequest"</code>.</p>
-
 
 <h4 id="redirect-start-attribute"><code><dfn id="dom-performanceresourcetiming-redirectstart">redirectStart</dfn></code> attribute</h4>
 
@@ -624,6 +624,15 @@ zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm p
 receiving the last byte of the resource from from <a
 href="http://www.w3.org/TR/html5/offline.html#relevant-application-cache">relevant
 application caches</a> or from local resources.</p>
+
+<h4><code><dfn id="dom-performanceresourcetiming-nexthopprotocol">nextHopProtocol</dfn></code> attribute </h4>
+
+<p>This attribute must return the network protocol used to fetch the resource, as identified by the ALPN Protocol ID (<a href="https://tools.ietf.org/html/rfc7301">RFC 7301</a>). When a proxy is configured, if a tunnel connection is established then this attribute must return the ALPN Protocol ID of the tunneled protocol, otherwise it must return the ALPN Protocol ID of the first hop to the proxy.</p>
+
+<p>In order to have precisely one way to represent any ALPN protocol ID, the following additional constraints apply: octets in the ALPN protocol must not be percent-encoded if they are valid token characters except "%", and when using percent-encoding, uppercase hex digits must be used.</p>
+
+<p>Note that this attribute is intended to identify the network protocol in use for the fetch regardless of how it was actually negotiated; that is, even if ALPN is not used to negotiate the network protocol, this attribute still uses the ALPN Protocol ID's to indicate the protocol in use.</p>
+
 
 <h3 id="performanceresourcetiming-methods"><span class="secno">4.4 </span>The Resource Timing Methods</h3>
 
@@ -805,7 +814,7 @@ If such extensions are needed, e.g., for experimental purposes, vendors must use
       set <a href="#entryType-attribute">entryType</a> to the DOMString <code>resource</code>.
       </li>
       <li>Immediately before the user agent starts to queue the resource for retrieval,
-       record the current time in <a href="#startTime-attribute">startTime</a>.
+       record the current time in <a href="#startTime-attribute">startTime</a>, and set <a href="#dom-performanceresourcetiming-nexthopprotocol">nextHopProtocol</a> to the empty DOMString.
       </li>
       <li>Record the initiator of the resource in <a href="#initiatorType-attribute">initiatorType</a>.
       </li>
@@ -861,10 +870,7 @@ If such extensions are needed, e.g., for experimental purposes, vendors must use
       <li id="step-connect-start">If a persistent transport connection is used to <a href="http://www.w3.org/TR/html5/fetching-resources.html#fetch">fetch</a> the resource,
        let <a href="#dom-performanceresourcetiming-connectstart">connectStart</a> and <a href="#dom-performanceresourcetiming-connectend">connectEnd</a>
        be the same value of <a href="#dom-performanceresourcetiming-domainlookupend">domainLookupEnd</a>. Otherwise, record the time as
-       <a href="#dom-performanceresourcetiming-connectstart">connectStart</a> immediately before initiating the connection to the server
-       and record the time as <a href="#dom-performanceresourcetiming-connectend">connectEnd</a> immediately after the connection to the
-       server or the proxy is established. A user agent may need multiple retries
-       before this time. If a connection can not be established, abort the remaining steps.
+       <a href="#dom-performanceresourcetiming-connectstart">connectStart</a> immediately before initiating the connection to the server, and immediately after the connection to the server or the proxy is established, record the time as <a href="#dom-performanceresourcetiming-connectend">connectEnd</a> and set the value of <a href="#dom-performanceresourcetiming-nexthopprotocol">nextHopProtocol</a> to the ALPN ID used by the connection.
       </li>
       <li>If the user agent supports the <a href="#dom-performanceresourcetiming-secureconnectionstart">secureConnectionStart</a> attribute,
       in step <a href="#step-connect-start">3.13</a>, a user agent should also carry out these additional steps:
