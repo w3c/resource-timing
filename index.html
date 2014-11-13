@@ -431,6 +431,10 @@ in the</span>
   readonly attribute <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> <a href="#dom-performanceresourcetiming-requeststart" title="requeststart">requestStart</a>;
   readonly attribute <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> <a href="#dom-performanceresourcetiming-responsestart" title="responsestart">responseStart</a>;
   readonly attribute <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> <a href="#dom-performanceresourcetiming-responseend" title="responseend">responseEnd</a>;
+
+  readonly attribute unsigned short <a href="#dom-performanceresourcetiming-transfersize" title="transfersize">transferSize</a>;
+  readonly attribute unsigned short <a href="#dom-performanceresourcetiming-encodedbodysize" title="encodedbodysize">encodedBodySize</a>;
+  readonly attribute unsigned short <a href="#dom-performanceresourcetiming-decodedbodysize" title="decodedbodysize">decodedBodySize</a>;
 };</pre>
 
 <p>
@@ -633,6 +637,19 @@ application caches</a> or from local resources.</p>
 
 <p>Note that this attribute is intended to identify the network protocol in use for the fetch regardless of how it was actually negotiated; that is, even if ALPN is not used to negotiate the network protocol, this attribute still uses the ALPN Protocol ID's to indicate the protocol in use.</p>
 
+<h4><code><dfn id="dom-performanceresourcetiming-transfersize">transferSize</dfn></code> attribute </h4>
+
+<p>This attribute MUST return the size, in octets received by the client, consumed by the response header fields and the response <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a>.</p>
+
+<p>This attribute SHOULD include HTTP overhead (such as HTTP/1.1 chunked encoding and whitespace around header fields, including newlines, and HTTP/2 frame overhead, along with other server-to-client frames on the same stream), but SHOULD NOT include lower-layer protocol overhead (such as TLS or TCP). If there are HTTP redirects <a href="http://www.w3.org/html/wg/drafts/html/master/infrastructure.html#concept-http-equivalent-codes">or equivalent</a> when navigating and if all the redirects or equivalent are from the same <a href="http://tools.ietf.org/html/rfc6454">origin</a>, this attribute SHOULD include the HTTP overhead of incurred redirects.</p>
+
+<h4><code><dfn id="dom-performanceresourcetiming-encodedbodysize">encodedBodySize</dfn></code> attribute </h4>
+
+<p>This attribute MUST return the size, in octets received by the client, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a>, prior to removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a>.
+
+<h4><code><dfn id="dom-performanceresourcetiming-decodedbodysize">decodedBodySize</dfn></code> attribute </h4>
+
+<p>This attribute MUST return the size, in octets received by the client, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">message body</a>, after removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a>.</p>
 
 <h3 id="performanceresourcetiming-methods"><span class="secno">4.4 </span>The Resource Timing Methods</h3>
 
@@ -892,8 +909,8 @@ If such extensions are needed, e.g., for experimental purposes, vendors must use
       </li>
       <li id="step-response-end">Record the time as <a href="#dom-performanceresourcetiming-responseend">responseEnd</a>
       immediately after receiving the last byte of the response.
-        <p>Return to step <a href="#step-connect-start">3.13</a> if the user agent fails to send the request
-        or receive the entire response, and needs to reopen the connection.</p>
+      <ol>
+        <li>Return to step <a href="#step-connect-start">3.13</a> if the user agent fails to send the request or receive the entire response, and needs to reopen the connection.
 
         <div class="example">
         <div class="exampleHeader">Example</div>
@@ -902,7 +919,10 @@ If such extensions are needed, e.g., for experimental purposes, vendors must use
         send the request while the connection can be <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html#sec8.1.4">asynchronously
         closed</a>. In such case, <a href="#dom-performanceresourcetiming-connectstart">connectStart</a>, <a href="#dom-performanceresourcetiming-connectend">connectEnd</a> and
         <a href="#dom-performanceresourcetiming-requeststart">requestStart</a> should represent timing information collected over the re-open connection. </p>
-        </div>
+        </div></li>
+
+        <li>Set the value of <a href="#dom-performanceresourcetiming-transfersize">transferSize</a>, <a href="#dom-performanceresourcetiming-encodedbodysize">encodedBodySize</a>, <a href="#dom-performanceresourcetiming-decodedbodysize">decodedBodySize</a> to corresponding values.</li>
+      </ol>
       </li>
       <li>Record the difference between <a href="#dom-performanceresourcetiming-responseend">responseEnd</a> and <a href="#startTime-attribute">startTime</a> in <a href="#duration-attribute">duration</a>.</li>
       <li>If the fetched resource results in an HTTP redirect
