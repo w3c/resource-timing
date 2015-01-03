@@ -328,7 +328,7 @@ The <a href="#performanceresourcetiming">PerformanceResourceTiming</a> interface
 <dd>The <code id="startTime-attribute">startTime</code> attribute MUST return a <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> [[!HR-TIME]]
   with the time immediately before the user agent starts to queue the resource for <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a>.
        If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
-       when fetching the resource, and if all the redirects or equivalent are from the <a href="#same-origin">same origin</a> as the current
+       when fetching the resource, and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current
        document or the <a href="#timing-allow-check">timing allow check</a> algorithm passes, this attribute MUST return the same value as <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>.
      Otherwise, this attribute MUST return the same value as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>.</dd>
 <dt id='widl-PerformanceResourceTiming-duration'><code>duration</code></dt>
@@ -357,10 +357,10 @@ on getting, the <code><a href="#widl-PerformanceResourceTiming-initiatorType">in
 <dt>readonly attribute DOMHighResTimeStamp redirectStart</dt>
 <dd>
 <p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
-when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if all the redirects or equivalent are from the <a href="#same-origin">same origin</a> as the current document,
+when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
 this attribute MUST return the <a href="#widl-PerformanceResourceTiming-fetchStart">starting time</a> of the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> that initiates the redirect.</p>
 <p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
-when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if any of the redirects are not from the <a href="#same-origin">same origin</a> as the current document,
+when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if any of the redirects are not from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
 but the <a href="#timing-allow-check">timing allow check</a> algorithm passes for each redirected resource, this attribute MUST
 return the <a href="#widl-PerformanceResourceTiming-fetchStart">starting time of the fetch</a> that initiates the redirect.
 Otherwise, this attribute MUST return zero. </p>
@@ -369,11 +369,11 @@ Otherwise, this attribute MUST return zero. </p>
 <dt>readonly attribute DOMHighResTimeStamp redirectEnd</dt>
 <dd>
 <p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
-when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if all the redirects or equivalent are from the <a href="#same-origin">same origin</a> as the current document,
+when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
 this attribute MUST return the time immediately after receiving the last byte of the response of the last redirect.</p>
 
 <p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
-when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if any of the redirects are not from the <a href="#same-origin">same origin</a> as the current document,
+when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if any of the redirects are not from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
 but the <a href="#timing-allow-check">timing allow check</a> algorithm passes for each redirected resource, this attribute MUST return the
 time immediately after receiving the last byte of the response of the last redirect.
 Otherwise, this attribute MUST return zero. </p>
@@ -573,12 +573,8 @@ application caches</a> or from local resources.</p>
 		and <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>, if supported by the user agent.
     </p>
     <p>
-        The terms <dfn id="origin">origin</dfn> and <dfn id="same-origin">same origin</dfn>
-        are defined by The HTTP Origin Header. [[!RFC6454]]
-    </p>
-    <p>
         The term <dfn id="cross-origin">cross-origin</dfn> is used to mean non
-        <a href="#same-origin">same origin</a>.
+        <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a>.
     </p>
     <p>
         Server-side applications may return the <code><a href="#timing-allow-origin">Timing-Allow-Origin</a></code> HTTP response header
@@ -595,10 +591,7 @@ application caches</a> or from local resources.</p>
             shared based by returning the value of the Origin request header in the
             response.</p>
         <p>ABNF:</p>
-        <pre>Timing-Allow-Origin = &quot;Timing-Allow-Origin&quot; &quot;:&quot; origin-list-or-null | &quot;*&quot;</pre>
-        <p>
-            <code>origin-list-or-null</code> is defined by The HTTP Origin Header. [[!RFC6454]]
-        </p>
+        <pre>Timing-Allow-Origin = &quot;Timing-Allow-Origin&quot; &quot;:&quot; <a href='https://tools.ietf.org/html/rfc6454#section-7.1'>origin-list-or-null</a> | &quot;*&quot;</pre>
         </dd>
     </dl>
 
@@ -619,7 +612,7 @@ application caches</a> or from local resources.</p>
 	   <li><p>If the value of
 	   <code><a href="#http-timing-allow-origin">Timing-Allow-Origin</a></code>
 	   is not a <a href="http://www.w3.org/TR/html5/infrastructure.html#case-sensitive">case-sensitive</a> match for the value of the
-	   <code title="http-origin"><a href="#origin">origin</a></code> of the current document, return fail and terminate this algorithm.</p></li>
+	   <code title="http-origin"><a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a></code> of the current document, return fail and terminate this algorithm.</p></li>
 
 	   <li><p>Return pass.</p></li>
 	   </ol>
@@ -787,7 +780,7 @@ If such extensions are needed, e.g., for experimental purposes, vendors MUST use
       <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>, then
       <ol style="list-style-type:lower-alpha;">
             <li>If the current resource and the redirected resource are not from the
-             <a href="#same-origin">same origin</a> as the current document,
+             <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
 			 and the <a href="#timing-allow-check">timing allow check</a> algorithm fails for either resource,
 			 set <a href="#widl-PerformanceResourceTiming-redirectStart">
              redirectStart</a> and <a href="#widl-PerformanceResourceTiming-redirectEnd">redirectEnd</a> to 0. Then, return to step <a href="#step-fetch-start">
@@ -841,7 +834,7 @@ terms of a monotonic clock measuring time elapsed from the beginning of the navi
 
 <p>The <a href="#performanceresourcetiming">PerformanceResourceTiming</a> interface
 exposes timing information for a resource to any web page that has included that
-resource. To limit the access to the <a href="#performanceresourcetiming">PerformanceResourceTiming</a> interface, the <a href="#same-origin">same origin</a>
+resource. To limit the access to the <a href="#performanceresourcetiming">PerformanceResourceTiming</a> interface, the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a>
 policy is enforced by default and certain attributes are set to zero, as described in <a href="#cross-origin-resources"></a>. Resource providers can
 explicitly allow all timing information to be collected for a resource by
 adding the <a href="#timing-allow-origin">Timing-Allow-Origin</a> HTTP response header, which specifies the
