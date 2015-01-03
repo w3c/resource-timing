@@ -49,6 +49,7 @@
     }]
   };
   </script>
+  <script src='references.js' async class='remove'></script>
 </head>
 
 <body>
@@ -294,9 +295,9 @@ application caches</a> or local resources MUST be included
             document's <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
         </li>
         <li>
-            If an HTML <code>IMG</code> element has a <code><a href="http://tools.ietf.org/html/rfc2397">data: URI</a></code> as its source [[!RFC2397]], then this resource will not
+            If an HTML <code>IMG</code> element has a <code><a href="https://tools.ietf.org/html/rfc2397">data: URI</a></code> as its source [[!RFC2397]], then this resource will not
             be included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
-			By definition <code><a href="http://tools.ietf.org/html/rfc2397">data: URI</a></code> contains embedded data and does not require a <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a>.
+			By definition <code><a href="https://tools.ietf.org/html/rfc2397">data: URI</a></code> contains embedded data and does not require a <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a>.
         </li>
     </ul>
 <p>
@@ -509,7 +510,7 @@ application caches</a> or from local resources.</p>
 <dt>readonly attribute unsigned short transferSize</dt>
 <dd>
 <p>This attribute MUST return the size, in octets received by the client, consumed by the response header fields and the response <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]].</p>
-<p>This attribute SHOULD include HTTP overhead (such as HTTP/1.1 chunked encoding and whitespace around header fields, including newlines, and <a href='https://tools.ietf.org/html/draft-ietf-httpbis-http2-16'>HTTP/2</a> frame overhead, along with other server-to-client frames on the same stream), but SHOULD NOT include lower-layer protocol overhead (such as TLS or TCP). If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a> when navigating and if all the redirects or equivalent are from the same <a href="http://tools.ietf.org/html/rfc6454#section-4">origin</a> [[!RFC6454]], this attribute SHOULD include the HTTP overhead of incurred redirects.</p>
+<p>This attribute SHOULD include HTTP overhead (such as HTTP/1.1 chunked encoding and whitespace around header fields, including newlines, and <a href='https://tools.ietf.org/html/draft-ietf-httpbis-http2-16'>HTTP/2</a> frame overhead, along with other server-to-client frames on the same stream), but SHOULD NOT include lower-layer protocol overhead (such as TLS or TCP). If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a> when navigating and if all the redirects or equivalent are from the same <a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a> [[!RFC6454]], this attribute SHOULD include the HTTP overhead of incurred redirects.</p>
 </dd>
 
 <dt>readonly attribute unsigned short encodedBodySize</dt>
@@ -618,14 +619,14 @@ application caches</a> or from local resources.</p>
 	   </ol>
 
 	  <p class="note">The above algorithm also functions when the
-	  <a href="http://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of an origin is
+	  <a href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization</a> of an origin is
 	  the string "<code>null</code>". Typically, this is the case when there are multiple redirects and the initiator is an XMLHttpRequest object.</p>
 
 	  <p class="note">In practice the
-	  <code><a href="http://tools.ietf.org/html/rfc6454#section-7.1">origin-list-or-null</a></code> production is
+	  <code><a href="https://tools.ietf.org/html/rfc6454#section-7.1">origin-list-or-null</a></code> production is
 	  more constrained. Rather than allowing a space-separated list of
-	  <a href="http://tools.ietf.org/html/rfc6454#section-4" title="origin">origins</a>, it is either a
-	  single <a href="http://tools.ietf.org/html/rfc6454#section-4">origin</a> or the string
+	  <a href="https://tools.ietf.org/html/rfc6454#section-4" title="origin">origins</a>, it is either a
+	  single <a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a> or the string
 	  "<code>null</code>".</p>
     </section>
 </section>
