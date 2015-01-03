@@ -327,7 +327,7 @@ The <a href="#performanceresourcetiming">PerformanceResourceTiming</a> interface
 <dt id='widl-PerformanceResourceTiming-startTime'><code>startTime</code></dt>
 <dd>The <code id="startTime-attribute">startTime</code> attribute MUST return a <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> [[!HR-TIME]]
   with the time immediately before the user agent starts to queue the resource for <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a>.
-       If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
+       If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
        when fetching the resource, and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current
        document or the <a href="#timing-allow-check">timing allow check</a> algorithm passes, this attribute MUST return the same value as <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>.
      Otherwise, this attribute MUST return the same value as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>.</dd>
@@ -356,10 +356,10 @@ on getting, the <code><a href="#widl-PerformanceResourceTiming-initiatorType">in
 
 <dt>readonly attribute DOMHighResTimeStamp redirectStart</dt>
 <dd>
-<p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
+<p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
 when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
 this attribute MUST return the <a href="#widl-PerformanceResourceTiming-fetchStart">starting time</a> of the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> that initiates the redirect.</p>
-<p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
+<p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
 when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if any of the redirects are not from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
 but the <a href="#timing-allow-check">timing allow check</a> algorithm passes for each redirected resource, this attribute MUST
 return the <a href="#widl-PerformanceResourceTiming-fetchStart">starting time of the fetch</a> that initiates the redirect.
@@ -368,11 +368,11 @@ Otherwise, this attribute MUST return zero. </p>
 
 <dt>readonly attribute DOMHighResTimeStamp redirectEnd</dt>
 <dd>
-<p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
+<p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
 when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
 this attribute MUST return the time immediately after receiving the last byte of the response of the last redirect.</p>
 
-<p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
+<p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
 when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if any of the redirects are not from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
 but the <a href="#timing-allow-check">timing allow check</a> algorithm passes for each redirected resource, this attribute MUST return the
 time immediately after receiving the last byte of the response of the last redirect.
@@ -381,9 +381,9 @@ Otherwise, this attribute MUST return zero. </p>
 
 <dt>readonly attribute DOMHighResTimeStamp fetchStart</dt>
 <dd>
-<p>If there are no HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>,
+<p>If there are no HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>,
 this attribute MUST return the time immediately before the user agent starts to <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the resource.</p>
-<p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>,
+<p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>,
 this attribute MUST return the time immediately before the user agent starts to <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the final resource in the redirection.</p>
 </dd>
 
@@ -460,7 +460,7 @@ zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm p
 <dt>readonly attribute DOMHighResTimeStamp secureConnectionStart</dt>
 <dd>
 <p>This attribute is optional. User agents that don't have this attribute available MUST set it as undefined.
-When this attribute is available, if the <a href="http://www.w3.org/TR/url/#concept-url-scheme">scheme</a> [[URL]]
+When this attribute is available, if the <a href="http://www.w3.org/TR/url/#concept-url-scheme">scheme</a> [[!URL]]
 of the resource is "HTTPS" [[RFC2817]], this attribute MUST return the
 time immediately before the user agent starts the handshake process to secure the current connection. If the
 secureConnectionStart attribute is available but HTTPS is not used, this attribute MUST return zero.</p>
@@ -509,7 +509,7 @@ application caches</a> or from local resources.</p>
 <dt>readonly attribute unsigned short transferSize</dt>
 <dd>
 <p>This attribute MUST return the size, in octets received by the client, consumed by the response header fields and the response <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]].</p>
-<p>This attribute SHOULD include HTTP overhead (such as HTTP/1.1 chunked encoding and whitespace around header fields, including newlines, and <a href='https://tools.ietf.org/html/draft-ietf-httpbis-http2-16'>HTTP/2</a> frame overhead, along with other server-to-client frames on the same stream), but SHOULD NOT include lower-layer protocol overhead (such as TLS or TCP). If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a> when navigating and if all the redirects or equivalent are from the same <a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a> [[!RFC6454]], this attribute SHOULD include the HTTP overhead of incurred redirects.</p>
+<p>This attribute SHOULD include HTTP overhead (such as HTTP/1.1 chunked encoding and whitespace around header fields, including newlines, and <a href='https://tools.ietf.org/html/draft-ietf-httpbis-http2-16'>HTTP/2</a> frame overhead, along with other server-to-client frames on the same stream), but SHOULD NOT include lower-layer protocol overhead (such as TLS or TCP). If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a> when navigating and if all the redirects or equivalent are from the same <a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a> [[!RFC6454]], this attribute SHOULD include the HTTP overhead of incurred redirects.</p>
 </dd>
 
 <dt>readonly attribute unsigned short encodedBodySize</dt>
@@ -690,10 +690,10 @@ If such extensions are needed, e.g., for experimental purposes, vendors MUST use
       <li>Record the <a href="http://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>.
       </li>
       <li id="step-fetch-start">If the new resource is to be fetched using HTTP GET or
-       <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>,
+       <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>,
        immediately before a user agent checks with the <a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>
        relevant application caches</a>, record the current time as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>. Otherwise, immediately
-       before a user agent starts the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetching-resources">
+       before a user agent starts the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>
        fetching process</a>, record the current time as <a href="#widl-PerformanceResourceTiming-fetchStart">
        fetchStart</a>. Let
      <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>,
@@ -727,7 +727,7 @@ If such extensions are needed, e.g., for experimental purposes, vendors MUST use
        <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>.</li>
       <li>If the resource is fetched from the <a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache">
        relevant application cache</a> or local resources, including the <a
-       href="http://www.ietf.org/rfc/rfc7230.txt">HTTP</a> cache,
+       href="https://tools.ietf.org/html/rfc7234">HTTP cache</a> [[!RFC7234]],
      go to step <a href="#step-request-start">3.15</a>.
       </li>
       <li>If no domain lookup is required, go to step <a href="#step-connect-start">3.13</a>. Otherwise, immediately before a user agent
@@ -777,7 +777,7 @@ If such extensions are needed, e.g., for experimental purposes, vendors MUST use
       </li>
       <li>Record the difference between <a href="#widl-PerformanceResourceTiming-responseEnd">responseEnd</a> and <a href="#startTime-attribute">startTime</a> in <a href="#duration-attribute">duration</a>.</li>
       <li>If the fetched resource results in an HTTP redirect or
-      <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes">equivalent</a>, then
+      <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>, then
       <ol style="list-style-type:lower-alpha;">
             <li>If the current resource and the redirected resource are not from the
              <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
