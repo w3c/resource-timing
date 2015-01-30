@@ -521,6 +521,26 @@ application caches</a> or from local resources.</p>
 <dd>
 <p>This attribute MUST return the size, in octets received by the client, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">message body</a> [[!RFC7230]], after removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a> [[!RFC7231]].</p>
 </dd>
+
+<dt>serializer = { inherit, initiatorType,
+ nextHopProtocol,
+ redirectStart,
+ redirectEnd,
+ fetchStart,
+ domainLookupStart,
+ domainLookupEnd,
+ connectStart,
+ connectEnd,
+ secureConnectionStart,
+ requestStart,
+ responseStart,
+ responseEnd,
+ transferSize,
+ encodedBodySize,
+ decodedBodySize }
+ </dt>
+
+
 </dl>
 
 </section>
