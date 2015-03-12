@@ -698,19 +698,8 @@ If such extensions are needed, e.g., for experimental purposes, vendors MUST use
 
       <li>Record the <a href="http://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>. If there is an <a href="http://www.w3.org/TR/service-workers/#dfn-containing-service-worker-registration">active worker</a> ([[!SERVICE-WORKERS]]) matching the current browsing or worker context's, immediately before the user agent <a href="http://www.w3.org/TR/service-workers/#service-worker-concept">runs the worker</a> record the time as <a href="#widl-PerformanceResourceTiming-workerStart">workerStart</a>, or if the worker is available, immediately before the <a href="http://www.w3.org/TR/service-workers/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a href="#widl-PerformanceResourceTiming-workerStart">workerStart</a>. Otherwise, if <a href="#widl-PerformanceResourceTiming-workerStart">workerStart</a> attribute is supported but there is no matching <a href="http://www.w3.org/TR/service-workers/#dfn-service-worker-registration">service worker registration</a>, set the value to zero.</li>
 
-      <li id="step-fetch-start">If the new resource is to be fetched using HTTP GET or
-       <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>,
-       immediately before a user agent checks with the <a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>
-       relevant application caches</a>, record the current time as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>. Otherwise, immediately
-       before a user agent starts the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>
-       fetching process</a>, record the current time as <a href="#widl-PerformanceResourceTiming-fetchStart">
-       fetchStart</a>. Let
-     <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>,
-     <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>,
-     <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a> and
-     <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> be the same value as
-     <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>.
-      </li>
+      <li id="step-fetch-start">Immediately before a user agent starts the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching process</a>, record the current time as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>. Let <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>, <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>, <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a> and <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> be the same value as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>.</li>
+
       <li id="step-collection-start">If the user agent is to reuse the data from another existing or completed <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> initiated from the current document, abort the
           remaining steps.
       </li>
