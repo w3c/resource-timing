@@ -357,7 +357,7 @@ on getting, the <code><a href="#widl-PerformanceResourceTiming-initiatorType">in
 </dd>
 
 <dt>readonly attribute DOMHighResTimeStamp workerStart</dt>
-<dd>If the current browsing or worker context's have an <a href="http://www.w3.org/TR/service-workers/#dfn-containing-service-worker-registration">active worker</a> ([[!SERVICE-WORKERS]]), this atribute MUST return the time immediately before the user agent <a href="http://www.w3.org/TR/service-workers/#service-worker-concept">runs the worker</a> required to service the request, or if the worker is available, the time immediately before the user agent <a href="http://www.w3.org/TR/service-workers/#on-fetch-request-algorithm">fires an event named `fetch`</a> at the <a href="http://www.w3.org/TR/service-workers/#dfn-active-worker">active worker</a>. Otherwise, if there is no active worker this attribute MUST return zero.</dd>
+<dd>If the current browsing or worker context's have an <a href="http://www.w3.org/TR/service-workers/#dfn-containing-service-worker-registration">active worker</a> ([[!SERVICE-WORKERS]]), this attribute MUST return the time immediately before the user agent <a href="http://www.w3.org/TR/service-workers/#service-worker-concept">runs the worker</a> required to service the request, or if the worker is available, the time immediately before the user agent <a href="http://www.w3.org/TR/service-workers/#on-fetch-request-algorithm">fires an event named `fetch`</a> at the <a href="http://www.w3.org/TR/service-workers/#dfn-active-worker">active worker</a>. Otherwise, if there is no active worker this attribute MUST return zero.</dd>
 
 <dt>readonly attribute DOMHighResTimeStamp redirectStart</dt>
 <dd>
