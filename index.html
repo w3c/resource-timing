@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -15,6 +15,11 @@
       mailto: "arvind@google.com",
       company: "Google Inc.",
       w3cid: "45188"
+    }, {
+        name: "Todd Reifsteck",
+        mailto: "toddreif@microsoft.com",
+        company: "Microsoft Corp.",
+        w3cid: "76565"
     }, {
       name: "Jatinder Mann",
       mailto: "jmann@microsoft.com",
@@ -468,10 +473,9 @@ zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm p
 <dt>readonly attribute DOMHighResTimeStamp secureConnectionStart</dt>
 <dd>
 <p>This attribute is optional. User agents that don't have this attribute available MUST set it as undefined.
-When this attribute is available, if the <a href="http://www.w3.org/TR/url/#concept-url-scheme">scheme</a> [[!URL]]
-of the resource is "HTTPS" [[RFC2817]], this attribute MUST return the
+When this attribute is available and a secure trasnport is used, this attribute MUST return the
 time immediately before the user agent starts the handshake process to secure the current connection. If the
-secureConnectionStart attribute is available but HTTPS is not used, this attribute MUST return zero.</p>
+secureConnectionStart attribute is available but a secure transport is not used, this attribute MUST return zero.</p>
 <p>
 If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document,
 <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> MUST return
