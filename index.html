@@ -745,11 +745,11 @@ If such extensions are needed, e.g., for experimental purposes, vendors MUST use
       </li>
       <li>The user agent MUST set the <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> attribute as follows:
         <ol>
-        <li>If the scheme of the current resource is HTTPS, the user agent MUST record the
+        <li>When a secure transport is used, the user agent MUST record the
          time as <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>
          immediately before the handshake process to secure the connection.
         </li>
-        <li>If the scheme of the current resource is not HTTPS, the user agent MUST set the
+        <li>When a secure transport is not used, the user agent MUST set the
         value of <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> to 0.
         </li>
         </ol>
