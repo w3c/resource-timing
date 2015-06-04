@@ -472,10 +472,8 @@ zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm p
 
 <dt>readonly attribute DOMHighResTimeStamp secureConnectionStart</dt>
 <dd>
-<p>This attribute is optional. User agents that don't have this attribute available MUST set it as undefined.
-When this attribute is available and a secure trasnport is used, this attribute MUST return the
-time immediately before the user agent starts the handshake process to secure the current connection. If the
-secureConnectionStart attribute is available but a secure transport is not used, this attribute MUST return zero.</p>
+<p>When a secure transport is used, this attribute MUST return the
+time immediately before the user agent starts the handshake process to secure the current connection. If a secure transport is not used, this attribute MUST return zero.</p>
 <p>
 If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document,
 <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> MUST return
@@ -586,7 +584,7 @@ application caches</a> or from local resources.</p>
 		MUST be set to zero: <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>, <a href="#widl-PerformanceResourceTiming-redirectEnd">redirectEnd</a>,
         <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>, <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>, <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a>,
         <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a>, <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a>, <a href="#widl-PerformanceResourceTiming-responseStart">responseStart</a>
-		and <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>, if supported by the user agent.
+		and <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>.
     </p>
     <p>
         The term <dfn id="cross-origin">cross-origin</dfn> is used to mean non
@@ -722,7 +720,7 @@ If such extensions are needed, e.g., for experimental purposes, vendors MUST use
       <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a>,
       <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a>,
       <a href="#widl-PerformanceResourceTiming-responseStart">responseStart</a> and
-	  <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>, if supported by the user agent,
+	  <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>
 	  to zero and go to step <a href="#step-response-end">3.17</a>.
       </li>
         <li>Let <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>,
@@ -745,14 +743,13 @@ If such extensions are needed, e.g., for experimental purposes, vendors MUST use
        be the same value of <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>. Otherwise, record the time as
        <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a> immediately before initiating the connection to the server and record the time as <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> immediately after the connection to the server or the proxy is established. A user agent may need multiple retries before this time. Once connection is established set the value of <a href="#widl-PerformanceResourceTiming-nextHopProtocol">nextHopProtocol</a> to the ALPN ID used by the connection. If a connection can not be established, abort the remaining steps.
       </li>
-      <li>If the user agent supports the <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> attribute,
-      in step <a href="#step-connect-start">3.13</a>, a user agent SHOULD also carry out these additional steps:
+      <li>The user agent MUST set the <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> attribute as follows:
         <ol>
-        <li>If the scheme of the current resource is HTTPS, the user agent MUST record the
+        <li>When a secure transport is used, the user agent MUST record the
          time as <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>
          immediately before the handshake process to secure the connection.
         </li>
-        <li>If the scheme of the current resource is not HTTPS, the user agent MUST set the
+        <li>When a secure transport is not used, the user agent MUST set the
         value of <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> to 0.
         </li>
         </ol>
