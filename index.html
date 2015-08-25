@@ -644,34 +644,6 @@ application caches</a> or from local resources.</p>
     </section>
 </section>
 
-<section id="vendor-prefixes">
-<h3>Vendor Prefixes</h3>
-
-<p>Vendor-specific proprietary user agent extensions are discouraged.
-If such extensions are needed, e.g., for experimental purposes, vendors MUST use the following extension mechanisms:</p>
-
-<p>If an extension to the <a href="#widl-PerformanceResourceTiming-initiatorType">initiatorType</a> IDL attribute return value
- is needed for an experimental initiator type, on getting the <a href="#widl-PerformanceResourceTiming-initiatorType">initiatorType</a> IDL attribute,
-  vendors MUST return a DOMString that uses the following convention:</p>
-
-<p><code>[vendorprefix]-[name]</code></p>
-
-<p>Where,</p>
-<ul>
-	<li><code>[vendorprefix]</code> is a non-capitalized name that identifies the vendor,</li>
-	<li><code>[name]</code> is a non-capitalized name given to the initiator type,</li>
-    <li>and the above names are in ASCII.</li>
-</ul>
-
-<p>If the extension is a new timing attribute, it MUST:</p>
-<ul>
-    <li>Follow this naming convention: [vendorPrefix]TimeName, where [vendorPrefix] is a
-        name that identifies the vendor and TimeName identifies the name given to the
-        timing attribute. </li>
-    <li>Use a monotonically increasing clock, as defined in <a href="#monotonic-clock"></a>.</li>
-    <li>Return a <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a>.</li>
-</ul>
-</section>
 </section>
 <section id="process">
 <h2>Process</h2>
