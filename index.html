@@ -510,10 +510,8 @@ zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm p
 
 <dt>readonly attribute DOMHighResTimeStamp responseEnd</dt>
 <dd>
-<p>This attribute MUST return the time immediately after the user agent finishes
-receiving the last byte of the resource from <a
-href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant
-application caches</a> or from local resources.</p>
+<p>This attribute MUST return the time immediately after the user agent receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first. The resource here can be received either from the server, <a
+href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant application caches</a> or from local resources.</p>
 </dd>
 
 <dt>readonly attribute unsigned short transferSize</dt>
