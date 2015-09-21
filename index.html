@@ -518,16 +518,19 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 <dd>
 <p>This attribute MUST return the size, in octets received by the client, consumed by the response header fields and the response <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]].</p>
 <p>This attribute SHOULD include HTTP overhead (such as HTTP/1.1 chunked encoding and whitespace around header fields, including newlines, and <a href='https://tools.ietf.org/html/draft-ietf-httpbis-http2-16'>HTTP/2</a> frame overhead, along with other server-to-client frames on the same stream), but SHOULD NOT include lower-layer protocol overhead (such as TLS or TCP). If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a> when navigating and if all the redirects or equivalent are from the same <a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a> [[!RFC6454]], this attribute SHOULD include the HTTP overhead of incurred redirects.</p>
+<p>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document, <a href="#widl-PerformanceResourceTiming-transferSize">transferSize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
 
 <dt>readonly attribute unsigned long encodedBodySize</dt>
 <dd>
 <p>This attribute MUST return the size, in octets received by the client, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]], prior to removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a> [[!RFC7231]].</p>
+<p>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document, <a href="#widl-PerformanceResourceTiming-encodedBodySize">encodedBodySize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
 
 <dt>readonly attribute unsigned long decodedBodySize</dt>
 <dd>
 <p>This attribute MUST return the size, in octets received by the client, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">message body</a> [[!RFC7230]], after removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a> [[!RFC7231]].</p>
+<p>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document, <a href="#widl-PerformanceResourceTiming-decodedBodySize">decodedBodySize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
 
 <dt>serializer = { inherit, attribute }</dt>
@@ -749,7 +752,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
         <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a> SHOULD represent timing information collected over the re-open connection. </p>
         </div></li>
 
-        <li>Set the value of <a href="#widl-PerformanceResourceTiming-transferSize">transferSize</a>, <a href="#widl-PerformanceResourceTiming-encodedBodySize">encodedBodySize</a>, <a href="#widl-PerformanceResourceTiming-decodedBodySize">decodedBodySize</a> to corresponding values.</li>
+        <li>Set the value of <a href="#widl-PerformanceResourceTiming-transferSize">transferSize</a>, <a href="#widl-PerformanceResourceTiming-encodedBodySize">encodedBodySize</a>, <a href="#widl-PerformanceResourceTiming-decodedBodySize">decodedBodySize</a> to corresponding values, subject to <a href="#timing-allow-check">timing allow check</a> algorithm.</li>
       </ol>
       </li>
       <li>Record the difference between <a href="#widl-PerformanceResourceTiming-responseEnd">responseEnd</a> and <a href="#startTime-attribute">startTime</a> in <a href="#duration-attribute">duration</a>.</li>
