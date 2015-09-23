@@ -472,8 +472,13 @@ zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm p
 
 <dt>readonly attribute DOMHighResTimeStamp secureConnectionStart</dt>
 <dd>
-<p>When a secure transport is used, this attribute MUST return the
-time immediately before the user agent starts the handshake process to secure the current connection. If a secure transport is not used, this attribute MUST return zero.</p>
+<p>
+When a secure transport is used, this attribute MUST return the time immediately before the user agent starts the handshake process to secure the current connection.
+If a secure transport is not used, this attribute MUST return zero.
+If a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent connection</a> [[!RFC7230]] is used or the resource is retrieved from
+<a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant application caches</a> or local resources,
+this attribute MUST return value of <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>.
+</p>
 <p>
 If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document,
 <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> MUST return
