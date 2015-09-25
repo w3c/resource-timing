@@ -797,8 +797,9 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
             </li>
         </ol>
       </li>
-      <li>If the <i>primary buffer</i> is full, discard the <a>PerformanceResourceTiming</a> object,
-      created in step <a href="#step-create-object">3.1</a>. Otherwise, <a href='http://w3c.github.io/performance-timeline/#dfn-queue-a-performanceentry'>queue</a> the <a>PerformanceResourceTiming</a> object and add it to the <i>primary buffer</i>.
+      <li><a href='https://w3c.github.io/performance-timeline/#dfn-queue-a-performanceentry'>Queue</a> the <a>PerformanceResourceTiming</a> object.
+      </li>
+      <li>If the <i>primary buffer</i> is not full, add the <a>PerformanceResourceTiming</a> object to the <i>primary buffer</i>.
 	  If adding it causes the <i> primary buffer </i> to become full, fire the <a href="#widl-Performance-onresourcetimingbufferfull"><code>resourcetimingbufferfull</code></a> event at the Document.
       <ol>
             <li>
