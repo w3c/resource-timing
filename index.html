@@ -797,13 +797,14 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
             </li>
         </ol>
       </li>
-      <li>If the <i>primary buffer</i> is full, discard the <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object,
-      created in step <a href="#step-create-object">3.1</a>. Otherwise, add it to the <i>primary buffer</i>.
+      <li><a href='https://w3c.github.io/performance-timeline/#dfn-queue-a-performanceentry'>Queue</a> the <a>PerformanceResourceTiming</a> object.
+      </li>
+      <li>If the <i>primary buffer</i> is not full, add the <a>PerformanceResourceTiming</a> object to the <i>primary buffer</i>.
 	  If adding it causes the <i> primary buffer </i> to become full, fire the <a href="#widl-Performance-onresourcetimingbufferfull"><code>resourcetimingbufferfull</code></a> event at the Document.
       <ol>
             <li>
             If the <a href="#widl-Performance-clearResourceTimings-void"><code>clearResourceTimings</code></a> method is called in the event handler for the <a href="#widl-Performance-onresourcetimingbufferfull"><code>resourcetimingbufferfull</code></a> event,
-            clear all <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <i>primary buffer</i>.
+            clear all <a>PerformanceResourceTiming</a> objects in the <i>primary buffer</i>.
             </li>
             <li>
             If the <a href="#widl-Performance-setResourceTimingBufferSize-void-unsigned-long-maxSize"><code>setResourceTimingBufferSize</code></a> method is called in the event handler for the <a href="#widl-Performance-onresourcetimingbufferfull"><code>resourcetimingbufferfull</code></a> event,
