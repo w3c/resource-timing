@@ -278,7 +278,7 @@ For example, a resource could originate from XMLHttpRequest objects [XMLHttpRequ
 <section id="resources-included">
 <h3>Resources Included in the <code><a href="#performanceresourcetiming">PerformanceResourceTiming</a></code> Interface</h3>
 
-<p>All resources <a title='fetch' href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetched</a> by the current <a href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing</a> [[!HTML5]] or worker [[!WORKERS]] context's MUST be included as <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> of the relevant context. Resources that are retrieved from <a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant application caches</a> or local resources MUST be included as <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> ([[!performance-timeline]]). Resources for which the <a title='fetch' href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> was initiated, but was later aborted (e.g. due to a network error) MUST be included as <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> and MUST contain initialized attribute values for processed substeps of the <a href="#processing-model">processing model</a>.</p>
+<p>All resources <a title='fetch' href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetched</a> by the current <a href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing</a> [[!HTML5]] or worker [[!WORKERS]] context's MUST be included as <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a> of the relevant context. Resources that are retrieved from <a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant application caches</a> or local resources MUST be included as <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a> ([[!PERFORMANCE-TIMELINE-2]]). Resources for which the <a title='fetch' href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> was initiated, but was later aborted (e.g. due to a network error) MUST be included as <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a> and MUST contain initialized attribute values for processed substeps of the <a href="#processing-model">processing model</a>.</p>
 
 <p>The rest of this section is non-normative.</p>
 <p>
@@ -286,47 +286,47 @@ For example, a resource could originate from XMLHttpRequest objects [XMLHttpRequ
     <ul>
         <li>If the same canonical URL is used as the <code>src</code> attribute of two HTML <code>IMG</code> elements,
             the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource initiated by the first HTML <code>IMG</code> element SHOULD
-			be included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+			be included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
 			The user agent might not re-request the URL for the second HTML <code>IMG</code> element, instead using the existing download it initiated for the first HTML <code>IMG</code> element.
             In this case, the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource by the first
-            <code>IMG</code> element would be the only occurrence in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+            <code>IMG</code> element would be the only occurrence in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
         </li>
         <li>If the <code>src</code> attribute of a HTML <code>IMG</code> element is changed via script, both the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the original resource as well
             as the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the new URL would be included as <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in
-			the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+			the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
         </li>
 		<li>
 			If an HTML <code>IFRAME</code> element is added via markup without specifying a <code>src</code> attribute, the user agent may load the <code>about:blank</code> document for the <code>IFRAME</code>. If at a later time the <code>src</code> attribute is changed dynamically via script, the user agent may
 			<a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the new URL resource for the <code>IFRAME</code>. In this case, only the
 			<a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the new URL would be included
-			as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+			as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
 		</li>
         <li>
             If an <code>XMLHttpRequest</code> is generated twice for the same canonical URL, both <a title='fetch' href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetches</a> of the resource would be
-            included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+            included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
 			This is because the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource for the second <code>XMLHttpRequest</code> cannot reuse the download issued for the first <code>XMLHttpRequest</code>.
         </li>
         <li>
             If an HTML <code>IFRAME</code> element is included on the page, then only the resource requested by <code>IFRAME</code> <code>src</code> attribute is included
-            as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
-			Sub-resources requested by the <code>IFRAME</code> document will be included in the <code>IFRAME</code> document's <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> and not the parent
-            document's <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+            as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
+			Sub-resources requested by the <code>IFRAME</code> document will be included in the <code>IFRAME</code> document's <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a> and not the parent
+            document's <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
         </li>
         <li>
             If an HTML <code>IMG</code> element has a <code><a href="https://tools.ietf.org/html/rfc2397">data: URI</a></code> as its source [[!RFC2397]], then this resource will not
-            be included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+            be included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
 			By definition <code><a href="https://tools.ietf.org/html/rfc2397">data: URI</a></code> contains embedded data and does not require a <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a>.
         </li>
         <li>
-          If a resource <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> was aborted due to a networking error (e.g. DNS, TCP, or TLS error), then the fetch would be included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> with initialized attribute values up to the point of failure - e.g. a TCP handshake error should report DNS timestamps for the request, and so on.
+          If a resource <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> was aborted due to a networking error (e.g. DNS, TCP, or TLS error), then the fetch would be included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a> with initialized attribute values up to the point of failure - e.g. a TCP handshake error should report DNS timestamps for the request, and so on.
         </li>
         <li>
-          If a resource <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> is aborted because it failed a fetch precondition (e.g. mixed content, CORS restriction, CSP policy, etc), then this resource will not be included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+          If a resource <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> is aborted because it failed a fetch precondition (e.g. mixed content, CORS restriction, CSP policy, etc), then this resource will not be included as a <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
         </li>
     </ul>
 <p>
     The user agent MAY choose to limit how many resources are included as
-    <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+    <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
 	The recommended minimum number of <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects is 150, though this may be changed by the user agent.
     <a href="#widl-Performance-setResourceTimingBufferSize-void-unsigned-long-maxSize"><code>setResourceTimingBufferSize</code></a>
     can be called to request a change to this limit.
@@ -338,8 +338,8 @@ For example, a resource could originate from XMLHttpRequest objects [XMLHttpRequ
 
 <p>
 The <a href="#performanceresourcetiming">PerformanceResourceTiming</a> interface participates in the
-	<a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> and extends the following attributes of the
-<a href="http://www.w3.org/TR/performance-timeline/#performanceentry">PerformanceEntry</a> interface:</p>
+	<a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a> and extends the following attributes of the
+<a href="http://www.w3.org/TR/performance-timeline-2/#performanceentry">PerformanceEntry</a> interface:</p>
 
 <dl class='attributes'>
 <dt id='widl-PerformanceResourceTiming-name'><code>name</code></dt>
@@ -612,7 +612,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 <section id="cross-origin-resources">
 <h3>Cross-origin Resources</h3>
     <p>
-        Cross-origin resources MUST be included as <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+        Cross-origin resources MUST be included as <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
 		If the <a href="#timing-allow-check">timing allow check</a> algorithm fails for a <a>cross-origin</a> resource, these attributes of its <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object
 		MUST be set to zero: <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>, <a href="#widl-PerformanceResourceTiming-redirectEnd">redirectEnd</a>,
         <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>, <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>, <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a>,
@@ -685,7 +685,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 <p><img style="width:85%" src="resource-timing-overview-1.png" alt='Resource Timing attributes'></p>
 
 <ol>
-  <li>Once the <a href="http://www.w3.org/TR/workers/#processing-model">Worker</a> or <a href="http://www.w3.org/TR/html5/browsers.html#create-a-document-object">Window object</a> is created, the user agent MUST create a <a href="http://www.w3.org/TR/performance-timeline/#performanceentrylist">PerformanceEntryList</a>
+  <li>Once the <a href="http://www.w3.org/TR/workers/#processing-model">Worker</a> or <a href="http://www.w3.org/TR/html5/browsers.html#create-a-document-object">Window object</a> is created, the user agent MUST create a <a href="http://www.w3.org/TR/performance-timeline-2/#performanceentrylist">PerformanceEntryList</a>
   <i>primary buffer</i> object to store the list
   of <a href="#performanceresourcetiming">PerformanceResourceTiming</a> resources.</li>
   <li>Set the <i>primary buffer</i> to a size of 150, unless otherwise specified
