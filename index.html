@@ -350,14 +350,14 @@ The <a href="#performanceresourcetiming">PerformanceResourceTiming</a> interface
 <dt id='widl-PerformanceResourceTiming-entryType'><code>entryType</code></dt>
 <dd>The <code id="entryType-attribute">entryType</code> attribute MUST return the DOMString "<code id="perf-resource">resource</code>".</dd>
 <dt id='widl-PerformanceResourceTiming-startTime'><code>startTime</code></dt>
-<dd>The <code id="startTime-attribute">startTime</code> attribute MUST return a <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> [[!HR-TIME-2]]
+<dd>The <code id="startTime-attribute">startTime</code> attribute MUST return a <a href="http://www.w3.org/TR/hr-time-2/#domhighrestimestamp">DOMHighResTimeStamp</a> [[!HR-TIME-2]]
   with the time immediately before the user agent starts to queue the resource for <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a>.
        If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
        when fetching the resource, and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current
        document or the <a href="#timing-allow-check">timing allow check</a> algorithm passes, this attribute MUST return the same value as <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>.
      Otherwise, this attribute MUST return the same value as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>.</dd>
 <dt id='widl-PerformanceResourceTiming-duration'><code>duration</code></dt>
-<dd>The <code id="duration-attribute">duration</code> attribute MUST return a <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a>
+<dd>The <code id="duration-attribute">duration</code> attribute MUST return a <a href="http://www.w3.org/TR/hr-time-2/#domhighrestimestamp">DOMHighResTimeStamp</a>
   equal to the difference between <a href="#widl-PerformanceResourceTiming-responseEnd">responseEnd</a> and <a href="#startTime-attribute">startTime</a>, respectively.</dd>
 </dl>
 
