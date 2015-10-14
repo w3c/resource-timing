@@ -206,27 +206,43 @@ title="">Foo</code> is actually an interface, is sometimes used instead of
 the more accurate "an object implementing the interface <code
 title="">Foo</code>". </p>
 
-<p>The term DOM is used to refer to the API set made available to scripts in
+<p>The term <dfn>DOM</dfn> is used to refer to the API set made available to scripts in
 Web applications, and does not necessarily imply the existence of an actual
 <code>Document</code> object or of any other <code>Node</code> objects as
 defined in the DOM specification. [[DOM]]
 </p>
 
-<p>A DOM attribute is said to be <em>getting</em> when its value is being
-retrieved (such as by author script), and is said to be <em>setting</em> when
+<p>A DOM attribute is said to be <dfn>getting</dfn> when its value is being
+retrieved (such as by author script), and is said to be <dfn>setting</dfn> when
 a new value is assigned to it.</p>
 
-<p>The term "JavaScript" is used to refer to ECMA262, rather than the
+<p>The term <dfn>JavaScript</dfn> is used to refer to ECMA262, rather than the
 official term ECMAScript, since the term JavaScript is more widely known. [[ECMA-262]]
 </p>
 
+<p>The term <dfn>resource</dfn> is used to refer to elements and any other user-initiated fetches throughout this specification.
+For example, a resource could originate from XMLHttpRequest objects [XMLHttpRequest], HTML elements [HTML5] such as iframe, img, script, object, embed, and link with the link type of stylesheet, and SVG elements [SVG11] such as svg.
+</p>
+
+<p>
+  The term <dfn>cross-origin</dfn> is used to mean non
+  <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a>.
+</p>
+<p>
+  The term <dfn>current document</dfn> refers to the document associated with the <a href="http://www.w3.org/TR/html5/browsers.html#dom-document-0">Window object's newest Document object</a>.
+</p>
 <p>
   Throughout this work, all time values are measured in milliseconds since the start of
-  navigation of the document. For example, the start of navigation of the document
-  occurs at time 0. The term <i>current time</i> refers to the number of milliseconds
+  navigation of the document [[!HR-TIME-2]]. For example, the <a href='https://w3c.github.io/navigation-timing/#widl-PerformanceNavigationTiming-startTime'>start of navigation of the document</a>
+  occurs at time 0.
+</p>
+<p>
+  The term <dfn>current time</dfn> refers to the number of milliseconds
   since the start of navigation of the document until the current moment in time.
+</p>
+<p class='note'>
   This definition of time is based on the High Resolution Time specification
-  [[HR-TIME]] and is different
+  [[HR-TIME-2]] and is different
   from the definition of time used in the Navigation Timing specification
   [[NAVIGATION-TIMING]],
   where time is measured in milliseconds since midnight of January 1, 1970 (UTC).
@@ -257,7 +273,6 @@ official term ECMAScript, since the term JavaScript is more widely known. [[ECMA
     as <a href="http://www.w3.org/TR/SVG11/struct.html#SVGElement">svg</a>.
 </p>
 
-<p>The term "resource" is used to refer to these elements and any other user-initiated fetches throughout this specification.</p>
 </section>
 
 <section id="resources-included">
@@ -335,7 +350,7 @@ The <a href="#performanceresourcetiming">PerformanceResourceTiming</a> interface
 <dt id='widl-PerformanceResourceTiming-entryType'><code>entryType</code></dt>
 <dd>The <code id="entryType-attribute">entryType</code> attribute MUST return the DOMString "<code id="perf-resource">resource</code>".</dd>
 <dt id='widl-PerformanceResourceTiming-startTime'><code>startTime</code></dt>
-<dd>The <code id="startTime-attribute">startTime</code> attribute MUST return a <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> [[!HR-TIME]]
+<dd>The <code id="startTime-attribute">startTime</code> attribute MUST return a <a href="http://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> [[!HR-TIME-2]]
   with the time immediately before the user agent starts to queue the resource for <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a>.
        If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
        when fetching the resource, and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current
@@ -370,10 +385,10 @@ on getting, the <code><a href="#widl-PerformanceResourceTiming-initiatorType">in
 <dt>readonly attribute DOMHighResTimeStamp redirectStart</dt>
 <dd>
 <p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
-when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
+when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the <a>current document</a>,
 this attribute MUST return the <a href="#widl-PerformanceResourceTiming-fetchStart">starting time</a> of the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> that initiates the redirect.</p>
 <p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
-when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if any of the redirects are not from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
+when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if any of the redirects are not from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the <a>current document</a>,
 but the <a href="#timing-allow-check">timing allow check</a> algorithm passes for each redirected resource, this attribute MUST
 return the <a href="#widl-PerformanceResourceTiming-fetchStart">starting time of the fetch</a> that initiates the redirect.
 Otherwise, this attribute MUST return zero. </p>
@@ -382,11 +397,11 @@ Otherwise, this attribute MUST return zero. </p>
 <dt>readonly attribute DOMHighResTimeStamp redirectEnd</dt>
 <dd>
 <p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
-when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
+when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the <a>current document</a>,
 this attribute MUST return the time immediately after receiving the last byte of the response of the last redirect.</p>
 
 <p>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
-when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if any of the redirects are not from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
+when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and if any of the redirects are not from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the <a>current document</a>,
 but the <a href="#timing-allow-check">timing allow check</a> algorithm passes for each redirected resource, this attribute MUST return the
 time immediately after receiving the last byte of the response of the last redirect.
 Otherwise, this attribute MUST return zero. </p>
@@ -410,7 +425,7 @@ is retrieved from <a href="http://www.w3.org/TR/html5/browsers.html#relevant-app
 application caches</a> or local resources, this attribute MUST return the same
 value as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>. </p>
 <p>
-If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document,
+If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>,
 <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a> MUST return
 zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
@@ -428,7 +443,7 @@ value as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>. </
 domainLookupStart and domainLookupEnd represent the times when the user agent
 starts and ends the domain data retrieval from the cache. </p>
 <p>
-If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document,
+If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>,
 <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a> MUST return
 zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
@@ -444,7 +459,7 @@ application caches</a> or local resources, this attribute MUST return value of
 <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>.</p>
 
 <p>
-If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document,
+If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>,
 <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a> MUST return
 zero unless <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
@@ -465,7 +480,7 @@ values of the new connection. </p>
 <p><a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> MUST include the time interval to
 establish the transport connection, as well as other time intervals such as SSL handshake and SOCKS authentication. </p>
 <p>
-If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document,
+If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>,
 <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> MUST return
 zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
@@ -480,7 +495,7 @@ If a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent connec
 this attribute MUST return value of <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>.
 </p>
 <p>
-If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document,
+If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>,
 <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> MUST return
 zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
@@ -496,7 +511,7 @@ agent reopens a connection and resend the request, <a
 href="#widl-PerformanceResourceTiming-requestStart">requestStart</a> MUST return the corresponding values
 of the new request.</p>
 <p>
-If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document,
+If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>,
 <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a> MUST return
 zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 
@@ -520,7 +535,7 @@ the first byte of the response from the server, or from <a
 href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant
 application caches</a> or from local resources.</p>
 <p>
-If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document,
+If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>,
 <a href="#widl-PerformanceResourceTiming-responseStart">responseStart</a> MUST return
 zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
@@ -535,19 +550,19 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 <dd>
 <p>This attribute MUST return the size, in octets received by the client, consumed by the response header fields and the response <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]].</p>
 <p>This attribute SHOULD include HTTP overhead (such as HTTP/1.1 chunked encoding and whitespace around header fields, including newlines, and <a href='https://tools.ietf.org/html/draft-ietf-httpbis-http2-16'>HTTP/2</a> frame overhead, along with other server-to-client frames on the same stream), but SHOULD NOT include lower-layer protocol overhead (such as TLS or TCP). If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a> when navigating and if all the redirects or equivalent are from the same <a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a> [[!RFC6454]], this attribute SHOULD include the HTTP overhead of incurred redirects.</p>
-<p>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document, <a href="#widl-PerformanceResourceTiming-transferSize">transferSize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
+<p>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>, <a href="#widl-PerformanceResourceTiming-transferSize">transferSize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
 
 <dt>readonly attribute unsigned long long encodedBodySize</dt>
 <dd>
 <p>This attribute MUST return the size, in octets received by the client, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]], prior to removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a> [[!RFC7231]].</p>
-<p>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document, <a href="#widl-PerformanceResourceTiming-encodedBodySize">encodedBodySize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
+<p>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>, <a href="#widl-PerformanceResourceTiming-encodedBodySize">encodedBodySize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
 
 <dt>readonly attribute unsigned long long decodedBodySize</dt>
 <dd>
 <p>This attribute MUST return the size, in octets received by the client, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">message body</a> [[!RFC7230]], after removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a> [[!RFC7231]].</p>
-<p>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document, <a href="#widl-PerformanceResourceTiming-decodedBodySize">decodedBodySize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
+<p>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>, <a href="#widl-PerformanceResourceTiming-decodedBodySize">decodedBodySize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</p>
 </dd>
 
 <dt>serializer = { inherit, attribute }</dt>
@@ -598,20 +613,16 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 <h3>Cross-origin Resources</h3>
     <p>
         Cross-origin resources MUST be included as <a href="#performanceresourcetiming">PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
-		If the <a href="#timing-allow-check">timing allow check</a> algorithm fails for a cross-origin resource, these attributes of its <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object
+		If the <a href="#timing-allow-check">timing allow check</a> algorithm fails for a <a>cross-origin</a> resource, these attributes of its <a href="#performanceresourcetiming">PerformanceResourceTiming</a> object
 		MUST be set to zero: <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>, <a href="#widl-PerformanceResourceTiming-redirectEnd">redirectEnd</a>,
         <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>, <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>, <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a>,
         <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a>, <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a>, <a href="#widl-PerformanceResourceTiming-responseStart">responseStart</a>
 		and <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>.
     </p>
     <p>
-        The term <dfn id="cross-origin">cross-origin</dfn> is used to mean non
-        <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a>.
-    </p>
-    <p>
         Server-side applications may return the <code><a href="#timing-allow-origin">Timing-Allow-Origin</a></code> HTTP response header
         to allow the User Agent to fully expose, to the document origin(s) specified, the
-        values of attributes that would have been zero due to the cross-origin
+        values of attributes that would have been zero due to the <a>cross-origin</a>
         restrictions previously specified in this section. </p>
 
     <section id="timing-allow-origin">
@@ -628,7 +639,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
     </dl>
 
 	  <p>The <dfn id="timing-allow-check">timing allow check</dfn>
-	  algorithm, which checks whether a cross-origin resource's timing information can be shared with the current document, is as follows:<p>
+	  algorithm, which checks whether a <a>cross-origin</a> resource's timing information can be shared with the <a>current document</a>, is as follows:<p>
 
 	  <ol>
 
@@ -644,7 +655,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 	   <li><p>If the value of
 	   <code><a href="#http-timing-allow-origin">Timing-Allow-Origin</a></code>
 	   is not a <a href="http://www.w3.org/TR/html5/infrastructure.html#case-sensitive">case-sensitive</a> match for the value of the
-	   <code title="http-origin"><a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a></code> of the current document, return fail and terminate this algorithm.</p></li>
+	   <code title="http-origin"><a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a></code> of the <a>current document</a>, return fail and terminate this algorithm.</p></li>
 
 	   <li><p>Return pass.</p></li>
 	   </ol>
@@ -691,20 +702,20 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
       set <a href="#entryType-attribute">entryType</a> to the DOMString <code>resource</code>.
       </li>
       <li>Immediately before the user agent starts to queue the resource for retrieval,
-       record the current time in <a href="#startTime-attribute">startTime</a>, and set <a href="#widl-PerformanceResourceTiming-nextHopProtocol">nextHopProtocol</a> to the empty DOMString.
+       record the <a>current time</a> in <a href="#startTime-attribute">startTime</a>, and set <a href="#widl-PerformanceResourceTiming-nextHopProtocol">nextHopProtocol</a> to the empty DOMString.
       </li>
       <li>Record the initiator of the resource in <a href="#widl-PerformanceResourceTiming-initiatorType">initiatorType</a>.
       </li>
 
       <li>Record the <a href="http://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>. If there is an <a href="http://www.w3.org/TR/service-workers/#dfn-containing-service-worker-registration">active worker</a> ([[!SERVICE-WORKERS]]) matching the current browsing or worker context's, immediately before the user agent <a href="http://www.w3.org/TR/service-workers/#service-worker-concept">runs the worker</a> record the time as <a href="#widl-PerformanceResourceTiming-workerStart">workerStart</a>, or if the worker is already available, immediately before the <a href="http://www.w3.org/TR/service-workers/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a href="#widl-PerformanceResourceTiming-workerStart">workerStart</a>. Otherwise, if there is no matching <a href="http://www.w3.org/TR/service-workers/#dfn-service-worker-registration">service worker registration</a>, set <a href="#widl-PerformanceResourceTiming-workerStart">workerStart</a> value to zero.</li>
 
-      <li id="step-fetch-start">Immediately before a user agent starts the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching process</a>, record the current time as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>. Let <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>, <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>, <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a> and <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> be the same value as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>.</li>
+      <li id="step-fetch-start">Immediately before a user agent starts the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching process</a>, record the <a>current time</a> as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>. Let <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>, <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>, <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a> and <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> be the same value as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>.</li>
 
-      <li id="step-collection-start">If the user agent is to reuse the data from another existing or completed <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> initiated from the current document, abort the
+      <li id="step-collection-start">If the user agent is to reuse the data from another existing or completed <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> initiated from the <a>current document</a>, abort the
           remaining steps.
       </li>
       <li>If <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource is aborted for any reason, abort the remaining steps.       </li>
-      <li>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the current document
+      <li>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>
       and the <a href="#timing-allow-check">timing allow check</a> algorithm fails, the user agent
       MUST set
       <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>,
@@ -750,7 +761,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
         </ol>
       </li>
       <li id="step-request-start">Immediately before a user agent starts sending the request
-      for the resource, record the current time as <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a>.
+      for the resource, record the <a>current time</a> as <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a>.
       </li>
       <li id="step-response-start">Record the time as <a href="#widl-PerformanceResourceTiming-responseStart">
       responseStart</a> immediately after the user agent receives the first byte of the response.
@@ -777,7 +788,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
       <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>, then
       <ol style="list-style-type:lower-alpha;">
             <li>If the current resource and the redirected resource are not from the
-             <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current document,
+             <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the <a>current document</a>,
 			 and the <a href="#timing-allow-check">timing allow check</a> algorithm fails for either resource,
 			 set <a href="#widl-PerformanceResourceTiming-redirectStart">
              redirectStart</a> and <a href="#widl-PerformanceResourceTiming-redirectEnd">redirectEnd</a> to 0. Then, return to step <a href="#step-fetch-start">
