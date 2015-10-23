@@ -548,7 +548,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 
 <dt>readonly attribute unsigned long long transferSize</dt>
 <dd>
-<p>This attribute MUST return the size, in octets received by the client, consumed by the response header fields and the response <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]]:</p>
+<p>This attribute MUST return the size, in octets received from a [HTTP-network fetch](https://fetch.spec.whatwg.org/#http-network-fetch), consumed by the response header fields and the response <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]]:</p>
 <ul>
   <li>If the resource is retrieved from <a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant application caches</a> or from local resources, it must return zero.</li>
   <li>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a> when navigating and if all the redirects or equivalent are from the same <a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a> [[!RFC6454]], this attribute SHOULD include the HTTP overhead of incurred redirects.</li>
@@ -560,7 +560,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 
 <dt>readonly attribute unsigned long long encodedBodySize</dt>
 <dd>
-<p>This attribute MUST return the size, in octets received by the client, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]], prior to removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a> [[!RFC7231]]:</p>
+<p>This attribute MUST return the size, in octets received from a <a href="https://fetch.spec.whatwg.org/#http-network-or-cache-fetch">HTTP-network-or-cache</a> fetch, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]], prior to removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a> [[!RFC7231]]:</p>
 <ul>
   <li>If the resource is retrieved from <a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant application caches</a> or from local resources, it must return the size of the payload body prior to removing any applied content-codings.</li>
   <li>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>, <a href="#widl-PerformanceResourceTiming-encodedBodySize">encodedBodySize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</li>
@@ -570,7 +570,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 
 <dt>readonly attribute unsigned long long decodedBodySize</dt>
 <dd>
-<p>This attribute MUST return the size, in octets received by the client, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">message body</a> [[!RFC7230]], after removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a> [[!RFC7231]]:</p>
+<p>This attribute MUST return the size, in octets received from a <a href="https://fetch.spec.whatwg.org/#http-network-or-cache-fetch">HTTP-network-or-cache</a> fetch, of the <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">message body</a> [[!RFC7230]], after removing any applied <a href="http://httpwg.github.io/specs/rfc7231.html#data.encoding">content-codings</a> [[!RFC7231]]:</p>
 <ul>
   <li>If the resource is retrieved from <a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant application caches</a> or from local resources, it must return the size of the payload after removing any applied content-codings.</li>
   <li>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>, <a href="#widl-PerformanceResourceTiming-decodedBodySize">decodedBodySize</a> MUST return zero unless the <a href="#timing-allow-check">timing allow check</a> algorithm passes.</li>
