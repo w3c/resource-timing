@@ -664,9 +664,11 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
     </dl>
 
 	  <p>The <dfn id="timing-allow-check">timing allow check</dfn>
-	  algorithm, which checks whether a <a>cross-origin</a> resource's timing information can be shared with the <a>current document</a>, is as follows:<p>
+	  algorithm, which checks whether a resource's timing information can be shared with the <a>current document</a>, is as follows:<p>
 
 	  <ol>
+
+       <li><p>If the resource is not <a>cross-origin</a>, return pass.
 
 	   <li><p>If the HTTP response includes zero or more than one
 	   <code><a href="#http-timing-allow-origin">Timing-Allow-Origin</a></code>
