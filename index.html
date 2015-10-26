@@ -563,7 +563,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 
 <dt>readonly attribute unsigned long long transferSize</dt>
 <dd>
-<p>This attribute MUST return the size, in octets received from a [HTTP-network fetch](https://fetch.spec.whatwg.org/#http-network-fetch), consumed by the response header fields and the response <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]]:</p>
+<p>This attribute MUST return the size, in octets received from a <a href="https://fetch.spec.whatwg.org/#http-network-fetch">HTTP-network fetch</a>, consumed by the response header fields and the response <a href="http://httpwg.github.io/specs/rfc7230.html#message.body">payload body</a> [[!RFC7230]]:</p>
 <ul>
   <li>If the resource is retrieved from <a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant application caches</a> or from local resources, it must return zero.</li>
   <li>If there are HTTP redirects or <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a> when navigating and if all the redirects or equivalent are from the same <a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a> [[!RFC6454]], this attribute SHOULD include the HTTP overhead of incurred redirects.</li>
