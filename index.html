@@ -600,33 +600,66 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 <section id="extensions-performance-interface">
 <h3>Extensions to the <code>Performance</code> Interface</h3>
 
+<p>Each <a href='https://heycam.github.io/webidl/#es-environment'>ECMAScript global environment</a> has:</p>
+<ul>
+  <li>a <dfn>resource timing buffer size limit</dfn> which should initially be 150 or greater.</li>
+  <li>a <dfn>resource timing buffer current size</dfn> which is initially 0.</li>
+  <li>a <dfn>resource timing buffer full flag</dfn> which is initially false.</li>
+</ul>
+
 <pre class="idl">partial interface Performance {
   void clearResourceTimings ();
   void setResourceTimingBufferSize (unsigned long maxSize);
               attribute EventHandler onresourcetimingbufferfull;
 };</pre>
 
-<p>The method <dfn for='Performance'>clearResourceTimings</dfn> clears the buffer used to store the current
-    list of <a>PerformanceResourceTiming</a> resources.
+<p>
+  The method <dfn for='Performance'>clearResourceTimings</dfn> runs the following steps:
 </p>
+<ol>
+  <li>remove all <a>PerformanceResourceTiming</a> objects in the <a href='https://w3c.github.io/performance-timeline/#dfn-performance-entry-buffer'>performance entry buffer</a>.</li>
+  <li>set <a>resource timing buffer current size</a> to 0.</li>
+  <li>set <a>resource timing buffer full flag</a> to false.</li>
+</ol>
 
 <p>
-The <dfn for='Performance'>setResourceTimingBufferSize</dfn> method, when invoked, MUST set the maximum number of <a>PerformanceResourceTiming</a> resources that may be stored in
-	the buffer to the value of the <code>maxSize</code> parameter. The buffer is considered to be full if the number of entries in it is greater than or equal to <code>maxSize</code>.</p>
-<p>If this method is not called, the user agent SHOULD store at least 150 <a>PerformanceResourceTiming</a> resources in the buffer, unless otherwise specified by the user agent.</p>
-<p>If the <code>maxSize</code> parameter is less than the number of elements currently stored in the buffer, no elements in the buffer are to be removed and the user agent MUST NOT fire the <code>resourcetimingbufferfull</code> event.</p>
+The <dfn for='Performance'>setResourceTimingBufferSize</dfn> method runs the following steps:</p>
+<ol>
+<li>
+Set <a>resource timing buffer size limit</a> to the <i>maxSize</i> parameter. If the <i>maxSize</i> parameter is less than <a>resource timing buffer current size</a>, no <a>PerformanceResourceTiming</a> objects are to be removed from the <a href='https://w3c.github.io/performance-timeline/#dfn-performance-entry-buffer'>performance entry buffer</a>.
+
+</li>
+<li>
+Set <a>resource timing buffer full flag</a> to false.
+</li>
+</ol>
 
 <p>
- The attribute <dfn for='Performance'>onresourcetimingbufferfull</dfn> is the event handler for the <code>resourcetimingbufferfull</code> event. Immediately after the buffer used to store the list of <a>PerformanceResourceTiming</a>
-    resources becomes full, the User Agent MUST fire a simple event named <code>resourcetimingbufferfull</code> that bubbles, isn't cancelable, has no default action, at the
-    <a>Performance</a> object.
+  The attribute <dfn for='Performance'>onresourcetimingbufferfull</dfn> is the event handler for the <code>resourcetimingbufferfull</code> event.
 </p>
+
+<p>To <dfn>add a PerformanceResourceTiming entry</dfn> (<i>new entry</i>) in the <a href='https://w3c.github.io/performance-timeline/#dfn-performance-entry-buffer'>performance entry buffer</a>, run the following steps:</p>
+<ol>
+<li>If <a>resource timing buffer current size</a> is less than <a>resource timing buffer size limit</a>, run the following substeps:
+<ol style='list-style-type: lower-latin;'>
+<li>Add <i>new entry</i> to the <a href='https://w3c.github.io/performance-timeline/#dfn-performance-entry-buffer'>performance entry buffer</a>.</li>
+<li>increase <a>resource timing buffer current size</a> by 1.</li>
+</ol>
+</li>
+<li>If <a>resource timing buffer current size</a> is equal than <a>resource timing buffer size limit</a> and <a>resource timing buffer full flag</a> is false, run the following substeps:
+<ol style='list-style-type: lower-latin;'>
+<li><a href='http://www.w3.org/TR/dom/#concept-event-fire'>fire an event</a> named <a for="Performance" data-lt="onresourcetimingbufferfull">resourcetimingbufferfull</a> at the Document, with its <code>cancelable</code> attribute initialized to false, its <code>bubbles</code> attribute initialized to true, and has no default action.</li>
+<li>set the <a>resource timing buffer full flag</a> to true.</li>
+</ol>
+</li>
+</ol>
 
 </section>
+
 <section id="cross-origin-resources">
 <h3>Cross-origin Resources</h3>
     <p>
-        Cross-origin resources MUST be included as <a>PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
+      Cross-origin resources MUST be included as <a>PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
 		If the <a href="#timing-allow-check">timing allow check</a> algorithm fails for a <a>cross-origin</a> resource, these attributes of its <a>PerformanceResourceTiming</a> object
 		MUST be set to zero: <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>, <a href="#widl-PerformanceResourceTiming-redirectEnd">redirectEnd</a>,
         <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>, <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>, <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a>,
@@ -700,14 +733,7 @@ The <dfn for='Performance'>setResourceTimingBufferSize</dfn> method, when invoke
 
 <p><img style="width:85%" src="resource-timing-overview-1.png" alt='Resource Timing attributes'></p>
 
-<ol>
-  <li>Once the <a href="http://www.w3.org/TR/workers/#processing-model">Worker</a> or <a href="http://www.w3.org/TR/html5/browsers.html#create-a-document-object">Window object</a> is created, the user agent MUST create a <a href="http://www.w3.org/TR/performance-timeline-2/#performanceentrylist">PerformanceEntryList</a>
-  <i>primary buffer</i> object to store the list
-  of <a>PerformanceResourceTiming</a> resources.</li>
-  <li>Set the <i>primary buffer</i> to a size of 150, unless otherwise specified
-  by the user agent or set by the <a for='Performance'>setResourceTimingBufferSize</a> method.
-  </li>
-  <li>For each resource <a title='fetch' href="https://fetch.spec.whatwg.org/#concept-fetch">fetched</a> by the current <a href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>, excluding resources fetched by cross-origin stylesheets fetched with <code>no-cors</code> policy, perform the following steps:
+<p>For each resource <a title='fetch' href="https://fetch.spec.whatwg.org/#concept-fetcffer h">fetched</a> by the current <a href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>, excluding resources fetched by cross-origin stylesheets fetched with <code>no-cors</code> policy, perform the following steps:</p>
 
   <p class="issue">
     Above cross-origin exclusion should be defined via Fetch registry: CSS needs to be defined in terms of Fetch and set some kind of "opaque request flag" for no-CORS CSS subresources. In turn, Resource Timing should interface with Fetch registry to surface resource fetch events.
@@ -825,22 +851,9 @@ The <dfn for='Performance'>setResourceTimingBufferSize</dfn> method, when invoke
       </li>
       <li><a href='https://w3c.github.io/performance-timeline/#dfn-queue-a-performanceentry'>Queue</a> the <a>PerformanceResourceTiming</a> object.
       </li>
-      <li>If the <i>primary buffer</i> is not full, add the <a>PerformanceResourceTiming</a> object to the <i>primary buffer</i>.
-	  If adding it causes the <i> primary buffer </i> to become full, fire the <a href="#widl-Performance-onresourcetimingbufferfull"><code>resourcetimingbufferfull</code></a> event at the Document.
-      <ol>
-            <li>
-            If the <a href="#widl-Performance-clearResourceTimings-void"><code>clearResourceTimings</code></a> method is called in the event handler for the <a href="#widl-Performance-onresourcetimingbufferfull"><code>resourcetimingbufferfull</code></a> event,
-            clear all <a>PerformanceResourceTiming</a> objects in the <i>primary buffer</i>.
-            </li>
-            <li>
-            If the <a href="#widl-Performance-setResourceTimingBufferSize-void-unsigned-long-maxSize"><code>setResourceTimingBufferSize</code></a> method is called in the event handler for the <a href="#widl-Performance-onresourcetimingbufferfull"><code>resourcetimingbufferfull</code></a> event,
-            set the maximum size of the <i>primary buffer</i> to the maxSize parameter. If the maxSize parameter is less than the number of elements currently stored in the buffer, no elements in the buffer are to be removed.
-            </li>
-        </ol>
+      <li><a data-lt='add a PerformanceResourceTiming entry'>Add</a> the <a>PerformanceResourceTiming</a> object.
       </li>
   </ol>
-  </li>
-</ol>
 </section>
 <section id="monotonic-clock">
 <h3>Monotonic Clock</h3>
