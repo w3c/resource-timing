@@ -733,7 +733,7 @@ Set <a>resource timing buffer full flag</a> to false.
 
 <p><img style="width:85%" src="resource-timing-overview-1.png" alt='Resource Timing attributes'></p>
 
-<p>For each resource <a title='fetch' href="https://fetch.spec.whatwg.org/#concept-fetcffer h">fetched</a> by the current <a href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>, excluding resources fetched by cross-origin stylesheets fetched with <code>no-cors</code> policy, perform the following steps:</p>
+<p>For each resource <a title='fetch' href="https://fetch.spec.whatwg.org/#concept-fetch">fetched</a> by the current <a href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>, excluding resources fetched by cross-origin stylesheets fetched with <code>no-cors</code> policy, perform the following steps:</p>
 
   <p class="issue">
     Above cross-origin exclusion should be defined via Fetch registry: CSS needs to be defined in terms of Fetch and set some kind of "opaque request flag" for no-CORS CSS subresources. In turn, Resource Timing should interface with Fetch registry to surface resource fetch events.
