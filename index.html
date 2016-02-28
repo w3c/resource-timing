@@ -736,112 +736,109 @@ Set <a>resource timing buffer full flag</a> to false.
 <section id="processing-model">
 <h3>Processing Model</h3>
 
-<p>The following graph illustrates the timing attributes defined by the PerformanceResourceTiming interface. Attributes underlined may not be available when <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> resources from different <a href="#same-origin">origins</a>. User agents may perform internal processing in between timings, which allow for non-normative intervals between timings.</p>
+<p>The following graph illustrates the timing attributes defined by the PerformanceResourceTiming interface. Attributes underlined may not be available when <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> resources from different <a href="https://tools.ietf.org/html/rfc6454#section-5">origins</a>. User agents may perform internal processing in between timings, which allow for non-normative intervals between timings.</p>
 
 <p><img style="width:85%" src="resource-timing-overview-1.png" alt='Resource Timing attributes'></p>
 
-<p>For each resource <a title='fetch' href="https://fetch.spec.whatwg.org/#concept-fetch">fetched</a> by the current <a href="http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>, excluding resources fetched by cross-origin stylesheets fetched with <code>no-cors</code> policy, perform the following steps:</p>
+<p>For each resource <a title='fetch' href="https://fetch.spec.whatwg.org/#concept-fetch">fetched</a> by the current <a href="https://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>, excluding resources fetched by cross-origin stylesheets fetched with <code>no-cors</code> policy, perform the following steps:</p>
 
   <p class="issue">
     Above cross-origin exclusion should be defined via Fetch registry: CSS needs to be defined in terms of Fetch and set some kind of "opaque request flag" for no-CORS CSS subresources. In turn, Resource Timing should interface with Fetch registry to surface resource fetch events.
   </p>
 
-  <ol>
+  <ol class='algorithm'>
       <li id="step-create-object">Create a new <a>PerformanceResourceTiming</a> object and
       set <a href="#entryType-attribute">entryType</a> to the DOMString <code>resource</code>.
       </li>
       <li>Immediately before the user agent starts to queue the resource for retrieval,
-       record the <a>current time</a> in <a href="#startTime-attribute">startTime</a>, and set <a href="#widl-PerformanceResourceTiming-nextHopProtocol">nextHopProtocol</a> to the empty DOMString.
+       record the <a>current time</a> in <a href="#startTime-attribute">startTime</a>, and set <a for="PerformanceResourceTiming">nextHopProtocol</a> to the empty DOMString.
       </li>
-      <li>Record the initiator of the resource in <a href="#widl-PerformanceResourceTiming-initiatorType">initiatorType</a>.
+      <li>Record the initiator of the resource in <a for="PerformanceResourceTiming">initiatorType</a>.
       </li>
 
-      <li>Record the <a href="http://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>. If there is an <a href="http://www.w3.org/TR/service-workers/#dfn-containing-service-worker-registration">active worker</a> ([[!SERVICE-WORKERS]]) matching the current browsing or worker context's, immediately before the user agent <a href="http://www.w3.org/TR/service-workers/#service-worker-concept">runs the worker</a> record the time as <a href="#widl-PerformanceResourceTiming-workerStart">workerStart</a>, or if the worker is already available, immediately before the <a href="http://www.w3.org/TR/service-workers/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a href="#widl-PerformanceResourceTiming-workerStart">workerStart</a>. Otherwise, if there is no matching <a href="http://www.w3.org/TR/service-workers/#dfn-service-worker-registration">service worker registration</a>, set <a href="#widl-PerformanceResourceTiming-workerStart">workerStart</a> value to zero.</li>
+      <li>Record the <a href="https://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>. If there is an <a href="https://www.w3.org/TR/service-workers/#dfn-containing-service-worker-registration">active worker</a> ([[!SERVICE-WORKERS]]) matching the current browsing or worker context's, immediately before the user agent <a href="https://www.w3.org/TR/service-workers/#service-worker-concept">runs the worker</a> record the time as <a for="PerformanceResourceTiming">workerStart</a>, or if the worker is already available, immediately before the <a href="https://www.w3.org/TR/service-workers/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a for="PerformanceResourceTiming">workerStart</a>. Otherwise, if there is no matching <a href="https://www.w3.org/TR/service-workers/#dfn-service-worker-registration">service worker registration</a>, set <a for="PerformanceResourceTiming">workerStart</a> value to zero.</li>
 
-      <li id="step-fetch-start">Immediately before a user agent starts the <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching process</a>, record the <a>current time</a> as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>. Let <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>, <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>, <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a> and <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> be the same value as <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>.</li>
+      <li id="step-fetch-start">Immediately before a user agent starts the <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching process</a>, record the <a>current time</a> as <a for="PerformanceResourceTiming">fetchStart</a>. Let <a for="PerformanceResourceTiming">domainLookupStart</a>, <a for="PerformanceResourceTiming">domainLookupEnd</a>, <a for="PerformanceResourceTiming">connectStart</a> and <a for="PerformanceResourceTiming">connectEnd</a> be the same value as <a for="PerformanceResourceTiming">fetchStart</a>.</li>
 
-      <li id="step-collection-start">If the user agent is to reuse the data from another existing or completed <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> initiated from the <a>current document</a>, abort the
+      <li id="step-collection-start">If the user agent is to reuse the data from another existing or completed <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> initiated from the <a>current document</a>, abort the
           remaining steps.
       </li>
-      <li>If <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource is aborted for any reason, abort the remaining steps.       </li>
-      <li>If the last non-redirected <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource is not the same origin as the <a>current document</a>
-      and the <a href="#timing-allow-check">timing allow check</a> algorithm fails, the user agent
+      <li>If <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource is aborted for any reason, abort the remaining steps.       </li>
+      <li>If the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource fails the <a>timing allow check</a>, the user agent
       MUST set
-      <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>,
-      <a href="#widl-PerformanceResourceTiming-redirectEnd">redirectEnd</a>,
-      <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>,
-      <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>,
-      <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a>,
-      <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a>,
-      <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a>,
-      <a href="#widl-PerformanceResourceTiming-responseStart">responseStart</a> and
-	  <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>
-	  to zero and go to step <a href="#step-response-end">3.17</a>.
+      <a for="PerformanceResourceTiming">redirectStart</a>,
+      <a for="PerformanceResourceTiming">redirectEnd</a>,
+      <a for="PerformanceResourceTiming">domainLookupStart</a>,
+      <a for="PerformanceResourceTiming">domainLookupEnd</a>,
+      <a for="PerformanceResourceTiming">connectStart</a>,
+      <a for="PerformanceResourceTiming">connectEnd</a>,
+      <a for="PerformanceResourceTiming">requestStart</a>,
+      <a for="PerformanceResourceTiming">responseStart</a> and
+	  <a for="PerformanceResourceTiming">secureConnectionStart</a>
+	  to zero and go to step <a href="#step-response-end">17</a>.
       </li>
-        <li>Let <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>,
-       <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>,
-       <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a> and
-       <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> be the same value as
-       <a href="#widl-PerformanceResourceTiming-fetchStart">fetchStart</a>.</li>
-      <li>If the resource is fetched from the <a href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache">
+        <li>Let <a for="PerformanceResourceTiming">domainLookupStart</a>,
+       <a for="PerformanceResourceTiming">domainLookupEnd</a>,
+       <a for="PerformanceResourceTiming">connectStart</a> and
+       <a for="PerformanceResourceTiming">connectEnd</a> be the same value as
+       <a for="PerformanceResourceTiming">fetchStart</a>.</li>
+      <li>If the resource is fetched from the <a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">
        relevant application cache</a> or local resources, including the <a
        href="https://tools.ietf.org/html/rfc7234">HTTP cache</a> [[!RFC7234]],
-     go to step <a href="#step-request-start">3.15</a>.
+     go to step <a href="#step-request-start">15</a>.
       </li>
-      <li>If no domain lookup is required, go to step <a href="#step-connect-start">3.13</a>. Otherwise, immediately before a user agent
-       starts the domain name lookup, record the time as <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>.</li>
-      <li>Record the time as <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a> immediately after the
+      <li>If no domain lookup is required, go to step <a href="#step-connect-start">13</a>. Otherwise, immediately before a user agent
+       starts the domain name lookup, record the time as <a for="PerformanceResourceTiming">domainLookupStart</a>.</li>
+      <li>Record the time as <a for="PerformanceResourceTiming">domainLookupEnd</a> immediately after the
        domain name lookup is successfully done. A user agent may need multiple retries before that. If
        the domain lookup fails, abort the remaining steps. </li>
-      <li id="step-connect-start">If a persistent transport connection is used to <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the resource,
-       let <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a> and <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a>
-       be the same value of <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>. Otherwise, record the time as
-       <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a> immediately before initiating the connection to the server and record the time as <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> immediately after the connection to the server or the proxy is established. A user agent may need multiple retries before this time. Once connection is established set the value of <a href="#widl-PerformanceResourceTiming-nextHopProtocol">nextHopProtocol</a> to the ALPN ID used by the connection. If a connection can not be established, abort the remaining steps.
+      <li id="step-connect-start">If a persistent transport connection is used to <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the resource,
+       let <a for="PerformanceResourceTiming">connectStart</a> and <a for="PerformanceResourceTiming">connectEnd</a>
+       be the same value of <a for="PerformanceResourceTiming">domainLookupEnd</a>. Otherwise, record the time as
+       <a for="PerformanceResourceTiming">connectStart</a> immediately before initiating the connection to the server and record the time as <a for="PerformanceResourceTiming">connectEnd</a> immediately after the connection to the server or the proxy is established. A user agent may need multiple retries before this time. Once connection is established set the value of <a for="PerformanceResourceTiming">nextHopProtocol</a> to the ALPN ID used by the connection. If a connection can not be established, abort the remaining steps.
       </li>
-      <li>The user agent MUST set the <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> attribute as follows:
+      <li>The user agent MUST set the <a for="PerformanceResourceTiming">secureConnectionStart</a> attribute as follows:
         <ol>
         <li>When a secure transport is used, the user agent MUST record the
-         time as <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>
+         time as <a for="PerformanceResourceTiming">secureConnectionStart</a>
          immediately before the handshake process to secure the connection.
         </li>
         <li>When a secure transport is not used, the user agent MUST set the
-        value of <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a> to 0.
+        value of <a for="PerformanceResourceTiming">secureConnectionStart</a> to 0.
         </li>
         </ol>
       </li>
       <li id="step-request-start">Immediately before a user agent starts sending the request
-      for the resource, record the <a>current time</a> as <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a>.
+      for the resource, record the <a>current time</a> as <a for="PerformanceResourceTiming">requestStart</a>.
       </li>
-      <li id="step-response-start">Record the time as <a href="#widl-PerformanceResourceTiming-responseStart">
+      <li id="step-response-start">Record the time as <a for="PerformanceResourceTiming">
       responseStart</a> immediately after the user agent receives the first byte of the response.
       </li>
-      <li id="step-response-end">Record the time as <a href="#widl-PerformanceResourceTiming-responseEnd">responseEnd</a>
+      <li id="step-response-end">Record the time as <a for="PerformanceResourceTiming">responseEnd</a>
       immediately after receiving the last byte of the response.
       <ol>
-        <li>Return to step <a href="#step-connect-start">3.13</a> if the user agent fails to send the request or receive the entire response, and needs to reopen the connection.
+        <li>Return to step <a href="#step-connect-start">13</a> if the user agent fails to send the request or receive the entire response, and needs to reopen the connection.
 
-        <div class="example">
-        <div class="example-title">EXAMPLE</div>
+        <aside class="example">
         <p>When <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent connection</a>
         [[!RFC7230]] is enabled, a user agent may first try to re-use an open connect to
         send the request while the connection can be <a href="https://tools.ietf.org/html/rfc7230#section-6.5">asynchronously
-        closed</a>. In such case, <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a>, <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a> and
-        <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a> SHOULD represent timing information collected over the re-open connection. </p>
-        </div></li>
+        closed</a>. In such case, <a for="PerformanceResourceTiming">connectStart</a>, <a for="PerformanceResourceTiming">connectEnd</a> and
+        <a for="PerformanceResourceTiming">requestStart</a> SHOULD represent timing information collected over the re-open connection. </p>
+        </aside></li>
 
-        <li>Set the value of <a href="#widl-PerformanceResourceTiming-transferSize">transferSize</a>, <a href="#widl-PerformanceResourceTiming-encodedBodySize">encodedBodySize</a>, <a href="#widl-PerformanceResourceTiming-decodedBodySize">decodedBodySize</a> to corresponding values, subject to <a href="#timing-allow-check">timing allow check</a> algorithm.</li>
+        <li>Set the value of <a for="PerformanceResourceTiming">transferSize</a>, <a for="PerformanceResourceTiming">encodedBodySize</a>, <a for="PerformanceResourceTiming">decodedBodySize</a> to corresponding values, subject to <a>timing allow check</a> algorithm.</li>
       </ol>
       </li>
-      <li>Record the difference between <a href="#widl-PerformanceResourceTiming-responseEnd">responseEnd</a> and <a href="#startTime-attribute">startTime</a> in <a href="#duration-attribute">duration</a>.</li>
+      <li>Record the difference between <a for="PerformanceResourceTiming">responseEnd</a> and <a href="#startTime-attribute">startTime</a> in <a href="#duration-attribute">duration</a>.</li>
       <li>If the fetched resource results in an HTTP redirect or
-      <a href="http://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>, then
-      <ol style="list-style-type:lower-alpha;">
+      <a href="https://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>, then
+      <ol>
             <li>If the current resource and the redirected resource are not from the
              <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the <a>current document</a>,
-			 and the <a href="#timing-allow-check">timing allow check</a> algorithm fails for either resource,
-			 set <a href="#widl-PerformanceResourceTiming-redirectStart">
-             redirectStart</a> and <a href="#widl-PerformanceResourceTiming-redirectEnd">redirectEnd</a> to 0. Then, return to step <a href="#step-fetch-start">
-             3.5</a> with the new resource.
+			 and the <a>timing allow check</a> algorithm fails for either resource,
+			 set <a for="PerformanceResourceTiming">
+             redirectStart</a> and <a for="PerformanceResourceTiming">redirectEnd</a> to 0. Then, return to step <a href="#step-fetch-start">5</a> with the new resource.
 	        </li>
             <li>If the value of redirectStart is not set, let it be the value of fetchStart.
             </li>
@@ -849,14 +846,14 @@ Set <a>resource timing buffer full flag</a> to false.
             </li>
             <li>Set all the attributes in the <a>PerformanceResourceTiming</a> object to 0 except
              <a href="#startTime-attribute">startTime</a>,
-             <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>, <a href="#widl-PerformanceResourceTiming-redirectEnd">
-             redirectEnd</a>, and <a href="#widl-PerformanceResourceTiming-initiatorType">initiatorType</a>.
+             <a for="PerformanceResourceTiming">redirectStart</a>, <a for="PerformanceResourceTiming">
+             redirectEnd</a>, and <a for="PerformanceResourceTiming">initiatorType</a>.
             </li>
-            <li>Return to step <a href="#step-fetch-start">3.5</a> with the new resource.
+            <li>Return to step <a href="#step-fetch-start">5</a> with the new resource.
             </li>
         </ol>
       </li>
-      <li><a href='https://w3c.github.io/performance-timeline/#dfn-queue-a-performanceentry'>Queue</a> the <a>PerformanceResourceTiming</a> object.
+      <li><a href='https://www.w3.org/TR/performance-timeline-2/#dfn-queue-a-performanceentry'>Queue</a> the <a>PerformanceResourceTiming</a> object.
       </li>
       <li><a data-lt='add a PerformanceResourceTiming entry'>Add</a> the <a>PerformanceResourceTiming</a> object.
       </li>
@@ -865,7 +862,7 @@ Set <a>resource timing buffer full flag</a> to false.
 <section id="monotonic-clock">
 <h3>Monotonic Clock</h3>
 <p>The value of the timing attributes MUST monotonically increase to ensure timing attributes are not
-skewed by adjustments to the system clock while <a href="http://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource. The difference between any two chronologically
+skewed by adjustments to the system clock while <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource. The difference between any two chronologically
 recorded timing attributes MUST never be negative. For all resources, including subdocument resources, the user agent MUST
 record the system clock at the beginning of the root document navigation and define subsequent timing attributes in
 terms of a monotonic clock measuring time elapsed from the beginning of the navigation.
