@@ -671,31 +671,26 @@ Set <a>resource timing buffer full flag</a> to false.
 <section id="cross-origin-resources">
 <h3>Cross-origin Resources</h3>
     <p>
-      Cross-origin resources MUST be included as <a>PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
-		If the <a href="#timing-allow-check">timing allow check</a> algorithm fails for a <a>cross-origin</a> resource, these attributes of its <a>PerformanceResourceTiming</a> object
-		MUST be set to zero: <a href="#widl-PerformanceResourceTiming-redirectStart">redirectStart</a>, <a href="#widl-PerformanceResourceTiming-redirectEnd">redirectEnd</a>,
-        <a href="#widl-PerformanceResourceTiming-domainLookupStart">domainLookupStart</a>, <a href="#widl-PerformanceResourceTiming-domainLookupEnd">domainLookupEnd</a>, <a href="#widl-PerformanceResourceTiming-connectStart">connectStart</a>,
-        <a href="#widl-PerformanceResourceTiming-connectEnd">connectEnd</a>, <a href="#widl-PerformanceResourceTiming-requestStart">requestStart</a>, <a href="#widl-PerformanceResourceTiming-responseStart">responseStart</a>
-		and <a href="#widl-PerformanceResourceTiming-secureConnectionStart">secureConnectionStart</a>.
+      Cross-origin resources MUST be included as <a>PerformanceResourceTiming</a> objects in the <a href="https://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
+		If the <a>timing allow check</a> algorithm fails for a <a>cross-origin</a> resource, these attributes of its <a>PerformanceResourceTiming</a> object
+		MUST be set to zero: <a for="PerformanceResourceTiming">redirectStart</a>, <a for="PerformanceResourceTiming">redirectEnd</a>,
+        <a for="PerformanceResourceTiming">domainLookupStart</a>, <a for="PerformanceResourceTiming">domainLookupEnd</a>, <a for="PerformanceResourceTiming">connectStart</a>,
+        <a for="PerformanceResourceTiming">connectEnd</a>, <a for="PerformanceResourceTiming">requestStart</a>, <a for="PerformanceResourceTiming">responseStart</a>,
+		 <a for="PerformanceResourceTiming">secureConnectionStart</a>, <a for="PerformanceResourceTiming">transferSize</a>, <a for="PerformanceResourceTiming">encodedBodySize</a> and <a for="PerformanceResourceTiming">decodedBodySize</a>.
     </p>
     <p>
-        Server-side applications may return the <code><a href="#timing-allow-origin">Timing-Allow-Origin</a></code> HTTP response header
+        Server-side applications may return the <a>Timing-Allow-Origin</a> HTTP response header
         to allow the User Agent to fully expose, to the document origin(s) specified, the
         values of attributes that would have been zero due to the <a>cross-origin</a>
         restrictions previously specified in this section. </p>
 
     <section id="timing-allow-origin">
     <h4><code>Timing-Allow-Origin</code> Response Header</h4>
-    <dl class="attributes">
-      <dt id="http-timing-allow-origin"><code>Timing-Allow-Origin</code></dt>
-      <dd>
-        <p>The <dfn></dfn> header indicates whether a resource's timing can be
-            shared based by returning the value of the Origin request header in the
-            response.</p>
+    <p>The <dfn id="http-timing-allow-origin"><code>Timing-Allow-Origin</code></dfn> header indicates whether a resource's timing can be
+    shared based by returning the value of the Origin request header in the
+    response.</p>
         <p>ABNF:</p>
-        <pre>Timing-Allow-Origin = &quot;Timing-Allow-Origin&quot; &quot;:&quot; <a href='https://tools.ietf.org/html/rfc6454#section-7.1'>origin-list-or-null</a> | &quot;*&quot;</pre>
-        </dd>
-    </dl>
+        <pre class='highlight'>Timing-Allow-Origin = &quot;Timing-Allow-Origin&quot; &quot;:&quot; <a href='https://tools.ietf.org/html/rfc6454#section-7.1'>origin-list-or-null</a> | &quot;*&quot;</pre>
 
 	  <p>The <dfn id="timing-allow-check">timing allow check</dfn>
 	  algorithm, which checks whether a resource's timing information can be shared with the <a>current document</a>, is as follows:<p>
@@ -705,17 +700,17 @@ Set <a>resource timing buffer full flag</a> to false.
        <li><p>If the resource is not <a>cross-origin</a>, return pass.
 
 	   <li><p>If the HTTP response includes zero or more than one
-	   <code><a href="#http-timing-allow-origin">Timing-Allow-Origin</a></code>
+	   <a>Timing-Allow-Origin</a>
 	   header values, return fail and terminate this algorithm.</p></li>
 
 	   <li><p>If the
-	   <code><a href="#http-timing-allow-origin">Timing-Allow-Origin</a></code>
+	   <a>Timing-Allow-Origin</a>
 	   header value is the "<code>*</code>" character, return pass and terminate this
 	   algorithm.</p></li>
 
 	   <li><p>If the value of
-	   <code><a href="#http-timing-allow-origin">Timing-Allow-Origin</a></code>
-	   is not a <a href="http://www.w3.org/TR/html5/infrastructure.html#case-sensitive">case-sensitive</a> match for the value of the
+	   <a>Timing-Allow-Origin</a>
+	   is not a <a href="https://www.w3.org/TR/html5/infrastructure.html#case-sensitive">case-sensitive</a> match for the value of the
 	   <code title="http-origin"><a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a></code> of the <a>current document</a>, return fail and terminate this algorithm.</p></li>
 
 	   <li><p>Return pass.</p></li>
