@@ -331,13 +331,6 @@ For example, a resource could originate from XMLHttpRequest objects [[XMLHttpReq
           If a resource <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> is aborted because it failed a fetch precondition (e.g. mixed content, CORS restriction, CSP policy, etc), then this resource will not be included as a <a>PerformanceResourceTiming</a> object in the <a href="https://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
         </li>
     </ul>
-<p>
-    The user agent MAY choose to limit how many resources are included as
-    <a>PerformanceResourceTiming</a> objects in the <a href="http://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a>.
-	The recommended minimum number of <a>PerformanceResourceTiming</a> objects is 150, though this may be changed by the user agent.
-    <a for="Performance">setResourceTimingBufferSize</a>
-    can be called to request a change to this limit.
-</p>
 </section>
 
 <section id="performanceresourcetiming">
@@ -592,6 +585,15 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 <section id="extensions-performance-interface">
 <h3>Extensions to the <code>Performance</code> Interface</h3>
 
+<p>
+    The user agent MAY choose to limit how many resources are included as
+    <a>PerformanceResourceTiming</a> objects in the <a href="https://www.w3.org/TR/performance-timeline-2/#sec-performance-timeline">Performance Timeline</a> [[!PERFORMANCE-TIMELINE-2]]. This section extends the <a href="https://www.w3.org/TR/performance-timeline-2/#dom-performance"><code>Performance</code></a> interface to allow controls over the number of <a>PerformanceResourceTiming</a> objects stored.</p>
+<p>
+  The recommended minimum number of <a>PerformanceResourceTiming</a> objects is 150, though this may be changed by the user agent.
+    <a for="Performance">setResourceTimingBufferSize</a>
+    can be called to request a change to this limit.
+</p>
+
 <p>Each <a href='https://heycam.github.io/webidl/#es-environment'>ECMAScript global environment</a> has:</p>
 <ul>
   <li>a <dfn>resource timing buffer size limit</dfn> which should initially be 150 or greater.</li>
@@ -609,7 +611,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
   The method <dfn for='Performance'>clearResourceTimings</dfn> runs the following steps:
 </p>
 <ol>
-  <li>remove all <a>PerformanceResourceTiming</a> objects in the <a href='https://w3c.github.io/performance-timeline/#dfn-performance-entry-buffer'>performance entry buffer</a>.</li>
+  <li>remove all <a>PerformanceResourceTiming</a> objects in the <a href='https://www.w3.org/TR/performance-timeline-2/#dfn-performance-entry-buffer'>performance entry buffer</a>.</li>
   <li>set <a>resource timing buffer current size</a> to 0.</li>
   <li>set <a>resource timing buffer full flag</a> to false.</li>
 </ol>
@@ -618,8 +620,7 @@ href="http://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title
 The <dfn for='Performance'>setResourceTimingBufferSize</dfn> method runs the following steps:</p>
 <ol>
 <li>
-Set <a>resource timing buffer size limit</a> to the <i>maxSize</i> parameter. If the <i>maxSize</i> parameter is less than <a>resource timing buffer current size</a>, no <a>PerformanceResourceTiming</a> objects are to be removed from the <a href='https://w3c.github.io/performance-timeline/#dfn-performance-entry-buffer'>performance entry buffer</a>.
-
+Set <a>resource timing buffer size limit</a> to the <i>maxSize</i> parameter. If the <i>maxSize</i> parameter is less than <a>resource timing buffer current size</a>, no <a>PerformanceResourceTiming</a> objects are to be removed from the <a href='https://www.w3.org/TR/performance-timeline-2/#dfn-performance-entry-buffer'>performance entry buffer</a>.
 </li>
 <li>
 Set <a>resource timing buffer full flag</a> to false.
@@ -630,17 +631,17 @@ Set <a>resource timing buffer full flag</a> to false.
   The attribute <dfn for='Performance'>onresourcetimingbufferfull</dfn> is the event handler for the <code>resourcetimingbufferfull</code> event.
 </p>
 
-<p>To <dfn>add a PerformanceResourceTiming entry</dfn> (<i>new entry</i>) in the <a href='https://w3c.github.io/performance-timeline/#dfn-performance-entry-buffer'>performance entry buffer</a>, run the following steps:</p>
+<p>To <dfn>add a PerformanceResourceTiming entry</dfn> (<i>new entry</i>) in the <a href='https://www.w3.org/TR/performance-timeline-2/#dfn-performance-entry-buffer'>performance entry buffer</a>, run the following steps:</p>
 <ol>
 <li>If <a>resource timing buffer current size</a> is less than <a>resource timing buffer size limit</a>, run the following substeps:
 <ol style='list-style-type: lower-latin;'>
-<li>Add <i>new entry</i> to the <a href='https://w3c.github.io/performance-timeline/#dfn-performance-entry-buffer'>performance entry buffer</a>.</li>
+<li>Add <i>new entry</i> to the <a href='https://www.w3.org/TR/performance-timeline-2/#dfn-performance-entry-buffer'>performance entry buffer</a>.</li>
 <li>increase <a>resource timing buffer current size</a> by 1.</li>
 </ol>
 </li>
-<li>If <a>resource timing buffer current size</a> is equal to <a>resource timing buffer size limit</a> and <a>resource timing buffer full flag</a> is false, run the following substeps:
+<li>Otherwise, if the <a>resource timing buffer full flag</a> is false, run the following substeps:
 <ol style='list-style-type: lower-latin;'>
-<li><a href='http://www.w3.org/TR/html5/webappapis.html#fire-a-simple-event'>fire a simple event</a> named <a for="Performance" data-lt="onresourcetimingbufferfull">resourcetimingbufferfull</a> at the Document, with its <code>bubbles</code> attribute initialized to true, and has no default action.</li>
+<li><a href='https://www.w3.org/TR/html5/webappapis.html#fire-a-simple-event'>fire a simple event</a> named <a for="Performance" data-lt="onresourcetimingbufferfull">resourcetimingbufferfull</a> at the Document, with its <code>bubbles</code> attribute initialized to true, and has no default action.</li>
 <li>set the <a>resource timing buffer full flag</a> to true.</li>
 </ol>
 </li>
