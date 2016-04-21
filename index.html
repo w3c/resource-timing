@@ -128,10 +128,10 @@ measure the time it takes to fetch a resource:</p>
            };
 
            image1.onload = resourceTiming;
-           image1.src = 'http://www.w3.org/Icons/w3c_main.png';
+           image1.src = 'https://www.w3.org/Icons/w3c_main.png';
         }
     &lt;/script&gt;
-    &lt;img src="http://www.w3.org/Icons/w3c_home.png"&gt;
+    &lt;img src="https://www.w3.org/Icons/w3c_home.png"&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </pre>
@@ -149,7 +149,7 @@ perceived load time of a resource.
 
 <p>The following script calculates the amount of time it takes to fetch every resource in the
 page, even those defined in markup. This example assumes
-that this page is hosted on http://www.w3.org.
+that this page is hosted on https://www.w3.org.
 One could further measure the amount of time it takes in every phase of fetching a resource
 with the <a>PerformanceResourceTiming</a> interface.
 </p>
@@ -164,7 +164,7 @@ with the <a>PerformanceResourceTiming</a> interface.
        {
           var image1 = new Image();
           image1.onload = resourceTiming;
-          image1.src = 'http://www.w3.org/Icons/w3c_main.png';
+          image1.src = 'https://www.w3.org/Icons/w3c_main.png';
        }
 
        function resourceTiming()
@@ -179,7 +179,7 @@ with the <a>PerformanceResourceTiming</a> interface.
            }
        }
     &lt;/script&gt;
-    &lt;img id="image0" src="http://www.w3.org/Icons/w3c_home.png"&gt;
+    &lt;img id="image0" src="https://www.w3.org/Icons/w3c_home.png"&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </pre>
