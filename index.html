@@ -91,7 +91,9 @@ the complete timing information for resources in a document.</p>
 <ol>
   <li>Dependency with Performance Timeline 2, since performance observers are lacking implementations;</li>
   <li>Dependency with High Resolution Time 2 and workers support, including <a for='PerformanceResourceTiming'>workerStart</a>, since we're still refining time origin;</li>
-  <li><a for='PerformanceResourceTiming'>nextHopProtocol</a>, <a for='PerformanceResourceTiming'>transferSize</a>, <a for='PerformanceResourceTiming'>encodedBodySize</a>, and <a for='PerformanceResourceTiming'>decodedBodySize</a>, since we're currently lacking implementations.</li>
+  <li><a for='PerformanceResourceTiming'>nextHopProtocol</a>, <a for='PerformanceResourceTiming'>transferSize</a>, <a for='PerformanceResourceTiming'>encodedBodySize</a>, and <a for='PerformanceResourceTiming'>decodedBodySize</a>, since we're currently lacking implementations;</li>
+  <li><a href='https://github.com/w3c/resource-timing/pull/19/commits/0eb0f6997fc3f8a70a556212b45fa9ce5cfe7631'>Surfacing failed fetches</a> in the timeline;</li>
+  <li><a for='PerformanceResourceTiming'>secureConnectionStart</a> as a required attribute.</li>
 </ol>
 <!--
 <p id="unstable" class='annoying-warning'>Implementers SHOULD be aware that this document is not
