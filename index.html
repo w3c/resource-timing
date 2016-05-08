@@ -7,7 +7,7 @@
   <script class='remove'>
   var respecConfig = {
     shortName: "resource-timing-1",
-    specStatus: "ED",
+    specStatus: "CR",
     useExperimentalStyles: true,
     edDraftURI: "https://w3c.github.io/resource-timing/",
     editors: [{
@@ -293,7 +293,7 @@ For example, a resource could originate from XMLHttpRequest objects [[XMLHttpReq
 <p>Aborted requests or requests that don't return a response MAY be included as <a>PerformanceResourceTiming</a> objects in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> of the relevant context.</p>
 
 <p class='note'>
-Future versions of this specification would require the inclusion of aborted requests or requests that don't return a response (see <a href="https://github.com/w3c/resource-timing/issues/12">issue 12</a>).
+Future versions of this specification could require the inclusion of aborted requests or requests that don't return a response (see <a href="https://github.com/w3c/resource-timing/issues/12">issue 12</a>).
 </p>
 
 <p class='note'>
@@ -389,7 +389,6 @@ interface PerformanceResourceTiming : PerformanceEntry {
     readonly        attribute DOMHighResTimeStamp requestStart;
     readonly        attribute DOMHighResTimeStamp responseStart;
     readonly        attribute DOMHighResTimeStamp responseEnd;
-    readonly        attribute unsigned long long  transferSize;
     serializer = {inherit, attribute};
 };
 </pre>
