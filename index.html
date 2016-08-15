@@ -563,11 +563,9 @@ On getting, the <dfn>responseEnd</dfn> attribute MUST return as follows:
 <ol class="algorithm">
 <li>
 The time immediately after the user agent receives the last byte of the response or immediately before the transport connection is closed, whichever comes first. The resource here can be received either from <a
-href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a>, or from local resources or from the server if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
+href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a>, local resources, or from the server.
 </li>
-<li>zero, otherwise.</li>
 </ol>
-
 <p dfn-for='PerformanceResourceTiming'>
 On getting, the <dfn>transferSize</dfn> attribute MUST return as follows:
 </p>
