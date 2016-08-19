@@ -565,6 +565,7 @@ On getting, the <dfn>responseEnd</dfn> attribute MUST return as follows:
 The time immediately after the user agent receives the last byte of the response or immediately before the transport connection is closed, whichever comes first. The resource here can be received either from <a
 href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a>, local resources, or from the server.
 </li>
+<li>The time immediately before the user agent aborts the fetch due to a network error.</li>
 </ol>
 <p dfn-for='PerformanceResourceTiming'>
 On getting, the <dfn>transferSize</dfn> attribute MUST return as follows:
@@ -768,7 +769,7 @@ Set <a>resource timing buffer full flag</a> to false.
       <li id="step-collection-start">If the user agent is to reuse the data from another existing or completed <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> initiated from the <a>current document</a>, abort the
           remaining steps.
       </li>
-      <li>If <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource is aborted for any reason, abort the remaining steps.       </li>
+
       <li>If the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource fails the <a>timing allow check</a>, the user agent
       MUST set
       <a for="PerformanceResourceTiming">redirectStart</a>,
@@ -780,7 +781,7 @@ Set <a>resource timing buffer full flag</a> to false.
       <a for="PerformanceResourceTiming">requestStart</a>,
       <a for="PerformanceResourceTiming">responseStart</a> and
 	  <a for="PerformanceResourceTiming">secureConnectionStart</a>
-	  to zero and go to step <a href="#step-response-end">17</a>.
+	  to zero and go to step <a href="#step-response-end">16</a>.
       </li>
         <li>Let <a for="PerformanceResourceTiming">domainLookupStart</a>,
        <a for="PerformanceResourceTiming">domainLookupEnd</a>,
@@ -790,17 +791,17 @@ Set <a>resource timing buffer full flag</a> to false.
       <li>If the resource is fetched from the <a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">
        relevant application cache</a> or local resources, including the <a
        href="https://tools.ietf.org/html/rfc7234">HTTP cache</a> [[!RFC7234]],
-     go to step <a href="#step-request-start">15</a>.
+     go to step <a href="#step-request-start">14</a>.
       </li>
-      <li>If no domain lookup is required, go to step <a href="#step-connect-start">13</a>. Otherwise, immediately before a user agent
+      <li>If no domain lookup is required, go to step <a href="#step-connect-start">12</a>. Otherwise, immediately before a user agent
        starts the domain name lookup, record the time as <a for="PerformanceResourceTiming">domainLookupStart</a>.</li>
       <li>Record the time as <a for="PerformanceResourceTiming">domainLookupEnd</a> immediately after the
-       domain name lookup is successfully done. A user agent may need multiple retries before that. If
-       the domain lookup fails, abort the remaining steps. </li>
+       domain name lookup is successfully done. A user agent may need multiple retries before that. If the domain name lookup fails and
+       resource passes the <a>timing allow check</a> record the time as <a for="PerformanceResourceTiming">domainLookupEnd</a> and go to <a href="#step-final-record">step 17</a>.</li>
       <li id="step-connect-start">If a persistent transport connection is used to <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the resource,
        let <a for="PerformanceResourceTiming">connectStart</a> and <a for="PerformanceResourceTiming">connectEnd</a>
        be the same value of <a for="PerformanceResourceTiming">domainLookupEnd</a>. Otherwise, record the time as
-       <a for="PerformanceResourceTiming">connectStart</a> immediately before initiating the connection to the server and record the time as <a for="PerformanceResourceTiming">connectEnd</a> immediately after the connection to the server or the proxy is established. A user agent may need multiple retries before this time. Once connection is established set the value of <a for="PerformanceResourceTiming">nextHopProtocol</a> to the ALPN ID used by the connection. If a connection can not be established, abort the remaining steps.
+        <a for="PerformanceResourceTiming">connectStart</a> immediately before initiating the connection to the server and record the time as <a for="PerformanceResourceTiming">connectEnd</a> immediately after the connection to the server or the proxy is established. A user agent may need multiple retries before this time. Once connection is established set the value of <a for="PerformanceResourceTiming">nextHopProtocol</a> to the ALPN ID used by the connection. If a connection can not be established, record the time up to the connection failure as <a for='PerformanceResourceTiming'>connectEnd</a> and go to <a href="#step-final-record">step 17</a>.
       </li>
       <li>The user agent MUST set the <a for="PerformanceResourceTiming">secureConnectionStart</a> attribute as follows:
         <ol>
@@ -822,7 +823,7 @@ Set <a>resource timing buffer full flag</a> to false.
       <li id="step-response-end">Record the time as <a for="PerformanceResourceTiming">responseEnd</a>
       immediately after receiving the last byte of the response.
       <ol>
-        <li>Return to step <a href="#step-connect-start">13</a> if the user agent fails to send the request or receive the entire response, and needs to reopen the connection.
+        <li>Return to step <a href="#step-connect-start">12</a> if the user agent fails to send the request or receive the entire response, and needs to reopen the connection.
 
         <aside class="example">
         <p>When <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent connection</a>
@@ -835,7 +836,7 @@ Set <a>resource timing buffer full flag</a> to false.
         <li>Set the value of <a for="PerformanceResourceTiming">transferSize</a>, <a for="PerformanceResourceTiming">encodedBodySize</a>, <a for="PerformanceResourceTiming">decodedBodySize</a> to corresponding values, subject to <a>timing allow check</a> algorithm.</li>
       </ol>
       </li>
-      <li>Record the difference between <a for="PerformanceResourceTiming">responseEnd</a> and <a href="#startTime-attribute">startTime</a> in <a href="#duration-attribute">duration</a>.</li>
+      <li id="step-final-record">If <a for="PerformanceResourceTiming">responseEnd</a> is not set, set it to the current time. Record the difference between <a for="PerformanceResourceTiming">responseEnd</a> and <a href="#startTime-attribute">startTime</a> in <a href="#duration-attribute">duration</a>.</li>
       <li>If the fetched resource results in an HTTP redirect or
       <a href="https://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>, then
       <ol>
@@ -858,7 +859,7 @@ Set <a>resource timing buffer full flag</a> to false.
             </li>
         </ol>
       </li>
-      <li><a href='https://www.w3.org/TR/performance-timeline-2/#dfn-queue-a-performanceentry'>Queue</a> the <a>PerformanceResourceTiming</a> object.
+      <li id="step-final-queue"><a href='https://www.w3.org/TR/performance-timeline-2/#dfn-queue-a-performanceentry'>Queue</a> the <a>PerformanceResourceTiming</a> object.
       </li>
       <li><a data-lt='add a PerformanceResourceTiming entry'>Add</a> the <a>PerformanceResourceTiming</a> object.
       </li>
