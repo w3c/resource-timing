@@ -698,46 +698,34 @@ Set <a>resource timing buffer full flag</a> to false.
 
     <section id="timing-allow-origin">
     <h4><code>Timing-Allow-Origin</code> Response Header</h4>
-    <p>The <dfn id="http-timing-allow-origin"><code>Timing-Allow-Origin</code></dfn> header indicates whether a resource's timing can be
-    shared based by returning the value of the Origin request header in the
-    response.</p>
-        <p>ABNF:</p>
-        <pre class='highlight'>Timing-Allow-Origin = &quot;Timing-Allow-Origin&quot; &quot;:&quot; <a href='https://tools.ietf.org/html/rfc6454#section-7.1'>origin-list-or-null</a> | &quot;*&quot;</pre>
+    <p>The <dfn id="http-timing-allow-origin"><code>Timing-Allow-Origin</code>
+    </dfn> HTTP response header field can be used to communicate a policy
+    indicating origin(s) that are allowed to see values of attributes that
+    would have been zero due to the cross-origin restrictions. The header's
+    value is represented by the following ABNF [[!RFC5234]]:</p>
 
-	  <p>The <dfn id="timing-allow-check">timing allow check</dfn>
-	  algorithm, which checks whether a resource's timing information can be shared with the <a>current document</a>, is as follows:<p>
+    <pre class="abnf">
+      Timing-Allow-Origin = 1#( <a href='https://fetch.spec.whatwg.org/#origin-header'>origin-or-null</a> / <a href='https://fetch.spec.whatwg.org/#http-new-header-syntax'>wildcard</a> )
+    </pre>
+
+    <p>The sender MAY generate multiple <a>Timing-Allow-Origin</a> header
+    fields. The recipient MAY combine multiple <a>Timing-Allow-Origin</a>
+    header fields by appending each subsequent field value to the combined
+    field value in order, separated by a comma.</p>
+
+    <p>The <dfn id="timing-allow-check">timing allow check</dfn> algorithm,
+    which checks whether a resource's timing information can be shared with the
+    <a>current document</a>, is as follows:<p>
 
 	  <ol>
-
-       <li><p>If the resource is not <a>cross-origin</a>, return pass.
-
-	   <li><p>If the HTTP response includes zero or more than one
-	   <a>Timing-Allow-Origin</a>
-	   header values, return fail and terminate this algorithm.</p></li>
-
-	   <li><p>If the
-	   <a>Timing-Allow-Origin</a>
-	   header value is the "<code>*</code>" character, return pass and terminate this
-	   algorithm.</p></li>
-
-	   <li><p>If the value of
-	   <a>Timing-Allow-Origin</a>
-	   is not a <a href="https://www.w3.org/TR/html5/infrastructure.html#case-sensitive">case-sensitive</a> match for the value of the
-	   <code title="http-origin"><a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a></code> of the <a>current document</a>, return fail and terminate this algorithm.</p></li>
-
-	   <li><p>Return pass.</p></li>
-	   </ol>
-
-	  <p class="note">The above algorithm also functions when the
-	  <a href="https://tools.ietf.org/html/rfc6454#section-6.2">ASCII serialization of an origin</a> is
-	  the string "<code>null</code>". Typically, this is the case when there are multiple redirects and the initiator is an XMLHttpRequest object.</p>
-
-	  <p class="note">In practice the
-	  <code><a href="https://tools.ietf.org/html/rfc6454#section-7.1">origin-list-or-null</a></code> production is
-	  more constrained. Rather than allowing a space-separated list of
-	  <a href="https://tools.ietf.org/html/rfc6454#section-4" title="origin">origins</a>, it is either a
-	  single <a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a> or the string
-	  "<code>null</code>".</p>
+      <li><p>If the resource is same origin, return <code>pass</code>.
+      <li><p>If the <a>Timing-Allow-Origin</a> header value list contains a
+      case-sensitive match for the value of the <code title="http-origin">
+      <a href="https://tools.ietf.org/html/rfc6454#section-4">origin</a></code>
+      of the <a>current document</a>, or a wildcard ("<code>*</code>"),
+      return <code>pass</code>.
+      <li>Return <code>fail</code>.
+    </ol>
     </section>
 </section>
 
