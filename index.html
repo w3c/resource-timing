@@ -408,12 +408,12 @@ On getting, the <dfn>initiatorType</dfn> attribute MUST return one of the follow
 </p>
 <ul>
 <li>The same value as the <code><a href="https://www.w3.org/TR/dom/#concept-element-local-name">localName</a></code> of that
-<code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code> [[!DOM]], if the initiator is an <code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code>;</li>
-<li><dfn id='css-resource'><code>"css"</code></dfn>, if the initiator is a CSS resource downloaded by the <code><a href="https://www.w3.org/TR/css-syntax-3/#consume-a-url-token">url()</a></code> syntax [[!CSS-SYNTAX-3]], such as <code>@import url()</code> or <code>background: url()</code>;</li>
+<code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code> [[!DOM]], if the request is a result of processing the <code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code>;</li>
+<li><dfn id='css-resource'><code>"css"</code></dfn>, if the request is a result of processing a CSS <code><a href="https://www.w3.org/TR/css-syntax-3/#consume-a-url-token">url()</a></code> directive [[!CSS-SYNTAX-3]], such as <code>@import url()</code> or <code>background: url()</code>;</li>
 <li><dfn id='navigation-resource'><code>"navigation"</code></dfn>, if the request is a <a href="https://fetch.spec.whatwg.org/#navigation-request">navigation request</a>;</li>
-<li><dfn id='xhr-resource'><code>"xmlhttprequest"</code></dfn>, if the initiator is an XMLHttpRequest object [[!XMLHttpRequest]];</li>
-<li><dfn id='fetch-resource'><code>"fetch"</code></dfn>, if the initiator is <a href="https://fetch.spec.whatwg.org/#fetch-method">Fetch method</a> [[!Fetch]];</li>
-<li><dfn id='beacon-resource'><code>"beacon"</code></dfn>, if the initiator is <a href="https://www.w3.org/TR/beacon/#sec-sendBeacon-method">sendBeacon method</a> [[!Beacon]];</li>
+<li><dfn id='xhr-resource'><code>"xmlhttprequest"</code></dfn>, if the request is a result of processing an XMLHttpRequest object [[!XMLHttpRequest]];</li>
+<li><dfn id='fetch-resource'><code>"fetch"</code></dfn>, if the request is the result of processing the <a href="https://fetch.spec.whatwg.org/#fetch-method">Fetch method</a> [[!Fetch]];</li>
+<li><dfn id='beacon-resource'><code>"beacon"</code></dfn>, if the request is the result of processing the <a href="https://www.w3.org/TR/beacon/#sec-sendBeacon-method">sendBeacon method</a> [[!Beacon]];</li>
 <li><dfn id='other-resource'><code>"other"</code></dfn>, if none of the above conditions match.</li>
 </ul>
 
