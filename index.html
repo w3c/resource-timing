@@ -738,7 +738,16 @@ Set <a>resource timing buffer full flag</a> to false.
 
 <p>The following graph illustrates the timing attributes defined by the PerformanceResourceTiming interface. Attributes underlined may not be available when <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> resources from different <a href="https://tools.ietf.org/html/rfc6454#section-5">origins</a>. User agents may perform internal processing in between timings, which allow for non-normative intervals between timings.</p>
 
-<p><img style="width:85%" src="resource-timing-overview-1.png" alt='Resource Timing attributes'></p>
+<figure title='Timing attributes'>
+  <figcaption>
+    This figure illustrates the timing attributes defined by the
+    <a>PerformanceResourceTiming</a> interface. Attributes in parenthesis
+    indicate that they may not be available if the resource does not pass the
+    <a>timing allow check</a> algorithm.
+  </figcaption>
+  <!-- Source: https://docs.google.com/document/d/1I7XGNJ57Qgjkg9pL11s7MK7zGEcwAgdNj1W5f7NKbW8/ -->
+  <img src="timestamp-diagram.svg" alt="Resource Timing attributes" width="100%">
+</figure>
 
 <p>For each resource <a title='fetch' href="https://fetch.spec.whatwg.org/#concept-fetch">fetched</a> by the current <a href="https://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a>, excluding resources fetched by cross-origin stylesheets fetched with <code>no-cors</code> policy, perform the following steps:</p>
 
