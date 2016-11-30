@@ -562,11 +562,15 @@ On getting, the <dfn>responseStart</dfn> attribute MUST return as follows:
 </p>
 <ol class="algorithm">
 <li>
-The time immediately after the user agent receives the first byte of the response from <a
+The time immediately after the user agent's HTTP parser receives the first byte of the response (e.g. frame header bytes for HTTP/2, or response status line for HTTP/1.x) from <a
 href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a>, or from local resources or from the server if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
 </li>
 <li>zero, otherwise.</li>
 </ol>
+<aside class="note">
+  <p>There are many reasonable definitions of "receipt of first byte": as seen by the kernel, by the browsers network stack / HTTP parser, by the renderer, and so on. The above definition is with respect to the HTTP parser, and thus may include queuing time inside of client's kernel buffers and other steps that may preceed receipt of data by the HTTP parser.</p>
+  <p>For fetches composed of multiple requests (e.g. preflights, authentication challenge-response, redirects, and so on), the reported <code>responseStart</code> value is that of the last request.</p>
+</aside>
 
 <p dfn-for='PerformanceResourceTiming'>
 On getting, the <dfn>responseEnd</dfn> attribute MUST return as follows:
