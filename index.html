@@ -569,7 +569,7 @@ href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">rele
 </ol>
 <aside class="note">
   <p>There are many reasonable definitions of "receipt of first byte": as seen by the kernel, by the browsers network stack / HTTP parser, by the renderer, and so on. The above definition is with respect to the HTTP parser, and thus may include queuing time inside of client's kernel buffers and other steps that may preceed receipt of data by the HTTP parser.</p>
-  <p>For fetches composed of multiple requests (e.g. preflights, authentication challenge-response, redirects, and so on), the reported <code>responseStart</code> value is that of the last request.</p>
+  <p>For fetches composed of multiple requests (e.g. preflights, authentication challenge-response, redirects, and so on), the reported <code>responseStart</code> value is that of the last request. In the case where more than one response is available for a request, due to an <a href="https://tools.ietf.org/html/rfc7231#section-6.2">Informational 1xx response</a>, the reported <code>responseStart</code> value is that of the first response to the last request.</p>
 </aside>
 
 <p dfn-for='PerformanceResourceTiming'>
