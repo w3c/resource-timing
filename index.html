@@ -7,7 +7,7 @@
   <script class='remove'>
   var respecConfig = {
     shortName: "resource-timing-1",
-    specStatus: "CR",
+    specStatus: "ED",
     useExperimentalStyles: true,
     edDraftURI: "https://w3c.github.io/resource-timing/",
     editors: [{
@@ -39,7 +39,8 @@
       w3cid: "45288"
     }],
     wg: "Web Performance Working Group",
-    wgURI: "http://www.w3.org/2010/webperf/",
+    wgURI: "https://www.w3.org/webperf/",
+    license: 'w3c-software-doc',
     wgPublicList: "public-web-perf",
     subjectPrefix: "[ResourceTiming]",
     otherLinks: [{
@@ -73,7 +74,7 @@
         href: 'https://github.com/w3c/web-platform-tests/tree/master/resource-timing'
       }]
     }],
-    wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/45211/status"
+    wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/45211/status"
   };
   </script>
 </head>
@@ -343,7 +344,7 @@ Future versions of this specification could require the inclusion of aborted req
 <h3>The <code>PerformanceResourceTiming</code> Interface</h3>
 
 <p>
-The <a>PerformanceResourceTiming</a> interface participates in the
+The <dfn>PerformanceResourceTiming</dfn> interface participates in the
 	<a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> and extends the following attributes of the
 <a href="https://www.w3.org/TR/performance-timeline/#performanceentry">PerformanceEntry</a> interface:</p>
 
@@ -480,7 +481,7 @@ On getting, the <dfn>connectEnd</dfn> attribute MUST return as follows:
 </ol>
 
 <p dfn-for='PerformanceResourceTiming'>
- The <a for="PerformanceResourceTiming">secureConnectionStart</a> attribute is optional. On getting, the attribute MUST return as follows:
+ The <dfn>secureConnectionStart</dfn> attribute is optional. On getting, the attribute MUST return as follows:
 </p>
 <ol class="algorithm">
 <li>The same value as <a for="PerformanceResourceTiming">fetchStart</a>, if a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent connection</a> [[!RFC7230]] is used or the resource is retrieved from <a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a> or local resources.</li>
@@ -567,6 +568,10 @@ href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">rele
   void setResourceTimingBufferSize (unsigned long maxSize);
               attribute EventHandler onresourcetimingbufferfull;
 };</pre>
+<p>
+  The <code><dfn data-cite="!HR-TIME-2#performance">Performance</dfn></code> object 
+  is defined in [[!HR-TIME-2]].
+</p>
 
 <p>
   The method <dfn for='Performance'>clearResourceTimings</dfn> runs the following steps:
