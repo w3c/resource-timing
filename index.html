@@ -9,6 +9,12 @@
     shortName: "resource-timing-1",
     specStatus: "ED",
     useExperimentalStyles: true,
+    // publishDate: "2017-03-30",
+    previousMaturity: "CR",
+    previousPublishDate: "2017-03-30",
+    crEnd: "2017-04-27",
+    implementationReportURI: "https://w3c.github.io/test-results/resource-timing/all.html",
+
     edDraftURI: "https://w3c.github.io/resource-timing/",
     editors: [{
       name: "Arvind Jain",
@@ -89,7 +95,7 @@ the complete timing information for resources in a document.</p>
 <section id="sotd">
 
 <p>Implementers are encouraged to look at the latest version of <a href='https://www.w3.org/TR/resource-timing/'>Resource Timing</a> before implementing this Candidate Recommendation.</p>
-<p>This specification uses <a href="https://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> and <a href='https://www.w3.org/TR/hr-time-2/#time-origin'>time origin</a> from  High Resolution Time Level 2 [[HR-TIME-2]]. These were also defined in <a href="https://www.w3.org/TR/hr-time-1/">High Resolution Time Level 1</a> but Level 2 provides more refined definitions.</p>
+<p>This specification uses <a data-cite="!HR-TIME-2#dom-domhighrestimestamp">DOMHighResTimeStamp</a> and <a data-cite='!HR-TIME-2#time-origin'>time origin</a> from  High Resolution Time Level 2 [[HR-TIME-2]]. These were also defined in <a href="https://www.w3.org/TR/hr-time-1/">High Resolution Time Level 1</a> but Level 2 provides more refined definitions.</p>
 </section>
 <section id="introduction" class='informative'>
 <h2>Introduction</h2>
@@ -101,7 +107,7 @@ unable to provide a complete end-to-end latency picture. This document introduce
 interface to allow JavaScript mechanisms to collect complete timing
 information related to resources on a document. Navigation Timing 2 [[NAVIGATION-TIMING-2]] extends this specification to provide additional timing information associated with a navigation.
 </p>
-
+ 
 
 <p>For example, the following JavaScript shows a simple attempt to
 measure the time it takes to fetch a resource:</p>
@@ -120,7 +126,7 @@ measure the time it takes to fetch a resource:</p>
            var resourceTiming = function() {
                var now = new Date().getTime();
                var latency = now - start;
-               alert("End to end resource fetch: " + latency);
+               alert("End to end qresource fetch: " + latency);
            };
 
            image1.onload = resourceTiming;
@@ -225,7 +231,7 @@ official term ECMAScript, since the term JavaScript is more widely known. [[ECMA
 </p>
 
 <p>The term <dfn>resource</dfn> is used to refer to elements and any other user-initiated fetches throughout this specification.
-For example, a resource could originate from XMLHttpRequest objects [[XMLHttpRequest], HTML elements [[HTML5]] such as iframe, img, script, object, embed, and link with the link type of stylesheet, and SVG elements [[SVG11]] such as svg.
+For example, a resource could originate from XMLHttpRequest objects [[XMLHttpRequest], HTML elements [[HTML51]] such as iframe, img, script, object, embed, and link with the link type of stylesheet, and SVG elements [[SVG11]] such as svg.
 </p>
 
 <p>
@@ -233,11 +239,11 @@ For example, a resource could originate from XMLHttpRequest objects [[XMLHttpReq
   <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a>.
 </p>
 <p>
-  The term <dfn>current document</dfn> refers to the document associated with the <a href="https://www.w3.org/TR/html5/browsers.html#dom-document-0">Window object's newest Document object</a>.
+  The term <dfn>current document</dfn> refers to the document associated with the <a href="https://www.w3.org/TR/html/browsers.html#dom-window-document">Window object's newest Document object</a>.
 </p>
 <p>
   Throughout this work, all time values are measured in milliseconds since the start of
-  navigation of the document [[!HR-TIME-2]]. For example, the <a href='https://www.w3.org/TR/navigation-timing-2/#widl-PerformanceNavigationTiming-startTime'>start of navigation of the document</a>
+  navigation of the document [[!HR-TIME-2]]. For example, the <a data-cite='NAVIGATION-TIMING-2#dom-PerformanceNavigationTiming-startTime'>start of navigation of the document</a>
   occurs at time 0.
 </p>
 <p>
@@ -263,16 +269,16 @@ For example, a resource could originate from XMLHttpRequest objects [[XMLHttpReq
 <p>
     The <a>PerformanceResourceTiming</a>
     interface facilitates timing measurement of downloadable resources. For example, this interface is available for
-    <a href="https://www.w3.org/TR/XMLHttpRequest/#interface-xmlhttprequest">XMLHttpRequest</a> objects [[XMLHttpRequest]], HTML
-    elements [[HTML5]] such as
-    <a href="https://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element">iframe</a>,
-    <a href="https://www.w3.org/TR/html5/embedded-content-0.html#the-img-element">img</a>,
-    <a href="https://www.w3.org/TR/html5/scripting-1.html#the-script-element">script</a>,
-    <a href="https://www.w3.org/TR/html5/embedded-content-0.html#the-object-element">object</a>,
-    <a href="https://www.w3.org/TR/html5/embedded-content-0.html#the-embed-element">embed</a>,
-    and <a href="https://www.w3.org/TR/html5/document-metadata.html#the-link-element">link</a>
+    <a href="https://xhr.spec.whatwg.org/#xmlhttprequest">XMLHttpRequest</a> objects [[XHR]], HTML
+    elements [[HTML51]] such as
+    <a href="https://www.w3.org/TR/html/semantics-embedded-content.html#the-iframe-element">iframe</a>,
+    <a href="https://www.w3.org/TR/html/semantics-embedded-content.html#the-img-element">img</a>,
+    <a href="https://www.w3.org/TR/html/semantics-scripting.html#the-script-element">script</a>,
+    <a href="https://www.w3.org/TR/html/semantics-embedded-content.html#the-object-element">object</a>,
+    <a href="https://www.w3.org/TR/html/semantics-embedded-content.html#the-embed-element">embed</a>,
+    and <a href="https://www.w3.org/TR/html/document-metadata.html#the-link-element">link</a>
     with the link type of
-    <a href="https://www.w3.org/TR/html5/links.html#link-type-stylesheet">stylesheet</a>,
+    <a href="https://www.w3.org/TR/html/links.html#link-type-stylesheet">stylesheet</a>,
     and SVG elements [[SVG11]] such
     as <a href="https://www.w3.org/TR/SVG11/struct.html#SVGElement">svg</a>.
 </p>
@@ -282,9 +288,9 @@ For example, a resource could originate from XMLHttpRequest objects [[XMLHttpReq
 <section id="resources-included">
 <h3>Resources Included in the <a>PerformanceResourceTiming</a> Interface</h3>
 
-<p>All resources <a title='fetch' href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetched</a> by the current <a href="https://www.w3.org/TR/html5/browsers.html#browsing-context">browsing</a> [[!HTML5]] or worker [[!WORKERS]] context's MUST be included as <a>PerformanceResourceTiming</a> objects in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> of the relevant context, without violating the <a href='https://tools.ietf.org/html/rfc6454#section-3.4'>origin policy</a>. Resources that are retrieved from <a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a> or local resources MUST be included as <a>PerformanceResourceTiming</a> objects in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> [[!PERFORMANCE-TIMELINE]].</p>
+<p>All resources <a title='fetch' href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetched</a> by the current <a href="https://www.w3.org/TR/html/browsers.html#browsing-context">browsing</a> [[!HTML51]] or worker [[!WORKERS]] context's MUST be included as <a>PerformanceResourceTiming</a> objects in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a> of the relevant context, without violating the <a href='https://tools.ietf.org/html/rfc6454#section-3.4'>origin policy</a>. Resources that are retrieved from <a href="https://www.w3.org/TR/html/obsolete.html#relevant-application-cache">relevant application caches</a> or local resources MUST be included as <a>PerformanceResourceTiming</a> objects in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a> [[!PERFORMANCE-TIMELINE-2]].</p>
 
-<p>Aborted requests or requests that don't return a response MAY be included as <a>PerformanceResourceTiming</a> objects in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> of the relevant context.</p>
+<p>Aborted requests or requests that don't return a response MAY be included as <a>PerformanceResourceTiming</a> objects in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a> of the relevant context.</p>
 
 <p class='note'>
 Future versions of this specification could require the inclusion of aborted requests or requests that don't return a response (see <a href="https://github.com/w3c/resource-timing/issues/12">issue 12</a>).
@@ -299,43 +305,43 @@ Future versions of this specification could require the inclusion of aborted req
     Examples:</p>
     <ul>
         <li>If the same canonical URL is used as the <code>src</code> attribute of two HTML <code>IMG</code> elements,
-            the <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource initiated by the first HTML <code>IMG</code> element SHOULD
-			be included as a <a>PerformanceResourceTiming</a> object in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+            the <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource initiated by the first HTML <code>IMG</code> element SHOULD
+			be included as a <a>PerformanceResourceTiming</a> object in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
 			The user agent might not re-request the URL for the second HTML <code>IMG</code> element, instead using the existing download it initiated for the first HTML <code>IMG</code> element.
-            In this case, the <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource by the first
-            <code>IMG</code> element would be the only occurrence in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+            In this case, the <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource by the first
+            <code>IMG</code> element would be the only occurrence in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
         </li>
-        <li>If the <code>src</code> attribute of a HTML <code>IMG</code> element is changed via script, both the <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the original resource as well
-            as the <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the new URL would be included as <a>PerformanceResourceTiming</a> objects in
-			the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+        <li>If the <code>src</code> attribute of a HTML <code>IMG</code> element is changed via script, both the <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the original resource as well
+            as the <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the new URL would be included as <a>PerformanceResourceTiming</a> objects in
+			the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
         </li>
 		<li>
 			If an HTML <code>IFRAME</code> element is added via markup without specifying a <code>src</code> attribute, the user agent may load the <code>about:blank</code> document for the <code>IFRAME</code>. If at a later time the <code>src</code> attribute is changed dynamically via script, the user agent may
-			<a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the new URL resource for the <code>IFRAME</code>. In this case, only the
-			<a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the new URL would be included
-			as a <a>PerformanceResourceTiming</a> object in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+			<a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> the new URL resource for the <code>IFRAME</code>. In this case, only the
+			<a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the new URL would be included
+			as a <a>PerformanceResourceTiming</a> object in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
 		</li>
         <li>
-            If an <code>XMLHttpRequest</code> is generated twice for the same canonical URL, both <a title='fetch' href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetches</a> of the resource would be
-            included as a <a>PerformanceResourceTiming</a> object in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
-			This is because the <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource for the second <code>XMLHttpRequest</code> cannot reuse the download issued for the first <code>XMLHttpRequest</code>.
+            If an <code>XMLHttpRequest</code> is generated twice for the same canonical URL, both <a title='fetch' href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetches</a> of the resource would be
+            included as a <a>PerformanceResourceTiming</a> object in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
+			This is because the <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource for the second <code>XMLHttpRequest</code> cannot reuse the download issued for the first <code>XMLHttpRequest</code>.
         </li>
         <li>
             If an HTML <code>IFRAME</code> element is included on the page, then only the resource requested by <code>IFRAME</code> <code>src</code> attribute is included
-            as a <a>PerformanceResourceTiming</a> object in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
-			Sub-resources requested by the <code>IFRAME</code> document will be included in the <code>IFRAME</code> document's <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> and not the parent
-            document's <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+            as a <a>PerformanceResourceTiming</a> object in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
+			Sub-resources requested by the <code>IFRAME</code> document will be included in the <code>IFRAME</code> document's <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a> and not the parent
+            document's <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
         </li>
         <li>
             If an HTML <code>IMG</code> element has a <code><a href="https://tools.ietf.org/html/rfc2397">data: URI</a></code> as its source [[!RFC2397]], then this resource will not
-            be included as a <a>PerformanceResourceTiming</a> object in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
-			By definition <code><a href="https://tools.ietf.org/html/rfc2397">data: URI</a></code> contains embedded data and does not require a <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a>.
+            be included as a <a>PerformanceResourceTiming</a> object in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
+			By definition <code><a href="https://tools.ietf.org/html/rfc2397">data: URI</a></code> contains embedded data and does not require a <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a>.
         </li>
         <li>
-          If a resource <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> was aborted due to a networking error (e.g. DNS, TCP, or TLS error), then the fetch would be included as a <a>PerformanceResourceTiming</a> object in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> with initialized attribute values up to the point of failure - e.g. a TCP handshake error should report DNS timestamps for the request, and so on.
+          If a resource <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> was aborted due to a networking error (e.g. DNS, TCP, or TLS error), then the fetch would be included as a <a>PerformanceResourceTiming</a> object in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a> with initialized attribute values up to the point of failure - e.g. a TCP handshake error should report DNS timestamps for the request, and so on.
         </li>
         <li>
-          If a resource <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> is aborted because it failed a fetch precondition (e.g. mixed content, CORS restriction, CSP policy, etc), then this resource will not be included as a <a>PerformanceResourceTiming</a> object in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+          If a resource <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> is aborted because it failed a fetch precondition (e.g. mixed content, CORS restriction, CSP policy, etc), then this resource will not be included as a <a>PerformanceResourceTiming</a> object in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
         </li>
     </ul>
 </section>
@@ -345,26 +351,26 @@ Future versions of this specification could require the inclusion of aborted req
 
 <p>
 The <dfn>PerformanceResourceTiming</dfn> interface participates in the
-	<a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> and extends the following attributes of the
-<a href="https://www.w3.org/TR/performance-timeline/#performanceentry">PerformanceEntry</a> interface:</p>
+	<a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a> and extends the following attributes of the
+<a data-cite="!HR-TIME-2#dom-performanceentry">PerformanceEntry</a> interface:</p>
 
 <dl class='attributes'>
 <dt id='widl-PerformanceResourceTiming-name'><code>name</code></dt>
     <dd>
-    	This attribute MUST return the <a href="https://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the
-    	requested resource. This attribute MUST NOT change even if the <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> redirected to a different URL.
+    	This attribute MUST return the <a href="https://www.w3.org/TR/html/infrastructure.html#resulting-url-string">resolved URL</a> of the
+    	requested resource. This attribute MUST NOT change even if the <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> redirected to a different URL.
    	</dd>
 <dt id='widl-PerformanceResourceTiming-entryType'><code>entryType</code></dt>
 <dd>The <code id="entryType-attribute">entryType</code> attribute MUST return the DOMString "<code id="perf-resource">resource</code>".</dd>
 <dt id='widl-PerformanceResourceTiming-startTime'><code>startTime</code></dt>
-<dd>The <code id="startTime-attribute">startTime</code> attribute MUST return a <a href="https://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> [[!HR-TIME-2]]
-  with the time immediately before the user agent starts to queue the resource for <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a>.
-       If there are HTTP redirects or <a href="https://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
+<dd>The <code id="startTime-attribute">startTime</code> attribute MUST return a <a data-cite="!HR-TIME-2#dom-domhighrestimestamp">DOMHighResTimeStamp</a> [[!HR-TIME-2]]
+  with the time immediately before the user agent starts to queue the resource for <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources" title='fetch'>fetching</a>.
+       If there are HTTP redirects or <a href="https://www.w3.org/TR/html/infrastructure.html#http-response-codes" title='HTTP response codes equivalence'>equivalent</a>
        when fetching the resource, and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current
        document or the <a>timing allow check</a> algorithm passes, this attribute MUST return the same value as <a for="PerformanceResourceTiming">redirectStart</a>.
      Otherwise, this attribute MUST return the same value as <a for="PerformanceResourceTiming">fetchStart</a>.</dd>
 <dt id='widl-PerformanceResourceTiming-duration'><code>duration</code></dt>
-<dd>The <code id="duration-attribute">duration</code> attribute MUST return a <a href="https://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a>
+<dd>The <code id="duration-attribute">duration</code> attribute MUST return a <a data-cite="!HR-TIME-2#dom-domhighrestimestamp">DOMHighResTimeStamp</a>
   equal to the difference between <a for="PerformanceResourceTiming">responseEnd</a> and <a href="#startTime-attribute">startTime</a>, respectively.</dd>
 </dl>
 
@@ -393,8 +399,8 @@ On getting, the <dfn>initiatorType</dfn> attribute MUST return one of the follow
 <ul>
 <li>The same value as the <code><a href="https://www.w3.org/TR/dom/#concept-element-local-name">localName</a></code> of that
 <code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code> [[!DOM]], if the initiator is an <code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code>.</li>
-<li><dfn id='css-resource'><code>"css"</code></dfn>, if the initiator is a CSS resource downloaded by the <code><a href="https://www.w3.org/TR/css-syntax-3/#consume-a-url-token">url()</a></code> syntax [[!CSS-SYNTAX-3]], such as <code>@import url()</code> or <code>background: url()</code>.</li>
-<li><dfn id='xhr-resource'><code>"xmlhttprequest"</code></dfn>, if the initiator is an XMLHttpRequest object [[!XMLHttpRequest]].</li>
+<li><dfn id='css-resource'><code>"css"</code></dfn>, if the initiator is a CSS resource downloaded by the <code><a data-cite="!CSS-SYNTAX-3#consume-a-url-token">url()</a></code> syntax [[!CSS-SYNTAX-3]], such as <code>@import url()</code> or <code>background: url()</code>.</li>
+<li><dfn id='xhr-resource'><code>"xmlhttprequest"</code></dfn>, if the initiator is an XMLHttpRequest object [[!XHR]].</li>
 </ul>
 
 <p dfn-for='PerformanceResourceTiming'>
@@ -402,8 +408,8 @@ On getting, the <dfn>redirectStart</dfn> attribute MUST return as follows:
 </p>
 <ol class='algorithm'>
 <li>
-The time immediately before the user agent starts to <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the resource that initiates the redirect, if there are HTTP redirects or <a href="https://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
-when <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and <strong>all</strong> the redirects or equivalent pass the <a>timing allow check</a> algorithm.
+The time immediately before the user agent starts to <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> the resource that initiates the redirect, if there are HTTP redirects or <a href="https://www.w3.org/TR/html/infrastructure.html#http-response-codes" title='HTTP response codes equivalence'>equivalent</a>
+when <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources" title='fetch'>fetching</a> the resource and <strong>all</strong> the redirects or equivalent pass the <a>timing allow check</a> algorithm.
 </li>
 <li>zero, otherwise.</li>
 </ol>
@@ -412,8 +418,8 @@ when <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetc
 On getting, the <dfn>redirectEnd</dfn> attribute MUST return as follows:
 </p>
 <ol class='algorithm'>
-<li>The time immediately after receiving the last byte of the response of the last redirect, if there are HTTP redirects or <a href="https://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
-when <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource and <strong>all</strong> the redirects or equivalent pass the <a>timing allow check</a> algorithm.</li>
+<li>The time immediately after receiving the last byte of the response of the last redirect, if there are HTTP redirects or <a href="https://www.w3.org/TR/html/infrastructure.html#http-response-codes" title='HTTP response codes equivalence'>equivalent</a>
+when <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources" title='fetch'>fetching</a> the resource and <strong>all</strong> the redirects or equivalent pass the <a>timing allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
 </ol>
 
@@ -422,9 +428,9 @@ On getting, the <dfn>fetchStart</dfn> attribute MUST return as follows:
 </p>
 <ol class='algorithm'>
 <li>
-The time immediately before the user agent starts to <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the <em>final</em> resource in the redirection, if there are HTTP redirects or <a href="https://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>.
+The time immediately before the user agent starts to <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> the <em>final</em> resource in the redirection, if there are HTTP redirects or <a href="https://www.w3.org/TR/html/infrastructure.html#http-response-codes" title='HTTP response codes equivalence'>equivalent</a>.
 </li>
-<li>The time immediately before the user agent starts to <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the resource otherwise.
+<li>The time immediately before the user agent starts to <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> the resource otherwise.
 </li>
 </ol>
 
@@ -435,10 +441,10 @@ On getting, the <dfn>domainLookupStart</dfn> attribute MUST return as follows:
 <li>The same
 value as <a for="PerformanceResourceTiming">fetchStart</a>, if a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent
 connection</a> [[!RFC7230]] is used or the resource
-is retrieved from <a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant
+is retrieved from <a href="https://www.w3.org/TR/html/obsolete.html#relevant-application-cache">relevant
 application caches</a> or local resources.</li>
 <li>The time immediately after the user agent before the domain data retrieval from the domain information cache, if the user agent has the domain information in cache.</li>
-<li>The time immediately before the user agent starts the domain name lookup for the resource, if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.</li>
+<li>The time immediately before the user agent starts the domain name lookup for the resource, if the last non-redirected <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
 </ol>
 
@@ -449,10 +455,10 @@ On getting, the <dfn>domainLookupEnd</dfn> attribute MUST return as follows:
 <li>The same
 value as <a for="PerformanceResourceTiming">fetchStart</a>, if a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent
 connection</a> [[!RFC7230]] is used or the resource
-is retrieved from <a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant
+is retrieved from <a href="https://www.w3.org/TR/html/obsolete.html#relevant-application-cache">relevant
 application caches</a> or local resources.</li>
 <li>The time immediately after the user agent ends the domain data retrieval from the domain information cache, if the user agent has the domain information in cache.</li>
-<li>The time immediately before the user agent finishes the domain name lookup for the resource, if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.</li>
+<li>The time immediately before the user agent finishes the domain name lookup for the resource, if the last non-redirected <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
 </ol>
 
@@ -462,8 +468,8 @@ On getting, the <dfn>connectStart</dfn> attribute MUST return as follows:
 <ol class="algorithm">
 <li>The same value as <a for="PerformanceResourceTiming">fetchStart</a>, if a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent
 connection</a> [[!RFC7230]] is used or the resource is retrieved from <a
-href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache" title='relevant application cache'>relevant application caches</a> or local resources.</li>
-<li>The time immediately before the user agent start establishing the connection to the server to retrieve the resource, if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
+href="https://www.w3.org/TR/html/obsolete.html#relevant-application-cache" title='relevant application cache'>relevant application caches</a> or local resources.</li>
+<li>The time immediately before the user agent start establishing the connection to the server to retrieve the resource, if the last non-redirected <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
 <p>If the transport connection fails and the user agent reopens a connection,
 <a for='PerformanceResourceTiming'>connectStart</a> SHOULD return the corresponding value of the new connection.</p></li>
 <li>zero, otherwise.</li>
@@ -473,8 +479,8 @@ href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache" titl
 On getting, the <dfn>connectEnd</dfn> attribute MUST return as follows:
 </p>
 <ol class="algorithm">
-<li>The same value as <a for="PerformanceResourceTiming">fetchStart</a>, if a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent connection</a> [[!RFC7230]] is used or the resource is retrieved from <a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a> or local resources.</li>
-<li>The time immediately after the user agent start establishing the connection to the server to retrieve the resource, if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
+<li>The same value as <a for="PerformanceResourceTiming">fetchStart</a>, if a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent connection</a> [[!RFC7230]] is used or the resource is retrieved from <a href="https://www.w3.org/TR/html/obsolete.html#relevant-application-cache">relevant application caches</a> or local resources.</li>
+<li>The time immediately after the user agent start establishing the connection to the server to retrieve the resource, if the last non-redirected <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
 <p>The returned time MUST include the time interval to establish the transport connection, as well as other time intervals such as SSL handshake and SOCKS authentication.</p>
 <p>If the transport connection fails and the user agent reopens a connection, <a for='PerformanceResourceTiming'>connectEnd</a> SHOULD return the corresponding value of the new connection.</li>
 <li>zero, otherwise.</li>
@@ -484,8 +490,8 @@ On getting, the <dfn>connectEnd</dfn> attribute MUST return as follows:
  The <dfn>secureConnectionStart</dfn> attribute is optional. On getting, the attribute MUST return as follows:
 </p>
 <ol class="algorithm">
-<li>The same value as <a for="PerformanceResourceTiming">fetchStart</a>, if a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent connection</a> [[!RFC7230]] is used or the resource is retrieved from <a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a> or local resources.</li>
-<li>The time immediately before the user agent starts the handshake process to secure the current connection, if a secure transport is used and the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.</li>
+<li>The same value as <a for="PerformanceResourceTiming">fetchStart</a>, if a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent connection</a> [[!RFC7230]] is used or the resource is retrieved from <a href="https://www.w3.org/TR/html/obsolete.html#relevant-application-cache">relevant application caches</a> or local resources.</li>
+<li>The time immediately before the user agent starts the handshake process to secure the current connection, if a secure transport is used and the last non-redirected <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.</li>
 </ul>
 </li>
 <li>zero, otherwise.</li>
@@ -497,8 +503,8 @@ On getting, the <dfn>requestStart</dfn> attribute MUST return as follows:
 <ol class="algorithm">
 <li>The time immediately before the user agent
 starts requesting the resource from the server, or from
-<a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">
-relevant application caches</a> or from local resources, if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
+<a href="https://www.w3.org/TR/html/obsolete.html#relevant-application-cache">
+relevant application caches</a> or from local resources, if the last non-redirected <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
 <p>If the transport connection fails after a request is sent and the user
 agent reopens a connection and resend the request, <a for='PerformanceResourceTiming'>requestStart</a> MUST return the corresponding values of the new request.</p>
 </li>
@@ -523,7 +529,7 @@ On getting, the <dfn>responseStart</dfn> attribute MUST return as follows:
 <ol class="algorithm">
 <li>
 The time immediately after the user agent receives the first byte of the response from <a
-href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a>, or from local resources or from the server if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
+href="https://www.w3.org/TR/html/obsolete.html#relevant-application-cache">relevant application caches</a>, or from local resources or from the server if the last non-redirected <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
 </li>
 <li>zero, otherwise.</li>
 </ol>
@@ -534,7 +540,7 @@ On getting, the <dfn>responseEnd</dfn> attribute MUST return as follows:
 <ol class="algorithm">
 <li>
 The time immediately after the user agent receives the last byte of the response or immediately before the transport connection is closed, whichever comes first. The resource here can be received either from <a
-href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a>, or from local resources or from the server if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
+href="https://www.w3.org/TR/html/obsolete.html#relevant-application-cache">relevant application caches</a>, or from local resources or from the server if the last non-redirected <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
 </li>
 <li>zero, otherwise.</li>
 </ol>
@@ -546,7 +552,7 @@ href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">rele
 
 <p>
     The user agent MAY choose to limit how many resources are included as
-    <a>PerformanceResourceTiming</a> objects in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a> [[!PERFORMANCE-TIMELINE]]. This section extends the <a href="https://www.w3.org/TR/performance-timeline/#dom-performance"><code>Performance</code></a> interface to allow controls over the number of <a>PerformanceResourceTiming</a> objects stored.</p>
+    <a>PerformanceResourceTiming</a> objects in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a> [[!PERFORMANCE-TIMELINE-2]]. This section extends the <a href="https://www.w3.org/TR/performance-timeline/#dom-performance"><code>Performance</code></a> interface to allow controls over the number of <a>PerformanceResourceTiming</a> objects stored.</p>
 <p>
   The recommended minimum number of <a>PerformanceResourceTiming</a> objects is 150, though this may be changed by the user agent.
     <a for="Performance">setResourceTimingBufferSize</a>
@@ -558,7 +564,7 @@ href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">rele
   <li>a <dfn>resource timing buffer size limit</dfn> which should initially be 150 or greater.</li>
   <li>a <dfn>resource timing buffer current size</dfn> which is initially 0.</li>
   <li>a <dfn>resource timing buffer full flag</dfn> which is initially false.</li>
-  <li>a <dfn>performance entry buffer</dfn> to store <a href="https://www.w3.org/TR/performance-timeline/#performanceentry">PerformanceEntry</a> objects. It is initially empty.
+  <li>a <dfn>performance entry buffer</dfn> to store <a data-cite="!HR-TIME-2#dom-performanceentry">PerformanceEntry</a> objects. It is initially empty.
   <p class='note'>
   This buffer is the same one as the  performance entry buffer defined in [[PERFORMANCE-TIMELINE-2]].</p></li>
 </ul>
@@ -607,7 +613,7 @@ Set <a>resource timing buffer full flag</a> to false.
 </li>
 <li>Otherwise, if the <a>resource timing buffer full flag</a> is false, run the following substeps:
 <ol style='list-style-type: lower-latin;'>
-<li><a href='https://www.w3.org/TR/html5/webappapis.html#fire-a-simple-event'>fire a simple event</a> named <a for="Performance" data-lt="onresourcetimingbufferfull">resourcetimingbufferfull</a> at the Document, with its <code>bubbles</code> attribute initialized to true, and has no default action.</li>
+<li><a href='https://www.w3.org/TR/html/webappapis.html#fire-a-simple-event'>fire a simple event</a> named <a for="Performance" data-lt="onresourcetimingbufferfull">resourcetimingbufferfull</a> at the Document, with its <code>bubbles</code> attribute initialized to true, and has no default action.</li>
 <li>set the <a>resource timing buffer full flag</a> to true.</li>
 </ol>
 </li>
@@ -618,7 +624,7 @@ Set <a>resource timing buffer full flag</a> to false.
 <section id="cross-origin-resources">
 <h3>Cross-origin Resources</h3>
     <p>
-      Cross-origin resources MUST be included as <a>PerformanceResourceTiming</a> objects in the <a href="https://www.w3.org/TR/performance-timeline/#sec-performance-timeline">Performance Timeline</a>.
+      Cross-origin resources MUST be included as <a>PerformanceResourceTiming</a> objects in the <a data-cite="!PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
 		If the <a>timing allow check</a> algorithm fails for a <a>cross-origin</a> resource, these attributes of its <a>PerformanceResourceTiming</a> object
 		MUST be set to zero: <a for="PerformanceResourceTiming">redirectStart</a>, <a for="PerformanceResourceTiming">redirectEnd</a>,
         <a for="PerformanceResourceTiming">domainLookupStart</a>, <a for="PerformanceResourceTiming">domainLookupEnd</a>, <a for="PerformanceResourceTiming">connectStart</a>,
@@ -640,7 +646,7 @@ Set <a>resource timing buffer full flag</a> to false.
     value is represented by the following ABNF [[!RFC5234]]:</p>
 
     <pre class="abnf">
-      Timing-Allow-Origin = 1#( <a href='https://fetch.spec.whatwg.org/#origin-header'>origin-or-null</a> / <a href='https://fetch.spec.whatwg.org/#http-new-header-syntax'>wildcard</a> )
+      Timing-Allow-Origin = 1#( <a data-cite='!FETCH#origin-header'>origin-or-null</a> / <a data-cite='!FETCH#http-new-header-syntax'>wildcard</a> )
     </pre>
 
     <p>The sender MAY generate multiple <a>Timing-Allow-Origin</a> header
@@ -671,7 +677,7 @@ Set <a>resource timing buffer full flag</a> to false.
 <section id="processing-model">
 <h3>Processing Model</h3>
 
-<p>The following graph illustrates the timing attributes defined by the PerformanceResourceTiming interface. Attributes underlined may not be available when <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> resources from different <a href="https://tools.ietf.org/html/rfc6454#section-5">origins</a>. User agents may perform internal processing in between timings, which allow for non-normative intervals between timings.</p>
+<p>The following graph illustrates the timing attributes defined by the PerformanceResourceTiming interface. Attributes underlined may not be available when <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources" title='fetch'>fetching</a> resources from different <a href="https://tools.ietf.org/html/rfc6454#section-5">origins</a>. User agents may perform internal processing in between timings, which allow for non-normative intervals between timings.</p>
 
 <p><img style="width:85%" src="resource-timing-overview-1.png" alt='Resource Timing attributes'></p>
 
@@ -687,15 +693,15 @@ Set <a>resource timing buffer full flag</a> to false.
       <li>Record the initiator of the resource in <a for="PerformanceResourceTiming">initiatorType</a>.
       </li>
 
-      <li>Record the <a href="https://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>.</li>
+      <li>Record the <a href="https://www.w3.org/TR/html/infrastructure.html#resulting-url-string">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>.</li>
 
-      <li id="step-fetch-start">Immediately before a user agent starts the <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching process</a>, record the <a>current time</a> as <a for="PerformanceResourceTiming">fetchStart</a>. Let <a for="PerformanceResourceTiming">domainLookupStart</a>, <a for="PerformanceResourceTiming">domainLookupEnd</a>, <a for="PerformanceResourceTiming">connectStart</a> and <a for="PerformanceResourceTiming">connectEnd</a> be the same value as <a for="PerformanceResourceTiming">fetchStart</a>.</li>
+      <li id="step-fetch-start">Immediately before a user agent starts the <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources" title='fetch'>fetching process</a>, record the <a>current time</a> as <a for="PerformanceResourceTiming">fetchStart</a>. Let <a for="PerformanceResourceTiming">domainLookupStart</a>, <a for="PerformanceResourceTiming">domainLookupEnd</a>, <a for="PerformanceResourceTiming">connectStart</a> and <a for="PerformanceResourceTiming">connectEnd</a> be the same value as <a for="PerformanceResourceTiming">fetchStart</a>.</li>
 
-      <li id="step-collection-start">If the user agent is to reuse the data from another existing or completed <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> initiated from the <a>current document</a>, abort the
+      <li id="step-collection-start">If the user agent is to reuse the data from another existing or completed <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> initiated from the <a>current document</a>, abort the
           remaining steps.
       </li>
-      <li>If <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource is aborted for any reason, abort the remaining steps.       </li>
-      <li>If the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource fails the <a>timing allow check</a>, the user agent
+      <li>If <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources" title='fetch'>fetching</a> the resource is aborted for any reason, abort the remaining steps.       </li>
+      <li>If the last non-redirected <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> of the resource fails the <a>timing allow check</a>, the user agent
       MUST set
       <a for="PerformanceResourceTiming">redirectStart</a>,
       <a for="PerformanceResourceTiming">redirectEnd</a>,
@@ -713,7 +719,7 @@ Set <a>resource timing buffer full flag</a> to false.
        <a for="PerformanceResourceTiming">connectStart</a> and
        <a for="PerformanceResourceTiming">connectEnd</a> be the same value as
        <a for="PerformanceResourceTiming">fetchStart</a>.</li>
-      <li>If the resource is fetched from the <a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">
+      <li>If the resource is fetched from the <a href="https://www.w3.org/TR/html/obsolete.html#relevant-application-cache">
        relevant application cache</a> or local resources, including the <a
        href="https://tools.ietf.org/html/rfc7234">HTTP cache</a> [[!RFC7234]],
      go to step <a href="#step-request-start">15</a>.
@@ -723,7 +729,7 @@ Set <a>resource timing buffer full flag</a> to false.
       <li>Record the time as <a for="PerformanceResourceTiming">domainLookupEnd</a> immediately after the
        domain name lookup is successfully done. A user agent may need multiple retries before that. If
        the domain lookup fails, abort the remaining steps. </li>
-      <li id="step-connect-start">If a persistent transport connection is used to <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> the resource,
+      <li id="step-connect-start">If a persistent transport connection is used to <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources">fetch</a> the resource,
        let <a for="PerformanceResourceTiming">connectStart</a> and <a for="PerformanceResourceTiming">connectEnd</a>
        be the same value of <a for="PerformanceResourceTiming">domainLookupEnd</a>. Otherwise, record the time as
        <a for="PerformanceResourceTiming">connectStart</a> immediately before initiating the connection to the server and record the time as <a for="PerformanceResourceTiming">connectEnd</a> immediately after the connection to the server or the proxy is established. A user agent may need multiple retries before this time. If a connection can not be established, abort the remaining steps.
@@ -762,7 +768,7 @@ Set <a>resource timing buffer full flag</a> to false.
       </li>
       <li>Record the difference between <a for="PerformanceResourceTiming">responseEnd</a> and <a href="#startTime-attribute">startTime</a> in <a href="#duration-attribute">duration</a>.</li>
       <li>If the fetched resource results in an HTTP redirect or
-      <a href="https://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>, then
+      <a href="https://www.w3.org/TR/html/infrastructure.html#http-response-codes" title='HTTP response codes equivalence'>equivalent</a>, then
       <ol>
             <li>If the current resource and the redirected resource are not from the
              <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the <a>current document</a>,
@@ -790,7 +796,7 @@ Set <a>resource timing buffer full flag</a> to false.
 <section id="monotonic-clock">
 <h3>Monotonic Clock</h3>
 <p>The value of the timing attributes MUST monotonically increase to ensure timing attributes are not
-skewed by adjustments to the system clock while <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a> the resource. The difference between any two chronologically
+skewed by adjustments to the system clock while <a href="https://www.w3.org/TR/html/infrastructure.html#fetching-resources" title='fetch'>fetching</a> the resource. The difference between any two chronologically
 recorded timing attributes MUST never be negative. For all resources, including subdocument resources, the user agent MUST
 record the system clock at the beginning of the root document navigation and define subsequent timing attributes in
 terms of a monotonic clock measuring time elapsed from the beginning of the navigation.
