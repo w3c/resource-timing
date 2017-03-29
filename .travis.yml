@@ -11,5 +11,4 @@ env:
 script:
 - echo "ok"
 after_success:
-- '[ "true" = "false" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ] && curl "https://labs.w3.org/echidna/api/request" --data "url=$URL" --data "decision=$DECISION"
-  --data "token=$TOKEN"'
+- test $TRAVIS_PULL_REQUEST = false && curl "https://labs.w3.org/echidna/api/request" --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN"
