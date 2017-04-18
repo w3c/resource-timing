@@ -701,7 +701,7 @@ Set <a>resource timing buffer full flag</a> to false.
     </dfn> HTTP response header field can be used to communicate a policy
     indicating origin(s) that are allowed to see values of attributes that
     would have been zero due to the cross-origin restrictions. The header's
-    value is represented by the following ABNF [[!RFC5234]]:</p>
+    value is represented by the following ABNF [[!RFC5234]] (using <a href='https://tools.ietf.org/html/rfc7230#section-7'>List Extension</a>, [[!RFC7230]]):</p>
 
     <pre class="abnf">
       Timing-Allow-Origin = 1#( <a href='https://fetch.spec.whatwg.org/#origin-header'>origin-or-null</a> / <a href='https://fetch.spec.whatwg.org/#http-new-header-syntax'>wildcard</a> )
