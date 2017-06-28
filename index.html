@@ -224,7 +224,7 @@ title="">Foo</code>". </p>
 <p>The term <dfn>DOM</dfn> is used to refer to the API set made available to scripts in
 Web applications, and does not necessarily imply the existence of an actual
 <code>Document</code> object or of any other <code>Node</code> objects as
-defined in the DOM specification. [[DOM]]
+defined in the DOM specification. [[DOM-20151119]]
 </p>
 
 <p>A DOM attribute is said to be <dfn>getting</dfn> when its value is being
@@ -398,7 +398,7 @@ On getting, the <dfn>initiatorType</dfn> attribute MUST return one of the follow
 </p>
 <ul>
 <li>The same value as the <code><a href="https://www.w3.org/TR/dom/#concept-element-local-name">localName</a></code> of that
-<code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code> [[!DOM]], if the request is a result of processing the <code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code>;</li>
+<code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code> [[!DOM-20151119]], if the request is a result of processing the <code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code>;</li>
 <li><dfn id='css-resource'><code>"css"</code></dfn>, if the request is a result of processing a CSS <code><a href="https://www.w3.org/TR/css-syntax-3/#consume-a-url-token">url()</a></code> directive [[!CSS-SYNTAX-3]], such as <code>@import url()</code> or <code>background: url()</code>;</li>
 <li><dfn id='navigation-resource'><code>"navigation"</code></dfn>, if the request is a <a href="https://fetch.spec.whatwg.org/#navigation-request">navigation request</a>;</li>
 <li><dfn id='xhr-resource'><code>"xmlhttprequest"</code></dfn>, if the request is a result of processing an XMLHttpRequest object [[!XMLHttpRequest]];</li>
