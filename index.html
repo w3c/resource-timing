@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -224,7 +224,7 @@ title="">Foo</code>". </p>
 <p>The term <dfn>DOM</dfn> is used to refer to the API set made available to scripts in
 Web applications, and does not necessarily imply the existence of an actual
 <code>Document</code> object or of any other <code>Node</code> objects as
-defined in the DOM specification. [[DOM]]
+defined in the DOM specification. [[DOM-20151119]]
 </p>
 
 <p>A DOM attribute is said to be <dfn>getting</dfn> when its value is being
@@ -358,14 +358,14 @@ The <a>PerformanceResourceTiming</a> interface participates in the
 <dt id='widl-PerformanceResourceTiming-entryType'><code>entryType</code></dt>
 <dd>The <code id="entryType-attribute">entryType</code> attribute MUST return the DOMString "<code id="perf-resource">resource</code>".</dd>
 <dt id='widl-PerformanceResourceTiming-startTime'><code>startTime</code></dt>
-<dd>The <code id="startTime-attribute">startTime</code> attribute MUST return a <a href="https://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a> [[!HR-TIME-2]]
+<dd>The <code id="startTime-attribute">startTime</code> attribute MUST return a <a href="https://www.w3.org/TR/hr-time-2/#domhighrestimestamp">DOMHighResTimeStamp</a> [[!HR-TIME-2]]
   with the time immediately before the user agent starts to queue the resource for <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching</a>.
        If there are HTTP redirects or <a href="https://www.w3.org/TR/html5/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>
        when fetching the resource, and if all the redirects or equivalent are from the <a href="https://tools.ietf.org/html/rfc6454#section-5">same origin</a> as the current
        document or the <a>timing allow check</a> algorithm passes, this attribute MUST return the same value as <a for="PerformanceResourceTiming">redirectStart</a>.
      Otherwise, this attribute MUST return the same value as <a for="PerformanceResourceTiming">fetchStart</a>.</dd>
 <dt id='widl-PerformanceResourceTiming-duration'><code>duration</code></dt>
-<dd>The <code id="duration-attribute">duration</code> attribute MUST return a <a href="https://www.w3.org/TR/hr-time/#domhighrestimestamp">DOMHighResTimeStamp</a>
+<dd>The <code id="duration-attribute">duration</code> attribute MUST return a <a href="https://www.w3.org/TR/hr-time-2/#domhighrestimestamp">DOMHighResTimeStamp</a>
   equal to the difference between <a for="PerformanceResourceTiming">responseEnd</a> and <a href="#startTime-attribute">startTime</a>, respectively.</dd>
 </dl>
 
@@ -398,7 +398,7 @@ On getting, the <dfn>initiatorType</dfn> attribute MUST return one of the follow
 </p>
 <ul>
 <li>The same value as the <code><a href="https://www.w3.org/TR/dom/#concept-element-local-name">localName</a></code> of that
-<code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code> [[!DOM]], if the request is a result of processing the <code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code>;</li>
+<code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code> [[!DOM-20151119]], if the request is a result of processing the <code><a href="https://www.w3.org/TR/dom/#concept-element">element</a></code>;</li>
 <li><dfn id='css-resource'><code>"css"</code></dfn>, if the request is a result of processing a CSS <code><a href="https://www.w3.org/TR/css-syntax-3/#consume-a-url-token">url()</a></code> directive [[!CSS-SYNTAX-3]], such as <code>@import url()</code> or <code>background: url()</code>;</li>
 <li><dfn id='navigation-resource'><code>"navigation"</code></dfn>, if the request is a <a href="https://fetch.spec.whatwg.org/#navigation-request">navigation request</a>;</li>
 <li><dfn id='xhr-resource'><code>"xmlhttprequest"</code></dfn>, if the request is a result of processing an XMLHttpRequest object [[!XMLHttpRequest]];</li>
@@ -415,13 +415,13 @@ On getting, the <dfn>workerStart</dfn> attribute MUST return as follows:
 </p>
 <ol class='algorithm'>
 <li>
-<p>If the current browsing or worker context's have an <a href="https://www.w3.org/TR/service-workers/#dfn-containing-service-worker-registration">active worker</a> [[!SERVICE-WORKERS]]:</p>
+<p>If the current browsing or worker context's have an <a href="https://www.w3.org/TR/service-workers-1/#dfn-containing-service-worker-registration">active worker</a> [[!SERVICE-WORKERS]]:</p>
 <ol>
 <li>
-the time immediately before the user agent <a href="https://www.w3.org/TR/service-workers/#on-fetch-request-algorithm">fires an event named `fetch`</a> at the <a href="https://www.w3.org/TR/service-workers/#dfn-active-worker">active worker</a> if the worker is available.
+the time immediately before the user agent <a href="https://www.w3.org/TR/service-workers-1/#on-fetch-request-algorithm">fires an event named `fetch`</a> at the <a href="https://www.w3.org/TR/service-workers-1/#dfn-active-worker">active worker</a> if the worker is available.
 </li>
 <li>
-the time immediately before the user agent <a href="https://www.w3.org/TR/service-workers/#service-worker-concept">runs the worker</a> required to service the request.</li>
+the time immediately before the user agent <a href="https://www.w3.org/TR/service-workers-1/#service-worker-concept">runs the worker</a> required to service the request.</li>
 </ol>
 </li>
 <li>zero, otherwise.</li>
@@ -764,7 +764,7 @@ Set <a>resource timing buffer full flag</a> to false.
       <li>Record the initiator of the resource in <a for="PerformanceResourceTiming">initiatorType</a>.
       </li>
 
-      <li>Record the <a href="https://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>. If there is an <a href="https://www.w3.org/TR/service-workers/#dfn-containing-service-worker-registration">active worker</a> ([[!SERVICE-WORKERS]]) matching the current browsing or worker context's, immediately before the user agent <a href="https://www.w3.org/TR/service-workers/#service-worker-concept">runs the worker</a> record the time as <a for="PerformanceResourceTiming">workerStart</a>, or if the worker is already available, immediately before the <a href="https://www.w3.org/TR/service-workers/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a for="PerformanceResourceTiming">workerStart</a>. Otherwise, if there is no matching <a href="https://www.w3.org/TR/service-workers/#dfn-service-worker-registration">service worker registration</a>, set <a for="PerformanceResourceTiming">workerStart</a> value to zero.</li>
+      <li>Record the <a href="https://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>. If there is an <a href="https://www.w3.org/TR/service-workers-1/#dfn-containing-service-worker-registration">active worker</a> ([[!SERVICE-WORKERS]]) matching the current browsing or worker context's, immediately before the user agent <a href="https://www.w3.org/TR/service-workers-1/#service-worker-concept">runs the worker</a> record the time as <a for="PerformanceResourceTiming">workerStart</a>, or if the worker is already available, immediately before the <a href="https://www.w3.org/TR/service-workers-1/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a for="PerformanceResourceTiming">workerStart</a>. Otherwise, if there is no matching <a href="https://www.w3.org/TR/service-workers-1/#dfn-service-worker-registration">service worker registration</a>, set <a for="PerformanceResourceTiming">workerStart</a> value to zero.</li>
 
       <li id="step-fetch-start">Immediately before a user agent starts the <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching process</a>, record the <a>current time</a> as <a for="PerformanceResourceTiming">fetchStart</a>. Let <a for="PerformanceResourceTiming">domainLookupStart</a>, <a for="PerformanceResourceTiming">domainLookupEnd</a>, <a for="PerformanceResourceTiming">connectStart</a> and <a for="PerformanceResourceTiming">connectEnd</a> be the same value as <a for="PerformanceResourceTiming">fetchStart</a>.</li>
 
