@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -415,13 +415,13 @@ On getting, the <dfn>workerStart</dfn> attribute MUST return as follows:
 </p>
 <ol class='algorithm'>
 <li>
-<p>If the current browsing or worker context's have an <a href="https://www.w3.org/TR/service-workers/#dfn-containing-service-worker-registration">active worker</a> [[!SERVICE-WORKERS]]:</p>
+<p>If the current browsing or worker context's have an <a href="https://www.w3.org/TR/service-workers-1/#dfn-containing-service-worker-registration">active worker</a> [[!SERVICE-WORKERS]]:</p>
 <ol>
 <li>
-the time immediately before the user agent <a href="https://www.w3.org/TR/service-workers/#on-fetch-request-algorithm">fires an event named `fetch`</a> at the <a href="https://www.w3.org/TR/service-workers/#dfn-active-worker">active worker</a> if the worker is available.
+the time immediately before the user agent <a href="https://www.w3.org/TR/service-workers-1/#on-fetch-request-algorithm">fires an event named `fetch`</a> at the <a href="https://www.w3.org/TR/service-workers-1/#dfn-active-worker">active worker</a> if the worker is available.
 </li>
 <li>
-the time immediately before the user agent <a href="https://www.w3.org/TR/service-workers/#service-worker-concept">runs the worker</a> required to service the request.</li>
+the time immediately before the user agent <a href="https://www.w3.org/TR/service-workers-1/#service-worker-concept">runs the worker</a> required to service the request.</li>
 </ol>
 </li>
 <li>zero, otherwise.</li>
@@ -764,7 +764,7 @@ Set <a>resource timing buffer full flag</a> to false.
       <li>Record the initiator of the resource in <a for="PerformanceResourceTiming">initiatorType</a>.
       </li>
 
-      <li>Record the <a href="https://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>. If there is an <a href="https://www.w3.org/TR/service-workers/#dfn-containing-service-worker-registration">active worker</a> ([[!SERVICE-WORKERS]]) matching the current browsing or worker context's, immediately before the user agent <a href="https://www.w3.org/TR/service-workers/#service-worker-concept">runs the worker</a> record the time as <a for="PerformanceResourceTiming">workerStart</a>, or if the worker is already available, immediately before the <a href="https://www.w3.org/TR/service-workers/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a for="PerformanceResourceTiming">workerStart</a>. Otherwise, if there is no matching <a href="https://www.w3.org/TR/service-workers/#dfn-service-worker-registration">service worker registration</a>, set <a for="PerformanceResourceTiming">workerStart</a> value to zero.</li>
+      <li>Record the <a href="https://www.w3.org/TR/html5/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>. If there is an <a href="https://www.w3.org/TR/service-workers-1/#dfn-containing-service-worker-registration">active worker</a> ([[!SERVICE-WORKERS]]) matching the current browsing or worker context's, immediately before the user agent <a href="https://www.w3.org/TR/service-workers-1/#service-worker-concept">runs the worker</a> record the time as <a for="PerformanceResourceTiming">workerStart</a>, or if the worker is already available, immediately before the <a href="https://www.w3.org/TR/service-workers-1/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a for="PerformanceResourceTiming">workerStart</a>. Otherwise, if there is no matching <a href="https://www.w3.org/TR/service-workers-1/#dfn-service-worker-registration">service worker registration</a>, set <a for="PerformanceResourceTiming">workerStart</a> value to zero.</li>
 
       <li id="step-fetch-start">Immediately before a user agent starts the <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch" title='fetch'>fetching process</a>, record the <a>current time</a> as <a for="PerformanceResourceTiming">fetchStart</a>. Let <a for="PerformanceResourceTiming">domainLookupStart</a>, <a for="PerformanceResourceTiming">domainLookupEnd</a>, <a for="PerformanceResourceTiming">connectStart</a> and <a for="PerformanceResourceTiming">connectEnd</a> be the same value as <a for="PerformanceResourceTiming">fetchStart</a>.</li>
 
