@@ -507,7 +507,7 @@ On getting, the <dfn>connectEnd</dfn> attribute MUST return as follows:
 </p>
 <ol class="algorithm">
 <li>The same value as <a for="PerformanceResourceTiming">fetchStart</a>, if a <a href="https://tools.ietf.org/html/rfc7230#section-6.3">persistent connection</a> [[!RFC7230]] is used or the resource is retrieved from <a href="https://www.w3.org/TR/html5/browsers.html#relevant-application-cache">relevant application caches</a> or local resources.</li>
-<li>The time immediately after the user agent start establishing the connection to the server to retrieve the resource, if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
+<li>The time immediately after the user agent finish establishing the connection to the server to retrieve the resource, if the last non-redirected <a href="https://www.w3.org/TR/html5/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.
 <p>The returned time MUST include the time interval to establish the transport connection, as well as other time intervals such as SSL handshake and SOCKS authentication.</p>
 <p>If the transport connection fails and the user agent reopens a connection, <a for='PerformanceResourceTiming'>connectEnd</a> SHOULD return the corresponding value of the new connection.</li>
 <li>zero, otherwise.</li>
