@@ -770,7 +770,7 @@ Set <a>resource timing buffer full flag</a> to false.
       <a>requestStart</a>,
       <a>responseStart</a> and
 	  <a>secureConnectionStart</a>
-	  to zero and go to step <a href="#step-response-end">16</a>.
+	  to zero and go to step <a href="#dfn-step-response-end">16</a>.
       </li>
         <li>Let <a>domainLookupStart</a>,
        <a>domainLookupEnd</a>,
@@ -780,17 +780,17 @@ Set <a>resource timing buffer full flag</a> to false.
       <li>If the resource is fetched from the <a data-cite="!html52/browsers.html#relevant-application-cache">
        relevant application cache</a> or local resources, including the <a
        href="https://tools.ietf.org/html/rfc7234">HTTP cache</a> [[!RFC7234]],
-     go to step <a href="#step-request-start">14</a>.
+     go to step <a href="#dfn-step-request-start">14</a>.
       </li>
-      <li>If no domain lookup is required, go to step <a href="#step-connect-start">12</a>. Otherwise, immediately before a user agent
+      <li>If no domain lookup is required, go to step <a href="#dfn-step-connect-start">12</a>. Otherwise, immediately before a user agent
        starts the domain name lookup, record the time as <a>domainLookupStart</a>.</li>
       <li>Record the time as <a>domainLookupEnd</a> immediately after the
        domain name lookup is successfully done. A user agent may need multiple retries before that. If the domain name lookup fails and
-       resource passes the <a>timing allow check</a> record the time as <a>domainLookupEnd</a> and go to <a href="#step-final-record">step 17</a>.</li>
+       resource passes the <a>timing allow check</a> record the time as <a>domainLookupEnd</a> and go to <a href="#dfn-step-final-record">step 17</a>.</li>
       <li><dfn data-lt="step-connect-start">If a persistent transport connection is used to <a data-cite="!html52/infrastructure.html#fetch">fetch</a> the resource</dfn>,
        let <a>connectStart</a> and <a>connectEnd</a>
        be the same value of <a>domainLookupEnd</a>. Otherwise, record the time as
-        <a>connectStart</a> immediately before initiating the connection to the server and record the time as <a>connectEnd</a> immediately after the connection to the server or the proxy is established. A user agent may need multiple retries before this time. Once connection is established set the value of <a>nextHopProtocol</a> to the ALPN ID used by the connection. If a connection can not be established, record the time up to the connection failure as <a>connectEnd</a> and go to <a href="#step-final-record">step 17</a>.
+        <a>connectStart</a> immediately before initiating the connection to the server and record the time as <a>connectEnd</a> immediately after the connection to the server or the proxy is established. A user agent may need multiple retries before this time. Once connection is established set the value of <a>nextHopProtocol</a> to the ALPN ID used by the connection. If a connection can not be established, record the time up to the connection failure as <a>connectEnd</a> and go to <a href="#dfn-step-final-record">step 17</a>.
       </li>
       <li>The user agent MUST set the <a>secureConnectionStart</a> attribute as follows:
         <ol>
@@ -812,7 +812,7 @@ Set <a>resource timing buffer full flag</a> to false.
       <li>Record the time as <a>responseEnd</a>
       <dfn data-lt="step-response-end">immediately after receiving the last byte of the response</dfn>.
       <ol>
-        <li>Return to step <a href="#step-connect-start">12</a> if the user agent fails to send the request or receive the entire response, and needs to reopen the connection.
+        <li>Return to step <a href="#dfn-step-connect-start">12</a> if the user agent fails to send the request or receive the entire response, and needs to reopen the connection.
 
         <aside class="example">
         <p>When <a data-cite="!rfc7230#section-6.3">persistent connection</a>
@@ -833,7 +833,7 @@ Set <a>resource timing buffer full flag</a> to false.
              <a data-cite="!rfc6454#section-5">same origin</a> as the <a>current document</a>,
 			 and the <a>timing allow check</a> algorithm fails for either resource,
 			 set <a>
-             redirectStart</a> and <a>redirectEnd</a> to 0. Then, return to step <a href="#step-fetch-start">5</a> with the new resource.
+             redirectStart</a> and <a>redirectEnd</a> to 0. Then, return to step <a href="#dfn-step-fetch-start">5</a> with the new resource.
 	        </li>
             <li>If the value of redirectStart is not set, let it be the value of fetchStart.
             </li>
@@ -844,7 +844,7 @@ Set <a>resource timing buffer full flag</a> to false.
              <a>redirectStart</a>, <a>
              redirectEnd</a>, and <a>initiatorType</a>.
             </li>
-            <li>Return to step <a href="#step-fetch-start">5</a> with the new resource.
+            <li>Return to step <a href="#dfn-step-fetch-start">5</a> with the new resource.
             </li>
         </ol>
       </li>
