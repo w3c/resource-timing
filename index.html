@@ -498,7 +498,7 @@ On getting, the <dfn>connectEnd</dfn> attribute MUST return as follows:
 <p data-dfn-for="PerformanceResourceTiming">
 On getting, the <dfn>secureConnectionStart</dfn> attribute MUST return as follows:
 </p>
-<ol data-dfn-for="PerformanceResourceTiming">
+<ol data-link-for="PerformanceResourceTiming">
 <li>The same value as <a>fetchStart</a>, if a <a data-cite="!rfc7230#section-6.3">persistent connection</a> [[!RFC7230]] is used or the resource is retrieved from <a data-cite="!html52/browsers.html#relevant-application-cache">relevant application caches</a> or local resources.</li>
 <li>The time immediately before the user agent starts the handshake process to secure the current connection, if a secure transport is used and the last non-redirected <a data-cite="!html52/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.</li>
 </ul>
@@ -751,7 +751,7 @@ Set <a>resource timing buffer full flag</a> to false.
       <li>Record the initiator of the resource in <a>initiatorType</a>.
       </li>
 
-      <li>Record the <a data-cite="!html52/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>. If there is an <a data-cite="!service-workers-1/#dfn-containing-service-worker-registration">active worker</a> ([[!service-workers-1]]) matching the current browsing or worker context's, immediately before the user agent <a data-cite="!service-workers-1/#service-worker-concept">runs the worker</a> record the time as <a>workerStart</a>, or if the worker is already available, immediately before the <a data-cite="!service-workers-1/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a>workerStart</a>. Otherwise, if there is no matching <a data-cite="!service-workers-1/#dfn-service-worker-registration">service worker registration</a>, set <a>workerStart</a> value to zero.</li>
+      <li>Record the <a data-cite="!html52/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a>name</a>. If there is an <a data-cite="!service-workers-1/#dfn-containing-service-worker-registration">active worker</a> ([[!service-workers-1]]) matching the current browsing or worker context's, immediately before the user agent <a data-cite="!service-workers-1/#service-worker-concept">runs the worker</a> record the time as <a>workerStart</a>, or if the worker is already available, immediately before the <a data-cite="!service-workers-1/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a>workerStart</a>. Otherwise, if there is no matching <a data-cite="!service-workers-1/#dfn-service-worker-registration">service worker registration</a>, set <a>workerStart</a> value to zero.</li>
 
       <li><dfn data-lt="step-fetch-start">Immediately before a user agent starts the <a data-cite="!html52/infrastructure.html#fetch" title='fetch'>fetching process</a></dfn>, record the <a>current time</a> as <a>fetchStart</a>. Let <a>domainLookupStart</a>, <a>domainLookupEnd</a>, <a>connectStart</a> and <a>connectEnd</a> be the same value as <a>fetchStart</a>.</li>
 
@@ -840,7 +840,7 @@ Set <a>resource timing buffer full flag</a> to false.
             <li>Let redirectEnd be the value of responseEnd.
             </li>
             <li>Set all the attributes in the <a>PerformanceResourceTiming</a> object to 0 except
-             <a href="#startTime-attribute">startTime</a>,
+             <a>startTime</a>,
              <a>redirectStart</a>, <a>
              redirectEnd</a>, and <a>initiatorType</a>.
             </li>
