@@ -663,7 +663,7 @@ Set <a>resource timing buffer full flag</a> to false.
 </ol>
 
 <p>
-  The attribute <dfn for='Performance'>onresourcetimingbufferfull</dfn> is the event handler for the <code>resourcetimingbufferfull</code> event.
+  The attribute <dfn for='Performance'>onresourcetimingbufferfull</dfn> is the event handler for the <code>resourcetimingbufferfull</code> event described below.
 </p>
 
 <p>To <dfn>add a PerformanceResourceTiming entry</dfn> (<i>new entry</i>) in the <a href='https://www.w3.org/TR/performance-timeline-2/#dfn-performance-entry-buffer'>performance entry buffer</a>, run the following steps:</p>
@@ -671,13 +671,13 @@ Set <a>resource timing buffer full flag</a> to false.
 <li>If <a>resource timing buffer current size</a> is less than <a>resource timing buffer size limit</a>, run the following substeps:
 <ol style='list-style-type: lower-latin;'>
 <li>Add <i>new entry</i> to the <a href='https://www.w3.org/TR/performance-timeline-2/#dfn-performance-entry-buffer'>performance entry buffer</a>.</li>
-<li>increase <a>resource timing buffer current size</a> by 1.</li>
+<li>Increase <a>resource timing buffer current size</a> by 1.</li>
 </ol>
 </li>
 <li>Otherwise, if the <a>resource timing buffer full flag</a> is false, run the following substeps:
 <ol style='list-style-type: lower-latin;'>
-<li><a href='https://www.w3.org/TR/html5/webappapis.html#fire-a-simple-event'>fire a simple event</a> named <a for="Performance" data-lt="onresourcetimingbufferfull">resourcetimingbufferfull</a> at the Document, with its <code>bubbles</code> attribute initialized to true, and has no default action.</li>
-<li>set the <a>resource timing buffer full flag</a> to true.</li>
+<li>Set the <a>resource timing buffer full flag</a> to true.</li>
+<li><a href='https://www.w3.org/TR/html5/webappapis.html#fire-a-simple-event'>Fire a simple event</a> named <code>resourcetimingbufferfull</code> at the Document, with its <code>bubbles</code> attribute initialized to true and with no default action.</li>
 </ol>
 </li>
 </ol>
