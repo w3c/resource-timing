@@ -498,7 +498,7 @@ On getting, the <dfn>connectEnd</dfn> attribute MUST return as follows:
 <p data-dfn-for="PerformanceResourceTiming">
 On getting, the <dfn>secureConnectionStart</dfn> attribute MUST return as follows:
 </p>
-<ol data-link-for="PerformanceResourceTiming">
+<ol data-dfn-for="PerformanceResourceTiming">
 <li>The same value as <a>fetchStart</a>, if a <a data-cite="!rfc7230#section-6.3">persistent connection</a> [[!RFC7230]] is used or the resource is retrieved from <a data-cite="!html52/browsers.html#relevant-application-cache">relevant application caches</a> or local resources.</li>
 <li>The time immediately before the user agent starts the handshake process to secure the current connection, if a secure transport is used and the last non-redirected <a data-cite="!html52/infrastructure.html#fetch">fetch</a> of the resource passes the <a>timing allow check</a> algorithm.</li>
 </ul>
@@ -742,7 +742,7 @@ Set <a>resource timing buffer full flag</a> to false.
   </p>
 
   <ol data-link-for="PerformanceResourceTiming">
-      <li><dfn lt="step-create-object">Create a new <a>PerformanceResourceTiming</a> object</dfn> and
+      <li><dfn data-lt="step-create-object">Create a new <a>PerformanceResourceTiming</a> object</dfn> and
       set <a>entryType</a> to the DOMString <code>resource</code>.
       </li>
       <li>Immediately before the user agent starts to queue the resource for retrieval,
@@ -753,9 +753,9 @@ Set <a>resource timing buffer full flag</a> to false.
 
       <li>Record the <a data-cite="!html52/infrastructure.html#resolve-a-url">resolved URL</a> of the requested resource in <a href="#widl-PerformanceResourceTiming-name">name</a>. If there is an <a data-cite="!service-workers-1/#dfn-containing-service-worker-registration">active worker</a> ([[!service-workers-1]]) matching the current browsing or worker context's, immediately before the user agent <a data-cite="!service-workers-1/#service-worker-concept">runs the worker</a> record the time as <a>workerStart</a>, or if the worker is already available, immediately before the <a data-cite="!service-workers-1/#on-fetch-request-algorithm">event named `fetch` is fired</a> at the active worker record the time as <a>workerStart</a>. Otherwise, if there is no matching <a data-cite="!service-workers-1/#dfn-service-worker-registration">service worker registration</a>, set <a>workerStart</a> value to zero.</li>
 
-      <li><dfn lt="step-fetch-start">Immediately before a user agent starts the <a data-cite="!html52/infrastructure.html#fetch" title='fetch'>fetching process</a></dfn>, record the <a>current time</a> as <a>fetchStart</a>. Let <a>domainLookupStart</a>, <a>domainLookupEnd</a>, <a>connectStart</a> and <a>connectEnd</a> be the same value as <a>fetchStart</a>.</li>
+      <li><dfn data-lt="step-fetch-start">Immediately before a user agent starts the <a data-cite="!html52/infrastructure.html#fetch" title='fetch'>fetching process</a></dfn>, record the <a>current time</a> as <a>fetchStart</a>. Let <a>domainLookupStart</a>, <a>domainLookupEnd</a>, <a>connectStart</a> and <a>connectEnd</a> be the same value as <a>fetchStart</a>.</li>
 
-      <li><dfn lt="step-collection-start">If the user agent is to reuse the data from another existing or completed <a data-cite="!html52/infrastructure.html#fetch">fetch</a> initiated from the <a>current document</a></dfn>, abort the
+      <li><dfn data-lt="step-collection-start">If the user agent is to reuse the data from another existing or completed <a data-cite="!html52/infrastructure.html#fetch">fetch</a> initiated from the <a>current document</a></dfn>, abort the
           remaining steps.
       </li>
 
@@ -787,7 +787,7 @@ Set <a>resource timing buffer full flag</a> to false.
       <li>Record the time as <a>domainLookupEnd</a> immediately after the
        domain name lookup is successfully done. A user agent may need multiple retries before that. If the domain name lookup fails and
        resource passes the <a>timing allow check</a> record the time as <a>domainLookupEnd</a> and go to <a href="#step-final-record">step 17</a>.</li>
-      <li><dfn lt="step-connect-start">If a persistent transport connection is used to <a data-cite="!html52/infrastructure.html#fetch">fetch</a> the resource</dfn>,
+      <li><dfn data-lt="step-connect-start">If a persistent transport connection is used to <a data-cite="!html52/infrastructure.html#fetch">fetch</a> the resource</dfn>,
        let <a>connectStart</a> and <a>connectEnd</a>
        be the same value of <a>domainLookupEnd</a>. Otherwise, record the time as
         <a>connectStart</a> immediately before initiating the connection to the server and record the time as <a>connectEnd</a> immediately after the connection to the server or the proxy is established. A user agent may need multiple retries before this time. Once connection is established set the value of <a>nextHopProtocol</a> to the ALPN ID used by the connection. If a connection can not be established, record the time up to the connection failure as <a>connectEnd</a> and go to <a href="#step-final-record">step 17</a>.
@@ -803,14 +803,14 @@ Set <a>resource timing buffer full flag</a> to false.
         </li>
         </ol>
       </li>
-      <li><dfn lt="step-request-start">Immediately before a user agent starts sending the request
+      <li><dfn data-lt="step-request-start">Immediately before a user agent starts sending the request
       for the resource</dfn>, record the <a>current time</a> as <a>requestStart</a>.
       </li>
       <li>Record the time as <a>
-      responseStart</a> <dfn lt="step-response-start">immediately after the user agent receives the first byte of the response</dfn>.
+      responseStart</a> <dfn data-lt="step-response-start">immediately after the user agent receives the first byte of the response</dfn>.
       </li>
       <li>Record the time as <a>responseEnd</a>
-      <dfn lt="step-response-end">immediately after receiving the last byte of the response</dfn>.
+      <dfn data-lt="step-response-end">immediately after receiving the last byte of the response</dfn>.
       <ol>
         <li>Return to step <a href="#step-connect-start">12</a> if the user agent fails to send the request or receive the entire response, and needs to reopen the connection.
 
@@ -825,7 +825,7 @@ Set <a>resource timing buffer full flag</a> to false.
         <li>Set the value of <a>transferSize</a>, <a>encodedBodySize</a>, <a>decodedBodySize</a> to corresponding values, subject to <a>timing allow check</a> algorithm.</li>
       </ol>
       </li>
-      <li>If <a for="PerformanceResourceTiming">responseEnd</a> is not set, set it to the current time. <dfn lt="step-final-record">Record the difference between <a>responseEnd</a> and <a>startTime</a> in <a>duration</a></dfn>.</li>
+      <li>If <a for="PerformanceResourceTiming">responseEnd</a> is not set, set it to the current time. <dfn data-lt="step-final-record">Record the difference between <a>responseEnd</a> and <a>startTime</a> in <a>duration</a></dfn>.</li>
       <li>If the fetched resource results in an HTTP redirect or
       <a data-cite="!html52/infrastructure.html#concept-http-equivalent-codes" title='HTTP response codes equivalence'>equivalent</a>, then
       <ol>
@@ -848,7 +848,7 @@ Set <a>resource timing buffer full flag</a> to false.
             </li>
         </ol>
       </li>
-      <li><dfn lt="step-final-queue"><a data-cite="!performance-timeline-2/#dfn-queue-a-performanceentry">Queue</a> the <a>PerformanceResourceTiming</a> object</dfn>.
+      <li><dfn data-lt="step-final-queue"><a data-cite="!performance-timeline-2/#dfn-queue-a-performanceentry">Queue</a> the <a>PerformanceResourceTiming</a> object</dfn>.
       </li>
       <li><a data-lt='add a PerformanceResourceTiming entry'>Add</a> the <a>PerformanceResourceTiming</a> object to the <a data-cite="!performance-timeline-2/#dfn-performance-entry-buffer">performance entry buffer</a>.</li>
       </li>
