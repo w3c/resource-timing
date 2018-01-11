@@ -214,7 +214,7 @@ and SVG elements [[SVG11]] such as svg.</p>
 <a data-cite="!RFC6454#section-5">same origin</a>.</p>
 <p>The term <dfn>current document</dfn> refers to the document
 associated with the <a data-cite=
-"!HTML52/browsers.html#document-associated-with-a-window">Window
+"!HTML/#document-associated-with-a-window">Window
 object's newest Document object</a>.</p>
 <p>Throughout this work, all time values are measured in
 milliseconds since the start of navigation of the document
@@ -240,19 +240,19 @@ interface is available for <a data-cite=
 "!XMLHttpRequest/#interface-xmlhttprequest">XMLHttpRequest</a>
 objects [[XMLHttpRequest]], HTML elements [[HTML52]] such as
 <a data-cite=
-"!HTML52/embedded-content-0.html#the-iframe-element">iframe</a>,
+"!HTML/#the-iframe-element">iframe</a>,
 <a data-cite=
-"!HTML52/embedded-content-0.html#the-img-element">img</a>,
+"!HTML/#the-img-element">img</a>,
 <a data-cite=
-"!HTML52/scripting-1.html#the-script-element">script</a>,
+"!HTML/#the-script-element">script</a>,
 <a data-cite=
-"!HTML52/embedded-content-0.html#the-object-element">object</a>,
+"!HTML/#the-object-element">object</a>,
 <a data-cite=
-"!HTML52/embedded-content-0.html#the-embed-element">embed</a>, and
+"!HTML/#the-embed-element">embed</a>, and
 <a data-cite=
-"!HTML52/document-metadata.html#the-link-element">link</a> with the
+"!HTML/#the-link-element">link</a> with the
 link type of <a data-cite=
-"!HTML52/links.html#link-type-stylesheet">stylesheet</a>, and SVG
+"!HTML/#link-type-stylesheet">stylesheet</a>, and SVG
 elements [[SVG11]] such as <a data-cite=
 "!SVG11/struct.html#SVGElement">svg</a>.</p>
 </section>
@@ -260,19 +260,19 @@ elements [[SVG11]] such as <a data-cite=
 <h3>Resources Included in the <a>PerformanceResourceTiming</a>
 Interface</h3>
 <p>All resources <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetched</a> by the current
-<a data-cite="!HTML52/browsers.html#browsing-context">browsing</a>
+"!FETCH/#concept-fetch">fetched</a> by the current
+<a data-cite="!HTML/#browsing-context">browsing</a>
 or worker [[!WORKERS]] context's MUST be included as
 <a>PerformanceResourceTiming</a> objects in the <a data-cite=
 "!PERFORMANCE-TIMELINE-2/#sec-performance-timeline">Performance
 Timeline</a> of the relevant context. Resources that are retrieved
 from <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application caches</a> or local resources MUST be included as
 <a>PerformanceResourceTiming</a> objects in the <a data-cite=
 "!PERFORMANCE-TIMELINE-2/#sec-performance-timeline">Performance
 Timeline</a> [[!PERFORMANCE-TIMELINE-2]]. Resources for which the
-<a data-cite="!HTML52/infrastructure.html#fetch">fetch</a> was
+<a data-cite="!FETCH/#concept-fetch">fetch</a> was
 initiated, but was later aborted (e.g. due to a network error) MAY
 be included as <a>PerformanceResourceTiming</a> objects in the
 <a data-cite=
@@ -285,7 +285,7 @@ model</a>.</p>
 <ul>
 <li>If the same canonical URL is used as the <code>src</code>
 attribute of two HTML <code>IMG</code> elements, the <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource
+"!FETCH/#concept-fetch">fetch</a> of the resource
 initiated by the first HTML <code>IMG</code> element SHOULD be
 included as a <a>PerformanceResourceTiming</a> object in the
 <a data-cite=
@@ -294,16 +294,16 @@ Timeline</a>. The user agent might not re-request the URL for the
 second HTML <code>IMG</code> element, instead using the existing
 download it initiated for the first HTML <code>IMG</code> element.
 In this case, the <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource by
+"!FETCH/#concept-fetch">fetch</a> of the resource by
 the first <code>IMG</code> element would be the only occurrence in
 the <a data-cite=
 "!PERFORMANCE-TIMELINE-2/#sec-performance-timeline">Performance
 Timeline</a>.</li>
 <li>If the <code>src</code> attribute of a HTML <code>IMG</code>
 element is changed via script, both the <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the original
+"!FETCH/#concept-fetch">fetch</a> of the original
 resource as well as the <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the new URL would
+"!FETCH/#concept-fetch">fetch</a> of the new URL would
 be included as <a>PerformanceResourceTiming</a> objects in the
 <a data-cite=
 "!PERFORMANCE-TIMELINE-2/#sec-performance-timeline">Performance
@@ -313,21 +313,21 @@ without specifying a <code>src</code> attribute, the user agent may
 load the <code>about:blank</code> document for the
 <code>IFRAME</code>. If at a later time the <code>src</code>
 attribute is changed dynamically via script, the user agent may
-<a data-cite="!HTML52/infrastructure.html#fetch">fetch</a> the new
+<a data-cite="!FETCH/#concept-fetch">fetch</a> the new
 URL resource for the <code>IFRAME</code>. In this case, only the
-<a data-cite="!HTML52/infrastructure.html#fetch">fetch</a> of the
+<a data-cite="!FETCH/#concept-fetch">fetch</a> of the
 new URL would be included as a <a>PerformanceResourceTiming</a>
 object in the <a data-cite=
 "!PERFORMANCE-TIMELINE-2/#sec-performance-timeline">Performance
 Timeline</a>.</li>
 <li>If an <code>XMLHttpRequest</code> is generated twice for the
 same canonical URL, both <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetches</a> of the resource
+"!FETCH/#concept-fetch">fetches</a> of the resource
 would be included as a <a>PerformanceResourceTiming</a> object in
 the <a data-cite=
 "!PERFORMANCE-TIMELINE-2/#sec-performance-timeline">Performance
 Timeline</a>. This is because the <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource for
+"!FETCH/#concept-fetch">fetch</a> of the resource for
 the second <code>XMLHttpRequest</code> cannot reuse the download
 issued for the first <code>XMLHttpRequest</code>.</li>
 <li>If an HTML <code>IFRAME</code> element is included on the page,
@@ -350,9 +350,9 @@ source [[!RFC2397]], then this resource will not be included as a
 Timeline</a>. By definition <code><a href=
 "https://tools.ietf.org/html/rfc2397">data: URI</a></code> contains
 embedded data and does not require a <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a>.</li>
+"!FETCH/#concept-fetch">fetch</a>.</li>
 <li>If a resource <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> was aborted due to a
+"!FETCH/#concept-fetch">fetch</a> was aborted due to a
 networking error (e.g. DNS, TCP, or TLS error), then the fetch MAY
 be included as a <a>PerformanceResourceTiming</a> object in the
 <a data-cite=
@@ -361,7 +361,7 @@ Timeline</a> with initialized attribute values up to the point of
 failure - e.g. a TCP handshake error should report DNS timestamps
 for the request, and so on.</li>
 <li>If a resource <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> is aborted because it
+"!FETCH/#concept-fetch">fetch</a> is aborted because it
 failed a fetch precondition (e.g. mixed content, CORS restriction,
 CSP policy, etc), then this resource SHOULD NOT not be included as
 a <a>PerformanceResourceTiming</a> object in the <a data-cite=
@@ -382,9 +382,9 @@ interface:</p>
 <dl data-link-for="PerformanceResourceTiming">
 <dt><dfn>name</dfn></dt>
 <dd>This attribute MUST return the <a data-cite=
-"!HTML52/infrastructure.html#resolve-a-url">resolved URL</a> of the
+"!HTML/#resolve-a-url">resolved URL</a> of the
 requested resource. This attribute MUST NOT change even if the
-<a data-cite="!HTML52/infrastructure.html#fetch">fetch</a>
+<a data-cite="!FETCH/#concept-fetch">fetch</a>
 redirected to a different URL.</dd>
 <dt><dfn>entryType</dfn></dt>
 <dd>The <a>entryType</a> attribute MUST return the DOMString
@@ -394,9 +394,9 @@ redirected to a different URL.</dd>
 "!HR-TIME-2/#domhighrestimestamp">DOMHighResTimeStamp</a>
 [[!HR-TIME-2]] with the time immediately before the user agent
 starts to queue the resource for <a data-cite=
-"!HTML52/infrastructure.html#fetch" title='fetch'>fetching</a>. If
+"!FETCH/#concept-fetch" title='fetch'>fetching</a>. If
 there are HTTP redirects or <a data-cite=
-"!HTML52/infrastructure.html#concept-http-equivalent-codes">equivalent</a>
+"!html5/infrastructure.html#or-equivalent">equivalent</a>
 when fetching the resource, and if all the redirects or equivalent
 are from the <a data-cite="!RFC6454/#section-5">same origin</a> as
 the current document or the <a>timing allow check</a> algorithm
@@ -511,12 +511,12 @@ required to service the request.</li>
 <dfn>redirectStart</dfn> attribute MUST return as follows:</p>
 <ol>
 <li>The time immediately before the user agent starts to
-<a data-cite="!HTML52/infrastructure.html#fetch">fetch</a> the
+<a data-cite="!FETCH/#concept-fetch">fetch</a> the
 resource that initiates the redirect, if there are HTTP redirects
 or <a data-cite=
-"!HTML52/infrastructure.html#concept-http-equivalent-codes" title=
+"!html5/infrastructure.html#or-equivalent" title=
 'HTTP response codes equivalence'>equivalent</a> when <a data-cite=
-"!HTML52/infrastructure.html#fetch" title='fetch'>fetching</a> the
+"!FETCH/#concept-fetch" title='fetch'>fetching</a> the
 resource and <strong>all</strong> the redirects or equivalent pass
 the <a>timing allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
@@ -527,9 +527,9 @@ the <a>timing allow check</a> algorithm.</li>
 <li>The time immediately after receiving the last byte of the
 response of the last redirect, if there are HTTP redirects or
 <a data-cite=
-"!HTML52/infrastructure.html#concept-http-equivalent-codes" title=
+"!html5/infrastructure.html#or-equivalent" title=
 'HTTP response codes equivalence'>equivalent</a> when <a data-cite=
-"!HTML52/infrastructure.html#fetch" title='fetch'>fetching</a> the
+"!FETCH/#concept-fetch" title='fetch'>fetching</a> the
 resource and <strong>all</strong> the redirects or equivalent pass
 the <a>timing allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
@@ -538,13 +538,13 @@ the <a>timing allow check</a> algorithm.</li>
 <dfn>fetchStart</dfn> attribute MUST return as follows:</p>
 <ol>
 <li>The time immediately before the user agent starts to
-<a data-cite="!HTML52/infrastructure.html#fetch">fetch</a> the
+<a data-cite="!FETCH/#concept-fetch">fetch</a> the
 <em>final</em> resource in the redirection, if there are HTTP
 redirects or <a data-cite=
-"!HTML52/infrastructure.html#concept-http-equivalent-codes" title=
+"!html5/infrastructure.html#or-equivalent" title=
 'HTTP response codes equivalence'>equivalent</a>.</li>
 <li>The time immediately before the user agent starts to
-<a data-cite="!HTML52/infrastructure.html#fetch">fetch</a> the
+<a data-cite="!FETCH/#concept-fetch">fetch</a> the
 resource otherwise.</li>
 </ol>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
@@ -554,14 +554,14 @@ resource otherwise.</li>
 "https://tools.ietf.org/html/RFC7230#section-6.3">persistent
 connection</a> [[!RFC7230]] is used or the resource is retrieved
 from <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application caches</a> or local resources.</li>
 <li>The time immediately after the user agent before the domain
 data retrieval from the domain information cache, if the user agent
 has the domain information in cache.</li>
 <li>The time immediately before the user agent starts the domain
 name lookup for the resource, if the last non-redirected
-<a data-cite="!HTML52/infrastructure.html#fetch">fetch</a> of the
+<a data-cite="!FETCH/#concept-fetch">fetch</a> of the
 resource passes the <a>timing allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
 </ol>
@@ -571,14 +571,14 @@ resource passes the <a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "!RFC7230#section-6.3">persistent connection</a> [[!RFC7230]] is
 used or the resource is retrieved from <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application caches</a> or local resources.</li>
 <li>The time immediately after the user agent ends the domain data
 retrieval from the domain information cache, if the user agent has
 the domain information in cache.</li>
 <li>The time immediately before the user agent finishes the domain
 name lookup for the resource, if the last non-redirected
-<a data-cite="!HTML52/infrastructure.html#fetch">fetch</a> of the
+<a data-cite="!FETCH/#concept-fetch">fetch</a> of the
 resource passes the <a>timing allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
 </ol>
@@ -588,13 +588,13 @@ resource passes the <a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "!RFC7230#section-6.3">persistent connection</a> [[!RFC7230]] is
 used or the resource is retrieved from <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache" title=
+"!HTML/#relevant-application-cache" title=
 'relevant application cache'>relevant application caches</a> or
 local resources.</li>
 <li>The time immediately before the user agent start establishing
 the connection to the server to retrieve the resource, if the last
 non-redirected <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource
+"!FETCH/#concept-fetch">fetch</a> of the resource
 passes the <a>timing allow check</a> algorithm.
 <p>If the transport connection fails and the user agent reopens a
 connection, <a data-link-for=
@@ -609,12 +609,12 @@ corresponding value of the new connection.</p>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "!RFC7230#section-6.3">persistent connection</a> [[!RFC7230]] is
 used or the resource is retrieved from <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application caches</a> or local resources.</li>
 <li>The time immediately after the user agent finish establishing
 the connection to the server to retrieve the resource, if the last
 non-redirected <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource
+"!FETCH/#concept-fetch">fetch</a> of the resource
 passes the <a>timing allow check</a> algorithm.
 <p>The returned time MUST include the time interval to establish
 the transport connection, as well as other time intervals such as
@@ -633,12 +633,12 @@ follows:</p>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "!RFC7230#section-6.3">persistent connection</a> [[!RFC7230]] is
 used or the resource is retrieved from <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application caches</a> or local resources.</li>
 <li>The time immediately before the user agent starts the handshake
 process to secure the current connection, if a secure transport is
 used and the last non-redirected <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource
+"!FETCH/#concept-fetch">fetch</a> of the resource
 passes the <a>timing allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
 </ol>
@@ -647,10 +647,10 @@ passes the <a>timing allow check</a> algorithm.</li>
 <ol class="algorithm">
 <li>The time immediately before the user agent starts requesting
 the resource from the server, or from <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application caches</a> or from local resources, if the last
 non-redirected <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource
+"!FETCH/#concept-fetch">fetch</a> of the resource
 passes the <a>timing allow check</a> algorithm.
 <p>If the transport connection fails after a request is sent and
 the user agent reopens a connection and resend the request,
@@ -678,10 +678,10 @@ encapsulation.</li>
 <li>The time immediately after the user agent's HTTP parser
 receives the first byte of the response (e.g. frame header bytes
 for HTTP/2, or response status line for HTTP/1.x) from
-<a data-cite="!HTML52/browsers.html#relevant-application-cache">relevant
+<a data-cite="!HTML/#relevant-application-cache">relevant
 application caches</a>, or from local resources or from the server
 if the last non-redirected <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource
+"!FETCH/#concept-fetch">fetch</a> of the resource
 passes the <a>timing allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
 </ol>
@@ -708,7 +708,7 @@ the last request.</p>
 byte of the response or immediately before the transport connection
 is closed, whichever comes first. The resource here can be received
 either from <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application caches</a>, local resources, or from the server.</li>
 <li>The time immediately before the user agent aborts the fetch due
 to a network error.</li>
@@ -721,10 +721,10 @@ to a network error.</li>
 the response header fields and the response <a data-cite=
 "!RFC7230/#message.body">payload body</a> [[!RFC7230]] if the last
 non-redirected <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource
+"!FETCH/#concept-fetch">fetch</a> of the resource
 passes the <a>timing allow check</a> algorithm.
 <p>If there are HTTP redirects or <a data-cite=
-"!HTML52/infrastructure.html#concept-http-equivalent-codes" title=
+"!html5/infrastructure.html#or-equivalent" title=
 'HTTP response codes equivalence'>equivalent</a> when navigating
 and if all the redirects or equivalent are from the same
 <a data-cite="!RFC6454#section-4">origin</a> [[!RFC6454]], this
@@ -749,7 +749,7 @@ the previously retrieved payload body.</aside>
 </li>
 <li>zero otherwise, including for resources retrieved from
 <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application caches</a> or from local resources.</li>
 </ol>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
@@ -761,13 +761,13 @@ fetch, of the <a data-cite="!RFC7230/#message.body">payload
 body</a> [[!RFC7230]], prior to removing any applied <a data-cite=
 "!RFC7231/#data.encoding">content-codings</a> [[!RFC7231]], if the
 last non-redirected <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource
+"!FETCH/#concept-fetch">fetch</a> of the resource
 passes the <a>timing allow check</a> algorithm.</li>
 <li>The size, in octets, of the <a data-cite=
 "!RFC7230/#message.body">payload body</a> prior to removing any
 applied <a data-cite="!RFC7231/#data.encoding">content-codings</a>
 if the resource is retrieved from <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application caches</a> or from local resources.</li>
 <li>zero, otherwise.</li>
 </ol>
@@ -785,13 +785,13 @@ fetch, of the <a data-cite="!RFC7230/#message.body">message
 body</a> [[!RFC7230]], after removing any applied <a data-cite=
 "!RFC7231/#data.encoding">content-codings</a> [[!RFC7231]], if the
 last non-redirected <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource
+"!FETCH/#concept-fetch">fetch</a> of the resource
 passes the <a>timing allow check</a> algorithm.</li>
 <li>The size, in octets, of the <a data-cite=
 "!RFC7230/#message.body">payload</a> after removing any applied
 <a data-cite="!RFC7231/#data.encoding">content-codings</a>, if the
 resource is retrieved from <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application caches</a> or from local resources.</li>
 <li>zero, otherwise.</li>
 </ol>
@@ -873,7 +873,7 @@ entry buffer</a>.</li>
 false, run the following substeps:
 <ol style='list-style-type: lower-latin;' data-link-for=
 "Performance">
-<li><a data-cite="!HTML52/webappapis.html#fire-a-simple-event">fire
+<li><a data-cite="!HTML/#fire-a-simple-event">fire
 a simple event</a> named <a>resourcetimingbufferfull</a> at the
 Document, with its <code>bubbles</code> attribute initialized to
 true, and has no default action.</li>
@@ -946,7 +946,7 @@ return <code>pass</code>.</p>
 <p>The following graph illustrates the timing attributes defined by
 the PerformanceResourceTiming interface. Attributes underlined may
 not be available when <a data-cite=
-"!HTML52/infrastructure.html#fetch" title='fetch'>fetching</a>
+"!FETCH/#concept-fetch" title='fetch'>fetching</a>
 resources from different <a data-cite=
 "!RFC6454#section-5">origins</a>. User agents may perform internal
 processing in between timings, which allow for non-normative
@@ -961,7 +961,7 @@ does not pass the <a>timing allow check</a> algorithm.</figcaption>
 width="100%" style='margin-top: 1em'></figure>
 <p>For each resource <a data-cite=
 "!FETCH/#concept-fetch">fetched</a> by the current <a data-cite=
-"!HTML52/browsers.html#browsing-context">browsing context</a>,
+"!HTML/#browsing-context">browsing context</a>,
 excluding resources fetched by cross-origin stylesheets fetched
 with <code>no-cors</code> policy, perform the following steps:</p>
 <p class="issue">Above cross-origin exclusion should be defined via
@@ -980,7 +980,7 @@ and set <a>nextHopProtocol</a> to the empty DOMString.</li>
 <li>Record the initiator of the resource in
 <a>initiatorType</a>.</li>
 <li>Record the <a data-cite=
-"!HTML52/infrastructure.html#resolve-a-url">resolved URL</a> of the
+"!HTML/#resolve-a-url">resolved URL</a> of the
 requested resource in <a>name</a>. If there is an <a data-cite=
 "!service-workers-1/#dfn-containing-service-worker-registration">active
 worker</a> ([[!service-workers-1]]) matching the current browsing
@@ -994,17 +994,17 @@ is already available, immediately before the <a data-cite=
 <a data-cite="!service-workers-1/#dfn-service-worker-registration">service
 worker registration</a>, set <a>workerStart</a> value to zero.</li>
 <li><dfn data-lt="step-fetch-start">Immediately before a user agent
-starts the <a data-cite="!HTML52/infrastructure.html#fetch" title=
+starts the <a data-cite="!FETCH/#concept-fetch" title=
 'fetch'>fetching process</a></dfn>, record the <a>current time</a>
 as <a>fetchStart</a>. Let <a>domainLookupStart</a>,
 <a>domainLookupEnd</a>, <a>connectStart</a> and <a>connectEnd</a>
 be the same value as <a>fetchStart</a>.</li>
 <li><dfn data-lt="step-collection-start">If the user agent is to
 reuse the data from another existing or completed <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> initiated from the
+"!FETCH/#concept-fetch">fetch</a> initiated from the
 <a>current document</a></dfn>, abort the remaining steps.</li>
 <li>If the last non-redirected <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> of the resource fails
+"!FETCH/#concept-fetch">fetch</a> of the resource fails
 the <a>timing allow check</a>, the user agent MUST set
 <a>redirectStart</a>, <a>redirectEnd</a>, <a>domainLookupStart</a>,
 <a>domainLookupEnd</a>, <a>connectStart</a>, <a>connectEnd</a>,
@@ -1015,7 +1015,7 @@ the <a>timing allow check</a>, the user agent MUST set
 <a>connectStart</a> and <a>connectEnd</a> be the same value as
 <a>fetchStart</a>.</li>
 <li>If the resource is fetched from the <a data-cite=
-"!HTML52/browsers.html#relevant-application-cache">relevant
+"!HTML/#relevant-application-cache">relevant
 application cache</a> or local resources, including the <a href=
 "https://tools.ietf.org/html/rfc7234">HTTP cache</a> [[!RFC7234]],
 go to step <a href="#dfn-step-request-start">14</a>.</li>
@@ -1031,7 +1031,7 @@ resource passes the <a>timing allow check</a> record the time as
 "#dfn-step-final-record">step 17</a>.</li>
 <li><dfn data-lt="step-connect-start">If a persistent transport
 connection is used to <a data-cite=
-"!HTML52/infrastructure.html#fetch">fetch</a> the resource</dfn>,
+"!FETCH/#concept-fetch">fetch</a> the resource</dfn>,
 let <a>connectStart</a> and <a>connectEnd</a> be the same value of
 <a>domainLookupEnd</a>. Otherwise, record the time as
 <a>connectStart</a> immediately before initiating the connection to
@@ -1088,7 +1088,7 @@ set, set it to the current time. <dfn data-lt=
 <a>duration</a></dfn>.</li>
 <li>If the fetched resource results in an HTTP redirect or
 <a data-cite=
-"!HTML52/infrastructure.html#concept-http-equivalent-codes" title=
+"!html5/infrastructure.html#or-equivalent" title=
 'HTTP response codes equivalence'>equivalent</a>, then
 <ol>
 <li>If the current resource and the redirected resource are not
@@ -1126,7 +1126,7 @@ related discussion.</p>
 <h3>Monotonic Clock</h3>
 <p>The value of the timing attributes MUST monotonically increase
 to ensure timing attributes are not skewed by adjustments to the
-system clock while <a data-cite="!HTML52/infrastructure.html#fetch"
+system clock while <a data-cite="!FETCH/#concept-fetch"
 title='fetch'>fetching</a> the resource. The difference between any
 two chronologically recorded timing attributes MUST never be
 negative. For all resources, including subdocument resources, the
