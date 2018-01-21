@@ -207,7 +207,7 @@ is more widely known. [[ECMASCRIPT]]</p>
 <p>The term <dfn>resource</dfn> is used to refer to elements and
 any other user-initiated fetches throughout this specification. For
 example, a resource could originate from XMLHttpRequest objects
-[[XHR]], HTML elements [[HTML5]] such as iframe, img, script,
+[[XHR]], HTML elements [[HTML]] such as iframe, img, script,
 object, embed, and link with the link type of stylesheet, and SVG
 elements [[SVG11]] such as svg.</p>
 <p>The term <dfn>cross-origin</dfn> is used to mean non
@@ -379,7 +379,7 @@ URL.</dd>
 "!HR-TIME-2/#dom-domhighrestimestamp">DOMHighResTimeStamp</a>
 [[!HR-TIME-2]] with the time immediately before the user agent
 starts to queue the resource for <a data-cite=
-"!FETCH/#concept-fetch" title='fetch'>fetching</a>. If there are
+"!FETCH/#concept-fetch" data-lt='fetch'>fetching</a>. If there are
 HTTP redirects or <a data-cite=
 "!HTML5/infrastructure.html#or-equivalent">equivalent</a> when
 fetching the resource, and if all the redirects or equivalent are
@@ -496,9 +496,9 @@ required to service the request.</li>
 <li>The time immediately before the user agent starts to
 <a data-cite="!FETCH/#concept-fetch">fetch</a> the resource that
 initiates the redirect, if there are HTTP redirects or
-<a data-cite="!HTML5/infrastructure.html#or-equivalent" title=
+<a data-cite="!HTML5/infrastructure.html#or-equivalent" data-lt=
 'HTTP response codes equivalence'>equivalent</a> when <a data-cite=
-"!FETCH/#concept-fetch" title='fetch'>fetching</a> the resource and
+"!FETCH/#concept-fetch" data-lt='fetch'>fetching</a> the resource and
 <strong>all</strong> the redirects or equivalent pass the <a>timing
 allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
@@ -508,9 +508,9 @@ allow check</a> algorithm.</li>
 <ol>
 <li>The time immediately after receiving the last byte of the
 response of the last redirect, if there are HTTP redirects or
-<a data-cite="!HTML5/infrastructure.html#or-equivalent" title=
+<a data-cite="!HTML5/infrastructure.html#or-equivalent" data-lt=
 'HTTP response codes equivalence'>equivalent</a> when <a data-cite=
-"!FETCH/#concept-fetch" title='fetch'>fetching</a> the resource and
+"!FETCH/#concept-fetch" data-lt='fetch'>fetching</a> the resource and
 <strong>all</strong> the redirects or equivalent pass the <a>timing
 allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
@@ -521,7 +521,7 @@ allow check</a> algorithm.</li>
 <li>The time immediately before the user agent starts to
 <a data-cite="!FETCH/#concept-fetch">fetch</a> the <em>final</em>
 resource in the redirection, if there are HTTP redirects or
-<a data-cite="!HTML5/infrastructure.html#or-equivalent" title=
+<a data-cite="!HTML5/infrastructure.html#or-equivalent" data-lt=
 'HTTP response codes equivalence'>equivalent</a>.</li>
 <li>The time immediately before the user agent starts to
 <a data-cite="!FETCH/#concept-fetch">fetch</a> the resource
@@ -567,7 +567,7 @@ passes the <a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "!RFC7230#section-6.3">persistent connection</a> [[!RFC7230]] is
 used or the resource is retrieved from <a data-cite=
-"!HTML/#relevant-application-cache" title=
+"!HTML/#relevant-application-cache" data-lt=
 'relevant application cache'>relevant application caches</a> or
 local resources.</li>
 <li>The time immediately before the user agent start establishing
@@ -699,7 +699,7 @@ the response header fields and the response <a data-cite=
 non-redirected <a data-cite="!FETCH/#concept-fetch">fetch</a> of
 the resource passes the <a>timing allow check</a> algorithm.
 <p>If there are HTTP redirects or <a data-cite=
-"!HTML5/infrastructure.html#or-equivalent" title=
+"!HTML5/infrastructure.html#or-equivalent" data-lt=
 'HTTP response codes equivalence'>equivalent</a> when navigating
 and if all the redirects or equivalent are from the same
 <a data-cite="!RFC6454#section-4">origin</a> [[!RFC6454]], this
@@ -842,7 +842,7 @@ substeps:
 <li>Add <i>new entry</i> to the <a data-cite=
 '!PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer'>performance
 entry buffer</a>.</li>
-<li>ncrease <a>resource timing buffer current size</a> by 1.</li>
+<li>Increase <a>resource timing buffer current size</a> by 1.</li>
 </ol>
 </li>
 <li>Otherwise, if the <a>resource timing buffer full flag</a> is
@@ -905,8 +905,8 @@ whether a resource's timing information can be shared with the
 </li>
 <li>
 <p>If the <a>Timing-Allow-Origin</a> header value list contains a
-case-sensitive match for the value of the <code title=
-"http-origin"><a data-cite="!RFC6454#section-4">origin</a></code>
+case-sensitive match for the value of the <code><a data-cite="!RFC6454#section-4" data-lt=
+"http-origin">origin</a></code>
 of the <a>current document</a>, or a wildcard ("<code>*</code>"),
 return <code>pass</code>.</p>
 </li>
@@ -921,12 +921,12 @@ return <code>pass</code>.</p>
 <h3>Processing Model</h3>
 <p>The following graph illustrates the timing attributes defined by
 the PerformanceResourceTiming interface. Attributes underlined may
-not be available when <a data-cite="!FETCH/#concept-fetch" title=
+not be available when <a data-cite="!FETCH/#concept-fetch" data-lt=
 'fetch'>fetching</a> resources from different <a data-cite=
 "!RFC6454#section-5">origins</a>. User agents may perform internal
 processing in between timings, which allow for non-normative
 intervals between timings.</p>
-<figure title='Timing attributes'>
+<figure data-lt='Timing attributes'>
 <figcaption>This figure illustrates the timing attributes defined
 by the <a>PerformanceResourceTiming</a> interface. Attributes in
 parenthesis indicate that they may not be available if the resource
@@ -969,7 +969,7 @@ is already available, immediately before the <a data-cite=
 <a data-cite="!service-workers-1/#dfn-service-worker-registration">service
 worker registration</a>, set <a>workerStart</a> value to zero.</li>
 <li><dfn data-lt="step-fetch-start">Immediately before a user agent
-starts the <a data-cite="!FETCH/#concept-fetch" title=
+starts the <a data-cite="!FETCH/#concept-fetch" data-lt=
 'fetch'>fetching process</a></dfn>, record the <a>current time</a>
 as <a>fetchStart</a>. Let <a>domainLookupStart</a>,
 <a>domainLookupEnd</a>, <a>connectStart</a> and <a>connectEnd</a>
@@ -1062,7 +1062,7 @@ set, set it to the current time. <dfn data-lt=
 <a>responseEnd</a> and <a>startTime</a> in
 <a>duration</a></dfn>.</li>
 <li>If the fetched resource results in an HTTP redirect or
-<a data-cite="!HTML5/infrastructure.html#or-equivalent" title=
+<a data-cite="!HTML5/infrastructure.html#or-equivalent" data-lt=
 'HTTP response codes equivalence'>equivalent</a>, then
 <ol>
 <li>If the current resource and the redirected resource are not
@@ -1100,7 +1100,7 @@ related discussion.</p>
 <h3>Monotonic Clock</h3>
 <p>The value of the timing attributes MUST monotonically increase
 to ensure timing attributes are not skewed by adjustments to the
-system clock while <a data-cite="!FETCH/#concept-fetch" title=
+system clock while <a data-cite="!FETCH/#concept-fetch" data-lt=
 'fetch'>fetching</a> the resource. The difference between any two
 chronologically recorded timing attributes MUST never be negative.
 For all resources, including subdocument resources, the user agent
