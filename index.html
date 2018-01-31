@@ -845,15 +845,17 @@ entry buffer</a>.</li>
 <li>Increase <a>resource timing buffer current size</a> by 1.</li>
 </ol>
 </li>
-<li>Otherwise, if the <a>resource timing buffer full flag</a> is
-false, run the following substeps:
+<li>If <a>resource timing buffer current size</a> is greater than
+or equal to <a>resource timing buffer size limit</a> and the
+<a>resource timing buffer full flag</a> is false, run the following
+substeps:
 <ol style='list-style-type: lower-latin;' data-link-for=
 "Performance">
 <li>Set the <a>resource timing buffer full flag</a> to true.</li>
 <li><a data-cite="!DOM/#concept-event-fire">Fire a simple event</a>
-named <code>resourcetimingbufferfull</code> at the Document, with
-its <code>bubbles</code> attribute initialized to true and with no
-default action.</li>
+named <code>resourcetimingbufferfull</code> at the <dfn>Performance</dfn>
+object, with its <code>bubbles</code> attribute initialized to true and
+with no default action.</li>
 </ol>
 </li>
 </ol>
