@@ -804,7 +804,7 @@ initially false.</li>
               attribute EventHandler onresourcetimingbufferfull;
 };</pre>
 <p>The <dfn>Performance</dfn> interface is defined in
-[[!PERFORMANCE-TIMELINE-2]].</p>
+[[!HR-TIME-2]].</p>
 <p>The method <dfn>clearResourceTimings</dfn> runs the following
 steps:</p>
 <ol>
@@ -825,7 +825,9 @@ than <a>resource timing buffer current size</a>, no
 <a data-cite=
 '!PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer'>performance
 entry buffer</a>.</li>
-<li>Set <a>resource timing buffer full flag</a> to false.</li>
+<li>If the <i>maxSize</i> parameter is greater than <a>resource
+timing buffer current size</a>, set <a>resource timing buffer full
+flag</a> to false.</li>
 </ol>
 <p>The attribute <dfn>onresourcetimingbufferfull</dfn> is the event
 handler for the <dfn>resourcetimingbufferfull</dfn> event described
@@ -852,10 +854,11 @@ substeps:
 <ol style='list-style-type: lower-latin;' data-link-for=
 "Performance">
 <li>Set the <a>resource timing buffer full flag</a> to true.</li>
-<li><a data-cite="!DOM/#concept-event-fire">Fire a simple event</a>
-named <code>resourcetimingbufferfull</code> at the <dfn>Performance</dfn>
-object, with its <code>bubbles</code> attribute initialized to true and
-with no default action.</li>
+<li><a data-cite="!DOM/#concept-event-fire">Fire an event</a>
+named <code>resourcetimingbufferfull</code> at the <a data-cite=
+"!HR-TIME-2/#idl-def-performance">Performance</a> object, with its
+<code>bubbles</code> attribute initialized to true and with no
+default action.</li>
 </ol>
 </li>
 </ol>
@@ -1091,12 +1094,8 @@ the <a>PerformanceResourceTiming</a> object</dfn>.</li>
 "!PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer">performance
 entry buffer</a>.</li>
 </ol>
-<p class="issue" data-number="82">This specification does not
-specify whether steps 20 and 21 should run before or after the
-<code>load</code> event of the resource—see <a href=
-"https://github.com/w3c/resource-timing/issues/82">issue 82</a> for
-related discussion.</p>
-<div class="issue" data-number="82"></div>
+<aside class="note">Steps 19 and 20 must be run before the <code>
+load</code> event of the resource.</aside>
 </section>
 <section id="sec-monotonic-clock">
 <h3>Monotonic Clock</h3>
