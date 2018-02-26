@@ -447,6 +447,13 @@ the <a data-cite="!BEACON/#sec-sendBeacon-method">sendBeacon
 method</a> [[!BEACON]];</li>
 <li><dfn>"other"</dfn>, if none of the above conditions match.</li>
 </ul>
+<aside data-dfn-for="PerformanceResourceTiming" class="note">
+The "navigation" initiator type includes all types of
+<a data-cite="!FETCH/#navigation-request">navigation requests</a>, including
+<a data-cite=
+"!service-workers-1/#ref-for-service-worker-registration-navigation-preload-enabled-flag%E2%91%A2">
+navigation preloads</a>.
+</aside>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 attribute <dfn>nextHopProtocol</dfn> returns the network protocol
 used to fetch the resource, as identified by the ALPN Protocol ID
