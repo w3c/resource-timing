@@ -804,7 +804,7 @@ initially false.</li>
               attribute EventHandler onresourcetimingbufferfull;
 };</pre>
 <p>The <dfn>Performance</dfn> interface is defined in
-[[!PERFORMANCE-TIMELINE-2]].</p>
+[[!HR-TIME-2]].</p>
 <p>The method <dfn>clearResourceTimings</dfn> runs the following
 steps:</p>
 <ol>
@@ -825,7 +825,9 @@ than <a>resource timing buffer current size</a>, no
 <a data-cite=
 '!PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer'>performance
 entry buffer</a>.</li>
-<li>Set <a>resource timing buffer full flag</a> to false.</li>
+<li>If the <i>maxSize</i> parameter is greater than <a>resource
+timing buffer current size</a>, set <a>resource timing buffer full
+flag</a> to false.</li>
 </ol>
 <p>The attribute <dfn>onresourcetimingbufferfull</dfn> is the event
 handler for the <dfn>resourcetimingbufferfull</dfn> event described
@@ -845,14 +847,17 @@ entry buffer</a>.</li>
 <li>Increase <a>resource timing buffer current size</a> by 1.</li>
 </ol>
 </li>
-<li>Otherwise, if the <a>resource timing buffer full flag</a> is
-false, run the following substeps:
+<li>If <a>resource timing buffer current size</a> is greater than
+or equal to <a>resource timing buffer size limit</a> and the
+<a>resource timing buffer full flag</a> is false, run the following
+substeps:
 <ol style='list-style-type: lower-latin;' data-link-for=
 "Performance">
 <li>Set the <a>resource timing buffer full flag</a> to true.</li>
-<li><a data-cite="!DOM/#concept-event-fire">Fire a simple event</a>
-named <code>resourcetimingbufferfull</code> at the Document, with
-its <code>bubbles</code> attribute initialized to true and with no
+<li><a data-cite="!DOM/#concept-event-fire">Fire an event</a>
+named <code>resourcetimingbufferfull</code> at the <a data-cite=
+"!HR-TIME-2/#idl-def-performance">Performance</a> object, with its
+<code>bubbles</code> attribute initialized to true and with no
 default action.</li>
 </ol>
 </li>
