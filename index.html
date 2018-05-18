@@ -940,15 +940,7 @@ does not pass the <a>timing allow check</a> algorithm.</figcaption>
 style='margin-top: 1em'></figure>
 <p>For each resource <a data-cite=
 "!FETCH/#concept-fetch">fetched</a> by the current <a data-cite=
-"!HTML/#browsing-context">browsing context</a>, excluding resources
-fetched by cross-origin stylesheets fetched with
-<code>no-cors</code> policy, perform the following steps:</p>
-<p class="issue">Above cross-origin exclusion should be defined via
-Fetch registry: CSS needs to be defined in terms of Fetch and set
-some kind of "opaque request flag" for no-CORS CSS subresources. In
-turn, Resource Timing should interface with Fetch registry to
-surface resource fetch events.</p>
-<div class="issue" data-number="27"></div>
+"!HTML/#browsing-context">browsing context</a>, perform the following steps:</p>
 <ol data-link-for="PerformanceResourceTiming">
 <li><dfn data-lt="step-create-object">Create a new
 <a>PerformanceResourceTiming</a> object</dfn> and set
