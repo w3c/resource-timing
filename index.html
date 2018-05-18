@@ -455,7 +455,10 @@ used to fetch the resource, as identified by the ALPN Protocol ID
 or local resources, return an empty string. The registry for
 protocol identifiers lists the possible values for the <a href=
 "https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids">
-ALPN Protocol IDs</a>. When a proxy is configured, if a tunnel
+ALPN Protocol IDs</a>. For the HTTP/0.9 and HTTP/1.0 network protocols, which are not
+defined in the ALPN Protocol ID registry, user agents MAY return "http/0.9" and
+"http/1.0" respectively.
+When a proxy is configured, if a tunnel
 connection is established then this attribute MUST return the ALPN
 Protocol ID of the tunneled protocol, otherwise it MUST return the
 ALPN Protocol ID of the first hop to the proxy. In order to have
@@ -464,6 +467,9 @@ additional constraints apply: octets in the ALPN protocol MUST NOT
 be percent-encoded if they are valid token characters except "%",
 and when using percent-encoding, uppercase hex digits MUST be
 used.</p>
+<p class=note>The "hq" ALPN ID is defined for the QUIC protocol in the <a
+   href="https://tools.ietf.org/html/draft-ietf-quic-http-11#section-9.1">HTTP over QUIC Internet Draft</a>.
+</p>
 <p>Note that the <a data-link-for=
 "PerformanceResourceTiming">nextHopProtocol</a> attribute is
 intended to identify the network protocol in use for the fetch
