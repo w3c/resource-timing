@@ -452,18 +452,27 @@ attribute <dfn>nextHopProtocol</dfn> returns the network protocol
 used to fetch the resource, as identified by the ALPN Protocol ID
 [[!RFC7301]]; resources retrieved from <a data-cite=
 "!HTML/#relevant-application-cache">relevant application caches</a>
-or local resources, return an empty string. The registry for
-protocol identifiers lists the possible values for the <a href=
+or local resources, return an empty string. When a proxy is
+configured, if a tunnel connection is established then this attribute
+MUST return the ALPN Protocol ID of the tunneled protocol, otherwise
+it MUST return the ALPN Protocol ID of the first hop to the proxy.
+In order to have precisely one way to represent any ALPN protocol ID,
+the following additional constraints apply: octets in the ALPN
+protocol MUST NOT be percent-encoded if they are valid token
+characters except "%", and when using percent-encoding, uppercase hex
+digits MUST be used.</p>
+<p>Formally registered ALPN protocol IDs are documented by <a href=
 "https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids">
-ALPN Protocol IDs</a>. When a proxy is configured, if a tunnel
-connection is established then this attribute MUST return the ALPN
-Protocol ID of the tunneled protocol, otherwise it MUST return the
-ALPN Protocol ID of the first hop to the proxy. In order to have
-precisely one way to represent any ALPN protocol ID, the following
-additional constraints apply: octets in the ALPN protocol MUST NOT
-be percent-encoded if they are valid token characters except "%",
-and when using percent-encoding, uppercase hex digits MUST be
-used.</p>
+IANA</a>. In case the user agent is using an experimental,
+non-registered protocol, the user agent MUST use the ALPN negotiated
+value if any. If ALPN was not used for protocol negotiations, the
+user agent MAY use another descriptive string.</p>
+
+<p class=note>The "hq" ALPN ID is defined for the final version of
+the HTTP over QUIC protocol in the
+<a href="https://tools.ietf.org/html/draft-ietf-quic-http-11#section-9.1">
+HTTP over QUIC Internet Draft</a>.
+</p>
 <p>Note that the <a data-link-for=
 "PerformanceResourceTiming">nextHopProtocol</a> attribute is
 intended to identify the network protocol in use for the fetch
