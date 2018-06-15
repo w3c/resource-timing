@@ -461,16 +461,12 @@ the following additional constraints apply: octets in the ALPN
 protocol MUST NOT be percent-encoded if they are valid token
 characters except "%", and when using percent-encoding, uppercase hex
 digits MUST be used.</p>
-<p>The registry for protocol identifiers lists the possible values
-for the <a href=
+<p>Formally registered ALPN protocol IDs are documented by <a href=
 "https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids">
-ALPN Protocol IDs</a>. For the HTTP/0.9 and HTTP/1.0 network
-protocols, which are not defined in the ALPN Protocol ID registry,
-user agents MAY return "http/0.9" and "http/1.0" respectively. In
-case the user agent is using an experimental protocol which ALPN
-protocol ID has not yet been defined in the above registry, the user
-agent SHOULD use the ALPN negotiated value or MAY use another descriptive
-string if one is not available.</p>
+IANA</a>. In case the user agent is using an experimental,
+non-registered protocol, the user agent MUST use the ALPN negotiated
+value if any. If ALPN was not used for protocol negotiations, the
+user agent MAY use another descriptive string.</p>
 
 <p class=note>The "hq" ALPN ID is defined for the final version of
 the HTTP over QUIC protocol in the
