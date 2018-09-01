@@ -884,7 +884,8 @@ named <code>resourcetimingbufferfull</code> at the <a data-cite=
 "!HR-TIME-2/#idl-def-performance">Performance</a> object, with its
 <code>bubbles</code> attribute initialized to true.</li>
 <li>While <a>resource timing buffer current size</a> is smaller than
-<a>resource timing buffer size limit</a>, run the following substeps:
+<a>resource timing buffer size limit</a> and <a>secondary entry buffer</a> is
+not empty, run the following substeps:
 <ol>
 <li>Let <i>entry</i> be the oldest <a>PerformanceResourceTiming</a> in
 <a>secondary entry buffer</a>.</li>
@@ -892,6 +893,7 @@ named <code>resourcetimingbufferfull</code> at the <a data-cite=
 data-cite='!PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer'>performance
 entry buffer</a>.</li>
 <li>Increment <a>resource timing buffer current size</a> by 1.</li>
+<li>Remove <i>entry</i> from <a>secondary entry buffer</a>.</li>
 </ol>
 <p class=note>This means that if the buffer does not have enough room for all
 the entries in the secondary buffer, some of them will not be copied.
