@@ -947,6 +947,12 @@ does not pass the <a>timing allow check</a> algorithm.</figcaption>
 <!-- Source: https://docs.google.com/document/d/1I7XGNJ57Qgjkg9pL11s7MK7zGEcwAgdNj1W5f7NKbW8/ -->
 <img src="timestamp-diagram.svg" alt="Resource Timing attributes"
 style='margin-top: 1em'></figure>
+<aside class="note">
+<p>The phases illustrated above not necessarily occur one after another,
+there may be time spent waiting for a connection to be available mostly due
+to concurrent TCP connections limit of HTTP/1.X, which is commonly known as
+"stalled" or "blocked" time.</p>
+</aside>
 <p>For each resource <a data-cite=
 "!FETCH/#concept-fetch">fetched</a> by the current <a data-cite=
 "!HTML/#browsing-context">browsing context</a>, excluding resources
