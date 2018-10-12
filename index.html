@@ -893,13 +893,17 @@ whether a resource's timing information can be shared with the
 </li>
 <li>
 <p>If the <a>Timing-Allow-Origin</a> header value list contains a
-case-sensitive match for the value of the <code><a data-cite=
-"RFC6454#section-4" data-lt="http-origin">origin</a></code> of the
-<a>current document</a>, or a wildcard ("<code>*</code>"), return
-<code>pass</code>.</p>
+value which is byte-for-byte identical to the <a
+data-cite="HTML#ascii-serialisation-of-an-origin">ascii serialized value</a>
+of the <a>current document</a>'s <a data-cite="HTML#concept-origin">origin</a>,
+or a wildcard ("<code>*</code>"), return <code>pass</code>.</p>
 </li>
 <li>Return <code>fail</code>.</li>
 </ol>
+<p class="issue" data-number="152">Above "timing allow check" algorithm should also verify that 
+no cross-origin redirections were involved in the response, as that would 
+leak timing information about those origins.
+</p>
 </section>
 </section>
 </section>
