@@ -238,13 +238,18 @@ elements [[SVG11]] such as <a data-cite=
 <section>
 <h3>Resources Included in the <a>PerformanceResourceTiming</a>
 Interface</h3>
-<p>All resources <a data-cite="FETCH#concept-fetch">fetched</a> by
-the current <a data-cite="HTML#browsing-context">browsing</a> or
-worker [[WORKERS]] context's MUST be included as
+<p>All resource <a data-cite="Fetch#concept-request">Request</a>s
+<a data-cite="FETCH#concept-fetch">fetched</a> by the current
+<a data-cite="HTML#browsing-context">browsing context</a>'s
+<a data-cite="HTML#active-document">active document</a>'s
+<a data-cite="HTML#relevant-settings-object">relevent settings object</a>
+MUST be included as
 <a>PerformanceResourceTiming</a> objects in the <a data-cite=
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-Timeline</a> of the relevant context. Resources that are retrieved
-from <a data-cite="HTML#relevant-application-cache">relevant
+Timeline</a> of the
+<a data-cite="HTML#concept-relevant-global">relevant global object</a>.
+Resources that are retrieved from 
+<a data-cite="HTML#relevant-application-cache">relevant
 application caches</a> or local resources MUST be included as
 <a>PerformanceResourceTiming</a> objects in the <a data-cite=
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
@@ -922,9 +927,13 @@ does not pass the <a>timing allow check</a> algorithm.</figcaption>
 <!-- Source: https://docs.google.com/document/d/1I7XGNJ57Qgjkg9pL11s7MK7zGEcwAgdNj1W5f7NKbW8/ -->
 <img src="timestamp-diagram.svg" alt="Resource Timing attributes"
 style='margin-top: 1em'></figure>
-<p>For each resource <a data-cite="FETCH#concept-fetch">fetched</a>
-by the current <a data-cite="HTML#browsing-context">browsing
-context</a>, excluding resources fetched by cross-origin
+
+<p>For each resource which <a data-cite="Fetch#concept-request">Request</a> is
+<a data-cite="FETCH#concept-fetch">fetched</a> by the current
+<a data-cite="HTML#browsing-context">browsing context</a>'s
+<a data-cite="HTML#active-document">active document</a>'s
+<a data-cite="HTML#relevant-settings-object">relevent settings object</a>,
+excluding resources fetched by cross-origin
 stylesheets fetched with <code>no-cors</code> policy, perform the
 following steps:</p>
 <p class="issue">Above cross-origin exclusion should be defined via
@@ -934,6 +943,13 @@ turn, Resource Timing should interface with Fetch registry to
 surface resource fetch events.</p>
 <div class="issue" data-number="27"></div>
 <ol data-link-for="PerformanceResourceTiming">
+<li>If the resource's <a data-cite="Fetch#concept-request">Request</a>'s
+<a data-cite="Fetch#concept-request-destination">destination</a> equals to
+"document", "object" or "embed", and was not triggered by 
+<a data-cite="HTML#process-the-iframe-attributes">process the iframe attributes</a>,
+<a data-cite="HTML#process-the-object-attributes">process the object attributes</a>, or
+<a data-cite="HTML#process-the-embed-attributes">process the embed attributes</a>, 
+respectively, abort the remaining steps.</li>
 <li><dfn data-lt="step-create-object">Create a new
 <a>PerformanceResourceTiming</a> object</dfn> and set
 <a>entryType</a> to the DOMString <code>resource</code>.</li>
