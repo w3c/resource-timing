@@ -927,7 +927,7 @@ does not pass the <a>timing allow check</a> algorithm.</figcaption>
 <img src="timestamp-diagram.svg" alt="Resource Timing attributes"
 style='margin-top: 1em'></figure>
 
-<p>For each resource which <a>Request</a> has a non-null <a>client</a>, perform
+<p>For each resource whose <a>Request</a> has a non-null <a>client</a>, perform
 the following steps:</p>
 <ol data-link-for="PerformanceResourceTiming">
 <li>If the resource is <a data-cite="Fetch#concept-fetch">fetched</a> by a
@@ -941,7 +941,7 @@ surface resource fetch events.</p>
 <div class="issue" data-number="27"></div>
 <li>If the resource's <a>Request</a>'s
 <a data-cite="Fetch#concept-request-destination">destination</a> equals to
-"document", and was not triggered by 
+"document", and the <a>Request</a> was not triggered by 
 <a data-cite="HTML#process-the-iframe-attributes">process the iframe attributes</a> or
 <a data-cite="HTML#process-the-frame-attributes">process the frame attributes</a>,
 abort the remaining steps.</li>
