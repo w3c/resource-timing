@@ -238,13 +238,17 @@ elements [[SVG11]] such as <a data-cite=
 <section>
 <h3>Resources Included in the <a>PerformanceResourceTiming</a>
 Interface</h3>
-<p>All resources <a data-cite="FETCH#concept-fetch">fetched</a> by
-the current <a data-cite="HTML#browsing-context">browsing</a> or
-worker [[WORKERS]] context's MUST be included as
-<a>PerformanceResourceTiming</a> objects in the <a data-cite=
+<p>All resource <dfn data-cite="Fetch#concept-request">Request</dfn>s
+<a data-cite="FETCH#concept-fetch">fetched</a> by a non-null <dfn
+data-cite="Fetch#concept-request-client">client</dfn> MUST be included as
+<a>PerformanceResourceTiming</a> objects in the <a>client</a>'s <dfn
+data-cite="HTML#concept-settings-object-global">global object</dfn>'s
+<a data-cite=
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-Timeline</a> of the relevant context. Resources that are retrieved
-from <a data-cite="HTML#relevant-application-cache">relevant
+Timeline</a>, unless excluded from the timeline as part of the <a
+href="#processing-model">processing model</a>.
+Resources that are retrieved from 
+<a data-cite="HTML#relevant-application-cache">relevant
 application caches</a> or local resources MUST be included as
 <a>PerformanceResourceTiming</a> objects in the <a data-cite=
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
@@ -932,18 +936,25 @@ does not pass the <a>timing allow check</a> algorithm.</figcaption>
 <!-- Source: https://docs.google.com/document/d/1I7XGNJ57Qgjkg9pL11s7MK7zGEcwAgdNj1W5f7NKbW8/ -->
 <img src="timestamp-diagram.svg" alt="Resource Timing attributes"
 style='margin-top: 1em'></figure>
-<p>For each resource <a data-cite="FETCH#concept-fetch">fetched</a>
-by the current <a data-cite="HTML#browsing-context">browsing
-context</a>, excluding resources fetched by cross-origin
-stylesheets fetched with <code>no-cors</code> policy, perform the
-following steps:</p>
+
+<p>For each resource whose <a>Request</a> has a non-null <a>client</a>, perform
+the following steps:</p>
+<ol data-link-for="PerformanceResourceTiming">
+<li>If the resource is <a data-cite="Fetch#concept-fetch">fetched</a> by a
+cross-origin stylesheet which was fetched with <code>no-cors</code> policy, 
+abort the remaining steps.</li>
 <p class="issue">Above cross-origin exclusion should be defined via
 Fetch registry: CSS needs to be defined in terms of Fetch and set
 some kind of "opaque request flag" for no-CORS CSS subresources. In
 turn, Resource Timing should interface with Fetch registry to
 surface resource fetch events.</p>
 <div class="issue" data-number="27"></div>
-<ol data-link-for="PerformanceResourceTiming">
+<li>If the resource's <a>Request</a>'s
+<a data-cite="Fetch#concept-request-destination">destination</a> equals to
+"document", and the <a>Request</a> was not triggered by 
+<a data-cite="HTML#process-the-iframe-attributes">process the iframe attributes</a> or
+<a data-cite="HTML#process-the-frame-attributes">process the frame attributes</a>,
+abort the remaining steps.</li>
 <li><dfn data-lt="step-create-object">Create a new
 <a>PerformanceResourceTiming</a> object</dfn> and set
 <a>entryType</a> to the DOMString <code>resource</code>.</li>
@@ -1083,7 +1094,8 @@ new resource.</li>
 <a>PerformanceResourceTiming</a> object</dfn>.</li>
 <li><a data-lt='add a PerformanceResourceTiming entry'>Add</a> the
 <a>PerformanceResourceTiming</a> object to the <a data-cite=
-"PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer">performance
+"Fetch#concept-request">Request</a>'s <a>client</a>'s <a>global object</a>'s
+<a data-cite="PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer">performance
 entry buffer</a>.</li>
 </ol>
 <p class="issue">This specification does not specify whether steps
