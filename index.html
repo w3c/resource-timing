@@ -879,14 +879,14 @@ buffer</a>.</li>
 <a>resource timing buffer size limit</a> and <a>secondary entry buffer</a> is
 not empty, run the following substeps:
 <ol>
-<li>Let <i>number of excess entries before<i> be <a>resource timing secondary
+<li>Let <i>number of excess entries before</i> be <a>resource timing secondary
                 buffer current size</a>.</li>
 <li><a data-cite="DOM/#concept-event-fire">Fire an event</a>
 named <code>resourcetimingbufferfull</code> at the <a data-cite=
 "HR-TIME-2/#idl-def-performance">Performance</a> object.</li>
 <li>Run <a>copy secondary buffer</a>.</li>
-<li>Let <i>number of excess entries after<i> be <a>resource timing secondary
-                buffer current size</a>.</li>
+<li>Let <i>number of excess entries after</i> be <a>resource timing secondary
+buffer current size</a>.</li>
 <li>If <i>number of excess entries before</i> is lower than or equals
 <i>number of excess entries after</i>, then remove all entries from
 <a>secondary entry buffer</a> and set <a>resource timing secondary buffer
