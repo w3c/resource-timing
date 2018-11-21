@@ -867,6 +867,7 @@ limit</a>, run the following substeps:
 buffer</a>.</li>
 <li>Increment <a>resource timing buffer current size</a> by 1.</li>
 <li>Remove <i>entry</i> from <a>secondary entry buffer</a>.</li>
+<li>Decrement <a>resource timing secondary buffer current size</a> by 1.</li>
 </ol>
 </ol>
 
@@ -887,14 +888,9 @@ named <code>resourcetimingbufferfull</code> at the <a data-cite=
 <li>Let <i>number of excess entries after<i> be <a>resource timing secondary
                 buffer current size</a>.</li>
 <li>If <i>number of excess entries before</i> is lower than or equals
-<i>number of excess entries after</i>, then while <a>resource timing buffer
-current size</a> is larger than <a>resource timing buffer size limit</a>, run
-the following substeps:
-<ol>
-<li>Remove the last entry from <a data-cite=
-"PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer">performance entry
-buffer</a></li>
-<li>Decrement <a>resource timing buffer current size</a> by 1.</li>
+<i>number of excess entries after</i>, then remove all entries from
+<a>secondary entry buffer</a> and set <a>resource timing secondary buffer
+current size</a> to 0.</li>
 </ol>
 </li>
 </ol>
