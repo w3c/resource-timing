@@ -786,6 +786,8 @@ initially be 250 or greater.</li>
 initially 0.</li>
 <li>A <dfn>resource timing buffer full flag</dfn> which is
 initially false.</li>
+<li>A <dfn>resource timing secondary buffer current size</dfn> which is
+initially 0.</li>
 <li>A <dfn>secondary entry buffer</dfn> to store <a>PerformanceEntry</a>
 objects that is initially empty.</li>
 </ul>
@@ -849,11 +851,14 @@ substeps:
 <li>Queue a task to run <a>fire a buffer full event</a>.</li>
 </ol>
 <li>Add <i>new entry</i> to the <a>secondary entry buffer</a>.</li>
+<li>Increase <a>resource timing secondary buffer current size</a> by 1.</li>
 </ol>
 
 <p>To <dfn>copy secondary buffer</dfn>, run the following steps:</p>
 <ol>
-<li>While <a>secondary entry buffer</a> is not empty, run the following substeps:
+<li>While <a>secondary entry buffer</a> is not empty and <a>resource timing
+buffer current size</a> is smaller than <a>resource timing buffer size
+limit</a>, run the following substeps:
 <ol>
 <li>Let <i>entry</i> be the oldest <a>PerformanceResourceTiming</a> in
 <a>secondary entry buffer</a>.</li>
@@ -863,29 +868,28 @@ buffer</a>.</li>
 <li>Increment <a>resource timing buffer current size</a> by 1.</li>
 <li>Remove <i>entry</i> from <a>secondary entry buffer</a>.</li>
 </ol>
-<li>Assert that <a>secondary entry buffer</a> is empty.</li>
 </ol>
 
 <p>To <dfn>fire a buffer full event</dfn>, run the following steps:</p>
 <ol>
-<li><a data-cite="DOM/#concept-event-fire">Fire an event</a>
-named <code>resourcetimingbufferfull</code> at the <a data-cite=
-"hr-time-2/#idl-def-performance">Performance</a> object,</li>
-<li>Run <a>copy secondary buffer</a>.</li>
-<li>While <a>resource timing buffer current size</a> is larger than 
-<a>resource timing buffer size limit</a>, run the following substeps:
+<li>Assert that <a>resource timing buffer current size</a> is not larger than 
+<a>resource timing buffer size limit</a>.
+<li>While <a>resource timing buffer current size</a> equals
+<a>resource timing buffer size limit</a> and <a>secondary entry buffer</a> is
+not empty, run the following substeps:
 <ol>
-<li>Let <i>excess entries before</i> be the <a>resource timing buffer current
-size</a> minus <a>resource timing buffer size limit</a>.</li>
+<li>Let <i>number of excess entries before<i> be <a>resource timing secondary
+                buffer current size</a>.</li>
 <li><a data-cite="DOM/#concept-event-fire">Fire an event</a>
 named <code>resourcetimingbufferfull</code> at the <a data-cite=
 "HR-TIME-2/#idl-def-performance">Performance</a> object.</li>
 <li>Run <a>copy secondary buffer</a>.</li>
-<li>Let <i>excess entries after</i> be the <a>resource timing buffer current
-size</a> minus <a>resource timing buffer size limit</a>.</li>
-<li>If <i>excess entries before</i> is lower than or equals <i>excess entries
-after</i>, then while <a>resource timing buffer current size</a> is larger than
-<a>resource timing buffer size limit</a>, run the following substeps:
+<li>Let <i>number of excess entries after<i> be <a>resource timing secondary
+                buffer current size</a>.</li>
+<li>If <i>number of excess entries before</i> is lower than or equals
+<i>number of excess entries after</i>, then while <a>resource timing buffer
+current size</a> is larger than <a>resource timing buffer size limit</a>, run
+the following substeps:
 <ol>
 <li>Remove the last entry from <a data-cite=
 "PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer">performance entry
