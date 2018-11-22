@@ -786,10 +786,10 @@ initially be 250 or greater.</li>
 initially 0.</li>
 <li>A <dfn>resource timing buffer full flag</dfn> which is
 initially false.</li>
-<li>A <dfn>resource timing secondary buffer current size</dfn> which is
-initially 0.</li>
-<li>A <dfn>secondary entry buffer</dfn> to store <a>PerformanceEntry</a>
-objects that is initially empty.</li>
+<li>A <dfn>resource timing secondary buffer current size</dfn>
+which is initially 0.</li>
+<li>A <dfn>resource timing secondary buffer</dfn> to store
+<a>PerformanceEntry</a> objects that is initially empty.</li>
 </ul>
 <pre class="idl">partial interface Performance {
   void clearResourceTimings ();
@@ -828,14 +828,21 @@ flag</a> to false.</li>
 handler for the <dfn>resourcetimingbufferfull</dfn> event described
 below.</p>
 
+<p>To check if <dfn>can add resource timing entry</dfn>, run the following
+steps:</p>
+<ol>
+<li>If <a>resource timing buffer size limit</a> is smaller than <a>resource
+timing buffer current size</a>, return true.</li>
+<li>Return false.</li>
+</ol>
+
 <p>To <dfn>add a PerformanceResourceTiming entry</dfn> into the <a data-cite=
 'PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer'>performance
 entry buffer</a>, run the following steps:</p>
 <ol>
 <li>Let <i>new entry</i> be the input <a>PerformanceEntry</a> to be added.
-<li>If <a>resource timing buffer current size</a> is less than
-<a>resource timing buffer size limit</a>, run the following
-substeps:
+<li>If <a>can add resource timing entry</a> returns true and <a>resource
+timing buffer full flag</a> is false, run the following substeps:
 <ol style="list-style-type: lower-latin;">
 <li>Add <i>new entry</i> to the <a data-cite=
 'PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer'>performance
@@ -850,45 +857,45 @@ substeps:
 <li>Set <a>resource timing buffer full flag</a> to true.</li>
 <li>Queue a task to run <a>fire a buffer full event</a>.</li>
 </ol>
-<li>Add <i>new entry</i> to the <a>secondary entry buffer</a>.</li>
+<li>Add <i>new entry</i> to the <a>resource timing secondary buffer</a>.</li>
 <li>Increase <a>resource timing secondary buffer current size</a> by 1.</li>
 </ol>
 
 <p>To <dfn>copy secondary buffer</dfn>, run the following steps:</p>
 <ol>
-<li>While <a>secondary entry buffer</a> is not empty and <a>resource timing
-buffer current size</a> is smaller than <a>resource timing buffer size
-limit</a>, run the following substeps:
+<li>While <a>resource timing secondary buffer</a> is not empty and
+<a>can add resource timing entry</a> returns true, run the following substeps:
 <ol>
 <li>Let <i>entry</i> be the oldest <a>PerformanceResourceTiming</a> in
-<a>secondary entry buffer</a>.</li>
+<a>resource timing secondary buffer</a>.</li>
 <li>Add <i>entry</i> to the end of <a data-cite=
 "PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer">performance entry
 buffer</a>.</li>
 <li>Increment <a>resource timing buffer current size</a> by 1.</li>
-<li>Remove <i>entry</i> from <a>secondary entry buffer</a>.</li>
-<li>Decrement <a>resource timing secondary buffer current size</a> by 1.</li>
+<li>Remove <i>entry</i> from <a>resource timing secondary buffer</a>.</li>
+<li>Decrement <a>resource timing secondary buffer current size</a> by 1.
+</li>
 </ol>
 </ol>
 
 <p>To <dfn>fire a buffer full event</dfn>, run the following steps:</p>
 <ol>
-<li>While <a>resource timing buffer current size</a> equals
-<a>resource timing buffer size limit</a> and <a>secondary entry buffer</a> is
-not empty, run the following substeps:
+<li>While <a>resource timing secondary buffer</a> is not empty, run the
+following substeps:
 <ol>
 <li>Let <i>number of excess entries before</i> be <a>resource timing secondary
-                buffer current size</a>.</li>
-<li><a data-cite="DOM/#concept-event-fire">Fire an event</a>
-named <code>resourcetimingbufferfull</code> at the <a data-cite=
+buffer current size</a>.</li>
+<li>If <a>can add resource timing entry</a> returns false, then <a
+data-cite="DOM/#concept-event-fire">fire an event</a> named
+<code>resourcetimingbufferfull</code> at the <a data-cite=
 "HR-TIME-2/#idl-def-performance">Performance</a> object.</li>
 <li>Run <a>copy secondary buffer</a>.</li>
 <li>Let <i>number of excess entries after</i> be <a>resource timing secondary
 buffer current size</a>.</li>
 <li>If <i>number of excess entries before</i> is lower than or equals
 <i>number of excess entries after</i>, then remove all entries from
-<a>secondary entry buffer</a> and set <a>resource timing secondary buffer
-current size</a> to 0.</li>
+<a>resource timing secondary buffer</a>, set <a>resource timing
+secondary buffer current size</a> to 0, and abort these steps.</li>
 </ol>
 </li>
 </ol>
