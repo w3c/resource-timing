@@ -776,15 +776,20 @@ interface to allow controls over the number of
 changed by the user agent. <a data-link-for=
 "Performance">setResourceTimingBufferSize</a> can be called to
 request a change to this limit.</p>
+
 <p>Each <a data-cite="WEBIDL#es-environment">ECMAScript global
 environment</a> has:</p>
 <ul>
-<li>a <dfn>resource timing buffer size limit</dfn> which should
+<li>A <dfn>resource timing buffer size limit</dfn> which should
 initially be 250 or greater.</li>
-<li>a <dfn>resource timing buffer current size</dfn> which is
+<li>A <dfn>resource timing buffer current size</dfn> which is
 initially 0.</li>
-<li>a <dfn>resource timing buffer full flag</dfn> which is
+<li>A <dfn>resource timing buffer full event pending flag</dfn> which is
 initially false.</li>
+<li>A <dfn>resource timing secondary buffer current size</dfn>
+which is initially 0.</li>
+<li>A <dfn>resource timing secondary buffer</dfn> to store
+<a>PerformanceResourceTiming</a> objects that is initially empty.</li>
 </ul>
 <pre class="idl">partial interface Performance {
   void clearResourceTimings ();
@@ -796,13 +801,13 @@ initially false.</li>
 <p>The method <dfn>clearResourceTimings</dfn> runs the following
 steps:</p>
 <ol>
-<li>remove all <a>PerformanceResourceTiming</a> objects in the
+<li>Remove all <a>PerformanceResourceTiming</a> objects in the
 <a data-cite=
 'PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer'>performance
 entry buffer</a>.</li>
-<li>set <a>resource timing buffer current size</a> to 0.</li>
-<li>set <a>resource timing buffer full flag</a> to false.</li>
+<li>Set <a>resource timing buffer current size</a> to 0.</li>
 </ol>
+
 <p>The <dfn>setResourceTimingBufferSize</dfn> method runs the
 following steps:</p>
 <ol>
@@ -813,43 +818,93 @@ than <a>resource timing buffer current size</a>, no
 <a data-cite=
 'PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer'>performance
 entry buffer</a>.</li>
-<li>If the <i>maxSize</i> parameter is greater than <a>resource
-timing buffer current size</a>, set <a>resource timing buffer full
-flag</a> to false.</li>
 </ol>
+
 <p>The attribute <dfn>onresourcetimingbufferfull</dfn> is the event
 handler for the <dfn>resourcetimingbufferfull</dfn> event described
 below.</p>
-<p>To <dfn>add a PerformanceResourceTiming entry</dfn> (<i>new
-entry</i>) in the <a data-cite=
-'PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer'>performance
+
+<p>To check if <dfn>can add resource timing entry</dfn>, run the following
+steps:</p>
+<ol>
+<li>If <a>resource timing buffer size limit</a> is smaller than <a>resource
+timing buffer current size</a>, return true.</li>
+<li>Return false.</li>
+</ol>
+
+<p>To <dfn>add a PerformanceResourceTiming entry</dfn> into the <a data-cite=
+'PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer'>performance
 entry buffer</a>, run the following steps:</p>
 <ol>
-<li>If <a>resource timing buffer current size</a> is less than
-<a>resource timing buffer size limit</a>, run the following
-substeps:
+<li>Let <i>new entry</i> be the input <a>PerformanceEntry</a> to be added.
+<li>If <a>can add resource timing entry</a> returns true and <a>resource
+timing buffer full event pending flag</a> is false, run the following substeps:
 <ol style="list-style-type: lower-latin;">
 <li>Add <i>new entry</i> to the <a data-cite=
 'PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer'>performance
 entry buffer</a>.</li>
 <li>Increase <a>resource timing buffer current size</a> by 1.</li>
+<li>Return.</li>
 </ol>
 </li>
-<li>If <a>resource timing buffer current size</a> is greater than
-or equal to <a>resource timing buffer size limit</a> and the
-<a>resource timing buffer full flag</a> is false, run the following
-substeps:
-<ol style='list-style-type: lower-latin;' data-link-for=
-"Performance">
-<li>Set the <a>resource timing buffer full flag</a> to true.</li>
-<li><a data-cite="DOM#concept-event-fire">Fire an event</a> named
+<li>If <a>resource timing buffer full event pending flag</a> is false, run the
+following substeps:
+<ol style="list-style-type: lower-latin;">
+<li>Set <a>resource timing buffer full event pending flag</a> to true.</li>
+<li>Queue a task to run <a>fire a buffer full event</a>.</li>
+</ol>
+<li>Add <i>new entry</i> to the <a>resource timing secondary buffer</a>.</li>
+<li>Increase <a>resource timing secondary buffer current size</a> by 1.</li>
+</ol>
+
+<p>To <dfn>copy secondary buffer</dfn>, run the following steps:</p>
+<ol>
+<li>While <a>resource timing secondary buffer</a> is not empty and
+<a>can add resource timing entry</a> returns true, run the following substeps:
+<ol>
+<li>Let <i>entry</i> be the oldest <a>PerformanceResourceTiming</a> in
+<a>resource timing secondary buffer</a>.</li>
+<li>Add <i>entry</i> to the end of <a data-cite=
+"PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer">performance entry
+buffer</a>.</li>
+<li>Increment <a>resource timing buffer current size</a> by 1.</li>
+<li>Remove <i>entry</i> from <a>resource timing secondary buffer</a>.</li>
+<li>Decrement <a>resource timing secondary buffer current size</a> by 1.
+</li>
+</ol>
+</ol>
+
+<p>To <dfn>fire a buffer full event</dfn>, run the following steps:</p>
+<ol>
+<li>While <a>resource timing secondary buffer</a> is not empty, run the
+following substeps:
+<ol>
+<li>Let <i>number of excess entries before</i> be <a>resource timing secondary
+buffer current size</a>.</li>
+<li>If <a>can add resource timing entry</a> returns false, then <a
+data-cite="DOM/#concept-event-fire">fire an event</a> named
 <code>resourcetimingbufferfull</code> at the <a data-cite=
-"HR-TIME-2#idl-def-performance">Performance</a> object, with its
-<code>bubbles</code> attribute initialized to true.</li>
+"HR-TIME-2/#idl-def-performance">Performance</a> object.</li>
+<li>Run <a>copy secondary buffer</a>.</li>
+<li>Let <i>number of excess entries after</i> be <a>resource timing secondary
+buffer current size</a>.</li>
+<li>If <i>number of excess entries before</i> is lower than or equals
+<i>number of excess entries after</i>, then remove all entries from
+<a>resource timing secondary buffer</a>, set <a>resource timing
+secondary buffer current size</a> to 0, and abort these steps.</li>
 </ol>
 </li>
+<li>Set <a>resource timing buffer full event pending flag</a> to false.</li>
+</ol>
+<p class=note>This means that if the <code>resourcetimingbufferfull</code>
+event handler does not add more room in the buffer than it adds resources to
+it, excess entries will be dropped from the buffer. Developers should make sure
+that <code>resourcetimingbufferfull</code> event handlers call
+<code>clearResourceTimings</code> or extend the buffer sufficiently (by calling
+<code>setResourceTimingBufferSize</code>).</p>
 </ol>
 </section>
+
 <section id="sec-cross-origin-resources">
 <h3>Cross-origin Resources</h3>
 <p data-link-for="PerformanceResourceTiming">Cross-origin resources
