@@ -247,7 +247,7 @@ data-cite="HTML#concept-settings-object-global">global object</dfn>'s
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
 Timeline</a>, unless excluded from the timeline as part of the <a
 href="#processing-model">processing model</a>.
-Resources that are retrieved from 
+Resources that are retrieved from
 <a data-cite="HTML#relevant-application-cache">relevant
 application caches</a> or local resources MUST be included as
 <a>PerformanceResourceTiming</a> objects in the <a data-cite=
@@ -758,6 +758,9 @@ resource is retrieved from <a data-cite=
 or from local resources.</li>
 <li>zero, otherwise.</li>
 </ol>
+<p>A user agent implementing <a>PerformanceResourceTiming</a> MUST run the
+<a data-cite="PERFORMANCE-TIMELINE-2#performance-timeline">register a
+performance entry type</a> algorithm with <code>"resource"</code> as input.</p>
 </section>
 <section id="sec-extensions-performance-interface" data-dfn-for=
 "Performance">
@@ -996,7 +999,7 @@ style='margin-top: 1em'></figure>
 the following steps:</p>
 <ol data-link-for="PerformanceResourceTiming">
 <li>If the resource is <a data-cite="Fetch#concept-fetch">fetched</a> by a
-cross-origin stylesheet which was fetched with <code>no-cors</code> policy, 
+cross-origin stylesheet which was fetched with <code>no-cors</code> policy,
 abort the remaining steps.</li>
 <p class="issue">Above cross-origin exclusion should be defined via
 Fetch registry: CSS needs to be defined in terms of Fetch and set
@@ -1006,7 +1009,7 @@ surface resource fetch events.</p>
 <div class="issue" data-number="27"></div>
 <li>If the resource's <a>Request</a>'s
 <a data-cite="Fetch#concept-request-destination">destination</a> equals to
-"document", and the <a>Request</a> was not triggered by 
+"document", and the <a>Request</a> was not triggered by
 <a data-cite="HTML#process-the-iframe-attributes">process the iframe attributes</a> or
 <a data-cite="HTML#process-the-frame-attributes">process the frame attributes</a>,
 abort the remaining steps.</li>
