@@ -484,6 +484,11 @@ required to service the request.</li>
 </li>
 <li>zero, otherwise.</li>
 </ol>
+<p class="note">Note that according to the definition of <a
+data-cite="HR-TIME-2#dfn-time-origin">time origin</a> in workers, it is possible
+and expected that certain attributes of <a
+href="https://w3c.github.io/ServiceWorker/#dom-serviceworkerregistration-navigationpreload">
+navigation preload</a> requests may include negative timestamps.</p>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>redirectStart</dfn> attribute MUST return as follows:</p>
 <ol>
