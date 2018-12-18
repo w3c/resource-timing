@@ -524,11 +524,12 @@ otherwise.</li>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>domainLookupStart</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
-<li>The same value as <a>fetchStart</a>, if a <a href=
+<li>The same value as <a>fetchStart</a>, if no domain lookup was
+required to fetch the resources (e.g. due to the fact that a <a href=
 "https://tools.ietf.org/html/RFC7230#section-6.3">persistent
-connection</a> [[RFC7230]] is used or the resource is retrieved
-from <a data-cite="HTML#relevant-application-cache">relevant
-application caches</a> or local resources.</li>
+connection</a> [[RFC7230]] was used or in case the resource was
+retrieved from <a data-cite="HTML#relevant-application-cache">relevant
+application caches</a> or local resources).</li>
 <li>The time immediately after the user agent before the domain
 data retrieval from the domain information cache, if the user agent
 has the domain information in cache.</li>
@@ -1063,7 +1064,7 @@ local resources, including the <a href=
 "https://tools.ietf.org/html/rfc7234">HTTP cache</a> [[RFC7234]],
 go to step <a href="#dfn-step-request-start">14</a>.</li>
 <li>If no domain lookup is required, go to step <a href=
-"#dfn-step-connect-start">12</a>. Otherwise, immediately before a
+"#dfn-step-connect-start">14</a>. Otherwise, immediately before a
 user agent starts the domain name lookup, record the time as
 <a>domainLookupStart</a>.</li>
 <li>Record the time as <a>domainLookupEnd</a> immediately after the
