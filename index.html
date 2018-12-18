@@ -1097,7 +1097,13 @@ the value of <a>secureConnectionStart</a> to 0.</li>
 </li>
 <li><dfn data-lt="step-request-start">Immediately before a user
 agent starts sending the request for the resource</dfn>, record the
-<a>current time</a> as <a>requestStart</a>.</li>
+<a>current time</a> as <a>requestStart</a>. If a user agent needed
+multiple retries to send the request, record the <a>current time</a>
+of the last attempt.</li>
+<p class=note>Network protocols may not perform the connection
+establishment, secure connection establishment and request sending in a
+sequential manner. Therefore, developers should not expect these values
+to always be in a particular order. </p>
 <li>Record the time as <a>responseStart</a> <dfn data-lt=
 "step-response-start">immediately after the user agent receives the
 first byte of the response</dfn>.</li>
