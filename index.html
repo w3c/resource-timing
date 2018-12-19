@@ -525,7 +525,7 @@ otherwise.</li>
 <dfn>domainLookupStart</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
 <li>The same value as <a>fetchStart</a>, if no domain lookup was
-required to fetch the resources (e.g. due to the fact that a <a href=
+required to fetch the resources (e.g. if a <a href=
 "https://tools.ietf.org/html/RFC7230#section-6.3">persistent
 connection</a> [[RFC7230]] was used or in case the resource was
 retrieved from <a data-cite="HTML#relevant-application-cache">relevant
@@ -542,15 +542,16 @@ the <a>timing allow check</a> algorithm.</li>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>domainLookupEnd</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
-<li>The same value as <a>fetchStart</a>, if a <a data-cite=
-"RFC7230#section-6.3">persistent connection</a> [[RFC7230]] is used
-or the resource is retrieved from <a data-cite=
-"HTML#relevant-application-cache">relevant application caches</a>
-or local resources.</li>
+<li>The same value as <a>fetchStart</a>, if no domain lookup was
+required to fetch the resources (e.g. if a <a href=
+"https://tools.ietf.org/html/RFC7230#section-6.3">persistent
+connection</a> [[RFC7230]] was used or in case the resource was
+retrieved from <a data-cite="HTML#relevant-application-cache">relevant
+application caches</a> or local resources).</li>
 <li>The time immediately after the user agent ends the domain data
 retrieval from the domain information cache, if the user agent has
 the domain information in cache.</li>
-<li>The time immediately before the user agent finishes the domain
+<li>The time immediately after the user agent finishes the domain
 name lookup for the resource, if the last non-redirected
 <a data-cite="FETCH#concept-fetch">fetch</a> of the resource passes
 the <a>timing allow check</a> algorithm.</li>
