@@ -1076,15 +1076,17 @@ resource passes the <a>timing allow check</a> record the time as
 connection is used to <a data-cite="FETCH#concept-fetch">fetch</a>
 the resource</dfn>, let <a>connectStart</a> and <a>connectEnd</a>
 be the same value of <a>domainLookupEnd</a>. Otherwise, record the
-time as <a>connectStart</a> immediately before initiating the latest
-successful connection to the server and record the time as
-<a>connectEnd</a> immediately after the latest successful connection to
-the server or the proxy is established. A user agent may need multiple
-retries before this time. Once connection is established set the value
-of <a>nextHopProtocol</a> to the ALPN ID used by the connection. If a
-connection can not be established, record the time up to the
-connection failure as <a>connectEnd</a> and go to <a href=
-"#dfn-step-final-record">step 17</a>.</li>
+time as <a>connectStart</a> immediately before initiating a successful
+connection to the server and record the time as <a>connectEnd</a>
+immediately after the successful connection to the server or proxy is
+established. A user agent may need multiple retries to establish a
+successful connection and should reflect the timestamps for the
+successful connection only.
+Once connection is established set the value of <a>nextHopProtocol</a>
+to the ALPN ID used by the connection. If a connection can not be
+established, record the time up to the connection failure as
+<a>connectEnd</a> and go to <a href= "#dfn-step-final-record">step
+17</a>.</li>
 <li>The user agent MUST set the <a>secureConnectionStart</a>
 attribute as follows:
 <ol>
