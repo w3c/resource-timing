@@ -1016,7 +1016,10 @@ Fetch registry: CSS needs to be defined in terms of Fetch and set
 some kind of "opaque request flag" for no-CORS CSS subresources. In
 turn, Resource Timing should interface with Fetch registry to
 surface resource fetch events.</p>
-<div class="issue" data-number="27"></div>
+<p class="note">The above resource exclusion is at risk as currently only one
+implementation passes the <a
+href="https://wpt.fyi/results/resource-timing/no-entries-for-cross-origin-css-fetched.sub.html?label=experimental"
+>related test</a>.</p>
 <li>If the resource's <a>Request</a>'s
 <a data-cite="Fetch#concept-request-destination">destination</a> equals to
 "document", and the <a>Request</a> was not triggered by
