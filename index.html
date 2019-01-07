@@ -537,24 +537,27 @@ otherwise.</li>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>domainLookupStart</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
+<li>Zero, if the last non-redirected
+<a data-cite="FETCH#concept-fetch">fetch</a> of the resource fails the 
+<a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if no domain lookup was
 required to fetch the resources (e.g. if a <a href=
 "https://tools.ietf.org/html/RFC7230#section-6.3">persistent
 connection</a> [[RFC7230]] was used or in case the resource was
 retrieved from <a data-cite="HTML#relevant-application-cache">relevant
 application caches</a> or local resources).</li>
-<li>The time immediately after the user agent before the domain
+<li>The time immediately after the user agent starts the domain
 data retrieval from the domain information cache, if the user agent
 has the domain information in cache.</li>
 <li>The time immediately before the user agent starts the domain
-name lookup for the resource, if the last non-redirected
-<a data-cite="FETCH#concept-fetch">fetch</a> of the resource passes
-the <a>timing allow check</a> algorithm.</li>
-<li>zero, otherwise.</li>
+name lookup for the resource, otherwise.</li>
 </ol>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>domainLookupEnd</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
+<li>Zero, if the last non-redirected
+<a data-cite="FETCH#concept-fetch">fetch</a> of the resource fails the 
+<a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if no domain lookup was
 required to fetch the resources (e.g. if a <a href=
 "https://tools.ietf.org/html/RFC7230#section-6.3">persistent
@@ -565,14 +568,14 @@ application caches</a> or local resources).</li>
 retrieval from the domain information cache, if the user agent has
 the domain information in cache.</li>
 <li>The time immediately after the user agent finishes the domain
-name lookup for the resource, if the last non-redirected
-<a data-cite="FETCH#concept-fetch">fetch</a> of the resource passes
-the <a>timing allow check</a> algorithm.</li>
-<li>zero, otherwise.</li>
+name lookup for the resource, otherwise.</li>
 </ol>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>connectStart</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
+<li>Zero, if the last non-redirected
+<a data-cite="FETCH#concept-fetch">fetch</a> of the resource fails the 
+<a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "RFC7230#section-6.3">persistent connection</a> [[RFC7230]] is used
 or the resource is retrieved from <a data-cite=
@@ -580,28 +583,26 @@ or the resource is retrieved from <a data-cite=
 'relevant application cache'>relevant application caches</a> or
 local resources.</li>
 <li>The time immediately before the user agent start establishing
-the connection to the server to retrieve the resource, if the last
-non-redirected <a data-cite="FETCH#concept-fetch">fetch</a> of the
-resource passes the <a>timing allow check</a> algorithm.
+the connection to the server to retrieve the resource, otherwise.
 <p>If the transport connection fails and the user agent reopens a
 connection, <a data-link-for=
 "PerformanceResourceTiming">connectStart</a> SHOULD return the
 corresponding value of the new connection.</p>
 </li>
-<li>zero, otherwise.</li>
 </ol>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>connectEnd</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
+<li>Zero, if the last non-redirected
+<a data-cite="FETCH#concept-fetch">fetch</a> of the resource fails the 
+<a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "RFC7230#section-6.3">persistent connection</a> [[RFC7230]] is used
 or the resource is retrieved from <a data-cite=
 "HTML#relevant-application-cache">relevant application caches</a>
 or local resources.</li>
 <li>The time immediately after the user agent finish establishing
-the connection to the server to retrieve the resource, if the last
-non-redirected <a data-cite="FETCH#concept-fetch">fetch</a> of the
-resource passes the <a>timing allow check</a> algorithm.
+the connection to the server to retrieve the resource, otherwise.
 <p>The returned time MUST include the time interval to establish
 the transport connection, as well as other time intervals such as
 SSL handshake and SOCKS authentication.</p>
@@ -610,23 +611,21 @@ connection, <a data-link-for=
 "PerformanceResourceTiming">connectEnd</a> SHOULD return the
 corresponding value of the new connection.</p>
 </li>
-<li>zero, otherwise.</li>
 </ol>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>secureConnectionStart</dfn> attribute MUST return as
 follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
+<li>Zero, if a secure transport is not used or the last non-redirected
+<a data-cite="FETCH#concept-fetch">fetch</a> of the resource fails the 
+<a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "RFC7230#section-6.3">persistent connection</a> [[RFC7230]] is used
 or the resource is retrieved from <a data-cite=
 "HTML#relevant-application-cache">relevant application caches</a>
 or local resources.</li>
 <li>The time immediately before the user agent starts the handshake
-process to secure the current connection, if a secure transport is
-used and the last non-redirected <a data-cite=
-"FETCH#concept-fetch">fetch</a> of the resource passes the
-<a>timing allow check</a> algorithm.</li>
-<li>zero, otherwise.</li>
+process to secure the current connection, otherwise.</li>
 </ol>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>requestStart</dfn> attribute MUST return as follows:</p>
