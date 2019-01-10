@@ -537,9 +537,8 @@ otherwise.</li>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>domainLookupStart</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
-<li>Zero, if the last non-redirected
-<a data-cite="FETCH#concept-fetch">fetch</a> of the resource fails the 
-<a>timing allow check</a> algorithm.</li>
+<li>Zero, if any <a data-cite="FETCH#concept-fetch">fetch</a> of the
+resource fails the <a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if no domain lookup was
 required to fetch the resources (e.g. if a <a href=
 "https://tools.ietf.org/html/RFC7230#section-6.3">persistent
@@ -555,9 +554,8 @@ name lookup for the resource, otherwise.</li>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>domainLookupEnd</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
-<li>Zero, if the last non-redirected
-<a data-cite="FETCH#concept-fetch">fetch</a> of the resource fails the 
-<a>timing allow check</a> algorithm.</li>
+<li>Zero, if any <a data-cite="FETCH#concept-fetch">fetch</a> of the
+resource fails the <a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if no domain lookup was
 required to fetch the resources (e.g. if a <a href=
 "https://tools.ietf.org/html/RFC7230#section-6.3">persistent
@@ -573,9 +571,8 @@ name lookup for the resource, otherwise.</li>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>connectStart</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
-<li>Zero, if the last non-redirected
-<a data-cite="FETCH#concept-fetch">fetch</a> of the resource fails the 
-<a>timing allow check</a> algorithm.</li>
+<li>Zero, if any <a data-cite="FETCH#concept-fetch">fetch</a> of the
+resource fails the <a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "RFC7230#section-6.3">persistent connection</a> [[RFC7230]] is used
 or the resource is retrieved from <a data-cite=
@@ -593,9 +590,8 @@ corresponding value of the new connection.</p>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>connectEnd</dfn> attribute MUST return as follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
-<li>Zero, if the last non-redirected
-<a data-cite="FETCH#concept-fetch">fetch</a> of the resource fails the 
-<a>timing allow check</a> algorithm.</li>
+<li>Zero, if any <a data-cite="FETCH#concept-fetch">fetch</a> of the
+resource fails the <a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "RFC7230#section-6.3">persistent connection</a> [[RFC7230]] is used
 or the resource is retrieved from <a data-cite=
@@ -616,9 +612,8 @@ corresponding value of the new connection.</p>
 <dfn>secureConnectionStart</dfn> attribute MUST return as
 follows:</p>
 <ol data-link-for="PerformanceResourceTiming">
-<li>Zero, if a secure transport is not used or the last non-redirected
-<a data-cite="FETCH#concept-fetch">fetch</a> of the resource fails the 
-<a>timing allow check</a> algorithm.</li>
+<li>Zero, if any <a data-cite="FETCH#concept-fetch">fetch</a> of the
+resource fails the <a>timing allow check</a> algorithm.</li>
 <li>The same value as <a>fetchStart</a>, if a <a data-cite=
 "RFC7230#section-6.3">persistent connection</a> [[RFC7230]] is used
 or the resource is retrieved from <a data-cite=
@@ -633,8 +628,8 @@ process to secure the current connection, otherwise.</li>
 <li>The time immediately before the user agent starts requesting
 the resource from the server, or from <a data-cite=
 "HTML#relevant-application-cache">relevant application caches</a>
-or from local resources, if the last non-redirected <a data-cite=
-"FETCH#concept-fetch">fetch</a> of the resource passes the
+or from local resources, if all <a data-cite=
+"FETCH#concept-fetch">fetches</a> of the resource pass the
 <a>timing allow check</a> algorithm.
 <p>If the transport connection fails after a request is sent and
 the user agent reopens a connection and resend the request,
@@ -663,9 +658,9 @@ encapsulation.</li>
 receives the first byte of the response (e.g. frame header bytes
 for HTTP/2, or response status line for HTTP/1.x) from
 <a data-cite="HTML#relevant-application-cache">relevant application
-caches</a>, or from local resources or from the server if the last
-non-redirected <a data-cite="FETCH#concept-fetch">fetch</a> of the
-resource passes the <a>timing allow check</a> algorithm.</li>
+caches</a>, or from local resources or from the server if all
+<a data-cite="FETCH#concept-fetch">fetches</a> of the
+resource pass the <a>timing allow check</a> algorithm.</li>
 <li>zero, otherwise.</li>
 </ol>
 <aside class="note">
@@ -701,9 +696,9 @@ to a network error.</li>
 <li>the size, in octets received from a <a data-cite=
 "FETCH#http-network-fetch">HTTP-network fetch</a>, consumed by the
 response header fields and the response <a data-cite=
-"RFC7230#section-3.3">payload body</a> [[RFC7230]] if the last
-non-redirected <a data-cite="FETCH#concept-fetch">fetch</a> of the
-resource passes the <a>timing allow check</a> algorithm.
+"RFC7230#section-3.3">payload body</a> [[RFC7230]] if all
+<a data-cite="FETCH#concept-fetch">fetches</a> of the
+resource pass the <a>timing allow check</a> algorithm.
 <p>If there are HTTP redirects or <a data-cite="HTML#or-equivalent"
 data-lt='HTTP response codes equivalence'>equivalent</a> when
 navigating and if all the redirects or equivalent are from the same
@@ -738,9 +733,9 @@ caches</a> or from local resources.</li>
 "FETCH#http-network-or-cache-fetch">HTTP-network-or-cache</a>
 fetch, of the <a data-cite="RFC7230#section-3.3">payload body</a>
 [[RFC7230]], prior to removing any applied <a data-cite=
-"RFC7231#section-3.1.2.1">content-codings</a> [[RFC7231]], if the
-last non-redirected <a data-cite="FETCH#concept-fetch">fetch</a> of
-the resource passes the <a>timing allow check</a> algorithm.</li>
+"RFC7231#section-3.1.2.1">content-codings</a> [[RFC7231]], if all
+<a data-cite="FETCH#concept-fetch">fetches</a> of
+the resource pass the <a>timing allow check</a> algorithm.</li>
 <li>The size, in octets, of the <a data-cite=
 "RFC7230#section-3.3">payload body</a> prior to removing any
 applied <a data-cite="RFC7231#section-3.1.2.1">content-codings</a>
@@ -761,9 +756,9 @@ etc.</aside>
 "FETCH#http-network-or-cache-fetch">HTTP-network-or-cache</a>
 fetch, of the <a data-cite="RFC7230#section-3.3">message body</a>
 [[RFC7230]], after removing any applied <a data-cite=
-"RFC7231#section-3.1.2.1">content-codings</a> [[RFC7231]], if the
-last non-redirected <a data-cite="FETCH#concept-fetch">fetch</a> of
-the resource passes the <a>timing allow check</a> algorithm.</li>
+"RFC7231#section-3.1.2.1">content-codings</a> [[RFC7231]], if all
+<a data-cite="FETCH#concept-fetch">fetches</a> of
+the resource pass the <a>timing allow check</a> algorithm.</li>
 <li>The size, in octets, of the <a data-cite=
 "RFC7230#section-3.3">payload</a> after removing any applied
 <a data-cite="RFC7231#section-3.1.2.1">content-codings</a>, if the
@@ -1063,10 +1058,9 @@ be the same value as <a>fetchStart</a>.</li>
 reuse the data from another existing or completed <a data-cite=
 "FETCH#concept-fetch">fetch</a> initiated from the <a>current
 document</a></dfn>, abort the remaining steps.</li>
-<li>If the last non-redirected <a data-cite=
-"FETCH#concept-fetch">fetch</a> of the resource fails the <a>timing
-allow check</a>, the user agent MUST set <a>redirectStart</a>,
-<a>redirectEnd</a>, <a>domainLookupStart</a>,
+<li>If any <a data-cite="FETCH#concept-fetch">fetch</a> of the resource
+fails the <a>timing allow check</a>, the user agent MUST set
+<a>redirectStart</a>, <a>redirectEnd</a>, <a>domainLookupStart</a>,
 <a>domainLookupEnd</a>, <a>connectStart</a>, <a>connectEnd</a>,
 <a>requestStart</a>, <a>responseStart</a> and
 <a>secureConnectionStart</a> to zero and go to step <a href=
