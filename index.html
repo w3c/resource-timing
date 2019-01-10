@@ -1066,11 +1066,12 @@ be the same value as <a>fetchStart</a>.</li>
 reuse the data from another existing or completed <a data-cite=
 "FETCH#concept-fetch">fetch</a> initiated from the <a>current
 document</a></dfn>, abort the remaining steps.</li>
-<li>If any <a data-cite="FETCH#concept-fetch">fetch</a> of the resource
-fails the <a>timing allow check</a>, the user agent MUST set
-<a>redirectStart</a>, <a>redirectEnd</a>, <a>domainLookupStart</a>,
-<a>domainLookupEnd</a>, <a>connectStart</a>, <a>connectEnd</a>,
-<a>requestStart</a>, <a>responseStart</a> and
+<li>If any request in the resource <a
+data-cite="FETCH#concept-fetch">fetch</a>'s request-chain (including
+redirects) fails the <a>timing allow check</a> algorithm, the user
+agent MUST set <a>redirectStart</a>, <a>redirectEnd</a>,
+<a>domainLookupStart</a>, <a>domainLookupEnd</a>, <a>connectStart</a>,
+<a>connectEnd</a>, <a>requestStart</a>, <a>responseStart</a> and
 <a>secureConnectionStart</a> to zero and go to step <a href=
 "#dfn-step-response-end">16</a>.</li>
 <li>Let <a>domainLookupStart</a>, <a>domainLookupEnd</a>,
