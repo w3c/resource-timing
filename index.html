@@ -951,21 +951,20 @@ separated by a comma.</p>
 whether a resource's timing information can be shared with the
 <a>current document</a>, is as follows:</p>
 <ol>
-    <li><p>Let <var>tainted</var> be <code>false</code>.</p></li>
+    <li><p>Let <var>tainted</var> be false.</p></li>
     <li><p>For each request in the resource <a
     data-cite="FETCH#concept-fetch">fetch</a> redirection-chain:</p>
         <ol>
+            <li><p>If the request is <a>cross-origin</a>, set
+            <var>tainted</var> to true.</p></li>
             <li><p>If the <a>Timing-Allow-Origin</a> header value list
             does not contain a value which is byte-for-byte identical to
             the <a
             data-cite="HTML#ascii-serialisation-of-an-origin">serialization</a>
             of the <a>current document</a>'s <a
             data-cite="DOM#concept-document-origin">origin</a>, nor a
-            wildcard ("<code>*</code>"), and the request is
-            <a>cross-origin</a> or <var>tainted</var> is
-            <code>true</code>, return <code>fail</code>.</p></li>
-            <li><p>If the request is <a>cross-origin</a>, set
-            <var>tainted</var> to <code>true</code>.</p></li>
+            wildcard ("<code>*</code>"), and <var>tainted</var> is
+            true, return <code>fail</code>.</p></li>
         </ol>
     <li><p>Return pass.</p></li>
 </ol>
