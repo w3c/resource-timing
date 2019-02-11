@@ -940,7 +940,7 @@ by the following ABNF [[RFC5234]] (using <a data-cite=
       Timing-Allow-Origin = 1#( <a data-cite=
 "FETCH#origin-header">origin-or-null</a> / <a data-cite=
 "FETCH#http-new-header-syntax">wildcard</a> )
-</pre>
+    </pre>
 <p>The sender MAY generate multiple <a>Timing-Allow-Origin</a>
 header fields. The recipient MAY combine multiple
 <a>Timing-Allow-Origin</a> header fields by appending each
@@ -1054,8 +1054,8 @@ is fired</a> at the active worker record the time as
 <a>workerStart</a>. Otherwise, if there is no matching
 <a data-cite="service-workers-1#dfn-service-worker-registration">service
 worker registration</a>, set <a>workerStart</a> value to zero.</li>
-<li><dfn data-lt="step-fetch-start">Immediately before a user agent
-starts the <a data-cite="FETCH#concept-fetch" data-lt=
+<li><em>Fetch start:</em> <dfn data-lt="step-fetch-start">Immediately before a
+user agent starts the <a data-cite="FETCH#concept-fetch" data-lt=
 'fetch'>fetching process</a></dfn>, record the <a>current time</a>
 as <a>fetchStart</a>. Let <a>domainLookupStart</a>,
 <a>domainLookupEnd</a>, <a>connectStart</a> and <a>connectEnd</a>
@@ -1068,8 +1068,8 @@ document</a></dfn>, abort the remaining steps.</li>
 user agent MUST set <a>redirectStart</a>, <a>redirectEnd</a>,
 <a>domainLookupStart</a>, <a>domainLookupEnd</a>, <a>connectStart</a>,
 <a>connectEnd</a>, <a>requestStart</a>, <a>responseStart</a> and
-<a>secureConnectionStart</a> to zero and go to step <a href=
-"#dfn-step-response-end">16</a>.</li>
+<a>secureConnectionStart</a> to zero and go to the step labeled <a href=
+"#dfn-step-response-end">response end</a>.</li>
 <li>Let <a>domainLookupStart</a>, <a>domainLookupEnd</a>,
 <a>connectStart</a> and <a>connectEnd</a> be the same value as
 <a>fetchStart</a>.</li>
@@ -1077,18 +1077,19 @@ user agent MUST set <a>redirectStart</a>, <a>redirectEnd</a>,
 "HTML#relevant-application-cache">relevant application cache</a> or
 local resources, including the <a href=
 "https://tools.ietf.org/html/rfc7234">HTTP cache</a> [[RFC7234]],
-go to step <a href="#dfn-step-request-start">14</a>.</li>
-<li>If no domain lookup is required, go to step <a href=
-"#dfn-step-connect-start">14</a>. Otherwise, immediately before a
-user agent starts the domain name lookup, record the time as
+go to the step labeled <a href="#dfn-step-request-start">request
+start</a>.</li>
+<li>If no domain lookup is required, go to the step labeled <a href=
+"#dfn-step-connect-start">connect start</a>. Otherwise, immediately
+before a user agent starts the domain name lookup, record the time as
 <a>domainLookupStart</a>.</li>
 <li>Record the time as <a>domainLookupEnd</a> immediately after the
 domain name lookup is successfully done. A user agent may need
 multiple retries before that. If the domain name lookup fails and
 resource passes the <a>timing allow check</a> record the time as
-<a>domainLookupEnd</a> and go to <a href=
-"#dfn-step-final-record">step 17</a>.</li>
-<li><dfn data-lt="step-connect-start">If a persistent transport
+<a>domainLookupEnd</a> and go to the step labeled<a href=
+"#dfn-step-final-record">final record</a>.</li>
+<li><em>Connect start:</em> <dfn data-lt="step-connect-start">If a persistent transport
 connection is used to <a data-cite="FETCH#concept-fetch">fetch</a>
 the resource</dfn>, let <a>connectStart</a> and <a>connectEnd</a>
 be the same value of <a>domainLookupEnd</a>. Otherwise, record the
@@ -1101,8 +1102,8 @@ successful connection only.
 Once connection is established set the value of <a>nextHopProtocol</a>
 to the ALPN ID used by the connection. If a connection can not be
 established, record the time up to the connection failure as
-<a>connectEnd</a> and go to <a href= "#dfn-step-final-record">step
-17</a>.</li>
+<a>connectEnd</a> and go to the step labeled <a
+href= "#dfn-step-final-record">final record</a>.</li>
 <li>The user agent MUST set the <a>secureConnectionStart</a>
 attribute as follows:
 <ol>
@@ -1113,8 +1114,9 @@ handshake process to secure the connection.</li>
 the value of <a>secureConnectionStart</a> to 0.</li>
 </ol>
 </li>
-<li><dfn data-lt="step-request-start">Immediately before a user
-agent starts sending the request for the resource</dfn>, record the
+<li><em>Request start:</em> <dfn
+data-lt="step-request-start">Immediately before a user agent starts
+sending the request for the resource</dfn>, record the
 <a>current time</a> as <a>requestStart</a>. If a user agent needed
 multiple retries to send the request, record the <a>current time</a>
 of the last attempt.</li>
@@ -1125,11 +1127,11 @@ to always be in a particular order. </p>
 <li>Record the time as <a>responseStart</a> <dfn data-lt=
 "step-response-start">immediately after the user agent receives the
 first byte of the response</dfn>.</li>
-<li>Record the time as <a>responseEnd</a> <dfn data-lt=
-"step-response-end">immediately after receiving the last byte of
+<li><em>Response end:</em> Record the time as <a>responseEnd</a> <dfn
+data-lt="step-response-end">immediately after receiving the last byte of
 the response</dfn>.
 <ol>
-<li>Return to step <a href="#dfn-step-connect-start">12</a> if the
+<li>Return to the step labeled <a href="#dfn-step-connect-start">connect start</a> if the
 user agent fails to send the request or receive the entire
 response, and needs to reopen the connection.
 <aside class="example">
@@ -1147,7 +1149,8 @@ collected over the re-open connection.</p>
 <a>timing allow check</a> algorithm.</li>
 </ol>
 </li>
-<li>If <a data-link-for="PerformanceResourceTiming">responseEnd</a>
+<li><em>Final record:</em> If <a
+data-link-for="PerformanceResourceTiming">responseEnd</a>
 is not set, set it to the current time. <dfn data-lt=
 "step-final-record">Record the difference between
 <a>responseEnd</a> and <a>startTime</a> in
@@ -1158,16 +1161,17 @@ is not set, set it to the current time. <dfn data-lt=
 <ol>
 <li>If the current resource fails the <a>timing allow check</a>
 algorithm, set <a>redirectStart</a> and <a>redirectEnd</a> to 0.
-Then, return to step <a href="#dfn-step-fetch-start">7</a> with the
-redirected resource.</li>
+Then, return to the step labeled <a
+href="#dfn-step-fetch-start">Fetch start</a> with the redirected
+resource.</li>
 <li>If the value of redirectStart is not set, let it be the value
 of fetchStart.</li>
 <li>Let redirectEnd be the value of responseEnd.</li>
 <li>Set all the attributes in the <a>PerformanceResourceTiming</a>
 object to 0 except <a>startTime</a>, <a>redirectStart</a>,
 <a>redirectEnd</a>, and <a>initiatorType</a>.</li>
-<li>Return to step <a href="#dfn-step-fetch-start">7</a> with the
-new resource.</li>
+<li>Return to the step labeled <a href="#dfn-step-fetch-start">Fetch
+start</a> with the redirected resource.</li>
 </ol>
 </li>
 <li><dfn data-lt="step-final-queue"><a data-cite=
