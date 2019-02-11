@@ -957,7 +957,9 @@ whether a resource's timing information can be shared with the
   <li><p>For each <var>request</var> in the resource <a
   data-cite="FETCH#concept-fetch">fetch</a> redirection-chain:</p>
     <ol>
-      <li><p>If <var>request</var> is not <a>cross-origin</a> when compared to the
+      <li><p>If <var>request</var>'s <a
+      data-cite="FETCH#concept-request-origin">origin</a> is <a
+      data-cite="HTML#same-origin">same-origin</a> when compared to the
       resource's <a>Request</a>'s <a
       data-cite="FETCH#concept-request-window">window</a>'s
       <a data-cite="HTML/webappapis.html#concept-settings-object-origin">origin</a>,
