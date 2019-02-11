@@ -204,7 +204,7 @@ example, a resource could originate from XMLHttpRequest objects
 object, embed, and link with the link type of stylesheet, and SVG
 elements [[SVG11]] such as svg.</p>
 <p>The term <dfn>cross-origin</dfn> is used to mean non
-<a data-cite="RFC6454#section-5">same origin</a>.</p>
+<a data-cite="HTML#same-origin">same origin</a>.</p>
 <p>The term <dfn>current document</dfn> refers to the document
 associated with the <a data-cite=
 "HTML#concept-document-window">Window object's newest Document
@@ -694,10 +694,9 @@ response header fields and the response <a data-cite=
 resource passes the <a>timing allow check</a> algorithm.
 <p>If there are HTTP redirects or <a data-cite="HTML#or-equivalent"
 data-lt='HTTP response codes equivalence'>equivalent</a> when
-navigating and if all the redirects or equivalent are from the same
-<a data-cite="RFC6454#section-4">origin</a> [[RFC6454]], this
-attribute SHOULD include the HTTP overhead of incurred
-redirects.</p>
+navigating and if all the redirects or equivalent are <a
+data-cite="HTML#same-origin">same origin</a>, this attribute SHOULD
+include the HTTP overhead of incurred redirects.</p>
 <p>This attribute SHOULD include HTTP overhead (such as HTTP/1.1
 chunked encoding and whitespace around header fields, including
 newlines, and <a href=
@@ -941,7 +940,7 @@ by the following ABNF [[RFC5234]] (using <a data-cite=
       Timing-Allow-Origin = 1#( <a data-cite=
 "FETCH#origin-header">origin-or-null</a> / <a data-cite=
 "FETCH#http-new-header-syntax">wildcard</a> )
-    </pre>
+</pre>
 <p>The sender MAY generate multiple <a>Timing-Allow-Origin</a>
 header fields. The recipient MAY combine multiple
 <a>Timing-Allow-Origin</a> header fields by appending each
@@ -951,31 +950,33 @@ separated by a comma.</p>
 whether a resource's timing information can be shared with the
 <a>current document</a>, is as follows:</p>
 <ol>
-    <li><p>Let <var>tainted</var> be false.</p></li>
-    <li><p>If the resource's <a>Request</a>'s <a
-    data-cite="FETCH#concept-request-window">window</a> is not an <a
-    data-cite="HTML/webapppapis.html#environment-settings-object">environment
-    settings object</a>, set tainted to true</p></li>
-    <li><p>For each <var>request</var> in the resource <a
-    data-cite="FETCH#concept-fetch">fetch</a> redirection-chain:</p>
-        <ol>
-            <li><p>If <var>tainted</var> is false and <var>request</var>
-            is <a>cross-origin</a> when compared to the resource's
-            <a>Request</a>'s <a
-            data-cite="FETCH#concept-request-window">window</a>'s
-            <a data-cite="HTML/webappapis.html#concept-settings-object-origin">origin</a>,
-            set <var>tainted</var> to true.</p></li>
-            <li><p>If the <a>Timing-Allow-Origin</a> header value list
-            does not contain a value which is byte-for-byte identical to
-            the <a
-            data-cite="HTML#ascii-serialisation-of-an-origin">serialization</a>
-            of the <a>current document</a>'s <a
-            data-cite="DOM#concept-document-origin">origin</a>, nor a
-            wildcard ("<code>*</code>"), and <var>tainted</var> is
-            true, return <code>fail</code>.</p></li>
-        </ol>
-    <li><p>Return pass.</p></li>
+  <li><p>If the resource's <a>Request</a>'s <a
+  data-cite="FETCH#concept-request-window">window</a> is not an <a
+  data-cite="HTML/webapppapis.html#environment-settings-object">environment
+  settings object</a>, return <code>fail</code>.</p></li>
+  <li><p>For each <var>request</var> in the resource <a
+  data-cite="FETCH#concept-fetch">fetch</a> redirection-chain:</p>
+    <ol>
+      <li><p>If <var>request</var> is not <a>cross-origin</a> when compared to the
+      resource's <a>Request</a>'s <a
+      data-cite="FETCH#concept-request-window">window</a>'s
+      <a data-cite="HTML/webappapis.html#concept-settings-object-origin">origin</a>,
+      continue to the next <var>request</var>.</p></li>
+      <li><p>If the <a>Timing-Allow-Origin</a> header value list
+      does not contain a value which is byte-for-byte identical to
+      the <a
+      data-cite="HTML#ascii-serialisation-of-an-origin">serialization</a>
+      of the <a>current document</a>'s <a
+      data-cite="DOM#concept-document-origin">origin</a>, nor a
+      wildcard ("<code>*</code>"), return <code>fail</code>.</p></li>
+    </ol>
+  <li><p>Return <code>pass</code>.</p></li>
 </ol>
+<p class=note>The above definition does not fully align Timing-Allow-Origin's
+processing with CORS processing. Specifically, if a redirection chain includes
+a cross-origin resource followed by same-origin resources without an explicit
+opt-in, TAO will pass while CORS will fail. Future iterations of this
+specification may attempt to unite those definitions.</p>
 </section>
 <section id="sec-iana-considerations">
 <h4>IANA Considerations</h4>
@@ -996,9 +997,8 @@ whether a resource's timing information can be shared with the
 <p>The following graph illustrates the timing attributes defined by
 the PerformanceResourceTiming interface. Attributes in parenthesis
 may not be available when <a data-cite="FETCH#concept-fetch"
-data-lt='fetch'>fetching</a> resources from different <a data-cite=
-"RFC6454#section-5">origins</a>. User agents may perform internal
-processing in between timings, which allow for non-normative
+data-lt='fetch'>fetching</a> <a>cross-origin</a> resources. User agents may 
+perform internal processing in between timings, which allow for non-normative
 intervals between timings.</p>
 <figure data-lt='Timing attributes'>
 <figcaption>This figure illustrates the timing attributes defined
@@ -1154,19 +1154,17 @@ is not set, set it to the current time. <dfn data-lt=
 <a data-cite="HTML#or-equivalent" data-lt=
 'HTTP response codes equivalence'>equivalent</a>, then
 <ol>
-<li>If the current resource and the redirected resource are not
-from the <a data-cite="RFC6454#section-5">same origin</a> as the
-<a>current document</a>, and the <a>timing allow check</a>
-algorithm fails for either resource, set <a>redirectStart</a> and
-<a>redirectEnd</a> to 0. Then, return to step <a href=
-"#dfn-step-fetch-start">5</a> with the new resource.</li>
+<li>If the current resource fails the <a>timing allow check</a>
+algorithm, set <a>redirectStart</a> and <a>redirectEnd</a> to 0.
+Then, return to step <a href="#dfn-step-fetch-start">7</a> with the
+redirected resource.</li>
 <li>If the value of redirectStart is not set, let it be the value
 of fetchStart.</li>
 <li>Let redirectEnd be the value of responseEnd.</li>
 <li>Set all the attributes in the <a>PerformanceResourceTiming</a>
 object to 0 except <a>startTime</a>, <a>redirectStart</a>,
 <a>redirectEnd</a>, and <a>initiatorType</a>.</li>
-<li>Return to step <a href="#dfn-step-fetch-start">5</a> with the
+<li>Return to step <a href="#dfn-step-fetch-start">7</a> with the
 new resource.</li>
 </ol>
 </li>
@@ -1206,7 +1204,7 @@ navigation.</p>
 information for a resource to any web page or worker that has
 requested that resource. To limit the access to the
 <a>PerformanceResourceTiming</a> interface, the <a data-cite=
-"RFC6454#section-5">same origin</a> policy is enforced by default
+"HTML#same-origin">same origin</a> policy is enforced by default
 and certain attributes are set to zero, as described in <a href=
 "#sec-cross-origin-resources"></a>. Resource providers can
 explicitly allow all timing information to be collected for a
