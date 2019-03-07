@@ -897,14 +897,14 @@ buffer current size</a>.</li>
 secondary buffer current size</a> to 0, and abort these steps.</li>
 </ol>
 </li>
-<li>Set <a>resource timing buffer full event pending flag</a> to false.</li>
-</ol>
+<li>Set <a>resource timing buffer full event pending flag</a> to false.
 <p class=note>This means that if the <code>resourcetimingbufferfull</code>
 event handler does not add more room in the buffer than it adds resources to
 it, excess entries will be dropped from the buffer. Developers should make sure
 that <code>resourcetimingbufferfull</code> event handlers call
 <code>clearResourceTimings</code> or extend the buffer sufficiently (by calling
 <code>setResourceTimingBufferSize</code>).</p>
+</li>
 </ol>
 </section>
 
@@ -999,7 +999,7 @@ specification may attempt to unite those definitions.</p>
 <p>The following graph illustrates the timing attributes defined by
 the PerformanceResourceTiming interface. Attributes in parenthesis
 may not be available when <a data-cite="FETCH#concept-fetch"
-data-lt='fetch'>fetching</a> <a>cross-origin</a> resources. User agents may 
+data-lt='fetch'>fetching</a> <a>cross-origin</a> resources. User agents may
 perform internal processing in between timings, which allow for non-normative
 intervals between timings.</p>
 <figure data-lt='Timing attributes'>
@@ -1016,7 +1016,7 @@ the following steps:</p>
 <ol data-link-for="PerformanceResourceTiming">
 <li>If the resource is <a data-cite="Fetch#concept-fetch">fetched</a> by a
 cross-origin stylesheet which was fetched with <code>no-cors</code> policy,
-abort the remaining steps.</li>
+abort the remaining steps.
 <p class="issue">Above cross-origin exclusion should be defined via
 Fetch registry: CSS needs to be defined in terms of Fetch and set
 some kind of "opaque request flag" for no-CORS CSS subresources. In
@@ -1026,6 +1026,7 @@ surface resource fetch events.</p>
 implementation passes the <a
 href="https://wpt.fyi/results/resource-timing/no-entries-for-cross-origin-css-fetched.sub.html?label=experimental"
 >related test</a>.</p>
+</li>
 <li>If the resource's <a>Request</a>'s
 <a data-cite="Fetch#concept-request-destination">destination</a> equals to
 "document", and the <a>Request</a> was not triggered by
@@ -1119,11 +1120,12 @@ data-lt="step-request-start">Immediately before a user agent starts
 sending the request for the resource</dfn>, record the
 <a>current time</a> as <a>requestStart</a>. If a user agent needed
 multiple retries to send the request, record the <a>current time</a>
-of the last attempt.</li>
+of the last attempt.
 <p class=note>Network protocols may not perform the connection
 establishment, secure connection establishment and request sending in a
 sequential manner. Therefore, developers should not expect these values
 to always be in a particular order. </p>
+</li>
 <li>Record the time as <a>responseStart</a> <dfn data-lt=
 "step-response-start">immediately after the user agent receives the
 first byte of the response</dfn>.</li>
