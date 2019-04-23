@@ -964,9 +964,9 @@ whether a resource's timing information can be shared with the
       data-cite="FETCH#concept-request-window">window</a>'s
       <a data-cite="HTML/webappapis.html#concept-settings-object-origin">origin</a>,
       continue to the next <var>request</var>.</p></li>
-      <li><p>If the <a>Timing-Allow-Origin</a> header value list
-      does not contain a value which is byte-for-byte identical to
-      the <a
+      <li><p>If the <var>request</var>'s response' <a>Timing-Allow-Origin</a>
+      header value list does not contain a value which is byte-for-byte
+      identical to the <a
       data-cite="HTML#ascii-serialisation-of-an-origin">serialization</a>
       of the <a>current document</a>'s <a
       data-cite="DOM#concept-document-origin">origin</a>, nor a
@@ -979,6 +979,11 @@ processing with CORS processing. Specifically, if a redirection chain includes
 a cross-origin resource followed by same-origin resources without an explicit
 opt-in, TAO will pass while CORS will fail. Future iterations of this
 specification may attempt to unite those definitions.</p>
+<p class=note>The Timing-Allow-Origin header arrive as part of a cached
+response.  In case of cache revalidation, according to 
+<a href="https://tools.ietf.org/html/rfc7234#section-4.3.4">RFC 7234</a>,
+the header's value may come from the revalidation response, or if not present
+there, from the original cached resource.</p>
 </section>
 <section id="sec-iana-considerations">
 <h4>IANA Considerations</h4>
