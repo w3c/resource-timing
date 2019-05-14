@@ -674,15 +674,20 @@ a request, due to an <a data-cite=
 the last request.</p>
 </aside>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
-<dfn>responseEnd</dfn> attribute MUST return as follows:</p>
+<dfn>responseEnd</dfn> attribute MUST return the result of running
+<a>get response end time</a> algorithm.</p>
+
+<p>When requested to run the <dfn>get response end time</dfn>
+algorithm, the user agent must run the following steps:</p>
 <ol>
-<li>The time immediately after the user agent receives the last
-byte of the response or immediately before the transport connection
-is closed, whichever comes first. The resource here can be received
-either from <a data-cite="HTML#relevant-application-cache">relevant
-application caches</a>, local resources, or from the server.</li>
-<li>The time immediately before the user agent aborts the fetch due
-to a network error.</li>
+<li>If the fetch was aborted due to a network error, return the time
+immediately before the user agent aborts the fetch.</li> 
+<li>Otherwise, return the time immediately after the user agent
+receives the last byte of the response or immediately before the
+transport connection is closed, whichever comes first. The resource
+here can be received either from <a
+data-cite="HTML#relevant-application-cache">relevant application
+caches</a>, local resources, or from the server.</li>
 </ol>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>transferSize</dfn> attribute MUST return as follows:</p>
