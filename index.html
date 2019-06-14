@@ -762,10 +762,10 @@ resource is retrieved from <a data-cite=
 or from local resources.</li>
 <li>zero, otherwise.</li>
 </ol>
-<p>A user agent implementing <a>PerformanceResourceTiming</a> MUST run the
-<a data-cite="PERFORMANCE-TIMELINE-2#dfn-register-a-performance-entry-type">
-register a performance entry type</a> algorithm with <code>"resource"</code> as
-input.</p>
+<p class='note'>A user agent implementing <a>PerformanceResourceTiming</a> would
+need to include <code>"resource"</code> in <a data-cite=
+"PERFORMANCE-TIMELINE-2#supportedentrytypes-attribute"> supportedEntryTypes</a>.
+This allows developers to detect support for Resource Timing.</p>
 </section>
 <section id="sec-extensions-performance-interface" data-dfn-for=
 "Performance">
