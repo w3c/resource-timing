@@ -31,7 +31,8 @@ async class='remove'></script>
       company: "Google",
       companyURL: "https://google.com/",
       w3cid: "58673"
-    }, {
+    }],
+    formerEditors: [{
       name: "Arvind Jain",
       mailto: "arvind@google.com",
       company: "Google Inc.",
@@ -60,7 +61,8 @@ async class='remove'></script>
     subjectPrefix: "[ResourceTiming]",
     github: "https://github.com/w3c/resource-timing/",
     caniuse: "resource-timing",
-    wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/45211/status"
+    wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/45211/status",
+    xref: true,
   };
 </script>
 </head>
@@ -370,8 +372,7 @@ This attribute MUST NOT change even if the <a data-cite=
 <dd>The <a>entryType</a> attribute MUST return the DOMString
 "<code>resource</code>".</dd>
 <dt><dfn>startTime</dfn></dt>
-<dd>The <a>startTime</a> attribute MUST return a <a data-cite=
-"HR-TIME-2#dom-domhighrestimestamp">DOMHighResTimeStamp</a>
+<dd>The <a>startTime</a> attribute MUST return a {{DOMHighResTimeStamp}}
 [[HR-TIME-2]] with the time immediately before the user agent
 starts to queue the resource for <a data-cite="FETCH#concept-fetch"
 data-lt='fetch'>fetching</a>. If there are HTTP redirects or
@@ -381,11 +382,13 @@ attribute MUST return the same value as <a>redirectStart</a>.
 Otherwise, this attribute MUST return the same value as
 <a>fetchStart</a>.</dd>
 <dt><dfn>duration</dfn></dt>
-<dd>The <a>duration</a> attribute MUST return a <a data-cite=
-"HR-TIME-2#dom-domhighrestimestamp">DOMHighResTimeStamp</a> equal
+<dd>The <a>duration</a> attribute MUST return a {{DOMHighResTimeStamp}} equal
 to the difference between <a>responseEnd</a> and <a>startTime</a>,
 respectively.</dd>
 </dl>
+<p>
+  <code><dfn data-cite="hr-time-2#dom-domhighrestimestamp">DOMHighResTimeStamp</dfn></code> is defined in [[HR-TIME-2]].
+</p>
 <pre class='idl'>
 [Exposed=(Window,Worker)]
 interface PerformanceResourceTiming : PerformanceEntry {
@@ -492,8 +495,7 @@ required to service the request.</li>
 data-cite="HR-TIME-2#dfn-time-origin">time origin</a> in workers, it is
 possible that some attributes of <a
 data-cite="service-workers-nightly#dom-serviceworkerregistration-navigationpreload">
-navigation preload</a> requests will have negative <a data-cite=
-"HR-TIME-2#dom-domhighrestimestamp">DOMHighResTimeStamp</a>
+navigation preload</a> requests will have negative {{DOMHighResTimeStamp}}
 values.</p>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
 <dfn>redirectStart</dfn> attribute MUST return as follows:</p>
@@ -799,7 +801,7 @@ which is initially 0.</li>
 <li>A <dfn>resource timing secondary buffer</dfn> to store
 <a>PerformanceResourceTiming</a> objects that is initially empty.</li>
 </ul>
-<pre class="idl">partial interface Performance {
+<pre class="idl" data-cite="HTML">partial interface Performance {
   void clearResourceTimings ();
   void setResourceTimingBufferSize (unsigned long maxSize);
               attribute EventHandler onresourcetimingbufferfull;
