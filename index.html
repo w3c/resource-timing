@@ -957,39 +957,31 @@ separated by a comma.</p>
 whether a resource's timing information can be shared with the
 <a>current document</a>, is as follows:</p>
 <ol>
-  <li><p>If the resource's <a>Request</a>'s <a
-  data-cite="FETCH#concept-request-window">window</a> is not an <a
-  data-cite="HTML/webapppapis.html#environment-settings-object">environment
-  settings object</a>, return <code>fail</code>.</p></li>
-  <li><p>For each <var>request</var> in the resource <a
-  data-cite="FETCH#concept-fetch">fetch</a> redirection-chain:</p>
-    <ol>
-      <li><p>If <var>request</var>'s <a
-      data-cite="FETCH#concept-request-origin">origin</a> is <a
-      data-cite="HTML#same-origin">same-origin</a> when compared to the
-      resource's <a>Request</a>'s <a
-      data-cite="FETCH#concept-request-window">window</a>'s
-      <a data-cite="HTML/webappapis.html#concept-settings-object-origin">origin</a>,
-      continue to the next <var>request</var>.</p></li>
-      <li><p>If the TAO header value list of the <var>request</var>'s response
-      does not contain a value which is byte-for-byte identical to the <a
-      data-cite="HTML#ascii-serialisation-of-an-origin">serialization</a>
-      of the <a>current document</a>'s <a
-      data-cite="DOM#concept-document-origin">origin</a>, nor a
-      wildcard ("<code>*</code>"), return <code>fail</code>.</p></li>
-    </ol>
-  <li><p>Return <code>pass</code>.</p></li>
+    <li><p>Let <var>tainted</var> be false.</p></li>
+    <li><p>If the resource's <a>Request</a>'s <a
+    data-cite="FETCH#concept-request-window">window</a> is not an <a
+    data-cite="HTML/webapppapis.html#environment-settings-object">environment
+    settings object</a>, set tainted to true</p></li>
+    <li><p>For each <var>request</var> in the resource <a
+    data-cite="FETCH#concept-fetch">fetch</a> redirection-chain:</p>
+        <ol>
+            <li><p>If <var>tainted</var> is false and <var>request</var>
+            is <a>cross-origin</a> when compared to the resource's
+            <a>Request</a>'s <a
+            data-cite="FETCH#concept-request-window">window</a>'s
+            <a data-cite="HTML/webappapis.html#concept-settings-object-origin">origin</a>,
+            set <var>tainted</var> to true.</p></li>
+            <li><p>If the <a>Timing-Allow-Origin</a> header value list
+            does not contain a value which is byte-for-byte identical to
+            the <a
+            data-cite="HTML#ascii-serialisation-of-an-origin">serialization</a>
+            of the <a>current document</a>'s <a
+            data-cite="DOM#concept-document-origin">origin</a>, nor a
+            wildcard ("<code>*</code>"), and <var>tainted</var> is
+            true, return <code>fail</code>.</p></li>
+        </ol>
+    <li><p>Return pass.</p></li>
 </ol>
-<p class=note>The above definition does not fully align Timing-Allow-Origin's
-processing with CORS processing. Specifically, if a redirection chain includes
-a cross-origin resource followed by same-origin resources without an explicit
-opt-in, TAO will pass while CORS will fail. Future iterations of this
-specification may attempt to unite those definitions.</p>
-<p class=note>The Timing-Allow-Origin header may arrive as part of a cached
-response. In case of cache revalidation, according to 
-<a href="https://tools.ietf.org/html/rfc7234#section-4.3.4">RFC 7234</a>,
-the header's value may come from the revalidation response, or if not present
-there, from the original cached resource.</p>
 </section>
 <section id="sec-iana-considerations">
 <h4>IANA Considerations</h4>
