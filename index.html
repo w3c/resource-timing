@@ -477,7 +477,8 @@ uses the ALPN Protocol ID's to indicate the protocol in use.</p>
 <li>
 <p>If the current browsing or worker context's have an
 <a data-cite="service-workers-1#dfn-containing-service-worker-registration">
-active worker</a> [[service-workers-1]]:</p>
+active worker</a> [[service-workers-1]] and the resource
+passes the <a>timing allow check</a> algorithm:</p>
 <ol>
 <li>the time immediately before the user agent <a data-cite=
 "service-workers-1#on-fetch-request-algorithm">fires an event named
@@ -1050,19 +1051,7 @@ and set <a>nextHopProtocol</a> to the empty DOMString.</li>
 <li>Record the initiator of the resource in
 <a>initiatorType</a>.</li>
 <li>Record the <a data-cite="HTML#resolve-a-url">resolved URL</a>
-of the requested resource in <a>name</a>. If there is an
-<a data-cite=
-"service-workers-1#dfn-containing-service-worker-registration">active
-worker</a> ([[service-workers-1]]) matching the current browsing or
-worker context's, immediately before the user agent <a data-cite=
-"service-workers-1#service-worker-concept">runs the worker</a>
-record the time as <a>workerStart</a>, or if the worker is already
-available, immediately before the <a data-cite=
-"service-workers-1#on-fetch-request-algorithm">event named `fetch`
-is fired</a> at the active worker record the time as
-<a>workerStart</a>. Otherwise, if there is no matching
-<a data-cite="service-workers-1#dfn-service-worker-registration">service
-worker registration</a>, set <a>workerStart</a> value to zero.</li>
+  of the requested resource in <a>name</a>.</li>
 <li><em>Fetch start:</em> <dfn data-lt="step-fetch-start">Immediately before a
 user agent starts the <a data-cite="FETCH#concept-fetch" data-lt=
 'fetch'>fetching process</a></dfn>, record the <a>current time</a>
@@ -1076,9 +1065,21 @@ document</a></dfn>, abort the remaining steps.</li>
 <li>If the resource fails the <a>timing allow check</a> algorithm, the
 user agent MUST set <a>redirectStart</a>, <a>redirectEnd</a>,
 <a>domainLookupStart</a>, <a>domainLookupEnd</a>, <a>connectStart</a>,
-<a>connectEnd</a>, <a>requestStart</a>, <a>responseStart</a> and
-<a>secureConnectionStart</a> to zero and go to the step labeled <a href=
-"#dfn-step-response-end">response end</a>.</li>
+<a>connectEnd</a>, <a>requestStart</a>, <a>responseStart</a>,
+<a>secureConnectionStart</a> and <a>workerStart</a> to zero and go to the step
+labeled <a href="#dfn-step-response-end">response end</a>.</li>
+<li>If there is an <a data-cite=
+"service-workers-1#dfn-containing-service-worker-registration">active
+worker</a> ([[service-workers-1]]) matching the current browsing or
+worker context's, immediately before the user agent <a data-cite=
+"service-workers-1#service-worker-concept">runs the worker</a>
+record the time as <a>workerStart</a>, or if the worker is already
+available, immediately before the <a data-cite=
+"service-workers-1#on-fetch-request-algorithm">event named `fetch`
+is fired</a> at the active worker record the time as
+<a>workerStart</a>. Otherwise, if there is no matching
+<a data-cite="service-workers-1#dfn-service-worker-registration">service
+worker registration</a>, set <a>workerStart</a> value to zero.</li>
 <li>Let <a>domainLookupStart</a>, <a>domainLookupEnd</a>,
 <a>connectStart</a> and <a>connectEnd</a> be the same value as
 <a>fetchStart</a>.</li>
