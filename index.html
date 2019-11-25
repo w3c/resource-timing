@@ -475,10 +475,12 @@ uses the ALPN Protocol ID's to indicate the protocol in use.</p>
 <dfn>workerStart</dfn> attribute MUST return as follows:</p>
 <ol>
 <li>
-<p>If the current browsing or worker context's have an
+<p>If the current browsing or worker context have an
 <a data-cite="service-workers-1#dfn-containing-service-worker-registration">
-active worker</a> [[service-workers-1]] and the resource
-passes the <a>timing allow check</a> algorithm:</p>
+active worker</a> [[service-workers-1]] and if the resource
+passes the <a>timing allow check</a> algorithm or the resource <a>Request</a>'s
+<a data-cite="Fetch#concept-request-destination">destination</a> does not equal
+"document":</p>
 <ol>
 <li>the time immediately before the user agent <a data-cite=
 "service-workers-1#on-fetch-request-algorithm">fires an event named
@@ -1062,12 +1064,11 @@ be the same value as <a>fetchStart</a>.</li>
 reuse the data from another existing or completed <a data-cite=
 "FETCH#concept-fetch">fetch</a> initiated from the <a>current
 document</a></dfn>, abort the remaining steps.</li>
-<li>If the resource fails the <a>timing allow check</a> algorithm, the
-user agent MUST set <a>redirectStart</a>, <a>redirectEnd</a>,
-<a>domainLookupStart</a>, <a>domainLookupEnd</a>, <a>connectStart</a>,
-<a>connectEnd</a>, <a>requestStart</a>, <a>responseStart</a>,
-<a>secureConnectionStart</a> and <a>workerStart</a> to zero and go to the step
-labeled <a href="#dfn-step-response-end">response end</a>.</li>
+<li>If the resource's <a>Request</a>'s
+<a data-cite="Fetch#concept-request-destination">destination</a> equals to
+"document" and the resource fails the <a>timing allow check</a> algorithm, the
+user agent MUST set <a>workerStart</a> to zero and go to the step labeled
+<a href="#dfn-step-response-end">response end</a>.</li>
 <li>If there is an <a data-cite=
 "service-workers-1#dfn-containing-service-worker-registration">active
 worker</a> ([[service-workers-1]]) matching the current browsing or
@@ -1080,6 +1081,12 @@ is fired</a> at the active worker record the time as
 <a>workerStart</a>. Otherwise, if there is no matching
 <a data-cite="service-workers-1#dfn-service-worker-registration">service
 worker registration</a>, set <a>workerStart</a> value to zero.</li>
+<li>If the resource fails the <a>timing allow check</a> algorithm, the
+user agent MUST set <a>redirectStart</a>, <a>redirectEnd</a>,
+<a>domainLookupStart</a>, <a>domainLookupEnd</a>, <a>connectStart</a>,
+<a>connectEnd</a>, <a>requestStart</a>, <a>responseStart</a> and
+<a>secureConnectionStart</a> to zero and go to the step
+labeled <a href="#dfn-step-response-end">response end</a>.</li>
 <li>Let <a>domainLookupStart</a>, <a>domainLookupEnd</a>,
 <a>connectStart</a> and <a>connectEnd</a> be the same value as
 <a>fetchStart</a>.</li>
