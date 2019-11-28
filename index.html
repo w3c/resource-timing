@@ -1069,7 +1069,8 @@ agent MUST run the following substeps:
   <ol>
     <li>If the resource's <a>Request</a>'s
     <a data-cite="Fetch#concept-request-destination">destination</a> equals to
-    "document", set <a>workerStart</a> to zero.</li>
+    "document", set <a>workerStart</a> to zero. Otherwise, abort these
+    substeps.</li>
     <li>Set <a>redirectStart</a>, <a>redirectEnd</a>,
     <a>domainLookupStart</a>, <a>domainLookupEnd</a>, <a>connectStart</a>,
     <a>connectEnd</a>, <a>requestStart</a>, <a>responseStart</a> and
