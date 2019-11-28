@@ -475,11 +475,12 @@ uses the ALPN Protocol ID's to indicate the protocol in use.</p>
 <dfn>workerStart</dfn> attribute MUST return as follows:</p>
 <ol>
 <li>
-<p>If the current browsing or worker context have an
-<a data-cite="service-workers-1#dfn-containing-service-worker-registration">
-active worker</a> [[service-workers-1]] and if the resource
-passes the <a>timing allow check</a> algorithm or the resource <a>Request</a>'s
-<a data-cite="Fetch#concept-request-destination">destination</a> does not equal
+<p>If the <a data-cite="HTML#concept-environment-active-service-worker">active
+service worker</a> of the <a data-cite="DOM#context-object">context object</a>'s
+<a data-cite="HTML#relevant-settings=object">relevant settings object</a> is not
+null and if the resource passes the <a>timing allow check</a> algorithm or the
+resource <a>Request</a>'s <a
+data-cite="Fetch#concept-request-destination">destination</a> does not equal
 "document":</p>
 <ol>
 <li>the time immediately before the user agent <a data-cite=
