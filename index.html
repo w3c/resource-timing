@@ -605,18 +605,18 @@ the connection to the server to retrieve the resource, otherwise.
 <p>The returned time MUST include the time interval to establish the transport
 connection, as well as other time intervals such as SOCKS authentication. It
 MUST include the time interval to complete enough of the TLS handshake to
-request the resource. That is:</p>
+request the resource.</p>
 
 <ul>
   <li>If the user agent used TLS False Start [[RFC7918]] for this connection,
     this interval does not include the time needed to receive the server's
     Finished message.</li>
-  <li>If the user agent sends the request with early data [[RFC8470]], this
-    interval does not include the time needed to receive the server's
-    ServerHello message. However, if the user agent waits for full handshake
-    completion to send the request, this interval includes the full TLS
-    handshake even if other requests were sent using early data on this
-    connection.</li>
+  <li>If the user agent sends the request with early data [[RFC8470]] without
+    waiting for the full handshare to complete, this interval does not include
+    the time needed to receive the server's ServerHello message.</li>
+  <li>If the user agent waits for full handshake completion to send the
+    request, this interval includes the full TLS handshake even if other
+    requests were sent using early data on this connection.</li>
 </ul> 
 <p class=note>To illustrate the above with an example: The user agent
 establishes an HTTP/2 connection over TLS 1.3 to send a GET request and a POST
