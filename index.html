@@ -602,30 +602,31 @@ or local resources.</li>
 <li>The time immediately after the user agent finish establishing
 the connection to the server to retrieve the resource, otherwise.
 
-<p>The returned time MUST include the time interval to establish the transport
-connection, as well as other time intervals such as SOCKS authentication. It
-MUST include the time interval to complete enough of the TLS handshake to
-request the resource.</p>
 
 <ul>
+  <li>The returned time MUST include the time interval to establish the transport
+    connection, as well as other time intervals such as SOCKS authentication. It
+    MUST include the time interval to complete enough of the TLS handshake to
+    request the resource.</li>
   <li>If the user agent used TLS False Start [[RFC7918]] for this connection,
-    this interval does not include the time needed to receive the server's
+    this interval MUST NOT include the time needed to receive the server's
     Finished message.</li>
   <li>If the user agent sends the request with early data [[RFC8470]] without
-    waiting for the full handshare to complete, this interval does not include
+    waiting for the full handshare to complete, this interval MUST NOT include
     the time needed to receive the server's ServerHello message.</li>
   <li>If the user agent waits for full handshake completion to send the
     request, this interval includes the full TLS handshake even if other
     requests were sent using early data on this connection.</li>
 </ul> 
-<p class=note>To illustrate the above with an example: The user agent
-establishes an HTTP/2 connection over TLS 1.3 to send a GET request and a POST
-request. It sends the ClientHello at time <code>t1</code> and then sends the
-GET request with early data. The POST request is not safe [[RFC7231]] (section
-4.2.1), so the user agent waits to complete the handshake at time
-<code>t2</code> before sending it.  Although both requests used the same
-connection, the GET request reports a connectEnd value of <code>t1</code>,
-while the POST request reports a connectEnd value for <code>t2</code>.</p>
+
+<p class=note>Example: Suppose the user agent establishes an HTTP/2 connection
+over TLS 1.3 to send a GET request and a POST request. It sends the ClientHello
+at time <code>t1</code> and then sends the GET request with early data. The
+POST request is not safe [[RFC7231]] (section 4.2.1), so the user agent waits
+to complete the handshake at time <code>t2</code> before sending it.  Although
+both requests used the same connection, the GET request reports a connectEnd
+value of <code>t1</code>, while the POST request reports a connectEnd value for
+<code>t2</code>.</p>
 
 <p>If the transport connection fails and the user agent reopens a
 connection, <a data-link-for=
