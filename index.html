@@ -442,19 +442,26 @@ method</a> [[BEACON]];</li>
 <li><dfn>"other"</dfn>, if none of the above conditions match.</li>
 </ul>
 <p data-dfn-for="PerformanceResourceTiming">On getting, the
-attribute <dfn>nextHopProtocol</dfn> returns the network protocol
-used to fetch the resource, as identified by the ALPN Protocol ID
-[[RFC7301]]; resources retrieved from <a data-cite=
-"HTML#relevant-application-cache">relevant application caches</a>
-or local resources, return an empty string. When a proxy is
-configured, if a tunnel connection is established then this
-attribute MUST return the ALPN Protocol ID of the tunneled
-protocol, otherwise it MUST return the ALPN Protocol ID of the
-first hop to the proxy. In order to have precisely one way to
-represent any ALPN protocol ID, the following additional
-constraints apply: octets in the ALPN protocol MUST NOT be
-percent-encoded if they are valid token characters except "%", and
-when using percent-encoding, uppercase hex digits MUST be used.</p>
+attribute <dfn>nextHopProtocol</dfn> returns the following:
+<ul>
+  <li>If the resource fails the <a>timing allow check</a> algorithm and the
+   resource <a>Request</a>'s <a
+   data-cite="Fetch#concept-request-destination">destination</a> equals
+   "document", return an empty string. </li>
+  <li>Otherwise, if the resource was retrieved from <a data-cite=
+  "HTML#relevant-application-cache">relevant application caches</a> or local
+  resources, return an empty string.</li>
+  <li>Otherwise, return the network protocol used to fetch the resource, as
+  identified by the ALPN Protocol ID [[RFC7301]]. </li>
+</ul>
+
+<p>When a proxy is configured, if a tunnel connection is established then this
+attribute MUST return the ALPN Protocol ID of the tunneled protocol, otherwise
+it MUST return the ALPN Protocol ID of the first hop to the proxy. In order to
+have precisely one way to represent any ALPN protocol ID, the following
+additional constraints apply: octets in the ALPN protocol MUST NOT be
+percent-encoded if they are valid token characters except "%", and when using
+percent-encoding, uppercase hex digits MUST be used.</p>
 <p>Formally registered ALPN protocol IDs are documented by <a href=
 "https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids">
 IANA</a>. In case the user agent is using an experimental,
