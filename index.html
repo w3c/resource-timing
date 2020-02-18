@@ -711,7 +711,7 @@ the algorithm to <a>get response end time</a>.</p>
 algorithm, the user agent must run the following steps:</p>
 <ol>
 <li>If the fetch was aborted due to a network error, return the time
-immediately before the user agent aborts the fetch.</li> 
+immediately before the user agent aborts the fetch.</li>
 <li>Otherwise, return the time immediately after the user agent
 receives the last byte of the response or immediately before the
 transport connection is closed, whichever comes first. The resource
@@ -985,30 +985,11 @@ separated by a comma.</p>
 whether a resource's timing information can be shared with the
 <a>current document</a>, is as follows:</p>
 <ol>
-    <li><p>Let <var>tainted</var> be false.</p></li>
-    <li><p>If the resource's <a>Request</a>'s <a
-    data-cite="FETCH#concept-request-window">window</a> is not an <a
-    data-cite="HTML/webapppapis.html#environment-settings-object">environment
-    settings object</a>, set <var>tainted</var> to true</p></li>
-    <li><p>For each <var>request</var> in the resource <a
-    data-cite="FETCH#concept-fetch">fetch</a> redirection-chain:</p>
-        <ol>
-            <li><p>If <var>tainted</var> is false and <var>request</var>
-            is <a>cross-origin</a> when compared to the resource's
-            <a>Request</a>'s <a
-            data-cite="FETCH#concept-request-window">window</a>'s
-            <a data-cite="HTML/webappapis.html#concept-settings-object-origin">origin</a>,
-            set <var>tainted</var> to true.</p></li>
-            <li><p>If the <a>Timing-Allow-Origin</a> header value list
-            does not contain a value which is byte-for-byte identical to
-            the <a
-            data-cite="HTML#ascii-serialisation-of-an-origin">serialization</a>
-            of the <a>current document</a>'s <a
-            data-cite="DOM#concept-document-origin">origin</a>, nor a
-            wildcard ("<code>*</code>"), and <var>tainted</var> is
-            true, return <code>fail</code>.</p></li>
-        </ol>
-    <li><p>Return pass.</p></li>
+    <li>Let <var>response</var> be the resource's <a data-cite=
+      "FETCH#concept-response">Response</a>.</li>
+    <li>Return <var>response</var>'s <a data-cite=
+      "FETCH#concept-response-timing-allow-passed">
+      timing allow passed flag</a>.</li>
 </ol>
 <p class=note>The Timing-Allow-Origin header may arrive as part of a cached
 response. In case of cache revalidation, according to
