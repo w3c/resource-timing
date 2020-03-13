@@ -617,7 +617,7 @@ the connection to the server to retrieve the resource, otherwise.
   <li>If the user agent waits for full handshake completion to send the
     request, this interval includes the full TLS handshake even if other
     requests were sent using early data on this connection.</li>
-</ul> 
+</ul>
 
 <p class=note>Example: Suppose the user agent establishes an HTTP/2 connection
 over TLS 1.3 to send a GET request and a POST request. It sends the ClientHello
@@ -1050,9 +1050,14 @@ href="https://wpt.fyi/results/resource-timing/no-entries-for-cross-origin-css-fe
 <a data-cite="HTML#process-the-iframe-attributes">process the iframe attributes</a> or
 <a data-cite="HTML#process-the-frame-attributes">process the frame attributes</a>,
 abort the remaining steps.</li>
-<li><dfn data-lt="step-create-object">Create a new
-<a>PerformanceResourceTiming</a> object</dfn> and set
-<a>entryType</a> to the DOMString <code>resource</code>.</li>
+<li>If the <a>Request</a>'s <a data-cite="Fetch#concept-request-client">client</a>
+is null, abort the remaining steps.</li>
+<li>Let <var>realm</var> be the <a>Request</a>'s <a data-cite=
+"Fetch#concept-request-client">client</a>'s <a data-cite=
+"HTML#environment-settings-object's-realm">realm</a>.</li>
+<li>Create a <a data-cite="WEBIDL#new">new</a> <a>PerformanceResourceTiming</a>
+object with <var>realm</var> and set <a>entryType</a> to the DOMString
+<code>resource</code>.</li>
 <li>Immediately before the user agent starts to queue the resource
 for retrieval, record the <a>current time</a> in <a>startTime</a>,
 and set <a>nextHopProtocol</a> to the empty DOMString.</li>
