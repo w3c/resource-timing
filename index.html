@@ -830,10 +830,11 @@ which is initially 0.</li>
 <a>PerformanceResourceTiming</a> objects that is initially empty.</li>
 </ul>
 <pre class="idl" data-cite="HTML">partial interface Performance {
-  void clearResourceTimings ();
-  void setResourceTimingBufferSize (unsigned long maxSize);
+  undefined clearResourceTimings ();
+  undefined setResourceTimingBufferSize (unsigned long maxSize);
               attribute EventHandler onresourcetimingbufferfull;
-};</pre>
+};
+</pre>
 <p>The <dfn>Performance</dfn> interface is defined in
 [[HR-TIME-2]].</p>
 <p>The method <dfn>clearResourceTimings</dfn> runs the following
