@@ -62,7 +62,7 @@ async class='remove'></script>
     github: "https://github.com/w3c/resource-timing/",
     caniuse: "resource-timing",
     wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/45211/status",
-    xref: true,
+    xref: ["html", "hr-time-2", "performance-timeline-2"],
   };
 </script>
 </head>
@@ -617,7 +617,7 @@ the connection to the server to retrieve the resource, otherwise.
   <li>If the user agent waits for full handshake completion to send the
     request, this interval includes the full TLS handshake even if other
     requests were sent using early data on this connection.</li>
-</ul> 
+</ul>
 
 <p class=note>Example: Suppose the user agent establishes an HTTP/2 connection
 over TLS 1.3 to send a GET request and a POST request. It sends the ClientHello
@@ -890,7 +890,9 @@ entry buffer</a>.</li>
 following substeps:
 <ol style="list-style-type: lower-latin;">
 <li>Set <a>resource timing buffer full event pending flag</a> to true.</li>
-<li>Queue a task to run <a>fire a buffer full event</a>.</li>
+<li><a>Queue a task</a> on the <a href=
+  "https://w3c.github.io/performance-timeline/#dfn-performance-timeline-task-source">performance
+  timeline task source</a> to run <a>fire a buffer full event</a>.</li>
 </ol>
 <li>Add <i>new entry</i> to the <a>resource timing secondary buffer</a>.</li>
 <li>Increase <a>resource timing secondary buffer current size</a> by 1.</li>
