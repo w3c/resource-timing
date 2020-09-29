@@ -63,6 +63,13 @@
     wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/45211/status",
     wgPatentPolicy: "PP2017",
     xref: ["html", "hr-time-2", "performance-timeline-2"],
+    localBiblio: {
+      "HR-TIME-ED": {
+        title: "High Resolution Time Editor's Draft",
+        status: "ED",
+        href: "https://w3c.github.io/hr-time/", 
+      },
+    }
   };
 </script>
 </head>
@@ -216,9 +223,9 @@ milliseconds since the start of navigation of the document
 [[HR-TIME-2]]. For example, the <a data-cite=
 "NAVIGATION-TIMING-2#dom-PerformanceNavigationTiming-startTime">start
 of navigation of the document</a> occurs at time 0.</p>
-<p>The term <dfn>current time</dfn> refers to the number of
-milliseconds since the start of navigation of the document until
-the current moment in time.</p>
+<p>The term <dfn>current time</dfn> refers to the result of running 
+<a data-cite="HR-TIME-ED#dfn-current-high-resolution-time">current high 
+resolution time</a> where |current global| is the {{Window}} object.</p>
 <p class='note'>This definition of time is based on the High
 Resolution Time specification [[HR-TIME-2]] and is different from
 the definition of time used in the Navigation Timing specification
