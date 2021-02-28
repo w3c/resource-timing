@@ -365,9 +365,9 @@ interface:</p>
 <dl data-link-for="PerformanceResourceTiming">
 <dt><dfn>name</dfn></dt>
 <dd>This attribute MUST return the <a data-cite=
-"HTML#resolve-a-url">resolved URL</a> of the requested resource.
-This attribute MUST NOT change even if the <a data-cite=
-"FETCH#concept-fetch">fetch</a> redirected to a different URL.</dd>
+"FETCH#concept-request-url">URL</a> of the resource's <a data-cite=
+"FETCH#concept-request">request</a>.
+<p class="note">This is the URL requested originally, and is not affected by redirects.</dd>
 <dt><dfn>entryType</dfn></dt>
 <dd>The <a>entryType</a> attribute MUST return the DOMString
 "<code>resource</code>".</dd>
