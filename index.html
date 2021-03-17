@@ -369,7 +369,7 @@ interface:</p>
 "<code>resource</code>".</dd>
 <dt><dfn>startTime</dfn></dt>
 <dd><p data-dfn-for="PerformanceResourceTiming">On getting, the <a>startTime</a> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
 <a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
 start time</a> and the <a>relevant global object</a> for <a>this</a>.
 </dl>
@@ -416,66 +416,84 @@ is called, run [[WEBIDL]]'s <a data-cite=
 <dfn>initiatorType</dfn> attribute returns the <a data-for="PerformanceResourceTiming">initiator
 type</a> for <a>this</a>.
 <p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>duration</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
 <a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
 response end time</a> minus <a>this</a>'s
+<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>workerStart</dfn> attribute
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
+worker start time</a> and the <a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-http-fetch">HTTP fetch</a> for more info.
+<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>redirectStart</dfn> attribute
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
+redirect start time</a> and the <a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-http-redirect-fetch">HTTP Redirect fetch</a> for more info.
+<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>redirectEnd</dfn> attribute
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
+redirect end time</a> and the <a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-http-redirect-fetch">HTTP Redirect fetch</a> for more info.
+<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>fetchStart</dfn> attribute
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
+fetch start time</a> and the <a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-http-fetch">HTTP fetch</a> for more info.
+<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>domainLookupStart</dfn> attribute
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
+connection info</a>'s <a for="connection timing info">domain lookup start time</a> and the
+<a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
+for more info.
+<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>domainLookupEnd</dfn> attribute
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
+connection info</a>'s <a for="connection timing info">domain lookup end time</a> and the
+<a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
+for more info.
+<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>connectStart</dfn> attribute
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
+connection info</a>'s <a for="connection timing info">connection start time</a> and the
+<a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
+for more info.
+<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>connectEnd</dfn> attribute
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
+connection info</a>'s <a for="connection timing info">connection end time</a> and the
+<a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
+for more info.
+<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>secureConnectionStart</dfn> attribute
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
+connection info</a>'s <a for="connection timing info">secure connection start time</a> and the
+<a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
+for more info.
 <p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>nextHopProtocol</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
 <a data-for="PerformanceResourceTiming">timing info</a>'s
 <a for="fetch timing info">connection info</a>'s
 <a for="connection timing info">alpn negotiated protocol</a> and the <a>relevant global object</a>
 for <a>this</a>.
-<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>workerStart</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-worker start time</a> and the <a>relevant global object</a> for <a>this</a>.
-<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>redirectStart</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-worker start time</a> and the <a>relevant global object</a> for <a>this</a>.
-<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>redirectEnd</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-worker start time</a> and the <a>relevant global object</a> for <a>this</a>.
-<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>fetchStart</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-worker start time</a> and the <a>relevant global object</a> for <a>this</a>.
-<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>domainLookupStart</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-connection info</a>'s <a for="connection timing info">domain lookup start time</a> and the
-<a>relevant global object</a> for <a>this</a>.
-<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>domainLookupEnd</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-connection info</a>'s <a for="connection timing info">domain lookup end time</a> and the
-<a>relevant global object</a> for <a>this</a>.
-<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>connectStart</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-connection info</a>'s <a for="connection timing info">connection start time</a> and the
-<a>relevant global object</a> for <a>this</a>.
-<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>connectEnd</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-connection info</a>'s <a for="connection timing info">connection end time</a> and the
-<a>relevant global object</a> for <a>this</a>.
-<p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>secureConnectionStart</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-connection info</a>'s <a for="connection timing info">secure connection start time</a> and the
-<a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
+for more info.
 <p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>requestStart</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
 <a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
 request start time</a> and the <a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-http-fetch">HTTP fetch</a> for more info.
 <p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>responseStart</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
 <a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
 response start time</a> and the <a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-http-fetch">HTTP fetch</a> for more info.
 <p data-dfn-for="PerformanceResourceTiming">On getting, the <dfn>responseEnd</dfn> attribute
-returns the result of calling <a>convert fetch timestamp</a> given <a>this</a>'s
+returns the result of calling <a>convert fetch timestamp</a> for <a>this</a>'s
 <a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
 response end time</a> and the <a>relevant global object</a> for <a>this</a>.
 </ol>
@@ -636,20 +654,15 @@ that <code>resourcetimingbufferfull</code> event handlers call
 <section id="marking-resource-timing">
 <h2>Creating a resource timing entry</h2>
 <p>To <dfn export="">mark resource timing</dfn> given a
-<a data-cite="FETCH#concept-response">response</a> |response|, a <a>global object</a> |global| and
-a DOMString |initiatorType|, perform the following steps:
+<a data-cite="FETCH#fetch-timing-info">fetch timing info</a> |timingInfo|, a DOMString
+|requestedURL|, a DOMString |initiatorType| and a <a>global object</a> |global|:
 <ol>
-<li>Let |timingInfo| be the result of calling
-<a data-cite="FETCH#retrieve-timing-info">retrieve timing info</a> for |response|.
-<li>Let |urlList| be |response|'s
-<a data-cite="FETCH#concept-response-url-list">URL list</a>.
-<li>If |timingInfo| is null or |urlList| is null or empty, then return.
 <li><a>Queue a global task</a> on the <a>networking task source</a> with
 |global| and the following steps:
 <ol>
 <li>Create a <a>PerformanceResourceTiming</a> object, with its
 <a data-for="PerformanceResourceTiming">initiator type</a> set to |initiatorType|, its
-<a data-for="PerformanceResourceTiming">requested URL</a> set to |urlList|'s first item, and its
+<a data-for="PerformanceResourceTiming">requested URL</a> set to |requestedURL|, and its
 <a data-for="PerformanceResourceTiming">timing info</a> set to |timingInfo|.
 <li><dfn data-lt="step-final-queue"><a data-cite=
 "PERFORMANCE-TIMELINE-2#dfn-queue-a-performanceentry">Queue</a> the
