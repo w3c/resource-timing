@@ -662,9 +662,6 @@ that <code>resourcetimingbufferfull</code> event handlers call
 <a data-cite="FETCH#fetch-timing-info">fetch timing info</a> |timingInfo|, a DOMString
 |requestedURL|, a DOMString |initiatorType| and a <a>global object</a> |global|:
 <ol>
-<li><a>Queue a global task</a> on the <a>networking task source</a> with
-|global| and the following steps:
-<ol>
 <li>Create a <a>PerformanceResourceTiming</a> object, with its
 <a data-for="PerformanceResourceTiming">initiator type</a> set to |initiatorType|, its
 <a data-for="PerformanceResourceTiming">requested URL</a> set to |requestedURL|, and its
@@ -676,7 +673,6 @@ that <code>resourcetimingbufferfull</code> event handlers call
 <a>PerformanceResourceTiming</a> object to |global|'s
 <a data-cite="PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer">performance
 entry buffer</a>.</li>
-</ol>
 </ol>
 <p>To <dfn>convert fetch timestamp</dfn> given <a>DOMHighResTimeStamp</a> |ts| and
 <a>global object</a> |global|, do the following:
