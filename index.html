@@ -429,7 +429,7 @@ start time</a>.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>workerStart</dfn> getter
 steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
 <a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-worker start time</a> and the <a>relevant global object</a> for <a>this</a>.
+service worker start time</a> and the <a>relevant global object</a> for <a>this</a>.
 See <a data-cite="FETCH#concept-http-fetch">HTTP fetch</a> for more info.
 <p data-dfn-for="PerformanceResourceTiming"he <dfn>redirectStartTime</dfn> getter
 steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
@@ -484,7 +484,7 @@ for more info.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>nextHopProtocol</dfn> getter
 steps are to return <a>this</a>' <a data-for="PerformanceResourceTiming">timing info</a>'s
 <a for="fetch timing info">connection info</a>'s
-<a for="connection timing info">alpn negotiated protocol</a>.
+<a for="connection timing info">ALPN negotiated protocol</a>.
 See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
 for more info.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>requestStart</dfn> getter
@@ -674,6 +674,7 @@ that <code>resourcetimingbufferfull</code> event handlers call
 <a data-cite="PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer">performance
 entry buffer</a>.</li>
 </ol>
+</ol>
 <p>To <dfn>convert fetch timestamp</dfn> given <a>DOMHighResTimeStamp</a> |ts| and
 <a>global object</a> |global|, do the following:
 <ol>
@@ -689,7 +690,7 @@ requested that resource. To limit the access to the
 <a>PerformanceResourceTiming</a> interface, the <a data-cite=
 "HTML#same-origin">same origin</a> policy is enforced by default
 and certain attributes are set to zero, as described in <a href=
-"#sec-cross-origin-resources"></a>. Resource providers can
+"FETCH#http-fetch"></a>. Resource providers can
 explicitly allow all timing information to be collected for a
 resource by adding the <a data-cite="FETCH#tao-check">Timing-Allow-Origin</a> HTTP response
 header, which specifies the domains that are allowed to access the
