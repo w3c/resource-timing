@@ -66,7 +66,7 @@
     subjectPrefix: "[ResourceTiming]",
     github: "https://github.com/w3c/resource-timing/",
     caniuse: "resource-timing",
-    xref: ["html", "hr-time-3", "performance-timeline-2"],
+    xref: ["html", "hr-time-3", "performance-timeline-2", "fetch"],
   };
 </script>
 </head>
@@ -374,9 +374,10 @@ interface:</p>
 <dd>The <a>entryType</a> getter steps are to return the DOMString "<code>resource</code>".</dd>
 <dt><dfn>startTime</dfn></dt>
 <dd><p data-dfn-for="PerformanceResourceTiming">The <a>startTime</a> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-start time</a> and <a>this</a>' <a>relevant global object</a>.
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="fetch#fetch-timing-info-start-time">start time</a> and <a>this</a>'
+<a>relevant global object</a>.
 </dl>
 <p>
   <code><dfn data-cite="hr-time-2#dom-domhighrestimestamp">DOMHighResTimeStamp</dfn></code> is defined in [[HR-TIME-2]].
@@ -417,90 +418,101 @@ DOMString <a data-dfn-for="PerformanceResourceTiming"><dfn>initiator type</dfn><
 <p data-dfn-for="PerformanceResourceTiming">When <dfn>toJSON</dfn>
 is called, run [[WEBIDL]]'s <a data-cite=
 "WEBIDL#default-tojson-operation">default toJSON operation</a>.</p>
-<p data-dfn-for="PerformanceResourceTiming">T
+<p data-dfn-for="PerformanceResourceTiming">
 <dfn>initiatorType</dfn> getter steps would be to return the
 <a data-for="PerformanceResourceTiming">initiator type</a> for <a>this</a>.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>duration</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-response end time</a> minus the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-start time</a>.
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="FETCH#fetch-timing-info-end-time">end time</a> minus the result of calling
+<a>convert fetch timestamp</a> for <a>this</a>' <a data-for="PerformanceResourceTiming">timing
+info</a>'s <a data-cite="FETCH#fetch-timing-info-start-time"> start time</a>.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>workerStart</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-service worker start time</a> and the <a>relevant global object</a> for <a>this</a>.
-See <a data-cite="FETCH#concept-http-fetch">HTTP fetch</a> for more info.
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="FETCH#fetch-timing-info-final-service-worker-start-time">final service worker start
+time</a> and the <a>relevant global object</a> for <a>this</a>.
+See [=/HTTP fetch=] for more info.
 <p data-dfn-for="PerformanceResourceTiming"he <dfn>redirectStartTime</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-redirect start time</a> and the <a>relevant global object</a> for <a>this</a>.
-See <a data-cite="FETCH#concept-http-redirect-fetch">HTTP Redirect fetch</a> for more info.
-<p data-dfn-for="PerformanceResourceTiming">The <dfn>redirectEnd</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-redirect end time</a> and the <a>relevant global object</a> for <a>this</a>.
-See <a data-cite="FETCH#concept-http-redirect-fetch">HTTP Redirect fetch</a> for more info.
-<p data-dfn-for="PerformanceResourceTiming">The <dfn>fetchStart</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-fetch start time</a> and the <a>relevant global object</a> for <a>this</a>.
-See <a data-cite="FETCH#concept-http-fetch">HTTP fetch</a> for more info.
-<p data-dfn-for="PerformanceResourceTiming">The <dfn>domainLookupStart</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-connection info</a>'s <a for="connection timing info">domain lookup start time</a> and the
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="fetch#fetch-timing-info-redirect-start-time">redirect start time</a> and the
 <a>relevant global object</a> for <a>this</a>.
+See [=/HTTP-redirect fetch=] for more info.
+<p data-dfn-for="PerformanceResourceTiming">The <dfn>redirectEnd</dfn> getter
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="fetch#fetch-timing-info-redirect-end-time">redirect end time</a> and the
+<a>relevant global object</a> for <a>this</a>.
+See [=/HTTP-redirect fetch=] for more info.
+<p data-dfn-for="PerformanceResourceTiming">The <dfn>fetchStart</dfn> getter
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="fetch#fetch-timing-info-post-redirect-start-time">post-redirect star time</a> and the
+<a>relevant global object</a> for <a>this</a>. See
+[=/HTTP fetch=] for more info.
+<p data-for="PerformanceResourceTiming">The <dfn>domainLookupStart</dfn> getter
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a data-cite="FETCH#fetch-timing-info-final-connection-timing-info">
+final connection timing info</a>'s
+<a data-cite="FETCH#connection-timing-info-domain-lookup-start-time">domain lookup start time</a>
+and the <a>relevant global object</a> for <a>this</a>.
 See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
 for more info.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>domainLookupEnd</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-connection info</a>'s <a for="connection timing info">domain lookup end time</a> and the
-<a>relevant global object</a> for <a>this</a>.
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s <a data-cite="FETCH#fetch-timing-info-final-connection-timing-info">
+final connection timing info</a>'s <a data-cite="FETCH#connection-timing-info-domain-lookup-start-time">domain lookup start time</a>
+and the <a>relevant global object</a> for <a>this</a>.
 See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
 for more info.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>connectStart</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-connection info</a>'s <a for="connection timing info">connection start time</a> and the
-<a>relevant global object</a> for <a>this</a>.
-See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
-for more info.
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="FETCH#fetch-timing-info-final-connection-timing-info">final connection
+timing info</a>'s <a data-cite="FETCH#connection-timing-info-connection-start-time">connection
+start time</a> and the <a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection
+timing info</a> for more info.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>connectEnd</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-connection info</a>'s <a for="connection timing info">connection end time</a> and the
-<a>relevant global object</a> for <a>this</a>.
-See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
-for more info.
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="FETCH#fetch-timing-info-final-connection-timing-info">final connection
+timing info</a>'s <a data-cite="FETCH#connection-timing-info-connection-end-time">connection
+end time</a> and the <a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording
+connection timing info</a> for more info.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>secureConnectionStart</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-connection info</a>'s <a for="connection timing info">secure connection start time</a> and the
-<a>relevant global object</a> for <a>this</a>.
-See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
-for more info.
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="FETCH#fetch-timing-info-final-connection-timing-info">final connection
+timing info</a>'s <a data-cite="FETCH#connection-timing-info-secure-connection-start-time">secure
+connection start time</a> and the <a>relevant global object</a> for <a>this</a>.
+See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection
+timing info</a> for more info.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>nextHopProtocol</dfn> getter
-steps are to return <a>this</a>' <a data-for="PerformanceResourceTiming">timing info</a>'s
-<a for="fetch timing info">connection info</a>'s
-<a for="connection timing info">ALPN negotiated protocol</a>.
-See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording connection timing info</a>
-for more info.
+steps are to [=/isomorphic decode=] <a>this</a>' <a data-for="PerformanceResourceTiming">timing
+info</a>'s <a data-cite="FETCH#fetch-timing-info-final-connection-timing-info">connection
+info</a>'s <a data-cite="FETCH#connection-timing-info-alpn-negotiated-protocol">ALPN negotiated
+protocol</a>. See <a data-cite="FETCH#concept-recording-connection-timing-info">Recording
+connection timing info</a> for more info. [[INFRA]]
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>requestStart</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-request start time</a> and the <a>relevant global object</a> for <a>this</a>.
-See <a data-cite="FETCH#concept-http-fetch">HTTP fetch</a> for more info.
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="FETCH#fetch-timing-info-final-network-request-start-time">final network-request
+start time</a> and the <a>relevant global object</a> for <a>this</a>.
+See [=/HTTP fetch=] for more info.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>responseStart</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-response start time</a> and the <a>relevant global object</a> for <a>this</a>.
-See <a data-cite="FETCH#concept-http-fetch">HTTP fetch</a> for more info.
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="FETCH#fetch-timing-info-final-network-response-start-time">final network-response
+start time</a> and the <a>relevant global object</a> for <a>this</a>.
+See [=/HTTP fetch=] for more info.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>responseEnd</dfn> getter
-steps are to return the result of calling <a>convert fetch timestamp</a> for <a>this</a>'
-<a data-for="PerformanceResourceTiming">timing info</a>'s <a for="fetch timing info">
-response end time</a> and the <a>relevant global object</a> for <a>this</a>.
+steps are to <a>convert fetch timestamp</a> for <a>this</a>'
+<a data-for="PerformanceResourceTiming">timing info</a>'s
+<a data-cite="FETCH#fetch-timing-info-end-time">end time</a> and the <a>relevant global object</a>
+for <a>this</a>.
 </ol>
 <p class='note'>A user agent implementing <a>PerformanceResourceTiming</a> would
 need to include <code>"resource"</code> in <a data-cite=
@@ -655,7 +667,23 @@ that <code>resourcetimingbufferfull</code> event handlers call
 </li>
 </ol>
 </section>
-
+<section id="processing-model">
+ <h3>Processing Model</h3>
+ <p>The following graph illustrates the timing attributes defined by
+ the PerformanceResourceTiming interface. Attributes in parenthesis
+ may not be available when <a data-cite="FETCH#concept-fetch"
+ data-lt='fetch'>fetching</a> <a>cross-origin</a> resources. User agents may
+ perform internal processing in between timings, which allow for non-normative
+ intervals between timings.</p>
+ <figure data-lt='Timing attributes'>
+ <figcaption>This figure illustrates the timing attributes defined
+ by the <a>PerformanceResourceTiming</a> interface. Attributes in
+ parenthesis indicate that they may not be available if the resource
+ fails the <a href="FETCH#tao-check">timing allow check</a> algorithm.</figcaption>
+ <!-- Source: https://docs.google.com/document/d/1I7XGNJ57Qgjkg9pL11s7MK7zGEcwAgdNj1W5f7NKbW8/ -->
+ <img src="timestamp-diagram.svg" alt="Resource Timing attributes"
+ style='margin-top: 1em'></figure>
+</section>
 <section id="marking-resource-timing">
 <h2>Creating a resource timing entry</h2>
 <p>To <dfn export="">mark resource timing</dfn> given a
@@ -679,7 +707,8 @@ entry buffer</a>.</li>
 <a>global object</a> |global|, do the following:
 <ol>
 <li>If |ts| is zero, return zero.
-<li>Otherwise, return the <a>relative high resolution time</a> given |ts| and |global|.
+<li>Otherwise, return the <a data-cite="HR-TIME#relative-high-resolution-coarse-time">relative
+high resolution coarse time</a> andgiven |ts| and |global|.
 </ol>
 </section>
 <section id="sec-privacy-security" class='informative'>
@@ -690,9 +719,9 @@ requested that resource. To limit the access to the
 <a>PerformanceResourceTiming</a> interface, the <a data-cite=
 "HTML#same-origin">same origin</a> policy is enforced by default
 and certain attributes are set to zero, as described in <a href=
-"FETCH#http-fetch"></a>. Resource providers can
+[=/HTTP fetch=]. Resource providers can
 explicitly allow all timing information to be collected for a
-resource by adding the <a data-cite="FETCH#tao-check">Timing-Allow-Origin</a> HTTP response
+resource by adding the [<a data-cite="FETCH#tao-check">Timing-Allow-Origin</a>] HTTP response
 header, which specifies the domains that are allowed to access the
 timing information.</p>
 <p>Statistical fingerprinting is a privacy concern where a
@@ -700,8 +729,7 @@ malicious web site may determine whether a user has visited a
 third-party web site by measuring the timing of cache hits and
 misses of resources in the third-party web site. Though the
 <a>PerformanceResourceTiming</a> interface gives timing information
-for resources in a document, the <a href=
-"#sec-cross-origin-resources">cross-origin restrictions</a> prevent
+for resources in a document, the <a data-cite="FETCH#">cross-origin restrictions</a> prevent
 making this privacy concern any worse than it is today using the
 load event on resources to measure timing to determine cache hits
 and misses.</p>
