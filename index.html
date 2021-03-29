@@ -646,9 +646,34 @@ that <code>resourcetimingbufferfull</code> event handlers call
 </li>
 </ol>
 </section>
-<section id="processing-model">
- <h3>Processing Model</h3>
- <p>The following graph illustrates the timing attributes defined by
+<section id="sec-cross-origin-resources">
+ <h3>Cross-origin Resources</h3>
+ <p>This section is non-normative.</p>
+ <p data-dfn-for="PerformanceResourceTiming">As detailed in [=fetch=],
+ cross-origin resources are included as <a>PerformanceResourceTiming</a> objects in the
+ <a data-cite="PERFORMANCE-TIMELINE-2#performance-timeline">Performance
+ Timeline</a>. If the <a href="FETCH#concept-tao-check">timing allow check</a> algorithm
+ fails for a resource, these attributes of its <a>PerformanceResourceTiming</a>
+ object are set to zero:
+{{PerformanceResourceTiming/redirectStart}}, {{PerformanceResourceTiming/redirectEnd}},
+{{PerformanceResourceTiming/domainLookupStart}}, {{PerformanceResourceTiming/domainLookupEnd}},
+{{PerformanceResourceTiming/connectStart}}, {{PerformanceResourceTiming/connectEnd}},
+{{PerformanceResourceTiming/requestStart}}, {{PerformanceResourceTiming/responseStart}},
+{{PerformanceResourceTiming/secureConnectionStart}}, {{PerformanceResourceTiming/transferSize}},
+{{PerformanceResourceTiming/encodedBodySize}}, and {{PerformanceResourceTiming/decodedBodySize}}.</p>
+ <p>Server-side applications may return the
+ <a data-cite="FETCH#concept-tao-check">Timing-Allow-Origin</a>
+ HTTP response header to allow the User
+ Agent to fully expose, to the document origin(s) specified, the
+ values of attributes that would have been zero due to the
+ <a>cross-origin</a> restrictions previously specified in this
+ section.</p>
+</section>
+ 
+<section id="attribute-descriptions">
+ <h3>Resource Timing Attributes</h3>
+ <p>This section is non-normative.</p>
+<p>The following graph illustrates the timing attributes defined by
  the PerformanceResourceTiming interface. Attributes in parenthesis
  may not be available when <a data-cite="FETCH#concept-fetch"
  data-lt='fetch'>fetching</a> <a>cross-origin</a> resources. User agents may
@@ -658,7 +683,7 @@ that <code>resourcetimingbufferfull</code> event handlers call
  <figcaption>This figure illustrates the timing attributes defined
  by the <a>PerformanceResourceTiming</a> interface. Attributes in
  parenthesis indicate that they may not be available if the resource
- fails the <a href="FETCH#tao-check">timing allow check</a> algorithm.</figcaption>
+ fails the <a href="FETCH#concept-tao-check">timing allow check</a> algorithm.</figcaption>
  <!-- Source: https://docs.google.com/document/d/1I7XGNJ57Qgjkg9pL11s7MK7zGEcwAgdNj1W5f7NKbW8/ -->
  <img src="timestamp-diagram.svg" alt="Resource Timing attributes"
  style='margin-top: 1em'></figure>
@@ -669,7 +694,7 @@ that <code>resourcetimingbufferfull</code> event handlers call
 [=/fetch timing info=] |timingInfo|, a DOMString
 |requestedURL|, a DOMString |initiatorType| and a <a>global object</a> |global|:
 <ol>
-<li>Create a <a>PerformanceResourceTiming</a> object, with its
+<li>Create a <a>PerformanceResourceTiming</a> object in |global|'s [=global object/realm=], with its
 <a data-for="PerformanceResourceTiming">initiator type</a> set to |initiatorType|, its
 <a data-for="PerformanceResourceTiming">requested URL</a> set to |requestedURL|, and its
 <a data-for="PerformanceResourceTiming">timing info</a> set to |timingInfo|.
@@ -687,7 +712,7 @@ entry buffer</a>.</li>
 <ol>
 <li>If |ts| is zero, return zero.
 <li>Otherwise, return the <a data-cite="HR-TIME#relative-high-resolution-coarse-time">relative
-high resolution coarse time</a> andgiven |ts| and |global|.
+high resolution coarse time</a> given |ts| and |global|.
 </ol>
 </section>
 <section id="sec-privacy-security" class='informative'>
@@ -697,10 +722,9 @@ information for a resource to any web page or worker that has
 requested that resource. To limit the access to the
 <a>PerformanceResourceTiming</a> interface, the <a data-cite=
 "HTML#same-origin">same origin</a> policy is enforced by default
-and certain attributes are set to zero, as described in <a href=
-[=/HTTP fetch=]. Resource providers can
+and certain attributes are set to zero, as described in [=/HTTP fetch=]. Resource providers can
 explicitly allow all timing information to be collected for a
-resource by adding the [<a data-cite="FETCH#tao-check">Timing-Allow-Origin</a>] HTTP response
+resource by adding the [=request/timing allow failed flag|Timing Allow Origin=] HTTP response
 header, which specifies the domains that are allowed to access the
 timing information.</p>
 <p>Statistical fingerprinting is a privacy concern where a
