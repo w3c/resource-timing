@@ -646,9 +646,41 @@ that <code>resourcetimingbufferfull</code> event handlers call
 </li>
 </ol>
 </section>
-<section id="sec-cross-origin-resources">
+<section id="sec-timing-allow-origin"> 
+ <h4><code>Timing-Allow-Origin</code> Response Header</h4>
+<p class="note">This section is non-normative.</p>
+ <p>The <dfn>Timing-Allow-Origin</dfn> HTTP response header field
+ can be used to communicate a policy indicating origin(s) that are
+ allowed to see values of attributes that would have been zero due
+ to the cross-origin restrictions. The header's value is represented
+ by the following ABNF [[RFC5234]] (using <a data-cite=
+ "RFC7230#section-7">List Extension</a>, [[RFC7230]]):</p>
+ <pre class="abnf">
+       Timing-Allow-Origin = 1#( <a data-cite=
+ "FETCH#origin-header">origin-or-null</a> / <a data-cite=
+ "FETCH#http-new-header-syntax">wildcard</a> )
+     </pre>
+ <p>The sender MAY generate multiple <a>Timing-Allow-Origin</a>
+ header fields. The recipient MAY combine multiple
+ <a>Timing-Allow-Origin</a> header fields by appending each
+ subsequent field value to the combined field value in order,
+ separated by a comma.</p>
+ <p>The <dfn>timing allow check</dfn> algorithm, which checks
+whether a resource's timing information can be shared with the
+ <a>current document</a>, is as follows:</p>
+ <ol>
+     <li>Let <var>response</var> be the resource's <a data-cite=
+       "FETCH#concept-response">Response</a>.</li>
+     <li>Return <var>response</var>'s <a data-cite=
+       "FETCH#concept-response-timing-allow-passed">
+       timing allow passed flag</a>.</li>
+ </ol>
+ <p class=note>The Timing-Allow-Origin header may arrive as part of a cached
+ response. In case of cache revalidation, according to
+ <a href="https://tools.ietf.org/html/rfc7234#section-4.3.4">RFC 7234</a>,
+ the header's value may come from the revalidation response, or if not present
+ there, from the original cached resource.</p>
  <h3>Cross-origin Resources</h3>
- <p>This section is non-normative.</p>
  <p data-dfn-for="PerformanceResourceTiming">As detailed in [=fetch=],
  cross-origin resources are included as <a>PerformanceResourceTiming</a> objects in the
  <a data-cite="PERFORMANCE-TIMELINE-2#performance-timeline">Performance
@@ -669,7 +701,6 @@ that <code>resourcetimingbufferfull</code> event handlers call
  <a>cross-origin</a> restrictions previously specified in this
  section.</p>
 </section>
- 
 <section id="attribute-descriptions">
  <h3>Resource Timing Attributes</h3>
  <p>This section is non-normative.</p>
