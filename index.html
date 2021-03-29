@@ -646,6 +646,28 @@ that <code>resourcetimingbufferfull</code> event handlers call
 </li>
 </ol>
 </section>
+
+<section id="sec-cross-origin-resources">
+ <h3>Cross-origin Resources</h3>
+ <p data-dfn-for="PerformanceResourceTiming">As detailed in [=fetch=],
+ cross-origin resources are included as <a>PerformanceResourceTiming</a> objects in the
+ <a data-cite="PERFORMANCE-TIMELINE-2#performance-timeline">Performance
+ Timeline</a>. If the <a href="FETCH#concept-tao-check">timing allow check</a> algorithm
+ fails for a resource, these attributes of its <a>PerformanceResourceTiming</a>
+ object are set to zero:
+{{PerformanceResourceTiming/redirectStart}}, {{PerformanceResourceTiming/redirectEnd}},
+{{PerformanceResourceTiming/domainLookupStart}}, {{PerformanceResourceTiming/domainLookupEnd}},
+{{PerformanceResourceTiming/connectStart}}, {{PerformanceResourceTiming/connectEnd}},
+{{PerformanceResourceTiming/requestStart}}, {{PerformanceResourceTiming/responseStart}},
+{{PerformanceResourceTiming/secureConnectionStart}}, {{PerformanceResourceTiming/transferSize}},
+{{PerformanceResourceTiming/encodedBodySize}}, and {{PerformanceResourceTiming/decodedBodySize}}.</p>
+ <p>Server-side applications may return the
+ <a data-cite="FETCH#concept-tao-check">Timing-Allow-Origin</a>
+ HTTP response header to allow the User
+ Agent to fully expose, to the document origin(s) specified, the
+ values of attributes that would have been zero due to the
+ <a>cross-origin</a> restrictions previously specified in this
+ section.</p>
 <section id="sec-timing-allow-origin"> 
  <h4><code>Timing-Allow-Origin</code> Response Header</h4>
 <p class="note">This section is non-normative.</p>
@@ -680,26 +702,6 @@ whether a resource's timing information can be shared with the
  <a href="https://tools.ietf.org/html/rfc7234#section-4.3.4">RFC 7234</a>,
  the header's value may come from the revalidation response, or if not present
  there, from the original cached resource.</p>
- <h3>Cross-origin Resources</h3>
- <p data-dfn-for="PerformanceResourceTiming">As detailed in [=fetch=],
- cross-origin resources are included as <a>PerformanceResourceTiming</a> objects in the
- <a data-cite="PERFORMANCE-TIMELINE-2#performance-timeline">Performance
- Timeline</a>. If the <a href="FETCH#concept-tao-check">timing allow check</a> algorithm
- fails for a resource, these attributes of its <a>PerformanceResourceTiming</a>
- object are set to zero:
-{{PerformanceResourceTiming/redirectStart}}, {{PerformanceResourceTiming/redirectEnd}},
-{{PerformanceResourceTiming/domainLookupStart}}, {{PerformanceResourceTiming/domainLookupEnd}},
-{{PerformanceResourceTiming/connectStart}}, {{PerformanceResourceTiming/connectEnd}},
-{{PerformanceResourceTiming/requestStart}}, {{PerformanceResourceTiming/responseStart}},
-{{PerformanceResourceTiming/secureConnectionStart}}, {{PerformanceResourceTiming/transferSize}},
-{{PerformanceResourceTiming/encodedBodySize}}, and {{PerformanceResourceTiming/decodedBodySize}}.</p>
- <p>Server-side applications may return the
- <a data-cite="FETCH#concept-tao-check">Timing-Allow-Origin</a>
- HTTP response header to allow the User
- Agent to fully expose, to the document origin(s) specified, the
- values of attributes that would have been zero due to the
- <a>cross-origin</a> restrictions previously specified in this
- section.</p>
 </section>
 <section id="attribute-descriptions">
  <h3>Resource Timing Attributes</h3>
