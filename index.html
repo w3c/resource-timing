@@ -649,11 +649,11 @@ that <code>resourcetimingbufferfull</code> event handlers call
 
 <section id="sec-cross-origin-resources">
  <h3>Cross-origin Resources</h3>
- <p class="note" data-dfn-for="PerformanceResourceTiming">As detailed in [=fetch=],
+ <p class="note" data-dfn-for="PerformanceResourceTiming">As detailed in [=Fetch=],
  cross-origin resources are included as <a>PerformanceResourceTiming</a> objects in the
  <a data-cite="PERFORMANCE-TIMELINE-2#performance-timeline">Performance
  Timeline</a>. If the <a href="FETCH#concept-tao-check">timing allow check</a> algorithm
- fails for a resource, these attributes of its <a>PerformanceResourceTiming</a>
+ fails for a resource, the following attributes of its <a>PerformanceResourceTiming</a>
  object are set to zero:
 {{PerformanceResourceTiming/redirectStart}}, {{PerformanceResourceTiming/redirectEnd}},
 {{PerformanceResourceTiming/domainLookupStart}}, {{PerformanceResourceTiming/domainLookupEnd}},
@@ -670,7 +670,6 @@ that <code>resourcetimingbufferfull</code> event handlers call
  section.</p>
 <section id="sec-timing-allow-origin"> 
  <h4><code>Timing-Allow-Origin</code> Response Header</h4>
-<p class="note">This section is non-normative.</p>
  <p>The <dfn>Timing-Allow-Origin</dfn> HTTP response header field
  can be used to communicate a policy indicating origin(s) that are
  allowed to see values of attributes that would have been zero due
