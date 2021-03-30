@@ -271,13 +271,12 @@ later aborted (e.g. due to a network error) MAY be included as
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
 Timeline</a> and MUST contain initialized attribute values for
 processed substeps of the
-<a href="FETCH#concept-fetch">fetching process</a>.</p>
+[=fetch|fetching process=].</p>
 <p>The rest of this section is non-normative.</p>
 <p>Examples:</p>
 <ul>
 <li>If the same canonical URL is used as the <code>src</code>
-attribute of two HTML <code>IMG</code> elements, the <a data-cite=
-"FETCH#concept-fetch">fetch</a> of the resource initiated by the
+attribute of two HTML <code>IMG</code> elements, the [=fetch=] of the resource initiated by the
 first HTML <code>IMG</code> element SHOULD be included as a
 <a>PerformanceResourceTiming</a> object in the <a data-cite=
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
@@ -290,8 +289,7 @@ only occurrence in the <a data-cite=
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
 Timeline</a>.</li>
 <li>If the <code>src</code> attribute of a HTML <code>IMG</code>
-element is changed via script, both the <a data-cite=
-"FETCH#concept-fetch">fetch</a> of the original resource as well as
+element is changed via script, both the [=fetch=] of the original resource as well as
 the <a data-cite="FETCH#concept-fetch">fetch</a> of the new URL
 would be included as <a>PerformanceResourceTiming</a> objects in
 the <a data-cite=
@@ -303,8 +301,7 @@ load the <code>about:blank</code> document for the
 <code>IFRAME</code>. If at a later time the <code>src</code>
 attribute is changed dynamically via script, the user agent may
 <a data-cite="FETCH#concept-fetch">fetch</a> the new URL resource
-for the <code>IFRAME</code>. In this case, only the <a data-cite=
-"FETCH#concept-fetch">fetch</a> of the new URL would be included as
+for the <code>IFRAME</code>. In this case, only the [=fetch=] of the new URL would be included as
 a <a>PerformanceResourceTiming</a> object in the <a data-cite=
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
 Timeline</a>.</li>
@@ -313,8 +310,7 @@ same canonical URL, both <a data-cite=
 "FETCH#concept-fetch">fetches</a> of the resource would be included
 as a <a>PerformanceResourceTiming</a> object in the <a data-cite=
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-Timeline</a>. This is because the <a data-cite=
-"FETCH#concept-fetch">fetch</a> of the resource for the second
+Timeline</a>. This is because the [=fetch=] of the resource for the second
 <code>XMLHttpRequest</code> cannot reuse the download issued for
 the first <code>XMLHttpRequest</code>.</li>
 <li>If an HTML <code>IFRAME</code> element is included on the page,
@@ -336,8 +332,7 @@ source [[RFC2397]], then this resource will not be included as a
 "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
 Timeline</a>. By definition <code><a href=
 "https://tools.ietf.org/html/rfc2397">data: URI</a></code> contains
-embedded data and does not require a <a data-cite=
-"FETCH#concept-fetch">fetch</a>.</li>
+embedded data and does not require a [=fetch=].</li>
 <li>If a resource <a data-cite="FETCH#concept-fetch">fetch</a> was
 aborted due to a networking error (e.g. DNS, TCP, or TLS error),
 then the fetch MAY be included as a
