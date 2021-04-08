@@ -720,19 +720,24 @@ that <code>resourcetimingbufferfull</code> event handlers call
 [=/fetch timing info=] |timingInfo|, a DOMString
 |requestedURL|, a DOMString |initiatorType| and a <a>global object</a> |global|:
 <ol>
-<li>Create a <a>PerformanceResourceTiming</a> object in |global|'s [=global object/realm=], with its
-<a data-for="PerformanceResourceTiming">initiator type</a> set to |initiatorType|, its
-<a data-for="PerformanceResourceTiming">requested URL</a> set to |requestedURL|, and its
-<a data-for="PerformanceResourceTiming">timing info</a> set to |timingInfo|.
+<li>Create a <a>PerformanceResourceTiming</a> object |entry| in |global|'s [=global object/realm=].
+<li><a>Setup the resource timing entry</a> for |entry|, given |initiatorType|, |requestedURL| and
+|timingInfo|.
 <li><dfn data-lt="step-final-queue"><a data-cite=
-"PERFORMANCE-TIMELINE-2#dfn-queue-a-performanceentry">Queue</a> the
-<a>PerformanceResourceTiming</a> object</dfn>.</li>
-<li><a data-lt='add a PerformanceResourceTiming entry'>Add</a> the
-<a>PerformanceResourceTiming</a> object to |global|'s
+"PERFORMANCE-TIMELINE-2#dfn-queue-a-performanceentry">Queue</a> |entry|.</li>
+<li><a data-lt='add a PerformanceResourceTiming entry'>Add</a> |entry| object to |global|'s
 <a data-cite="PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer">performance
 entry buffer</a>.</li>
 </ol>
+<p>To <dfn export="">setup the resource timing entry</dfn> for <a>PerformanceResourceTiming</a> |entry|
+given DOMStrring |initiatorType|, DOMString |requestedURL|, and [=/fetch timing info=] |timingInfo|,
+perform the following steps:</p>
+<ol>
+<li>Set |entry|'s <a data-for="PerformanceResourceTiming">initiator type</a> to |initiatorType|.
+<li>Set |entry|'s <a data-for="PerformanceResourceTiming">requested URL</a> to |requestedURL|.
+<li>Set |entry|'s <a data-for="PerformanceResourceTiming">timing info</a> to |timingInfo|.
 </ol>
+
 <p>To <dfn>convert fetch timestamp</dfn> given {{DOMHighResTimeStamp}} |ts| and
 <a>global object</a> |global|, do the following:
 <ol>
