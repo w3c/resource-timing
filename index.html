@@ -503,6 +503,9 @@ steps are to perform the following steps:
 <li><p>Return <a>this</a>'s
 <a data-for="PerformanceResourceTiming">timing info</a>'s [=fetch timing info/encoded body size=]
 plus 300.
+<p class='note'>The constant number added to `transferSize` replaces exposing the total byte size
+of the HTTP headers, as that may expose the presence of certain cookies.
+See <a href="https://github.com/w3c/resource-timing/issues/238">this issue</a>.
 </ol>
 </ol>
 <p class='note'>A user agent implementing <a>PerformanceResourceTiming</a> would
@@ -742,7 +745,7 @@ perform the following steps:
 <ol>
 <li>Create a <a>PerformanceResourceTiming</a> object |entry| in |global|'s [=global object/realm=].
 <li><a>Setup the resource timing entry</a> for |entry|, given |initiatorType|, |requestedURL|,
-|timingInfo|, |cacheMode|.
+|timingInfo|, and |cacheMode|.
 <li><dfn data-lt="step-final-queue"><a data-cite=
 "PERFORMANCE-TIMELINE-2#dfn-queue-a-performanceentry">Queue</a> |entry|.</li>
 <li><a data-lt='add a PerformanceResourceTiming entry'>Add</a> |entry| to |global|'s
