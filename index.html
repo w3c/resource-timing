@@ -382,6 +382,10 @@ DOMString <a data-dfn-for="PerformanceResourceTiming"><dfn>initiator type</dfn><
 <p>A <a>PerformanceResourceTiming</a> has an associated DOMString
 <a data-dfn-for="PerformanceResourceTiming"><dfn>requested URL</dfn></a>.
 
+<p>A <a>PerformanceResourceTiming</a> has an associated DOMString
+<a data-dfn-for="PerformanceResourceTiming"><dfn>cache mode</dfn></a> (the empty string or
+"<code>local</code>").
+
 <p>A <a>PerformanceResourceTiming</a> has an associated
 [=fetch timing info=] <a data-dfn-for="PerformanceResourceTiming"><dfn>timing info</dfn></a>.
 
@@ -485,6 +489,24 @@ steps are to <a>convert fetch timestamp</a> for <a>this</a>'s
 <a data-for="PerformanceResourceTiming">timing info</a>'s
 [=fetch timing info/end time=] and the <a>relevant global object</a> for <a>this</a>.
 See [=/fetch=] for more info.
+<p data-dfn-for="PerformanceResourceTiming">The <dfn>encodedBodySize</dfn> getter
+steps are to return <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s [=fetch timing info/encoded body size=].
+<p data-dfn-for="PerformanceResourceTiming">The <dfn>decodedBodySize</dfn> getter
+steps are to return <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s [=fetch timing info/decoded body size=].
+<p data-dfn-for="PerformanceResourceTiming">The <dfn>transferSize</dfn> getter
+steps are to perform the following steps:
+<ol>
+<li><p>If <a>this</a>'s <a data-for="PerformanceResourceTiming">cache mode</a> is
+"<code>local</code>", then return 0.
+<li><p>Return <a>this</a>'s
+<a data-for="PerformanceResourceTiming">timing info</a>'s [=fetch timing info/encoded body size=]
+plus 300.
+<p class='note'>The constant number added to `transferSize` replaces exposing the total byte size
+of the HTTP headers, as that may expose the presence of certain cookies.
+See <a href="https://github.com/w3c/resource-timing/issues/238">this issue</a>.
+</ol>
 </ol>
 <p class='note'>A user agent implementing <a>PerformanceResourceTiming</a> would
 need to include <code>"resource"</code> in <a data-cite=
@@ -718,24 +740,28 @@ that <code>resourcetimingbufferfull</code> event handlers call
 <h2>Creating a resource timing entry</h2>
 <p>To <dfn data-export="">mark resource timing</dfn> given a
 [=/fetch timing info=] |timingInfo|, a DOMString
-|requestedURL|, a DOMString |initiatorType| and a <a>global object</a> |global|:
+|requestedURL|, a DOMString |initiatorType| a <a>global object</a> |global|, and a string |cacheMode|,
+perform the following steps:
 <ol>
 <li>Create a <a>PerformanceResourceTiming</a> object |entry| in |global|'s [=global object/realm=].
-<li><a>Setup the resource timing entry</a> for |entry|, given |initiatorType|, |requestedURL| and
-|timingInfo|.
+<li><a>Setup the resource timing entry</a> for |entry|, given |initiatorType|, |requestedURL|,
+|timingInfo|, and |cacheMode|.
 <li><dfn data-lt="step-final-queue"><a data-cite=
 "PERFORMANCE-TIMELINE-2#dfn-queue-a-performanceentry">Queue</a> |entry|.</li>
 <li><a data-lt='add a PerformanceResourceTiming entry'>Add</a> |entry| to |global|'s
 <a data-cite="PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer">performance
 entry buffer</a>.</li>
 </ol>
+<<<<<<< HEAD
 <p>To <dfn data-export="">setup the resource timing entry</dfn> for <a>PerformanceResourceTiming</a> |entry|
-given DOMStrring |initiatorType|, DOMString |requestedURL|, and [=/fetch timing info=] |timingInfo|,
-perform the following steps:</p>
+given DOMString |initiatorType|, DOMString |requestedURL|, [=/fetch timing info=] |timingInfo|, and
+a DOMString |cacheMode|, perform the following steps:</p>
 <ol>
+<li>Assert that |cacheMode| is the empty string or "<code>local</code>".
 <li>Set |entry|'s <a data-for="PerformanceResourceTiming">initiator type</a> to |initiatorType|.
 <li>Set |entry|'s <a data-for="PerformanceResourceTiming">requested URL</a> to |requestedURL|.
 <li>Set |entry|'s <a data-for="PerformanceResourceTiming">timing info</a> to |timingInfo|.
+<li>Set |entry|'s <a data-for="PerformanceResourceTiming">cache mode</a> to |cacheMode|.
 </ol>
 
 <p>To <dfn>convert fetch timestamp</dfn> given {{DOMHighResTimeStamp}} |ts| and
