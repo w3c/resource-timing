@@ -357,7 +357,7 @@ Timeline</a>.</li>
 [Exposed=(Window,Worker)]
 interface PerformanceResourceTiming : PerformanceEntry {
     readonly        attribute DOMString           initiatorType;
-    readonly        attribute DOMString           nextHopProtocol;
+    readonly        attribute ByteString          nextHopProtocol;
     readonly        attribute DOMHighResTimeStamp workerStart;
     readonly        attribute DOMHighResTimeStamp redirectStart;
     readonly        attribute DOMHighResTimeStamp redirectEnd;
@@ -471,7 +471,7 @@ info</a>'s [=fetch timing info/final connection timing info=]'s
 <a>this</a>. See <a data-cite="FETCH#record-connection-timing-info">Recording
 connection timing info</a> for more info.
 <p data-dfn-for="PerformanceResourceTiming">The <dfn>nextHopProtocol</dfn> getter steps are to
-[=/isomorphic decode=] <a>this</a>'s <a data-for="PerformanceResourceTiming">timing info</a>'s
+return <a>this</a>'s <a data-for="PerformanceResourceTiming">timing info</a>'s
 [=fetch timing info/final connection timing info=]'s
 [=connection timing info/ALPN negotiated protocol=]. See
 <a data-cite="FETCH#record-connection-timing-info">Recording connection timing info</a>
