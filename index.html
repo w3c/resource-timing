@@ -163,7 +163,6 @@
                   image1.onload = resourceTiming;
                   image1.src = 'https://www.w3.org/Icons/w3c_main.png';
               }
-
               function resourceTiming()
               {
                   var resourceList = window.performance.getEntriesByType("resource");
@@ -448,7 +447,7 @@
         <p>
           A <a>PerformanceResourceTiming</a> has an associated DOMString
           <a data-dfn-for="PerformanceResourceTiming"><dfn>cache mode</dfn></a>
-          (the empty string or "<code>local</code>").
+          (the empty string, "<code>local</code>", or "<code>validated</code>").
         </p>
         <p>
           A <a>PerformanceResourceTiming</a> has an associated [=fetch timing
@@ -640,6 +639,8 @@
               mode</a> is "<code>local</code>", then return 0.
             </p>
           </li>
+          <li><p>If <a>this</a>'s <a data-for="PerformanceResourceTiming">cache mode</a> is
+"<code>validated</code>", then return 300.
           <li>
             <p>
               Return <a>this</a>'s <a data-for=
