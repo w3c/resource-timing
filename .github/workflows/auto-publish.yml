@@ -1,4 +1,4 @@
-# .github/workflows/pr-push.yml
+# .github/workflows/auto-push.yml
 name: CI
 on:
   pull_request: {}
