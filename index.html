@@ -64,7 +64,10 @@
     subjectPrefix: "[ResourceTiming]",
     github: "https://github.com/w3c/resource-timing/",
     caniuse: "resource-timing",
-    xref: ["html", "hr-time-3", "performance-timeline-2", "fetch", "infra"],
+    xref: {
+      specs: ["hr-time-3", "performance-timeline-2", "xhr"],
+    profile: "web-platform",
+    }
     };
     </script>
   </head>
@@ -212,8 +215,8 @@
       <p>
         The term <dfn>DOM</dfn> is used to refer to the API set made available
         to scripts in Web applications, and does not necessarily imply the
-        existence of an actual <a data-cite="DOM#document">Document</a> object
-        or of any other <a data-cite="DOM#node">Node</a> objects as defined in
+        existence of an actual [=Document=]</a> object
+        or of any other [=Node=]</a> objects as defined in
         the [[DOM]] specification.
       </p>
       <p>
@@ -235,8 +238,7 @@
         svg.
       </p>
       <p>
-        The term <dfn>cross-origin</dfn> is used to mean non <a data-cite=
-        "HTML#same-origin">same origin</a>.
+        The term <dfn>cross-origin</dfn> is used to mean non [=same origin=]</a>.
       </p>
       <p>
         The term <dfn>current document</dfn> refers to the document associated
@@ -271,20 +273,14 @@
         <h3>
           Introduction
         </h3>
-        <p>
+        <p data-fn-for="html">
           The <a>PerformanceResourceTiming</a> interface facilitates timing
           measurement of downloadable resources. For example, this interface is
-          available for <a data-cite=
-          "XHR#interface-xmlhttprequest">XMLHttpRequest</a> objects [[XHR]],
-          HTML elements [[HTML]] such as <a data-cite=
-          "HTML#the-iframe-element">iframe</a>, <a data-cite=
-          "HTML#the-img-element">img</a>, <a data-cite=
-          "HTML#the-script-element">script</a>, <a data-cite=
-          "HTML#the-object-element">object</a>, <a data-cite=
-          "HTML#the-embed-element">embed</a>, and <a data-cite=
-          "HTML#the-link-element">link</a> with the link type of <a data-cite=
-          "HTML#link-type-stylesheet">stylesheet</a>, and SVG elements
-          [[SVG11]] such as <a data-cite=
+          available for {{XMLHttpRequest}} objects [[XHR]],
+          HTML elements [[HTML]] such as [^iframe^], [^img^],
+          [^script^], [^object^], [^embed^]
+          and [^link^] with the link type of [^link/rel/stylesheet^], 
+          and SVG elements [[SVG11]] such as <a data-cite=
           "SVG11/struct.html#SVGElement">svg</a>.
         </p>
       </section>
@@ -293,12 +289,11 @@
           Resources Included in the <a>PerformanceResourceTiming</a> Interface
         </h3>
         <p>
-          All resource <dfn data-cite="Fetch#concept-request">Request</dfn>s
-          <a data-cite="FETCH#concept-fetch">fetched</a> by a non-null
-          <dfn data-cite="Fetch#concept-request-client">client</dfn> MUST be
+          All resource [=Request=]s
+          [=fetch=]ed</a> by a non-null
+          [=request/client=] MUST be
           included as <a>PerformanceResourceTiming</a> objects in the
-          <a>client</a>'s <dfn data-cite=
-          "HTML#concept-settings-object-global">global object</dfn>'s
+          [=request/client=]'s [=environment settings object/global object=]'s
           <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
           Timeline</a>, unless excluded from the timeline as part of the
@@ -308,7 +303,7 @@
           <a>PerformanceResourceTiming</a> objects in the <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
           Timeline</a> [[PERFORMANCE-TIMELINE-2]]. Resources for which the
-          <a data-cite="FETCH#concept-fetch">fetch</a> was initiated, but was
+          [=fetch=] was initiated, but was
           later aborted (e.g. due to a network error) MAY be included as
           <a>PerformanceResourceTiming</a> objects in the <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
@@ -331,7 +326,7 @@
           Timeline</a>. The user agent might not re-request the URL for the
           second HTML <code>IMG</code> element, instead using the existing
           download it initiated for the first HTML <code>IMG</code> element. In
-          this case, the <a data-cite="FETCH#concept-fetch">fetch</a> of the
+          this case, the [=fetch=] of the
           resource by the first <code>IMG</code> element would be the only
           occurrence in the <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
@@ -339,7 +334,7 @@
           </li>
           <li>If the <code>src</code> attribute of a HTML <code>IMG</code>
           element is changed via script, both the [=fetch=] of the original
-          resource as well as the <a data-cite="FETCH#concept-fetch">fetch</a>
+          resource as well as the [=fetch=]</a>
           of the new URL would be included as <a>PerformanceResourceTiming</a>
           objects in the <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
@@ -350,7 +345,7 @@
           load the <code>about:blank</code> document for the
           <code>IFRAME</code>. If at a later time the <code>src</code>
           attribute is changed dynamically via script, the user agent may
-          <a data-cite="FETCH#concept-fetch">fetch</a> the new URL resource for
+          [=fetch=] the new URL resource for
           the <code>IFRAME</code>. In this case, only the [=fetch=] of the new
           URL would be included as a <a>PerformanceResourceTiming</a> object in
           the <a data-cite=
@@ -358,7 +353,7 @@
           Timeline</a>.
           </li>
           <li>If an <code>XMLHttpRequest</code> is generated twice for the same
-          canonical URL, both <a data-cite="FETCH#concept-fetch">fetches</a> of
+          canonical URL, both [=fetches=]</a> of
           the resource would be included as a <a>PerformanceResourceTiming</a>
           object in the <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
@@ -664,8 +659,7 @@
         </ol>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
-          to include <code>"resource"</code> in <a data-cite=
-          "PERFORMANCE-TIMELINE-2#supportedentrytypes-attribute">supportedEntryTypes</a>.
+          to include <code>"resource"</code> in {{PerformanceObserver/supportedEntryTypes}}.
           This allows developers to detect support for Resource Timing.
         </p>
       </section>
@@ -845,9 +839,8 @@
               timing secondary buffer current size</a>.
               </li>
               <li>If <a>can add resource timing entry</a> returns false, then
-              <a data-cite="DOM/#concept-event-fire">fire an event</a> named
-              <code>resourcetimingbufferfull</code> at the <a data-cite=
-              "HR-TIME-2/#idl-def-performance">Performance</a> object.
+              [=fire an event=]</a> named
+              <code>resourcetimingbufferfull</code> at the {{Performance}} object.
               </li>
               <li>Run <a>copy secondary buffer</a>.
               </li>
