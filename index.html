@@ -479,6 +479,11 @@
               info/start time=] and <a>this</a>'s <a>relevant global
               object</a>.
             </p>
+
+            <p class='note'>
+            `startTime` is measured right at the start of the [=fetch=], before any redirects.
+            See <a data-cite="FETCH#fetching">fetching</a>.
+            </p>
           </dd>
           <dt>
             <dfn>duration</dfn>
@@ -501,7 +506,32 @@
           <dfn>initiatorType</dfn> getter steps are to return the <a data-for=
           "PerformanceResourceTiming">initiator type</a> for <a>this</a>.
         </p>
-        <p data-dfn-for="PerformanceResourceTiming">
+        <p class='note'>`initiatorType` returns one of the following values:
+          <ul class='note'>
+            <li>The same value as the {{Element/localName}} of an [=element=], if the request is a
+            result of processing an HTML element;</li>
+
+            <li><dfn>"css"</dfn>, if the request is a result of processing a CSS
+            <a data-xref-type="css-function">url()</a> directive such as
+            <code>@import url()</code> or <code>background: url()</code>; [[CSS-VALUES]]</li>
+
+            <li><dfn>"navigation"</dfn>, if the request is a [=navigation request=];</li>
+
+            <li><dfn>"xmlhttprequest"</dfn>, if the request is a result of processing an
+            	{{XMLHttpRequest}};</li>
+
+            <li><dfn>"fetch"</dfn>, if the request is the result of processing the
+            {{WindowOrWorkerGlobalScope/fetch()}} method;</li>
+
+            <li><dfn>"beacon"</dfn>, if the request is the result of processing the
+            {{Navigator/sendBeacon()}} method; [[BEACON]]</li>
+
+            <li><dfn>"other"</dfn>, if none of the above conditions match.</li>
+          </ul>
+      <p class='note'>The setting of `initiatorType` is done at the different places where a resource timing
+        entry is reported, such as the [=fetch=] standard. 
+
+      <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerStart</dfn> getter steps are to <a>convert fetch
           timestamp</a> for <a>this</a>'s <a data-for=
           "PerformanceResourceTiming">timing info</a>'s [=fetch timing
