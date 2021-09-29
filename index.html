@@ -308,7 +308,7 @@
         <ul>
           <li>If the same canonical URL is used as the <code>src</code>
           attribute of two HTML <code>IMG</code> elements, the [=fetch=] of the
-          resource initiated by the first HTML <code>IMG</code> element SHOULD
+          resource initiated by the first HTML <code>IMG</code> element would
           be included as a <a>PerformanceResourceTiming</a> object in the
           <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
@@ -371,16 +371,14 @@
           </li>
           <li>If a resource <a data-cite="FETCH#concept-fetch">fetch</a> was
           aborted due to a networking error (e.g. DNS, TCP, or TLS error), then
-          the fetch MAY be included as a <a>PerformanceResourceTiming</a>
+          the fetch will be included as a <a>PerformanceResourceTiming</a>
           object in the <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-          Timeline</a> with initialized attribute values up to the point of
-          failure - e.g. a TCP handshake error should report DNS timestamps for
-          the request, and so on.
+          Timeline</a> with only the `startTime`, `fetchStart`, `duration` and `responseEnd` set.
           </li>
           <li>If a resource <a data-cite="FETCH#concept-fetch">fetch</a> is
           aborted because it failed a fetch precondition (e.g. mixed content,
-          CORS restriction, CSP policy, etc), then this resource SHOULD NOT not
+          CORS restriction, CSP policy, etc), then this resource will not
           be included as a <a>PerformanceResourceTiming</a> object in the
           <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
