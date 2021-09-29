@@ -906,12 +906,9 @@
             to the cross-origin restrictions. The header's value is represented
             by the following ABNF [[RFC5234]] (using <a data-cite=
             "RFC7230#section-7">List Extension</a>, [[RFC7230]]):
-          </p>
-          <code class="abnf">
-            Timing-Allow-Origin = 1#( <a
-            data-cite="FETCH#origin-header">origin-or-null</a> / <a
-            data-cite="FETCH#http-new-header-syntax">wildcard</a> )
-          </code>
+          </p><code class="abnf">Timing-Allow-Origin = 1#( <a data-cite=
+          "FETCH#origin-header">origin-or-null</a> / <a data-cite=
+          "FETCH#http-new-header-syntax">wildcard</a> )</code>
           <p>
             The sender MAY generate multiple <a>Timing-Allow-Origin</a> header
             fields. The recipient MAY combine multiple
