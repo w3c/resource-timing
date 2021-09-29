@@ -287,27 +287,21 @@
           Resources Included in the <a>PerformanceResourceTiming</a> Interface
         </h3>
         <p>
-          All resource [=Request=]s [=fetch=]ed by a non-null
-          [=request/client=] MUST be included as
-          <a>PerformanceResourceTiming</a> objects in the [=request/client=]'s
-          [=environment settings object/global object=]'s <a data-cite=
-          "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-          Timeline</a>, unless excluded from the timeline as part of the
-          [=fetch|fetching process=]. Resources that are retrieved from
-          <a data-cite="HTML#relevant-application-cache">relevant application
-          caches</a> or local resources MUST be included as
-          <a>PerformanceResourceTiming</a> objects in the <a data-cite=
-          "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-          Timeline</a> [[PERFORMANCE-TIMELINE-2]]. Resources for which the
-          [=fetch=] was initiated, but was later aborted (e.g. due to a network
-          error) MAY be included as <a>PerformanceResourceTiming</a> objects in
-          the <a data-cite=
-          "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-          Timeline</a> and MUST contain initialized attribute values for
-          processed substeps of the [=fetch|fetching process=].
+          This section is non-normative.
         </p>
         <p>
-          The rest of this section is non-normative.
+          Resource [=Request=]s [=fetch=]ed by a non-null [=request/client=] are included as
+          <a>PerformanceResourceTiming</a> objects in the [=request/client=]'s
+          [=environment settings object/global object=]'s <a data-cite=
+          "PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>, unless excluded
+          from the timeline as part of the [=fetch|fetching process=]. Resources that are retrieved
+          from <a data-cite="HTML#relevant-application-cache">relevant application caches</a> or
+          local resources are included as <a>PerformanceResourceTiming</a> objects in the
+          <a data-cite="PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>.
+          Resources for which the [=fetch=] was initiated, but was later aborted (e.g. due to a
+          network error) are included as <a>PerformanceResourceTiming</a> objects in the
+          <a data-cite="PERFORMANCE-TIMELINE-2#performance-timeline">Performance Timeline</a>, with
+          their start and end timing.
         </p>
         <p>
           Examples:
