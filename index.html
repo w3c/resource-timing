@@ -386,7 +386,6 @@
           Timeline</a>.
           </li>
         </ul>
-
       </section>
       <section data-dfn-for="PerformanceResourceTiming" id=
       "sec-performanceresourcetiming">
@@ -499,14 +498,14 @@
           <dfn>initiatorType</dfn> getter steps are to return the <a data-for=
           "PerformanceResourceTiming">initiator type</a> for <a>this</a>.
         </p>
-        
         <div class='note'>
           <p>
             `initiatorType` returns one of the following values:
           </p>
           <ul>
             <li>
-              <dfn>"navigation"</dfn>, if the request is a [=navigation request=];
+              <dfn>"navigation"</dfn>, if the request is a [=navigation
+              request=];
             </li>
             <li>
               <dfn>"css"</dfn>, if the request is a result of processing a CSS
@@ -524,45 +523,45 @@
               processing an {{XMLHttpRequest}};
             </li>
             <li>
-              <dfn>"fetch"</dfn>, if the request is the result of processing the
-              {{WindowOrWorkerGlobalScope/fetch()}} method;
+              <dfn>"fetch"</dfn>, if the request is the result of processing
+              the {{WindowOrWorkerGlobalScope/fetch()}} method;
             </li>
             <li>
-              <dfn>"beacon"</dfn>, if the request is the result of processing the
-              {{Navigator/sendBeacon()}} method; [[BEACON]]
+              <dfn>"beacon"</dfn>, if the request is the result of processing
+              the {{Navigator/sendBeacon()}} method; [[BEACON]]
             </li>
             <li>
-              <dfn>"video"</dfn>, if the request is the result of processing the
-              [^video^] element's [^video/poster^] or [^video/src^].
+              <dfn>"video"</dfn>, if the request is the result of processing
+              the [^video^] element's [^video/poster^] or [^video/src^].
             </li>
             <li>
-              <dfn>"audio"</dfn>, if the request is the result of processing the
-              [^audio^] element's [^audio/src^].
+              <dfn>"audio"</dfn>, if the request is the result of processing
+              the [^audio^] element's [^audio/src^].
             </li>
             <li>
-              <dfn>"track"</dfn>, if the request is the result of processing the
-              [^track^] element's [^track/src^].
+              <dfn>"track"</dfn>, if the request is the result of processing
+              the [^track^] element's [^track/src^].
             </li>
             <li>
               <dfn>"img"</dfn>, if the request is the result of processing the
               [^img^] element's [^img/src^] or [^img/srcset^].
             </li>
             <li>
-              <dfn>"image"</dfn>, if the request is the result of processing the
-              <a data-cite="SVG2/embedded.html#ImageElement">image</a> element.
-              [[SVG2]]
+              <dfn>"image"</dfn>, if the request is the result of processing
+              the <a data-cite="SVG2/embedded.html#ImageElement">image</a>
+              element. [[SVG2]]
             </li>
             <li>
               <dfn>"input"</dfn>, if the request is the result of processing an
               [^input^] element of [^input/type^] [^input/type/image^].
             </li>
             <li>
-              <dfn>"a"</dfn>, if the request is the result of processing an [^a^]
-              element's [^a/download^] or [^a/ping^].
+              <dfn>"a"</dfn>, if the request is the result of processing an
+              [^a^] element's [^a/download^] or [^a/ping^].
             </li>
             <li>
-              <dfn>"iframe"</dfn>, if the request is the result of processing an
-              [^iframe^]'s [^iframe/src^].
+              <dfn>"iframe"</dfn>, if the request is the result of processing
+              an [^iframe^]'s [^iframe/src^].
             </li>
             <li>
               <dfn>"frame"</dfn>, if the request is the result of loading a
@@ -1056,9 +1055,9 @@
           This section is non-normative.
         </p>
         <p>
-          The following graph illustrates the timing attributes defined by
-          the PerformanceResourceTiming interface. Attributes in parenthesis
-          may not be available when [=fetch|fetching=] <a>cross-origin</a>
+          The following graph illustrates the timing attributes defined by the
+          PerformanceResourceTiming interface. Attributes in parenthesis may
+          not be available when [=fetch|fetching=] <a>cross-origin</a>
           resources. User agents may perform internal processing in between
           timings, which allow for non-normative intervals between timings.
         </p>
@@ -1066,9 +1065,9 @@
           <figcaption>
             This figure illustrates the timing attributes defined by the
             <a>PerformanceResourceTiming</a> interface. Attributes in
-            parenthesis indicate that they may not be available if the
-            resource fails the <a data-cite="FETCH#concept-tao-check">timing
-            allow check</a> algorithm.
+            parenthesis indicate that they may not be available if the resource
+            fails the <a data-cite="FETCH#concept-tao-check">timing allow
+            check</a> algorithm.
           </figcaption>
           <!-- Source: https://docs.google.com/document/d/1I7XGNJ57Qgjkg9pL11s7MK7zGEcwAgdNj1W5f7NKbW8/ -->
           <img src="timestamp-diagram.svg" alt="Resource Timing attributes"
@@ -1149,23 +1148,22 @@
           information for a resource to any web page or worker that has
           requested that resource. To limit the access to the
           <a>PerformanceResourceTiming</a> interface, the <a data-cite=
-          "HTML#same-origin">same origin</a> policy is enforced by default
-          and certain attributes are set to zero, as described in [=/HTTP
-          fetch=]. Resource providers can explicitly allow all timing
-          information to be collected for a resource by adding the
-          <a>Timing-Allow-Origin</a> HTTP response header, which specifies
-          the domains that are allowed to access the timing information.
+          "HTML#same-origin">same origin</a> policy is enforced by default and
+          certain attributes are set to zero, as described in [=/HTTP fetch=].
+          Resource providers can explicitly allow all timing information to be
+          collected for a resource by adding the <a>Timing-Allow-Origin</a>
+          HTTP response header, which specifies the domains that are allowed to
+          access the timing information.
         </p>
         <p>
-          Statistical fingerprinting is a privacy concern where a malicious
-          web site may determine whether a user has visited a third-party web
-          site by measuring the timing of cache hits and misses of resources
-          in the third-party web site. Though the
-          <a>PerformanceResourceTiming</a> interface gives timing information
-          for resources in a document, the cross-origin restrictions in in
-          [=/HTTP Fetch=] prevent making this privacy concern any worse than
-          it is today using the load event on resources to measure timing to
-          determine cache hits and misses.
+          Statistical fingerprinting is a privacy concern where a malicious web
+          site may determine whether a user has visited a third-party web site
+          by measuring the timing of cache hits and misses of resources in the
+          third-party web site. Though the <a>PerformanceResourceTiming</a>
+          interface gives timing information for resources in a document, the
+          cross-origin restrictions in in [=/HTTP Fetch=] prevent making this
+          privacy concern any worse than it is today using the load event on
+          resources to measure timing to determine cache hits and misses.
         </p>
       </section>
       <section id="acknowledgements" class="appendix">
