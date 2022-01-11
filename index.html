@@ -65,7 +65,7 @@
     github: "https://github.com/w3c/resource-timing/",
     caniuse: "resource-timing",
     xref: {
-      specs: ["hr-time-3", "performance-timeline-2", "xhr"],
+      specs: ["hr-time-3", "performance-timeline", "xhr"],
       profile: "web-platform",
     }
     };
@@ -251,11 +251,6 @@
         "NAVIGATION-TIMING-2#dom-PerformanceNavigationTiming-startTime">start
         of navigation of the document</a> occurs at time 0.
       </p>
-      <p>
-        The term <dfn>current time</dfn> refers to the number of milliseconds
-        since the start of navigation of the document until the current moment
-        in time.
-      </p>
       <p class='note'>
         This definition of time is based on the High Resolution Time
         specification [[HR-TIME-2]] and is different from the definition of
@@ -287,27 +282,25 @@
           Resources Included in the <a>PerformanceResourceTiming</a> Interface
         </h3>
         <p>
-          All resource [=Request=]s [=fetch=]ed by a non-null
-          [=request/client=] MUST be included as
-          <a>PerformanceResourceTiming</a> objects in the [=request/client=]'s
-          [=environment settings object/global object=]'s <a data-cite=
+          This section is non-normative.
+        </p>
+        <p>
+          Resource [=Request=]s [=fetch=]ed by a non-null [=request/client=]
+          are included as <a>PerformanceResourceTiming</a> objects in the
+          [=request/client=]'s [=environment settings object/global object=]'s
+          <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
           Timeline</a>, unless excluded from the timeline as part of the
           [=fetch|fetching process=]. Resources that are retrieved from
           <a data-cite="HTML#relevant-application-cache">relevant application
-          caches</a> or local resources MUST be included as
+          caches</a> or local resources are included as
           <a>PerformanceResourceTiming</a> objects in the <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-          Timeline</a> [[PERFORMANCE-TIMELINE-2]]. Resources for which the
-          [=fetch=] was initiated, but was later aborted (e.g. due to a network
-          error) MAY be included as <a>PerformanceResourceTiming</a> objects in
-          the <a data-cite=
+          Timeline</a>. Resources for which the [=fetch=] was initiated, but
+          was later aborted (e.g. due to a network error) are included as
+          <a>PerformanceResourceTiming</a> objects in the <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-          Timeline</a> and MUST contain initialized attribute values for
-          processed substeps of the [=fetch|fetching process=].
-        </p>
-        <p>
-          The rest of this section is non-normative.
+          Timeline</a>, with their start and end timing.
         </p>
         <p>
           Examples:
@@ -315,7 +308,7 @@
         <ul>
           <li>If the same canonical URL is used as the <code>src</code>
           attribute of two HTML <code>IMG</code> elements, the [=fetch=] of the
-          resource initiated by the first HTML <code>IMG</code> element SHOULD
+          resource initiated by the first HTML <code>IMG</code> element would
           be included as a <a>PerformanceResourceTiming</a> object in the
           <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
@@ -378,17 +371,16 @@
           </li>
           <li>If a resource <a data-cite="FETCH#concept-fetch">fetch</a> was
           aborted due to a networking error (e.g. DNS, TCP, or TLS error), then
-          the fetch MAY be included as a <a>PerformanceResourceTiming</a>
+          the fetch will be included as a <a>PerformanceResourceTiming</a>
           object in the <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-          Timeline</a> with initialized attribute values up to the point of
-          failure - e.g. a TCP handshake error should report DNS timestamps for
-          the request, and so on.
+          Timeline</a> with only the `startTime`, `fetchStart`, `duration` and
+          `responseEnd` set.
           </li>
           <li>If a resource <a data-cite="FETCH#concept-fetch">fetch</a> is
           aborted because it failed a fetch precondition (e.g. mixed content,
-          CORS restriction, CSP policy, etc), then this resource SHOULD NOT not
-          be included as a <a>PerformanceResourceTiming</a> object in the
+          CORS restriction, CSP policy, etc), then this resource will not be
+          included as a <a>PerformanceResourceTiming</a> object in the
           <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
           Timeline</a>.
@@ -479,6 +471,11 @@
               info/start time=] and <a>this</a>'s <a>relevant global
               object</a>.
             </p>
+            <p class='note'>
+              `startTime` is measured right at the start of the [=fetch=],
+              before any redirects. See <a data-cite=
+              "FETCH#fetching">fetching</a>.
+            </p>
           </dd>
           <dt>
             <dfn>duration</dfn>
@@ -500,6 +497,84 @@
         <p data-dfn-for="PerformanceResourceTiming">
           <dfn>initiatorType</dfn> getter steps are to return the <a data-for=
           "PerformanceResourceTiming">initiator type</a> for <a>this</a>.
+        </p>
+        <div class='note'>
+          <p>
+            `initiatorType` returns one of the following values:
+          </p>
+          <ul>
+            <li>
+              <dfn>"navigation"</dfn>, if the request is a [=navigation
+              request=];
+            </li>
+            <li>
+              <dfn>"css"</dfn>, if the request is a result of processing a CSS
+              <a data-xref-type="css-function">url()</a> directive such as
+              <code>@import url()</code> or <code>background: url()</code>;
+              [[CSS-VALUES]]
+            </li>
+            <li>
+              <dfn>"script"</dfn>, if the request is a result of loading any
+              <a data-cite="HTML#concept-script">script</a> (a classic
+              [^script^], a [=module script=], or a {{Worker}}).
+            </li>
+            <li>
+              <dfn>"xmlhttprequest"</dfn>, if the request is a result of
+              processing an {{XMLHttpRequest}};
+            </li>
+            <li>
+              <dfn>"fetch"</dfn>, if the request is the result of processing
+              the {{WindowOrWorkerGlobalScope/fetch()}} method;
+            </li>
+            <li>
+              <dfn>"beacon"</dfn>, if the request is the result of processing
+              the {{Navigator/sendBeacon()}} method; [[BEACON]]
+            </li>
+            <li>
+              <dfn>"video"</dfn>, if the request is the result of processing
+              the [^video^] element's [^video/poster^] or [^video/src^].
+            </li>
+            <li>
+              <dfn>"audio"</dfn>, if the request is the result of processing
+              the [^audio^] element's [^audio/src^].
+            </li>
+            <li>
+              <dfn>"track"</dfn>, if the request is the result of processing
+              the [^track^] element's [^track/src^].
+            </li>
+            <li>
+              <dfn>"img"</dfn>, if the request is the result of processing the
+              [^img^] element's [^img/src^] or [^img/srcset^].
+            </li>
+            <li>
+              <dfn>"image"</dfn>, if the request is the result of processing
+              the <a data-cite="SVG2/embedded.html#ImageElement">image</a>
+              element. [[SVG2]]
+            </li>
+            <li>
+              <dfn>"input"</dfn>, if the request is the result of processing an
+              [^input^] element of [^input/type^] [^input/type/image^].
+            </li>
+            <li>
+              <dfn>"a"</dfn>, if the request is the result of processing an
+              [^a^] element's [^a/download^] or [^a/ping^].
+            </li>
+            <li>
+              <dfn>"iframe"</dfn>, if the request is the result of processing
+              an [^iframe^]'s [^iframe/src^].
+            </li>
+            <li>
+              <dfn>"frame"</dfn>, if the request is the result of loading a
+              [^frame^].
+            </li>
+            <li>
+              <dfn>"other"</dfn>, if none of the above conditions match.
+            </li>
+          </ul>
+        </div>
+        <p class='note'>
+          The setting of `initiatorType` is done at the different places where
+          a resource timing entry is reported, such as the [=fetch=] standard.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerStart</dfn> getter steps are to <a>convert fetch
@@ -906,12 +981,9 @@
             to the cross-origin restrictions. The header's value is represented
             by the following ABNF [[RFC5234]] (using <a data-cite=
             "RFC7230#section-7">List Extension</a>, [[RFC7230]]):
-          </p>
-          <pre class="abnf">
-            Timing-Allow-Origin = 1#( <a data-cite=
-"FETCH#origin-header">origin-or-null</a> / <a data-cite=
-"FETCH#http-new-header-syntax">wildcard</a> )
-          </pre>
+          </p><code class="abnf">Timing-Allow-Origin = 1#( <a data-cite=
+          "FETCH#origin-header">origin-or-null</a> / <a data-cite=
+          "FETCH#http-new-header-syntax">wildcard</a> )</code>
           <p>
             The sender MAY generate multiple <a>Timing-Allow-Origin</a> header
             fields. The recipient MAY combine multiple
@@ -974,138 +1046,137 @@
             </dd>
           </dl>
         </section>
-        <section id="attribute-descriptions">
-          <h3>
-            Resource Timing Attributes
-          </h3>
-          <p>
-            This section is non-normative.
-          </p>
-          <p>
-            The following graph illustrates the timing attributes defined by
-            the PerformanceResourceTiming interface. Attributes in parenthesis
-            may not be available when [=fetch|fetching=] <a>cross-origin</a>
-            resources. User agents may perform internal processing in between
-            timings, which allow for non-normative intervals between timings.
-          </p>
-          <figure data-lt='Timing attributes'>
-            <figcaption>
-              This figure illustrates the timing attributes defined by the
-              <a>PerformanceResourceTiming</a> interface. Attributes in
-              parenthesis indicate that they may not be available if the
-              resource fails the <a data-cite="FETCH#concept-tao-check">timing
-              allow check</a> algorithm.
-            </figcaption>
-            <!-- Source: https://docs.google.com/document/d/1I7XGNJ57Qgjkg9pL11s7MK7zGEcwAgdNj1W5f7NKbW8/ -->
-            <img src="timestamp-diagram.svg" alt="Resource Timing attributes"
-            style='margin-top: 1em'>
-          </figure>
-        </section>
-        <section id="marking-resource-timing">
-          <h2>
-            Creating a resource timing entry
-          </h2>
-          <p>
-            To <dfn data-export="">mark resource timing</dfn> given a [=/fetch
-            timing info=] |timingInfo|, a DOMString |requestedURL|, a DOMString
-            |initiatorType| a <a>global object</a> |global|, and a string
-            |cacheMode|, perform the following steps:
-          </p>
-          <ol>
-            <li>Create a <a>PerformanceResourceTiming</a> object |entry| in
-            |global|'s [=global object/realm=].
-            </li>
-            <li>
-              <a>Setup the resource timing entry</a> for |entry|, given
-              |initiatorType|, |requestedURL|, |timingInfo|, and |cacheMode|.
-            </li>
-            <li>
-              <a data-cite=
-              "PERFORMANCE-TIMELINE-2#dfn-queue-a-performanceentry">Queue</a>
-              |entry|.
-            </li>
-            <li>Add |entry| to |global|'s <a data-cite=
-            "PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer">performance
-            entry buffer</a>.
-            </li>
-          </ol>
-          <p>
-            To <dfn data-export="">setup the resource timing entry</dfn> for
-            <a>PerformanceResourceTiming</a> |entry| given DOMString
-            |initiatorType|, DOMString |requestedURL|, [=/fetch timing info=]
-            |timingInfo|, and a DOMString |cacheMode|, perform the following
-            steps:
-          </p>
-          <ol>
-            <li>Assert that |cacheMode| is the empty string or
-            "<code>local</code>".
-            </li>
-            <li>Set |entry|'s <a data-for="PerformanceResourceTiming">initiator
-            type</a> to |initiatorType|.
-            </li>
-            <li>Set |entry|'s <a data-for="PerformanceResourceTiming">requested
-            URL</a> to |requestedURL|.
-            </li>
-            <li>Set |entry|'s <a data-for="PerformanceResourceTiming">timing
-            info</a> to |timingInfo|.
-            </li>
-            <li>Set |entry|'s <a data-for="PerformanceResourceTiming">cache
-            mode</a> to |cacheMode|.
-            </li>
-          </ol>
-          <p>
-            To <dfn>convert fetch timestamp</dfn> given {{DOMHighResTimeStamp}}
-            |ts| and <a>global object</a> |global|, do the following:
-          </p>
-          <ol>
-            <li>If |ts| is zero, return zero.
-            </li>
-            <li>Otherwise, return the <a data-cite=
-            "HR-TIME#relative-high-resolution-coarse-time">relative high
-            resolution coarse time</a> given |ts| and |global|.
-            </li>
-          </ol>
-        </section>
-        <section id="sec-privacy-security" class='informative'>
-          <h2>
-            Privacy and Security
-          </h2>
-          <p>
-            The <a>PerformanceResourceTiming</a> interface exposes timing
-            information for a resource to any web page or worker that has
-            requested that resource. To limit the access to the
-            <a>PerformanceResourceTiming</a> interface, the <a data-cite=
-            "HTML#same-origin">same origin</a> policy is enforced by default
-            and certain attributes are set to zero, as described in [=/HTTP
-            fetch=]. Resource providers can explicitly allow all timing
-            information to be collected for a resource by adding the
-            <a>Timing-Allow-Origin</a> HTTP response header, which specifies
-            the domains that are allowed to access the timing information.
-          </p>
-          <p>
-            Statistical fingerprinting is a privacy concern where a malicious
-            web site may determine whether a user has visited a third-party web
-            site by measuring the timing of cache hits and misses of resources
-            in the third-party web site. Though the
-            <a>PerformanceResourceTiming</a> interface gives timing information
-            for resources in a document, the cross-origin restrictions in in
-            [=/HTTP Fetch=] prevent making this privacy concern any worse than
-            it is today using the load event on resources to measure timing to
-            determine cache hits and misses.
-          </p>
-        </section>
-        <section id="acknowledgements" class="appendix">
-          <h2>
-            Acknowledgments
-          </h2>
-          <p>
-            Thanks to Anne Van Kesteren, Annie Sullivan, Arvind Jain, Boris
-            Zbarsky, Darin Fisher, Jason Weber, Jonas Sicking, James Simonsen,
-            Karen Anderson, Kyle Scholz, Nic Jansma, Philippe Le Hegaret,
-            Sigbjørn Vik, Steve Souders, Todd Reifsteck, Tony Gentilcore and
-            William Chan for their contributions to this work.
-          </p>
-        </section>
+      </section>
+      <section id="attribute-descriptions">
+        <h3>
+          Resource Timing Attributes
+        </h3>
+        <p>
+          This section is non-normative.
+        </p>
+        <p>
+          The following graph illustrates the timing attributes defined by the
+          PerformanceResourceTiming interface. Attributes in parenthesis may
+          not be available when [=fetch|fetching=] <a>cross-origin</a>
+          resources. User agents may perform internal processing in between
+          timings, which allow for non-normative intervals between timings.
+        </p>
+        <figure data-lt='Timing attributes'>
+          <figcaption>
+            This figure illustrates the timing attributes defined by the
+            <a>PerformanceResourceTiming</a> interface. Attributes in
+            parenthesis indicate that they may not be available if the resource
+            fails the <a data-cite="FETCH#concept-tao-check">timing allow
+            check</a> algorithm.
+          </figcaption>
+          <!-- Source: https://docs.google.com/document/d/1I7XGNJ57Qgjkg9pL11s7MK7zGEcwAgdNj1W5f7NKbW8/ -->
+          <img src="timestamp-diagram.svg" alt="Resource Timing attributes"
+          style='margin-top: 1em'>
+        </figure>
+      </section>
+      <section id="marking-resource-timing">
+        <h2>
+          Creating a resource timing entry
+        </h2>
+        <p>
+          To <dfn data-export="">mark resource timing</dfn> given a [=/fetch
+          timing info=] |timingInfo|, a DOMString |requestedURL|, a DOMString
+          |initiatorType| a <a>global object</a> |global|, and a string
+          |cacheMode|, perform the following steps:
+        </p>
+        <ol>
+          <li>Create a <a>PerformanceResourceTiming</a> object |entry| in
+          |global|'s [=global object/realm=].
+          </li>
+          <li>
+            <a>Setup the resource timing entry</a> for |entry|, given
+            |initiatorType|, |requestedURL|, |timingInfo|, and |cacheMode|.
+          </li>
+          <li>
+            <a data-cite=
+            "PERFORMANCE-TIMELINE-2#dfn-queue-a-performanceentry">Queue</a>
+            |entry|.
+          </li>
+          <li>Add |entry| to |global|'s <a data-cite=
+          "PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer">performance
+          entry buffer</a>.
+          </li>
+        </ol>
+        <p>
+          To <dfn data-export="">setup the resource timing entry</dfn> for
+          <a>PerformanceResourceTiming</a> |entry| given DOMString
+          |initiatorType|, DOMString |requestedURL|, [=/fetch timing info=]
+          |timingInfo|, and a DOMString |cacheMode|, perform the following
+          steps:
+        </p>
+        <ol>
+          <li>Assert that |cacheMode| is the empty string or
+          "<code>local</code>".
+          </li>
+          <li>Set |entry|'s <a data-for="PerformanceResourceTiming">initiator
+          type</a> to |initiatorType|.
+          </li>
+          <li>Set |entry|'s <a data-for="PerformanceResourceTiming">requested
+          URL</a> to |requestedURL|.
+          </li>
+          <li>Set |entry|'s <a data-for="PerformanceResourceTiming">timing
+          info</a> to |timingInfo|.
+          </li>
+          <li>Set |entry|'s <a data-for="PerformanceResourceTiming">cache
+          mode</a> to |cacheMode|.
+          </li>
+        </ol>
+        <p>
+          To <dfn>convert fetch timestamp</dfn> given {{DOMHighResTimeStamp}}
+          |ts| and <a>global object</a> |global|, do the following:
+        </p>
+        <ol>
+          <li>If |ts| is zero, return zero.
+          </li>
+          <li>
+            Otherwise, return the [=relative high resolution coarse time=]
+            given |ts| and |global|.
+          </li>
+        </ol>
+      </section>
+      <section id="sec-privacy-security" class='informative'>
+        <h2>
+          Privacy and Security
+        </h2>
+        <p>
+          The <a>PerformanceResourceTiming</a> interface exposes timing
+          information for a resource to any web page or worker that has
+          requested that resource. To limit the access to the
+          <a>PerformanceResourceTiming</a> interface, the <a data-cite=
+          "HTML#same-origin">same origin</a> policy is enforced by default and
+          certain attributes are set to zero, as described in [=/HTTP fetch=].
+          Resource providers can explicitly allow all timing information to be
+          collected for a resource by adding the <a>Timing-Allow-Origin</a>
+          HTTP response header, which specifies the domains that are allowed to
+          access the timing information.
+        </p>
+        <p>
+          Statistical fingerprinting is a privacy concern where a malicious web
+          site may determine whether a user has visited a third-party web site
+          by measuring the timing of cache hits and misses of resources in the
+          third-party web site. Though the <a>PerformanceResourceTiming</a>
+          interface gives timing information for resources in a document, the
+          cross-origin restrictions in in [=/HTTP Fetch=] prevent making this
+          privacy concern any worse than it is today using the load event on
+          resources to measure timing to determine cache hits and misses.
+        </p>
+      </section>
+      <section id="acknowledgements" class="appendix">
+        <h2>
+          Acknowledgments
+        </h2>
+        <p>
+          Thanks to Anne Van Kesteren, Annie Sullivan, Arvind Jain, Boris
+          Zbarsky, Darin Fisher, Jason Weber, Jonas Sicking, James Simonsen,
+          Karen Anderson, Kyle Scholz, Nic Jansma, Philippe Le Hegaret,
+          Sigbjørn Vik, Steve Souders, Todd Reifsteck, Tony Gentilcore and
+          William Chan for their contributions to this work.
+        </p>
       </section>
     </section>
   </body>
