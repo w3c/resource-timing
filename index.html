@@ -213,36 +213,7 @@
         "an object implementing the interface <code>Foo</code>.
       </p>
       <p>
-        The term <dfn>DOM</dfn> is used to refer to the API set made available
-        to scripts in Web applications, and does not necessarily imply the
-        existence of an actual [=Document=] object or of any other [=Node=]
-        objects as defined in the [[DOM]] specification.
-      </p>
-      <p>
-        A DOM attribute is said to be <dfn>getting</dfn> when its value is
-        being retrieved (such as by author script), and is said to be
-        <dfn>setting</dfn> when a new value is assigned to it.
-      </p>
-      <p>
-        The term <dfn>JavaScript</dfn> is used to refer to ECMA262, rather than
-        the official term ECMAScript, since the term JavaScript is more widely
-        known. [[ECMASCRIPT]]
-      </p>
-      <p>
-        The term <dfn>resource</dfn> is used to refer to elements and any other
-        user-initiated fetches throughout this specification. For example, a
-        resource could originate from XMLHttpRequest objects [[XHR]], HTML
-        elements [[HTML]] such as iframe, img, script, object, embed, and link
-        with the link type of stylesheet, and SVG elements [[SVG11]] such as
-        svg.
-      </p>
-      <p>
         The term <dfn>cross-origin</dfn> is used to mean non [=same origin=].
-      </p>
-      <p>
-        The term <dfn>current document</dfn> refers to the document associated
-        with the <a data-cite="HTML#concept-document-window">Window object's
-        newest Document object</a>.
       </p>
       <p>
         Throughout this work, all time values are measured in milliseconds
@@ -504,71 +475,71 @@
           </p>
           <ul>
             <li>
-              <dfn>"navigation"</dfn>, if the request is a [=navigation
+              <code>"navigation"</code>, if the request is a [=navigation
               request=];
             </li>
             <li>
-              <dfn>"css"</dfn>, if the request is a result of processing a CSS
-              <a data-xref-type="css-function">url()</a> directive such as
-              <code>@import url()</code> or <code>background: url()</code>;
+              <code>"css"</code>, if the request is a result of processing a CSS
+              <a data-cite="css-values-4#funcdef-url">url()</a> directive such
+              as <code>@import url()</code> or <code>background: url()</code>;
               [[CSS-VALUES]]
             </li>
             <li>
-              <dfn>"script"</dfn>, if the request is a result of loading any
+              <code>"script"</code>, if the request is a result of loading any
               <a data-cite="HTML#concept-script">script</a> (a classic
               [^script^], a [=module script=], or a {{Worker}}).
             </li>
             <li>
-              <dfn>"xmlhttprequest"</dfn>, if the request is a result of
+              <code>"xmlhttprequest"</code>, if the request is a result of
               processing an {{XMLHttpRequest}};
             </li>
             <li>
-              <dfn>"fetch"</dfn>, if the request is the result of processing
+              <code>"fetch"</code>, if the request is the result of processing
               the {{WindowOrWorkerGlobalScope/fetch()}} method;
             </li>
             <li>
-              <dfn>"beacon"</dfn>, if the request is the result of processing
+              <code>"beacon"</code>, if the request is the result of processing
               the {{Navigator/sendBeacon()}} method; [[BEACON]]
             </li>
             <li>
-              <dfn>"video"</dfn>, if the request is the result of processing
+              <code>"video"</code>, if the request is the result of processing
               the [^video^] element's [^video/poster^] or [^video/src^].
             </li>
             <li>
-              <dfn>"audio"</dfn>, if the request is the result of processing
+              <code>"audio"</code>, if the request is the result of processing
               the [^audio^] element's [^audio/src^].
             </li>
             <li>
-              <dfn>"track"</dfn>, if the request is the result of processing
+              <code>"track"</code>, if the request is the result of processing
               the [^track^] element's [^track/src^].
             </li>
             <li>
-              <dfn>"img"</dfn>, if the request is the result of processing the
+              <code>"img"</code>, if the request is the result of processing the
               [^img^] element's [^img/src^] or [^img/srcset^].
             </li>
             <li>
-              <dfn>"image"</dfn>, if the request is the result of processing
+              <code>"image"</code>, if the request is the result of processing
               the <a data-cite="SVG2/embedded.html#ImageElement">image</a>
               element. [[SVG2]]
             </li>
             <li>
-              <dfn>"input"</dfn>, if the request is the result of processing an
+              <code>"input"</code>, if the request is the result of processing an
               [^input^] element of [^input/type^] [^input/type/image^].
             </li>
             <li>
-              <dfn>"a"</dfn>, if the request is the result of processing an
+              <code>"a"</code>, if the request is the result of processing an
               [^a^] element's [^a/download^] or [^a/ping^].
             </li>
             <li>
-              <dfn>"iframe"</dfn>, if the request is the result of processing
+              <code>"iframe"</code>, if the request is the result of processing
               an [^iframe^]'s [^iframe/src^].
             </li>
             <li>
-              <dfn>"frame"</dfn>, if the request is the result of loading a
+              <code>"frame"</code>, if the request is the result of loading a
               [^frame^].
             </li>
             <li>
-              <dfn>"other"</dfn>, if none of the above conditions match.
+              <code>"other"</code>, if none of the above conditions match.
             </li>
           </ul>
         </div>
@@ -811,7 +782,7 @@
         </ol>
         <p>
           The attribute <dfn>onresourcetimingbufferfull</dfn> is the event
-          handler for the <dfn>resourcetimingbufferfull</dfn> event described
+          handler for the <code>resourcetimingbufferfull</code> event described
           below.
         </p>
         <p>
@@ -1097,7 +1068,7 @@
             "PERFORMANCE-TIMELINE-2#dfn-queue-a-performanceentry">Queue</a>
             |entry|.
           </li>
-          <li>Add |entry| to |global|'s <a data-cite=
+          <li>[=Add a PerformanceResourceTiming entry|Add=] |entry| to |global|'s <a data-cite=
           "PERFORMANCE-TIMELINE-2#dfn-performance-entry-buffer">performance
           entry buffer</a>.
           </li>
@@ -1139,9 +1110,9 @@
           </li>
         </ol>
       </section>
-      <section id="sec-privacy-security" class='informative'>
+      <section id="sec-security" class='informative'>
         <h2>
-          Privacy and Security
+          Security Considerations
         </h2>
         <p>
           The <a>PerformanceResourceTiming</a> interface exposes timing
@@ -1155,13 +1126,17 @@
           HTTP response header, which specifies the domains that are allowed to
           access the timing information.
         </p>
+      <section id="sec-privacy" class='informative'>
+        <h2>
+          Privacy Considerations
+        </h2>
         <p>
           Statistical fingerprinting is a privacy concern where a malicious web
           site may determine whether a user has visited a third-party web site
           by measuring the timing of cache hits and misses of resources in the
           third-party web site. Though the <a>PerformanceResourceTiming</a>
           interface gives timing information for resources in a document, the
-          cross-origin restrictions in in [=/HTTP Fetch=] prevent making this
+          cross-origin restrictions in [=/HTTP Fetch=] prevent making this
           privacy concern any worse than it is today using the load event on
           resources to measure timing to determine cache hits and misses.
         </p>
