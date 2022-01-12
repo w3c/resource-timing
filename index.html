@@ -213,9 +213,6 @@
         "an object implementing the interface <code>Foo</code>.
       </p>
       <p>
-        The term <dfn>cross-origin</dfn> is used to mean non [=same origin=].
-      </p>
-      <p>
         Throughout this work, all time values are measured in milliseconds
         since the start of navigation of the document [[HR-TIME-2]]. For
         example, the <a data-cite=
@@ -939,8 +936,7 @@
           Server-side applications may return the <a>Timing-Allow-Origin</a>
           HTTP response header to allow the User Agent to fully expose, to the
           document origin(s) specified, the values of attributes that would
-          have been zero due to the <a>cross-origin</a> restrictions previously
-          specified in this section.
+          have been zero due to those cross-origin restrictions.
         </p>
         <section id="sec-timing-allow-origin">
           <h4>
@@ -1029,7 +1025,7 @@
         <p>
           The following graph illustrates the timing attributes defined by the
           PerformanceResourceTiming interface. Attributes in parenthesis may
-          not be available when [=fetch|fetching=] <a>cross-origin</a>
+          not be available when [=fetch|fetching=] cross-origin
           resources. User agents may perform internal processing in between
           timings, which allow for non-normative intervals between timings.
         </p>
