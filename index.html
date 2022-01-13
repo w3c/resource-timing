@@ -947,14 +947,14 @@
           As detailed in [=Fetch=], requests for cross-origin resources are
           included as <a>PerformanceResourceTiming</a> objects in the
           <a data-cite= "PERFORMANCE-TIMELINE-2#performance-timeline">
-          Performance Timeline</a>. If the <a
-          data-cite="FETCH#concept-tao-check">timing allow check</a> algorithm
-          fails for a cross-origin resource, the entry will be an
-          <a data-cite="FETCH#create-an-opaque-timing-info">opaque entry</a>.
-          Such entries have most of their attributes masked in order to prevent
-          leaking cross-origin data that isn't otherwise exposed. So, for an
-          <a data-cite="FETCH#create-an-opaque-timing-info">opaque entry</a>,
-          the following attributes will be set to zero:
+          Performance Timeline</a>. If the
+          <a data-cite="FETCH#concept-tao-check">timing allow check</a>
+          algorithm fails for a cross-origin resource, the entry will be an
+          [=create an opaque timing info|opaque entry=]. Such entries have most
+          of their attributes masked in order to prevent leaking cross-origin
+          data that isn't otherwise exposed. So, for an
+          [=create an opaque timing info|opaque entry=], the following
+          attributes will be set to zero:
           {{PerformanceResourceTiming/redirectStart}},
           {{PerformanceResourceTiming/redirectEnd}},
           {{PerformanceResourceTiming/workerStart}},
