@@ -944,14 +944,18 @@
           Cross-origin Resources
         </h3>
         <p class="note" data-dfn-for="PerformanceResourceTiming">
-          As detailed in [=Fetch=], cross-origin resources are included as
-          <a>PerformanceResourceTiming</a> objects in the <a data-cite=
-          "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-          Timeline</a>. If the <a data-cite="FETCH#concept-tao-check">timing
-          allow check</a> algorithm fails for a resource, the corresponding
-          <a>PerformanceResourceTiming</a> object will have any attributes
-          exposing cross-origin data masked. Therfore, the following attributes
-          will be set to zero: {{PerformanceResourceTiming/redirectStart}},
+          As detailed in [=Fetch=], requests for cross-origin resources are
+          included as <a>PerformanceResourceTiming</a> objects in the
+          <a data-cite= "PERFORMANCE-TIMELINE-2#performance-timeline">
+          Performance Timeline</a>. If the <a
+          data-cite="FETCH#concept-tao-check">timing allow check</a> algorithm
+          fails for a cross-origin resource, the entry will be an
+          <a data-cite="FETCH#create-an-opaque-timing-info">opaque entry</a>.
+          Such entries have most of their attributes masked in order to prevent
+          leaking cross-origin data that isn't otherwise exposed. So, for an
+          <a data-cite="FETCH#create-an-opaque-timing-info">opaque entry</a>,
+          the following attributes will be set to zero:
+          {{PerformanceResourceTiming/redirectStart}},
           {{PerformanceResourceTiming/redirectEnd}},
           {{PerformanceResourceTiming/workerStart}},
           {{PerformanceResourceTiming/domainLookupStart}},
