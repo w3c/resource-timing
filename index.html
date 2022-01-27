@@ -1140,9 +1140,10 @@
           by measuring the timing of cache hits and misses of resources in the
           third-party web site. Though the <a>PerformanceResourceTiming</a>
           interface gives timing information for resources in a document, the
-          cross-origin restrictions in [=/HTTP Fetch=] prevent making this
-          privacy concern any worse than it is today using the load event on
-          resources to measure timing to determine cache hits and misses.
+          load event on resources can already measure timing to determine cache
+          hits and misses in a limited fashion, and the cross-origin
+          restrictions in [=/HTTP Fetch=] prevent the leakage of any additional
+          information.
         </p>
       </section>
       <section id="acknowledgements" class="appendix">
