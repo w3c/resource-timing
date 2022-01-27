@@ -15,3 +15,6 @@ jobs:
           W3C_ECHIDNA_TOKEN: ${{ secrets.ECHIDNA_TOKEN }}
           # Replace following with appropriate value. See options.md for details.
           W3C_WG_DECISION_URL: https://w3c.github.io/web-performance/meetings/2021/2021-04-01/index.html
+          W3C_BUILD_OVERRIDE: |
+             shortName: resource-timing-2
+             specStatus: WD
