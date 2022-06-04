@@ -19,7 +19,7 @@ The PerformanceResourceTiming Interface in <a href="https://w3c.github.io/resour
 interface PerformanceResourceTiming : PerformanceEntry {
     ...
     ...
-    readonly attribute DOMString render_blocking_status;
+    readonly attribute DOMString renderBlockingStatus;
     ...
     ...
     [Default] object toJSON();
@@ -29,7 +29,7 @@ interface PerformanceResourceTiming : PerformanceEntry {
 Sample usage:
 ```javascript
 const entry_list = performance.getEntriesByType("resource");
-console.log(entry_list[0].render_blocking_status);
+console.log(entry_list[0].renderBlockingStatus);
 ```
 
 
