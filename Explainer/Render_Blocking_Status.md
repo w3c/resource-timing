@@ -52,7 +52,7 @@ Resource Timing Level 2 ([w3c/resource-timing#327](https://github.com/w3c/resour
 
 
 Fetch ([whatwg/fetch#1449](https://github.com/whatwg/fetch/pull/1449))
-- [Finalize and report timing](https://fetch.spec.whatwg.org/#finalize-and-report-timing) is modified to accept a render blocking status string (defaults to "unset") and passes the same to mark resource timing (step 11)
+- [Finalize and report timing](https://fetch.spec.whatwg.org/#finalize-and-report-timing) is modified to accept a render blocking status string (defaults to "non-blocking") and passes the same to mark resource timing (step 11)
     
     
 HTML ([whatwg/html#7979](https://github.com/whatwg/html/pull/7979))
