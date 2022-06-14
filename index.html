@@ -659,12 +659,12 @@
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>encodedBodySize</dfn> getter steps are to return
           <a>this</a>'s <a data-for="PerformanceResourceTiming">resource
-          info</a>'s [=response body info/encoded body size=].
+          info</a>'s [=response body info/encoded size=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>decodedBodySize</dfn> getter steps are to return
           <a>this</a>'s <a data-for="PerformanceResourceTiming">resource
-          info</a>'s [=response body info/decoded body size=].
+          info</a>'s [=response body info/decoded size=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>transferSize</dfn> getter steps are to perform the following
@@ -687,7 +687,7 @@
             <p>
               Return <a>this</a>'s <a data-for=
               "PerformanceResourceTiming">response body info</a>'s [=response body
-              info/encoded body size=] plus 300.
+              info/encoded size=] plus 300.
             </p>
             <p class='note'>
               The constant number added to `transferSize` replaces exposing the
