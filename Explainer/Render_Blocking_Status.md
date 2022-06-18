@@ -39,25 +39,20 @@ The following values are proposed for the resource blocking status
 
 `blocking` - A potentially render blocking resource
 
-`non-blocking` - Not blocking resource
+`non-blocking` - Non blocking resource
 
-We primarily reuse the heurestics used to set [render blocking](https://fetch.spec.whatwg.org/#request-render-blocking) boolean associated with fetch [request](https://fetch.spec.whatwg.org/#concept-request)
+We primarily reuse the value of the [render blocking](https://fetch.spec.whatwg.org/#request-render-blocking) boolean associated with fetch [request](https://fetch.spec.whatwg.org/#concept-request)
 
 
 ## Potential Spec Changes
 
+Fetch ([whatwg/fetch#1449](https://github.com/whatwg/fetch/pull/1449))
+- New boolean field render-blocking added to [fetch timing info](https://fetch.spec.whatwg.org/#fetch-timing-info)
+- [Fetching](https://fetch.spec.whatwg.org/#fetching) is modified to set [fetch timing info](https://fetch.spec.whatwg.org/#fetch-timing-info)'s render-blocking field using request's [render-blocking](https://fetch.spec.whatwg.org/#request-render-blocking)
+
 Resource Timing Level 2 ([w3c/resource-timing#327](https://github.com/w3c/resource-timing/pull/327))
 - [4.3](https://w3c.github.io/resource-timing/#sec-performanceresourcetiming) : Adding new field to interface : renderBlockingStatus
-- [4.7](https://w3c.github.io/resource-timing/#marking-resource-timing) : [Mark resource timing](https://w3c.github.io/resource-timing/#dfn-mark-resource-timing) gets a renderBlockingStatus string and [setup resource timing entry](https://w3c.github.io/resource-timing/#dfn-setup-the-resource-timing-entry) uses it while creating the entry
+- Getter steps for `renderBlockingStatus` return `"blocking"` if [timing-info](https://w3c.github.io/resource-timing/#dfn-timing-info)'s newly added render-blocking field is `true`, else `"non-blocking"`
 
-
-Fetch ([whatwg/fetch#1449](https://github.com/whatwg/fetch/pull/1449))
-- [Finalize and report timing](https://fetch.spec.whatwg.org/#finalize-and-report-timing) is modified to accept a render blocking status string (defaults to "non-blocking") and passes the same to mark resource timing (step 11)
-    
-    
-HTML ([whatwg/html#7979](https://github.com/whatwg/html/pull/7979))
-- `<link>` element 
-    - Modify [default-fetch-and-process-the-linked-resource](https://html.spec.whatwg.org/#default-fetch-and-process-the-linked-resource) to pass in the render blocking status based on render blocking boolean from request to finalize-and-report-timing (in Step 6.1)
-    - Pass in value as "non-blocking" to finalize in Step 14 of [preload](https://html.spec.whatwg.org/multipage/links.html#preload)
-- `<script>` element
-    - For the algorithms <a href="https://html.spec.whatwg.org/#fetch-a-classic-script">fetch-a-classic-script</a> and <a href="https://html.spec.whatwg.org/#fetch-a-single-module-script">fetch-a-single-module-script</a> modify the step with ‘Finalize and report timing’ to pass in a render blocking status based on render blocking boolean from script-fetch-options.
+## Changelog
+- Update 1 - Spec changes modified to reuse `Request`'s `render-blocking` boolean.
