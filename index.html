@@ -380,6 +380,7 @@
               readonly attribute unsigned long long  transferSize;
               readonly attribute unsigned long long  encodedBodySize;
               readonly attribute unsigned long long  decodedBodySize;
+              readonly attribute DOMString renderBlockingStatus;
               [Default] object toJSON();
           };
         </pre>
@@ -698,6 +699,12 @@
             </p>
           </li>
         </ol>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>renderBlockingStatus</dfn> getter steps are to return
+          <code>"blocking"</code> if <a>this</a>'s <a data-for=
+          "PerformanceResourceTiming">timing info</a>'s [=fetch timing info/
+          render-blocking=] is true, else <code>"non-blocking"</code>
+        </p>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
           to include <code>"resource"</code> in
