@@ -1,6 +1,6 @@
 # HTTP Status Code in Resource Timing
 
-Proposal to add a new field `responseStatusCode` to PerformanceResourceTiming which holds an integer corresponding to HTTP status code returned when fetching the resource
+Proposal to add a new field `responseStatus` to PerformanceResourceTiming which holds an integer corresponding to HTTP status code returned when fetching the resource
 
 ## Use cases
 
@@ -18,7 +18,7 @@ The PerformanceResourceTiming Interface in <a href="https://w3c.github.io/resour
 interface PerformanceResourceTiming : PerformanceEntry {
     ...
     ...
-    readonly attribute short integer responseStatusCode;
+    readonly attribute short integer responseStatus;
     ...
     ...
     [Default] object toJSON();
@@ -28,7 +28,7 @@ interface PerformanceResourceTiming : PerformanceEntry {
 Sample usage:
 ```javascript
 const entry_list = performance.getEntriesByType("resource");
-console.log(entry_list[0].responseStatusCode);
+console.log(entry_list[0].responseStatus);
 ```
 
 
@@ -46,9 +46,9 @@ Fetch ([whatwg/fetch#1468](https://github.com/whatwg/fetch/pull/1468))
 - [HTTP Network Feature](https://fetch.spec.whatwg.org/#http-network-fetch) in step 9.5, set response's body info's response-status to HTTP status code after step 3 in while loop
 
 Resource Timing Level 2 ([w3c/resource-timing#335](https://github.com/w3c/resource-timing/pull/335))
-- [4.3](https://w3c.github.io/resource-timing/#sec-performanceresourcetiming) : Adding new field to interface : responseStatusCode
-- Getter steps for `responseStatusCode` returns [resource info](https://w3c.github.io/resource-timing/#dfn-resource-info)'s response status.
-- [4.5](https://w3c.github.io/resource-timing/#sec-cross-origin-resources) : `responseStatusCode` would be `0` if CORS check fails
+- [4.3](https://w3c.github.io/resource-timing/#sec-performanceresourcetiming) : Adding new field to interface : responseStatus
+- Getter steps for `responseStatus` returns [resource info](https://w3c.github.io/resource-timing/#dfn-resource-info)'s response status.
+- [4.5](https://w3c.github.io/resource-timing/#sec-cross-origin-resources) : `responseStatus` would be `0` if CORS check fails
 
 ## Security/Privacy Considerations
 - The status code is behind CORS check and hence the server has to opt in to make the information available.
@@ -145,3 +145,4 @@ None.
 - Update 1 - Spec changes in fetch modified to set during HTTP Network Fetch
 - Update 2 - Add Self-Review Questionnaire: Security and Privacy
 - Update 3 - Replace TAO check with CORS check for status code
+- Update 4 - Rename field to responseStatus
