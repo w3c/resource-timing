@@ -36,7 +36,7 @@ console.log(entry_list[0].responseStatusCode);
 
 The status code values would have a 1-1 mapping with the fetch [status](https://fetch.spec.whatwg.org/#concept-status) which is available on the [response](https://fetch.spec.whatwg.org/#concept-response-status) 
 
-It would be `0` if the TAO check fails
+The status code would be `0` if the CORS([Cross Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)) check fails. [CORS check](https://fetch.spec.whatwg.org/#concept-cors-check)
 
 
 ## Potential Spec Changes
@@ -48,17 +48,17 @@ Fetch ([whatwg/fetch#1468](https://github.com/whatwg/fetch/pull/1468))
 Resource Timing Level 2 ([w3c/resource-timing#335](https://github.com/w3c/resource-timing/pull/335))
 - [4.3](https://w3c.github.io/resource-timing/#sec-performanceresourcetiming) : Adding new field to interface : responseStatusCode
 - Getter steps for `responseStatusCode` returns [resource info](https://w3c.github.io/resource-timing/#dfn-resource-info)'s response status.
-- [4.5](https://w3c.github.io/resource-timing/#sec-cross-origin-resources) : `responseStatusCode` would be `0` if TAO check fails
+- [4.5](https://w3c.github.io/resource-timing/#sec-cross-origin-resources) : `responseStatusCode` would be `0` if CORS check fails
 
 ## Security/Privacy Considerations
-- The status code is behind TAO check and hence the server has to opt in to make the information available.
+- The status code is behind CORS check and hence the server has to opt in to make the information available.
 
 ### [Self-Review Questionnaire: Security and Privacy](https://w3ctag.github.io/security-questionnaire/)
 
 > 01.  What information might this feature expose to Web sites or other parties,
 >      and for what purposes is that exposure necessary?
 
-It exposes the HTTP status code returned when particular resource was fetched. It is only available when the TAO check passes. Knowing the status code can enable analysis by segregation of resources based on the returned status.  For instance analysis of 4xx and 5xx responses would be easier.
+It exposes the HTTP status code returned when particular resource was fetched. It is only available when the CORS check passes. Knowing the status code can enable analysis by segregation of resources based on the returned status.  For instance analysis of 4xx and 5xx responses would be easier.
 
 > 02.  Do features in your specification expose the minimum amount of information
 >      necessary to enable their intended uses?
@@ -144,3 +144,4 @@ None.
 ## Changelog
 - Update 1 - Spec changes in fetch modified to set during HTTP Network Fetch
 - Update 2 - Add Self-Review Questionnaire: Security and Privacy
+- Update 3 - Replace TAO check with CORS check for status code
