@@ -635,6 +635,9 @@
           "FETCH#record-connection-timing-info">Recording connection timing
           info</a> for more info.
         </p>
+        <p class="note">
+           Issue <a href="https://github.com/w3c/resource-timing/issues/221">221</a> suggests to remove support for nextHopProtocol, as it can reveal details about the user's network configuration.
+        </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>requestStart</dfn> getter steps are to <a>convert fetch
           timestamp</a> for <a>this</a>'s <a data-for=
@@ -982,6 +985,11 @@
             "https://tools.ietf.org/html/rfc7234#section-4.3.4">RFC 7234</a>,
             the header's value may come from the revalidation response, or if
             not present there, from the original cached resource.
+          </p>
+          <p class="note">
+            Issues <a href="https://github.com/w3c/resource-timing/issues/222">222</a> and
+           <a href="https://github.com/w3c/resource-timing/issues/223">223</a>
+           suggest to remove wildcard support from Timing-Allow-Origin in order to restrict its use.
           </p>
         </section>
         <section id="sec-iana-considerations">
