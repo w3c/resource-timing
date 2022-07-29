@@ -380,6 +380,7 @@
               readonly attribute unsigned long long  transferSize;
               readonly attribute unsigned long long  encodedBodySize;
               readonly attribute unsigned long long  decodedBodySize;
+              readonly attribute unsigned short responseStatus;
               [Default] object toJSON();
           };
         </pre>
@@ -408,6 +409,11 @@
           A <a>PerformanceResourceTiming</a> has an associated [=response body
           info=] <a data-dfn-for="PerformanceResourceTiming"><dfn>resource
           info</dfn></a>.
+        </p>
+        <p>
+          A <a>PerformanceResourceTiming</a> has an associated
+          <a data-cite="FETCH#concept-status">status</a> <a data-dfn-for=
+          "PerformanceResourceTiming"><dfn>response status</dfn></a>.
         </p>
         <p>
           The <a>PerformanceResourceTiming</a> interface participates in the
@@ -698,6 +704,11 @@
             </p>
           </li>
         </ol>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>responseStatus</dfn> getter steps are to return
+          <a data-for="PerformanceResourceTiming">response status </a>for
+          <a>this</a>.
+        </p>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
           to include <code>"resource"</code> in
@@ -942,7 +953,10 @@
           {{PerformanceResourceTiming/encodedBodySize}}, and
           {{PerformanceResourceTiming/decodedBodySize}}. Further, the
           {{PerformanceResourceTiming/nextHopProtocol}} attribute will be set
-          to the empty string.
+          to the empty string. If the <a data-cite=
+          "FETCH#concept-cors-check"> CORS check</a> fails the following
+          attributes will be set to zero:
+          {{PerformanceResourceTiming/responseStatus}}.
         </p>
         <p>
           Server-side applications may return the <a>Timing-Allow-Origin</a>
@@ -1062,8 +1076,9 @@
           To <dfn data-export="">mark resource timing</dfn> given a [=/fetch
           timing info=] |timingInfo|, a DOMString |requestedURL|, a DOMString
           |initiatorType| a <a>global object</a> |global|, a string
-          |cacheMode|, and a [=/response body info=] |bodyInfo|, perform the
-          following steps:
+          |cacheMode|, a [=/response body info=] |bodyInfo|, and a
+          <a data-cite="FETCH#concept-status">status</a> |responseStatus|,
+          perform the following steps:
         </p>
         <ol>
           <li>Create a <a>PerformanceResourceTiming</a> object |entry| in
@@ -1071,8 +1086,8 @@
           </li>
           <li>
             <a>Setup the resource timing entry</a> for |entry|, given
-            |initiatorType|, |requestedURL|, |timingInfo|, |cacheMode|, and
-            |bodyInfo|.
+            |initiatorType|, |requestedURL|, |timingInfo|, |cacheMode|,
+            |bodyInfo| and |responseStatus|.
           </li>
           <li>
             <a data-cite=
@@ -1089,8 +1104,9 @@
           To <dfn data-export="">setup the resource timing entry</dfn> for
           <a>PerformanceResourceTiming</a> |entry| given DOMString
           |initiatorType|, DOMString |requestedURL|, [=/fetch timing info=]
-          |timingInfo|, a DOMString |cacheMode|, and a [=response body info=]
-          |bodyInfo|, perform the following steps:
+          |timingInfo|, a DOMString |cacheMode|, a [=response body info=]
+          |bodyInfo|, and a <a data-cite="FETCH#concept-status">status</a>
+          |responseStatus|, perform the following steps:
         </p>
         <ol>
           <li>Assert that |cacheMode| is the empty string,
@@ -1110,6 +1126,9 @@
           </li>
           <li>Set |entry|'s <a data-for="PerformanceResourceTiming">cache
           mode</a> to |cacheMode|.
+          </li>
+          <li>Set |entry|'s <a data-for="PerformanceResourceTiming">response
+          status</a> to |responseStatus|.
           </li>
         </ol>
         <p>
