@@ -380,7 +380,7 @@
               readonly attribute unsigned long long  transferSize;
               readonly attribute unsigned long long  encodedBodySize;
               readonly attribute unsigned long long  decodedBodySize;
-              readonly attribute DOMString renderBlockingStatus;
+              readonly attribute RenderBlockingStatusType renderBlockingStatus;
               [Default] object toJSON();
           };
         </pre>
@@ -409,6 +409,11 @@
           A <a>PerformanceResourceTiming</a> has an associated [=response body
           info=] <a data-dfn-for="PerformanceResourceTiming"><dfn>resource
           info</dfn></a>.
+        </p>
+        <p>
+          A <a>PerformanceResourceTiming</a> has an associated
+          {{RenderBlockingStatusType}} <a data-dfn-for=
+          "PerformanceResourceTiming"><dfn>render blocking status</dfn></a>.
         </p>
         <p>
           The <a>PerformanceResourceTiming</a> interface participates in the
@@ -700,10 +705,9 @@
           </li>
         </ol>
         <p data-dfn-for="PerformanceResourceTiming">
-          The <dfn>renderBlockingStatus</dfn> getter steps are to return
-          <code>"blocking"</code> if <a>this</a>'s <a data-for=
-          "PerformanceResourceTiming">timing info</a>'s [=fetch timing info/
-          render-blocking=] is true, else <code>"non-blocking"</code>
+          The <dfn>renderBlockingStatus</dfn> getter steps are to return the
+          <a data-for="PerformanceResourceTiming">render blocking status</a>
+          for <a>this</a>.
         </p>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
@@ -711,6 +715,38 @@
           {{PerformanceObserver/supportedEntryTypes}}. This allows developers
           to detect support for Resource Timing.
         </p>
+        <section id="sec-render-blocking-status-types">
+          <h4>
+            <dfn>RenderBlockingStatusType</dfn> enum
+          </h4>
+          <pre class='idl'>
+            enum RenderBlockingStatusType {
+                "blocking",
+                "non-blocking"
+            };
+          </pre>
+          <p>
+            The values are defined as follows:
+          </p>
+          <dl data-dfn-for='RenderBlockingStatusType'>
+            <dt>
+              <dfn>blocking</dfn>
+            </dt>
+            <dd>
+              Render blocking status where <a>this</a>'s <a data-for=
+              "PerformanceResourceTiming">timing info</a>'s [=fetch timing info/
+              render-blocking=] is true.
+            </dd>
+            <dt>
+              <dfn>non-blocking</dfn>
+            </dt>
+            <dd>
+              Render blocking status where <a>this</a>'s <a data-for=
+              "PerformanceResourceTiming">timing info</a>'s [=fetch timing info/
+              render-blocking=] is false.
+            </dd>
+          </dl>
+        </section>
       </section>
       <section id="sec-extensions-performance-interface" data-dfn-for=
       "Performance">
