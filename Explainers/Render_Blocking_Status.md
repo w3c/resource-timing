@@ -1,13 +1,13 @@
-# Render Blocking Status
+# Render-blocking Status
 
-Proposal to add a new field `render blocking status` to PerformanceResourceTiming which is an [enum](https://webidl.spec.whatwg.org/#idl-enums)  highlighting the status of stylesheets and scripts.
+Proposal to add a new field `renderBlockingStatus` to PerformanceResourceTiming which is an [enum](https://webidl.spec.whatwg.org/#idl-enums)  highlighting the status of stylesheets and scripts.
 
 ## Use cases
 
-RUM providers could then easily determine the render blocking resources without having to rely on complex heurestics to determine the same.
-This would enable analysis for below scenaarios and possibly more.
-- Determine resources downloaded before FCP but were not render blocking? (and hence, could've been delayed)
-- Determine resources that were render blocking, but weren't discovered early enough? (and hence, could've benefited from being preloaded)
+RUM providers could then easily determine the render-blocking resources without having to rely on complex heurestics to determine the same.
+This would enable analysis for below scenarios and possibly more.
+- Determine resources downloaded before FCP but were not render-blocking? (and hence, could've been delayed)
+- Determine resources that were render-blocking, but weren't discovered early enough? (and hence, could've benefited from being preloaded)
 (Reference : https://github.com/w3c/resource-timing/issues/262)
 
 
@@ -38,15 +38,15 @@ console.log(entry_list[0].renderBlockingStatus);
 ```
 
 
-## Render Blocking Status Values
+## Render-blocking Status Values
 
 The following values are proposed for the resource blocking status enum
 
-`blocking` - A potentially render blocking resource
+`blocking` - A potentially render-blocking resource
 
 `non-blocking` - Non blocking resource
 
-We primarily reuse the value of the [render blocking](https://fetch.spec.whatwg.org/#request-render-blocking) boolean associated with fetch [request](https://fetch.spec.whatwg.org/#concept-request)
+We primarily reuse the value of the [render-blocking](https://fetch.spec.whatwg.org/#request-render-blocking) boolean associated with fetch [request](https://fetch.spec.whatwg.org/#concept-request)
 
 
 ## Potential Spec Changes
@@ -57,7 +57,7 @@ Fetch ([whatwg/fetch#1449](https://github.com/whatwg/fetch/pull/1449))
 
 Resource Timing Level 2 ([w3c/resource-timing#327](https://github.com/w3c/resource-timing/pull/327))
 - [4.3](https://w3c.github.io/resource-timing/#sec-performanceresourcetiming) : Adding new field to interface : renderBlockingStatus
-- A [PerformanceResourceTiming](https://w3c.github.io/resource-timing/#dom-performanceresourcetiming) has an associated  `RenderBlockingStatusType`  render blocking status.
+- A [PerformanceResourceTiming](https://w3c.github.io/resource-timing/#dom-performanceresourcetiming) has an associated  `RenderBlockingStatusType`  render-blocking status.
 - [4.3.1] Add new `RenderBlockingStatusType` enum which can have 2 defined values. `blocking` if [timing-info](https://w3c.github.io/resource-timing/#dfn-timing-info)'s newly added render-blocking field is true and `non-blocking` if its false
 - Getter steps for `renderBlockingStatus` returns `RenderBlockingStatusType` enum
 
@@ -157,3 +157,4 @@ None.
 - Update 1 - Spec changes modified to reuse `Request`'s `render-blocking` boolean.
 - Update 2 - Added section for Privacy/Security considerations
 - Update 3 - Change type to enum as per TAG suggestion
+- Update 4 - Change mentions of `render blocking` to `render-blocking` to better allign with HTML spec terminology
