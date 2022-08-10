@@ -708,9 +708,8 @@
           The <dfn>renderBlockingStatus</dfn> getter steps are to return
           <a data-link-for="RenderBlockingStatusType">blocking</a>
           if <a>this</a>'s <a data-for="PerformanceResourceTiming">timing
-          info</a>'s [=fetch timing info/render-blocking=] is true
-          else <a data-link-for="RenderBlockingStatusType">non-blocking</a>
-          and the <a>relevant global object</a> for <a>this</a>.
+          info</a>'s [=fetch timing info/render-blocking=] is true; otherwise
+          <a data-link-for="RenderBlockingStatusType">non-blocking</a>.
         </p>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
