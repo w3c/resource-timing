@@ -705,9 +705,12 @@
           </li>
         </ol>
         <p data-dfn-for="PerformanceResourceTiming">
-          The <dfn>renderBlockingStatus</dfn> getter steps are to return the
-          <a data-for="PerformanceResourceTiming">render-blocking status</a>
-          for <a>this</a>.
+          The <dfn>renderBlockingStatus</dfn> getter steps are to return
+          <a data-link-for="RenderBlockingStatusType">blocking</a>
+          if <a>this</a>'s <a data-for="PerformanceResourceTiming">timing
+          info</a>'s [=fetch timing info/render-blocking=] is true
+          else <a data-link-for="RenderBlockingStatusType">non-blocking</a>
+          and the <a>relevant global object</a> for <a>this</a>.
         </p>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
@@ -733,17 +736,13 @@
               <dfn>blocking</dfn>
             </dt>
             <dd>
-              Render-blocking status where <a>this</a>'s <a data-for=
-              "PerformanceResourceTiming">timing info</a>'s [=fetch timing info/
-              render-blocking=] is true.
+              The resource can potentially block rendering.
             </dd>
             <dt>
               <dfn>non-blocking</dfn>
             </dt>
             <dd>
-              Render-blocking status where <a>this</a>'s <a data-for=
-              "PerformanceResourceTiming">timing info</a>'s [=fetch timing info/
-              render-blocking=] is false.
+              The resource will not block rendering.
             </dd>
           </dl>
         </section>
