@@ -36,7 +36,7 @@ console.log(entry_list[0].responseStatus);
 
 The status code values would have a 1-1 mapping with the fetch [status](https://fetch.spec.whatwg.org/#concept-status) which is available on the [response](https://fetch.spec.whatwg.org/#concept-response-status) 
 
-The status code would be `0` if the CORS(Cross Origin Resource Sharing[^1]) check[^2] fails.
+The status code would be `0` if the CORS(Cross Origin Resource Sharing[^1]) check[^2] fails. Status code is `0` for cross origin iframes as well.
 
 
 ## Potential Spec Changes
