@@ -710,6 +710,11 @@
           <a>this</a>.
         </p>
         <p class='note'>
+          `responseStatus` is determined in [=Fetch=]. For a no-cors request
+          it would be 0 because the response would be an <a data-cite=
+          "FETCH#concept filtered response opaque">opaque filtered response</a>.
+        </p>
+        <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
           to include <code>"resource"</code> in
           {{PerformanceObserver/supportedEntryTypes}}. This allows developers
