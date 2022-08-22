@@ -380,6 +380,7 @@
               readonly attribute unsigned long long  transferSize;
               readonly attribute unsigned long long  encodedBodySize;
               readonly attribute unsigned long long  decodedBodySize;
+              readonly attribute DOMString contentType;
               [Default] object toJSON();
           };
         </pre>
@@ -408,6 +409,10 @@
           A <a>PerformanceResourceTiming</a> has an associated [=response body
           info=] <a data-dfn-for="PerformanceResourceTiming"><dfn>resource
           info</dfn></a>.
+        </p>
+        <p>
+          A <a>PerformanceResourceTiming</a> has an associated DOMString
+          <a data-dfn-for="PerformanceResourceTiming"><dfn>content type</dfn></a>.
         </p>
         <p>
           The <a>PerformanceResourceTiming</a> interface participates in the
@@ -698,6 +703,11 @@
             </p>
           </li>
         </ol>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>contentType</dfn> getter steps are to return
+          <a data-for="PerformanceResourceTiming">content type </a>for
+          <a>this</a>.
+        </p>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
           to include <code>"resource"</code> in
@@ -1062,8 +1072,9 @@
           To <dfn data-export="">mark resource timing</dfn> given a [=/fetch
           timing info=] |timingInfo|, a DOMString |requestedURL|, a DOMString
           |initiatorType| a <a>global object</a> |global|, a string
-          |cacheMode|, and a [=/response body info=] |bodyInfo|, perform the
-          following steps:
+          |cacheMode|, a [=/response body info=] |bodyInfo|, and a
+          <a data-cite="MIMESNIFF#mime-type">MIME type</a> |mimetype|
+          perform the following steps:
         </p>
         <ol>
           <li>Create a <a>PerformanceResourceTiming</a> object |entry| in
@@ -1071,8 +1082,8 @@
           </li>
           <li>
             <a>Setup the resource timing entry</a> for |entry|, given
-            |initiatorType|, |requestedURL|, |timingInfo|, |cacheMode|, and
-            |bodyInfo|.
+            |initiatorType|, |requestedURL|, |timingInfo|, |cacheMode|,
+            |bodyInfo|, and |mimeType|.
           </li>
           <li>
             <a data-cite=
@@ -1089,8 +1100,9 @@
           To <dfn data-export="">setup the resource timing entry</dfn> for
           <a>PerformanceResourceTiming</a> |entry| given DOMString
           |initiatorType|, DOMString |requestedURL|, [=/fetch timing info=]
-          |timingInfo|, a DOMString |cacheMode|, and a [=response body info=]
-          |bodyInfo|, perform the following steps:
+          |timingInfo|, a DOMString |cacheMode|, a [=response body info=]
+          |bodyInfo|, and a <a data-cite="MIMESNIFF#mime-type">MIME type</a>
+          |mimeType|, perform the following steps:
         </p>
         <ol>
           <li>Assert that |cacheMode| is the empty string,
@@ -1111,6 +1123,18 @@
           <li>Set |entry|'s <a data-for="PerformanceResourceTiming">cache
           mode</a> to |cacheMode|.
           </li>
+          <li>Set |entry|'s <a data-for="PerformanceResourceTiming">content
+          type</a> to result of running the following steps.
+          </li>
+          <ol>
+            <li>If |mimeType|'s <a data-cite=
+            "MIMESNIFF#mime-type-essence">essence</a>'s prefix matches
+            the <a data-cite="MIMESNIFF#mime-type-essence">essence</a> of one
+            of the <a data-cite="MIMESNIFF#mime-type-groups">MIME type
+            groups</a>, return the matched <a data-cite=
+            "MIMESNIFF#mime-type">MIME type</a>.
+            <li>Return the empty string</li>
+          </ol>
         </ol>
         <p>
           To <dfn>convert fetch timestamp</dfn> given {{DOMHighResTimeStamp}}
