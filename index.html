@@ -381,6 +381,7 @@
               readonly attribute unsigned long long  encodedBodySize;
               readonly attribute unsigned long long  decodedBodySize;
               readonly attribute unsigned short responseStatus;
+              readonly attribute RenderBlockingStatusType renderBlockingStatus;
               [Default] object toJSON();
           };
         </pre>
@@ -414,6 +415,11 @@
           A <a>PerformanceResourceTiming</a> has an associated
           <a data-cite="FETCH#concept-status">status</a> <a data-dfn-for=
           "PerformanceResourceTiming"><dfn>response status</dfn></a>.
+        </p>
+        <p>
+          A <a>PerformanceResourceTiming</a> has an associated
+          {{RenderBlockingStatusType}} <a data-dfn-for=
+          "PerformanceResourceTiming"><dfn>render-blocking status</dfn></a>.
         </p>
         <p>
           The <a>PerformanceResourceTiming</a> interface participates in the
@@ -641,6 +647,12 @@
           "FETCH#record-connection-timing-info">Recording connection timing
           info</a> for more info.
         </p>
+        <p class="note">
+          Issue <a href=
+          "https://github.com/w3c/resource-timing/issues/221">221</a> suggests
+          to remove support for nextHopProtocol, as it can reveal details about
+          the user's network configuration.
+        </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>requestStart</dfn> getter steps are to <a>convert fetch
           timestamp</a> for <a>this</a>'s <a data-for=
@@ -714,12 +726,47 @@
           it would be 0 because the response would be an <a data-cite=
           "FETCH#concept filtered response opaque">opaque filtered response</a>.
         </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>renderBlockingStatus</dfn> getter steps are to return
+          <a data-link-for="RenderBlockingStatusType">blocking</a> if
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">timing
+          info</a>'s [=fetch timing info/render-blocking=] is true; otherwise
+          <a data-link-for="RenderBlockingStatusType">non-blocking</a>.
+        </p>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
           to include <code>"resource"</code> in
           {{PerformanceObserver/supportedEntryTypes}}. This allows developers
           to detect support for Resource Timing.
         </p>
+        <section id="sec-render-blocking-status-types">
+          <h4>
+            <dfn>RenderBlockingStatusType</dfn> enum
+          </h4>
+          <pre class='idl'>
+            enum RenderBlockingStatusType {
+                "blocking",
+                "non-blocking"
+            };
+          </pre>
+          <p>
+            The values are defined as follows:
+          </p>
+          <dl data-dfn-for='RenderBlockingStatusType'>
+            <dt>
+              <dfn>blocking</dfn>
+            </dt>
+            <dd>
+              The resource can potentially block rendering.
+            </dd>
+            <dt>
+              <dfn>non-blocking</dfn>
+            </dt>
+            <dd>
+              The resource will not block rendering.
+            </dd>
+          </dl>
+        </section>
       </section>
       <section id="sec-extensions-performance-interface" data-dfn-for=
       "Performance">
@@ -1001,6 +1048,13 @@
             "https://tools.ietf.org/html/rfc7234#section-4.3.4">RFC 7234</a>,
             the header's value may come from the revalidation response, or if
             not present there, from the original cached resource.
+          </p>
+          <p class="note">
+            Issues <a href=
+            "https://github.com/w3c/resource-timing/issues/222">222</a> and
+            <a href="https://github.com/w3c/resource-timing/issues/223">223</a>
+            suggest to remove wildcard support from Timing-Allow-Origin in
+            order to restrict its use.
           </p>
         </section>
         <section id="sec-iana-considerations">
