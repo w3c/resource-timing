@@ -38,22 +38,18 @@ The content type value would reflect the [Content-Type](https://developer.mozill
 
 It would be an empty string if the CORS[^2] check fails
 
-Content-type is only reflected if it is one among a set of predefined allowed values. It has to be a mimetype that is identified in https://mimesniff.spec.whatwg.org/#mime-type-groups and is documented in Mimesniff spec.
-
-For instance if we have a Content-Type : `image/png34232` returned from the server, the mimetype would match with `image/png`, the suffix is discarded and only the matched mimetype `image/png` would be exposed.
+User agents are allowed to truncate the Content-type values. For instance if we have a Content-Type : `image/png34232` returned from the server, user agents may choose to only return `image/png`.
 
 
 ## Potential Spec Changes
 
 Fetch
-- Extracting content type from response's Header list.
-- Set content-type to empty string if mode is `navigate` and not same origin.
-- Pass in content-type as parameter to `Mark resource timing`
+- Add content type field to response body info
+- In fetch reponse handover 3.3.6, set response body info's content type to empty string if mode is `navigate` and not same origin or if response is an  opaque response.
 
 Resource Timing Level 2
 - [4.3](https://w3c.github.io/resource-timing/#sec-performanceresourcetiming) : Adding new field to interface : contentType
-- Mark resource timing takes new parameter `mimeType` and passes it to Setup resource timing entry
-- In Setup resource timing entry, value of `contentType` is set to matched value if the MIMEtype's [essence](https://mimesniff.spec.whatwg.org/#mime-type-essence)'s prefix matches one of [MIME type groups](https://mimesniff.spec.whatwg.org/#mime-type-groups), and otherwise to the empty string
+- The `contentType` getter steps are to return this's resource info's content type's essence. The user agent may truncate the value in an implementation-defined way.
 - [4.5](https://w3c.github.io/resource-timing/#sec-cross-origin-resources) : `contentType` would be an empty string if CORS[^2] check fails
 
 
@@ -62,3 +58,4 @@ Resource Timing Level 2
 
 ## Changelog
 - Update 1 - Updated to only reflect the value of Content-type header instead of relying on sniffing
+- Update 2 - Allow user agents to truncate values
