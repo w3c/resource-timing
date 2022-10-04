@@ -17,4 +17,5 @@ jobs:
           W3C_WG_DECISION_URL: https://w3c.github.io/web-performance/meetings/2021/2021-04-01/index.html
           W3C_BUILD_OVERRIDE: |
              shortName: resource-timing-2
-             specStatus: WD
+             specStatus: CRD
+             historyURI: "https://www.w3.org/standards/history/resource-timing"
