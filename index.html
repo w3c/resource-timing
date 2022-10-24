@@ -721,9 +721,9 @@
           <a>this</a>'s <a data-for="PerformanceResourceTiming">response status</a>.
         </p>
         <p class='note'>
-          `responseStatus` is determined in [=Fetch=]. For a <a data-cite=
-          "FETCH#dom-requestmode-no-cors">no-cors</a> request it would be 0
-          because the response would be an <a data-cite=
+          `responseStatus` is determined in [=Fetch=]. For a cross-origin
+          <a data-cite="FETCH#dom-requestmode-no-cors">no-cors</a> request it
+          would be 0 because the response would be an <a data-cite=
           "FETCH#concept-filtered-response-opaque">opaque filtered response</a>.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
@@ -1005,10 +1005,7 @@
           {{PerformanceResourceTiming/encodedBodySize}}, and
           {{PerformanceResourceTiming/decodedBodySize}}. Further, the
           {{PerformanceResourceTiming/nextHopProtocol}} attribute will be set
-          to the empty string. If the <a data-cite=
-          "FETCH#concept-cors-check"> CORS check</a> fails the following
-          attributes will be set to zero:
-          {{PerformanceResourceTiming/responseStatus}}.
+          to the empty string.
         </p>
         <p>
           Server-side applications may return the <a>Timing-Allow-Origin</a>
