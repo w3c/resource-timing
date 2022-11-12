@@ -724,8 +724,11 @@
           The <dfn>contentType</dfn> getter steps are to return
           <a>this</a>'s <a data-for="PerformanceResourceTiming">resource
           info</a>'s [=response body info/content type=]'s <a data-cite=
-          "MIMESNIFF#mime-type-essence">essence</a>. The [=user agent=] may
-          truncate the value in an [=implementation-defined=] way.
+          "MIMESNIFF#mime-type-essence">essence</a> if
+          <a>this</a>'s <a data-for=
+          "PerformanceResourceTiming">resource info</a>'s
+          [=response body info/content type=] is non-null; otherwise
+          the empty string.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>renderBlockingStatus</dfn> getter steps are to return
