@@ -721,12 +721,12 @@
           response</a>.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
-          The <dfn>contentType</dfn> getter steps are to return
+          The <dfn>contentType</dfn> getter steps are to return the result of
+          <a data-cite=
+          "MIMESNIFF#serialize-a-mime-type">serialize a MIME type</a> with
           <a>this</a>'s <a data-for="PerformanceResourceTiming">resource
-          info</a>'s [=response body info/content type=]'s <a data-cite=
-          "MIMESNIFF#mime-type-essence">essence</a> if
-          <a>this</a>'s <a data-for=
-          "PerformanceResourceTiming">resource info</a>'s
+          info</a>'s [=response body info/content type=] if <a>this</a>'s
+          <a data-for="PerformanceResourceTiming">resource info</a>'s
           [=response body info/content type=] is non-null; otherwise
           the empty string.
         </p>
