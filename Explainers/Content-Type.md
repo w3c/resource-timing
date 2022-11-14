@@ -1,6 +1,6 @@
 # Content-Type in Resource Timing
 
-Proposal to add a new field `contentType` to PerformanceResourceTiming which holds a string corresponding to the content type of the fetched resource
+Proposal to add a new field `contentType` to PerformanceResourceTiming which holds a string corresponding to the Content-type header of the fetched resource
 
 ## Use cases
 
@@ -36,7 +36,7 @@ console.log(entry_list[0].contentType);
 
 The content type value would reflect the [Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) header on the response. It does NOT return the sniffed value.
 
-It would be an empty string if the [Cross-Origin-Resource-Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) [check](https://fetch.spec.whatwg.org/#concept-cors-check) fails
+It would be an empty string if the [Cross-Origin-Resource-Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) [check](https://fetch.spec.whatwg.org/#concept-cors-check) fails.
 
 
 ## Potential Spec Changes
