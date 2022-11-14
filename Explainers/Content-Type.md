@@ -1,6 +1,6 @@
 # Content-Type in Resource Timing
 
-Proposal to add a new field `contentType` to PerformanceResourceTiming which holds a string corresponding to the Content-type header of the fetched resource
+Proposal to add a new field `contentType` to PerformanceResourceTiming which holds a string corresponding to the [Content-type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) header of the fetched resource
 
 ## Use cases
 
