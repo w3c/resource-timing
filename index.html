@@ -367,7 +367,10 @@
               readonly attribute DOMHighResTimeStamp connectEnd;
               readonly attribute DOMHighResTimeStamp secureConnectionStart;
               readonly attribute DOMHighResTimeStamp requestStart;
+              readonly attribute DOMHighResTimeStamp firstInterimResponseStart;
               readonly attribute DOMHighResTimeStamp responseStart;
+              readonly attribute DOMHighResTimeStamp responseHeadersEnd;
+              readonly attribute DOMHighResTimeStamp responseBodyStart;
               readonly attribute DOMHighResTimeStamp responseEnd;
               readonly attribute unsigned long long  transferSize;
               readonly attribute unsigned long long  encodedBodySize;
@@ -682,10 +685,31 @@
           object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>firstInterimResponseStart</dfn> getter steps are to <a>convert fetch
+          timestamp</a> for <a>this</a>'s <a data-for=
+          "PerformanceResourceTiming">timing info</a>'s [=fetch timing
+          info/first interim network-response start time=] and the <a>relevant global
+          object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
+        </p>
+        <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>responseStart</dfn> getter steps are to <a>convert fetch
           timestamp</a> for <a>this</a>'s <a data-for=
           "PerformanceResourceTiming">timing info</a>'s [=fetch timing
           info/final network-response start time=] and the <a>relevant global
+          object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
+        </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>responseHeadersEnd</dfn> getter steps are to <a>convert fetch
+          timestamp</a> for <a>this</a>'s <a data-for=
+          "PerformanceResourceTiming">timing info</a>'s [=fetch timing
+          info/final network-response headers end time=] and the <a>relevant global
+          object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
+        </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>responseBodyStart</dfn> getter steps are to <a>convert fetch
+          timestamp</a> for <a>this</a>'s <a data-for=
+          "PerformanceResourceTiming">timing info</a>'s [=fetch timing
+          info/final network-response body start time=] and the <a>relevant global
           object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
@@ -1022,7 +1046,10 @@
           {{PerformanceResourceTiming/connectStart}},
           {{PerformanceResourceTiming/connectEnd}},
           {{PerformanceResourceTiming/requestStart}},
+          {{PerformanceResourceTiming/firstInterimResponseStart}},
           {{PerformanceResourceTiming/responseStart}},
+          {{PerformanceResourceTiming/responseHeadersEnd}},
+          {{PerformanceResourceTiming/responseBodyStart}},
           {{PerformanceResourceTiming/secureConnectionStart}},
           {{PerformanceResourceTiming/transferSize}},
           {{PerformanceResourceTiming/encodedBodySize}}, and
