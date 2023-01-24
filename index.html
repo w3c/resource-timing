@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>
-      Resource Timing Level 2
+      Resource Timing
     </title>
     <script src='https://www.w3.org/Tools/respec/respec-w3c' class='remove'
     defer></script>
     <script class='remove'>
     var respecConfig = {
-    shortName: "resource-timing-2",
+    shortName: "resource-timing",
     specStatus: "ED",
     editors: [{
       name: "Yoav Weiss",
@@ -19,8 +19,8 @@
       w3cid: "58673"
     }, {
       name: "Noam Rosenthal",
-      mailto: "noam.j.rosenthal@gmail.com",
-      company: "Invited Expert",
+      mailto: "nrosenthal@chromium.org",
+      company: "Google",
       w3cid: "121539"
     }],
     formerEditors: [{
@@ -78,16 +78,7 @@
         the complete timing information for resources in a document.
       </p>
     </section>
-    <section id="sotd">
-      <p class='warning'>
-        Implementers SHOULD be aware that this document is not stable.
-        Implementers who are not taking part in the discussions are likely to
-        find the specification changing out from under them in incompatible
-        ways. Vendors interested in implementing this document before it
-        eventually reaches the Candidate Recommendation stage SHOULD join the
-        aforementioned mailing lists and take part in the discussions.
-      </p>
-    </section>
+    <section id="sotd"></section>
     <section id="introduction" class='informative'>
       <h2>
         Introduction
@@ -381,6 +372,8 @@
               readonly attribute unsigned long long  transferSize;
               readonly attribute unsigned long long  encodedBodySize;
               readonly attribute unsigned long long  decodedBodySize;
+              readonly attribute unsigned short responseStatus;
+              readonly attribute RenderBlockingStatusType renderBlockingStatus;
               [Default] object toJSON();
           };
         </pre>
@@ -414,6 +407,16 @@
           A <a>PerformanceResourceTiming</a> has an associated [=response body
           info=] <a data-dfn-for="PerformanceResourceTiming"><dfn>resource
           info</dfn></a>.
+        </p>
+        <p>
+          A <a>PerformanceResourceTiming</a> has an associated <a data-cite=
+          "FETCH#concept-status">status</a> <a data-dfn-for=
+          "PerformanceResourceTiming"><dfn>response status</dfn></a>.
+        </p>
+        <p>
+          A <a>PerformanceResourceTiming</a> has an associated
+          {{RenderBlockingStatusType}} <a data-dfn-for=
+          "PerformanceResourceTiming"><dfn>render-blocking status</dfn></a>.
         </p>
         <p>
           The <a>PerformanceResourceTiming</a> interface participates in the
@@ -575,7 +578,7 @@
             </li>
           </ul>
 
-          <p class='note'>
+          <p>
             This is expected to be expanded by future updates to this
             specification, e.g. to describe consuming preloaded resources and
             prefetched navigation requests.
@@ -667,6 +670,12 @@
           "FETCH#record-connection-timing-info">Recording connection timing
           info</a> for more info.
         </p>
+        <p class="note">
+          Issue <a href=
+          "https://github.com/w3c/resource-timing/issues/221">221</a> suggests
+          to remove support for nextHopProtocol, as it can reveal details about
+          the user's network configuration.
+        </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>requestStart</dfn> getter steps are to <a>convert fetch
           timestamp</a> for <a>this</a>'s <a data-for=
@@ -730,12 +739,59 @@
             </p>
           </li>
         </ol>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>responseStatus</dfn> getter steps are to return
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">response
+          status</a>.
+        </p>
+        <p class='note'>
+          `responseStatus` is determined in [=Fetch=]. For a cross-origin
+          <a data-cite="FETCH#dom-requestmode-no-cors">no-cors</a> request it
+          would be 0 because the response would be an <a data-cite=
+          "FETCH#concept-filtered-response-opaque">opaque filtered
+          response</a>.
+        </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>renderBlockingStatus</dfn> getter steps are to return
+          <a data-link-for="RenderBlockingStatusType">blocking</a> if
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">timing
+          info</a>'s [=fetch timing info/render-blocking=] is true; otherwise
+          <a data-link-for="RenderBlockingStatusType">non-blocking</a>.
+        </p>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
           to include <code>"resource"</code> in
           {{PerformanceObserver/supportedEntryTypes}}. This allows developers
           to detect support for Resource Timing.
         </p>
+        <section id="sec-render-blocking-status-types">
+          <h4>
+            <dfn>RenderBlockingStatusType</dfn> enum
+          </h4>
+          <pre class='idl'>
+            enum RenderBlockingStatusType {
+                "blocking",
+                "non-blocking"
+            };
+          </pre>
+          <p>
+            The values are defined as follows:
+          </p>
+          <dl data-dfn-for='RenderBlockingStatusType'>
+            <dt>
+              <dfn>blocking</dfn>
+            </dt>
+            <dd>
+              The resource can potentially block rendering.
+            </dd>
+            <dt>
+              <dfn>non-blocking</dfn>
+            </dt>
+            <dd>
+              The resource will not block rendering.
+            </dd>
+          </dl>
+        </section>
       </section>
       <section id="sec-extensions-performance-interface" data-dfn-for=
       "Performance">
@@ -973,8 +1029,8 @@
           {{PerformanceResourceTiming/transferSize}},
           {{PerformanceResourceTiming/encodedBodySize}}, and
           {{PerformanceResourceTiming/decodedBodySize}}. Further, the
-          {{PerformanceResourceTiming/nextHopProtocol} attribute will be set to
-          the empty string.
+          {{PerformanceResourceTiming/nextHopProtocol}} attribute will be set
+          to the empty string.
         </p>
         <p>
           Server-side applications may return the <a>Timing-Allow-Origin</a>
@@ -1014,6 +1070,13 @@
             "https://tools.ietf.org/html/rfc7234#section-4.3.4">RFC 7234</a>,
             the header's value may come from the revalidation response, or if
             not present there, from the original cached resource.
+          </p>
+          <p class="note">
+            Issues <a href=
+            "https://github.com/w3c/resource-timing/issues/222">222</a> and
+            <a href="https://github.com/w3c/resource-timing/issues/223">223</a>
+            suggest to remove wildcard support from Timing-Allow-Origin in
+            order to restrict its use.
           </p>
         </section>
         <section id="sec-iana-considerations">
@@ -1094,9 +1157,10 @@
           To <dfn data-export="">mark resource timing</dfn> given a [=/fetch
           timing info=] |timingInfo|, a DOMString |requestedURL|, a DOMString
           |initiatorType| a <a>global object</a> |global|, a string
-          |cacheMode|, a [=/response body info=] |bodyInfo|, and an optional
-          [=string=] |deliveryType| (by default, the empty string), perform the
-          following steps:
+          |cacheMode|, a [=/response body info=] |bodyInfo|, a
+          <a data-cite="FETCH#concept-status">status</a> |responseStatus|,
+          and an optional [=string=] |deliveryType| (by default, the empty string),
+          perform the following steps:
         </p>
         <ol>
           <li>Create a <a>PerformanceResourceTiming</a> object |entry| in
@@ -1105,7 +1169,7 @@
           <li>
             <a>Setup the resource timing entry</a> for |entry|, given
             |initiatorType|, |requestedURL|, |timingInfo|, |cacheMode|,
-            |bodyInfo|, and |deliveryType|.
+            |bodyInfo|, |responseStatus|, and |deliveryType|.
           </li>
           <li>
             <a data-cite=
@@ -1123,12 +1187,13 @@
           <a>PerformanceResourceTiming</a> |entry| given DOMString
           |initiatorType|, DOMString |requestedURL|, [=/fetch timing info=]
           |timingInfo|, a DOMString |cacheMode|, a [=response body info=]
-          |bodyInfo|, and an optional DOMString |deliveryType| (by default, the
-          empty string), perform the following steps:
+          |bodyInfo|, a <a data-cite="FETCH#concept-status">status</a>
+          |responseStatus|, and an optional DOMString |deliveryType| (by
+          default, the empty string), perform the following steps:
         </p>
         <ol>
-          <li>Assert that |cacheMode| is the empty string or
-          "<code>local</code>".
+          <li>Assert that |cacheMode| is the empty string,
+          "<code>local</code>", or "<code>validated</code>".
           </li>
           <li>Set |entry|'s <a data-for="PerformanceResourceTiming">initiator
           type</a> to |initiatorType|.
@@ -1144,6 +1209,9 @@
           </li>
           <li>Set |entry|'s <a data-for="PerformanceResourceTiming">cache
           mode</a> to |cacheMode|.
+          </li>
+          <li>Set |entry|'s <a data-for="PerformanceResourceTiming">response
+          status</a> to |responseStatus|.
           </li>
           <li>If |deliveryType| is the empty string and |cacheMode| is not,
           then set |deliveryType| to "<code>cache</code>".
