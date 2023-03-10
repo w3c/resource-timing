@@ -1044,7 +1044,7 @@
           </h4>
           <p>
             The <dfn>Timing-Allow-Origin</dfn> HTTP response header field can
-            be used to communicate a policy indicating origin(s) that are
+            be used to communicate a policy indicating origin(s) that may be
             allowed to see values of attributes that would have been zero due
             to the cross-origin restrictions. The header's value is represented
             by the following ABNF [[RFC5234]] (using <a data-cite=
@@ -1058,6 +1058,11 @@
             <a>Timing-Allow-Origin</a> header fields by appending each
             subsequent field value to the combined field value in order,
             separated by a comma.
+          </p>
+          <p>
+            The user agent MAY still enforce cross-origin restrictions and set
+            transferSize, encodedBodySize, and decodedBodySize attributes to
+            zero, even with Timing-Allow-Origin HTTP response header fields.
           </p>
           <p>
             The <a>Timing-Allow-Origin</a> headers are processed in
@@ -1273,8 +1278,8 @@
           Thanks to Anne Van Kesteren, Annie Sullivan, Arvind Jain, Boris
           Zbarsky, Darin Fisher, Jason Weber, Jonas Sicking, James Simonsen,
           Karen Anderson, Kyle Scholz, Nic Jansma, Philippe Le Hegaret,
-          Sigbjørn Vik, Steve Souders, Todd Reifsteck, Tony Gentilcore and
-          William Chan for their contributions to this work.
+          Sigbjørn Vik, Steve Souders, Todd Reifsteck, Tony Gentilcore, William
+          Chan, and Alex Christensen for their contributions to this work.
         </p>
       </section>
     </section>
