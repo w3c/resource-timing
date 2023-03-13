@@ -355,6 +355,7 @@
           [Exposed=(Window,Worker)]
           interface PerformanceResourceTiming : PerformanceEntry {
               readonly attribute DOMString initiatorType;
+              readonly attribute DOMString deliveryType;
               readonly attribute ByteString nextHopProtocol;
               readonly attribute DOMHighResTimeStamp workerStart;
               readonly attribute DOMHighResTimeStamp redirectStart;
@@ -379,6 +380,11 @@
         <p>
           A <a>PerformanceResourceTiming</a> has an associated DOMString
           <a data-dfn-for="PerformanceResourceTiming"><dfn>initiator
+          type</dfn></a>.
+        </p>
+        <p>
+          A <a>PerformanceResourceTiming</a> has an associated DOMString
+          <a data-dfn-for="PerformanceResourceTiming"><dfn>delivery
           type</dfn></a>.
         </p>
         <p>
@@ -552,6 +558,32 @@
           The setting of `initiatorType` is done at the different places where
           a resource timing entry is reported, such as the [=fetch=] standard.
         </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          <dfn>deliveryType</dfn> getter steps are to return the <a data-for=
+          "PerformanceResourceTiming">delivery type</a> for <a>this</a>.
+        </p>
+        <div class='note'>
+          <p>
+            `deliveryType` returns one of the following values:
+          </p>
+          <ul>
+            <li>
+              <code>"cache"</code>, if the <a data-for=
+              "PerformanceResourceTiming">cache mode</a> is not the empty
+              string.
+            </li>
+            <li>
+              the empty string <code>""</code>, if none of the above conditions
+              match.
+            </li>
+          </ul>
+
+          <p>
+            This is expected to be expanded by future updates to this
+            specification, e.g. to describe consuming preloaded resources and
+            prefetched navigation requests.
+          </p>
+        </div>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerStart</dfn> getter steps are to <a>convert fetch
           timestamp</a> for <a>this</a>'s <a data-for=
@@ -1030,7 +1062,8 @@
           <p>
             The user agent MAY still enforce cross-origin restrictions and set
             transferSize, encodedBodySize, and decodedBodySize attributes to
-            zero, even with Timing-Allow-Origin HTTP response header fields.
+            zero, even with Timing-Allow-Origin HTTP response header fields. If
+            it does, it MAY also set deliveryType to "".
           </p>
           <p>
             The <a>Timing-Allow-Origin</a> headers are processed in
@@ -1130,8 +1163,9 @@
           To <dfn data-export="">mark resource timing</dfn> given a [=/fetch
           timing info=] |timingInfo|, a DOMString |requestedURL|, a DOMString
           |initiatorType| a <a>global object</a> |global|, a string
-          |cacheMode|, a [=/response body info=] |bodyInfo|, and a
+          |cacheMode|, a [=/response body info=] |bodyInfo|, a
           <a data-cite="FETCH#concept-status">status</a> |responseStatus|,
+          and an optional [=string=] |deliveryType| (by default, the empty string),
           perform the following steps:
         </p>
         <ol>
@@ -1141,7 +1175,7 @@
           <li>
             <a>Setup the resource timing entry</a> for |entry|, given
             |initiatorType|, |requestedURL|, |timingInfo|, |cacheMode|,
-            |bodyInfo| and |responseStatus|.
+            |bodyInfo|, |responseStatus|, and |deliveryType|.
           </li>
           <li>
             <a data-cite=
@@ -1159,8 +1193,9 @@
           <a>PerformanceResourceTiming</a> |entry| given DOMString
           |initiatorType|, DOMString |requestedURL|, [=/fetch timing info=]
           |timingInfo|, a DOMString |cacheMode|, a [=response body info=]
-          |bodyInfo|, and a <a data-cite="FETCH#concept-status">status</a>
-          |responseStatus|, perform the following steps:
+          |bodyInfo|, a <a data-cite="FETCH#concept-status">status</a>
+          |responseStatus|, and an optional DOMString |deliveryType| (by
+          default, the empty string), perform the following steps:
         </p>
         <ol>
           <li>Assert that |cacheMode| is the empty string,
@@ -1183,6 +1218,12 @@
           </li>
           <li>Set |entry|'s <a data-for="PerformanceResourceTiming">response
           status</a> to |responseStatus|.
+          </li>
+          <li>If |deliveryType| is the empty string and |cacheMode| is not,
+          then set |deliveryType| to "<code>cache</code>".
+          </li>
+          <li>Set |entry|'s <a data-for="PerformanceResourceTiming">delivery
+          type</a> to |deliveryType|.
           </li>
         </ol>
         <p>
