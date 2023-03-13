@@ -572,12 +572,10 @@
               "PerformanceResourceTiming">cache mode</a> is not the empty
               string.
             </li>
-            <li>
-              the empty string <code>""</code>, if none of the above conditions
-              match.
+            <li>the empty string <code>""</code>, if none of the above
+            conditions match.
             </li>
           </ul>
-
           <p>
             This is expected to be expanded by future updates to this
             specification, e.g. to describe consuming preloaded resources and
@@ -1163,10 +1161,10 @@
           To <dfn data-export="">mark resource timing</dfn> given a [=/fetch
           timing info=] |timingInfo|, a DOMString |requestedURL|, a DOMString
           |initiatorType| a <a>global object</a> |global|, a string
-          |cacheMode|, a [=/response body info=] |bodyInfo|, a
-          <a data-cite="FETCH#concept-status">status</a> |responseStatus|,
-          and an optional [=string=] |deliveryType| (by default, the empty string),
-          perform the following steps:
+          |cacheMode|, a [=/response body info=] |bodyInfo|, a <a data-cite=
+          "FETCH#concept-status">status</a> |responseStatus|, and an optional
+          [=string=] |deliveryType| (by default, the empty string), perform the
+          following steps:
         </p>
         <ol>
           <li>Create a <a>PerformanceResourceTiming</a> object |entry| in
