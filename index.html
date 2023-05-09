@@ -367,6 +367,7 @@
               readonly attribute DOMHighResTimeStamp connectEnd;
               readonly attribute DOMHighResTimeStamp secureConnectionStart;
               readonly attribute DOMHighResTimeStamp requestStart;
+              readonly attribute DOMHighResTimeStamp firstInterimResponseStart;
               readonly attribute DOMHighResTimeStamp responseStart;
               readonly attribute DOMHighResTimeStamp responseEnd;
               readonly attribute unsigned long long  transferSize;
@@ -679,6 +680,13 @@
           timestamp</a> for <a>this</a>'s <a data-for=
           "PerformanceResourceTiming">timing info</a>'s [=fetch timing
           info/final network-request start time=] and the <a>relevant global
+          object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
+        </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>firstInterimResponseStart</dfn> getter steps are to <a>convert fetch
+          timestamp</a> for <a>this</a>'s <a data-for=
+          "PerformanceResourceTiming">timing info</a>'s [=fetch timing
+          info/first interim network-response start time=] and the <a>relevant global
           object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
@@ -1022,6 +1030,7 @@
           {{PerformanceResourceTiming/connectStart}},
           {{PerformanceResourceTiming/connectEnd}},
           {{PerformanceResourceTiming/requestStart}},
+          {{PerformanceResourceTiming/firstInterimResponseStart}},
           {{PerformanceResourceTiming/responseStart}},
           {{PerformanceResourceTiming/secureConnectionStart}},
           {{PerformanceResourceTiming/transferSize}},
