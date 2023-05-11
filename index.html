@@ -375,6 +375,7 @@
               readonly attribute unsigned long long  decodedBodySize;
               readonly attribute unsigned short responseStatus;
               readonly attribute RenderBlockingStatusType renderBlockingStatus;
+              readonly attribute DOMString contentType;
               [Default] object toJSON();
           };
         </pre>
@@ -756,6 +757,11 @@
           would be 0 because the response would be an <a data-cite=
           "FETCH#concept-filtered-response-opaque">opaque filtered
           response</a>.
+        </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>contentType</dfn> getter steps are to return
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">resource
+          info</a>'s [=response body info/content type=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>renderBlockingStatus</dfn> getter steps are to return
