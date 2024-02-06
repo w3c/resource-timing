@@ -420,60 +420,6 @@
           {{RenderBlockingStatusType}} <a data-dfn-for=
           "PerformanceResourceTiming"><dfn>render-blocking status</dfn></a>.
         </p>
-        <p>
-          The <a>PerformanceResourceTiming</a> interface participates in the
-          <a data-cite=
-          "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-          Timeline</a> and extends the following attributes of the
-          <code><dfn data-cite=
-          "PERFORMANCE-TIMELINE-2#the-performanceentry-interface">PerformanceEntry</dfn></code>
-          interface:
-        </p>
-        <dl data-link-for="PerformanceResourceTiming">
-          <dt>
-            <dfn>name</dfn>
-          </dt>
-          <dd>
-            The <a>name</a> getter steps are to return <a>this</a>'s
-            <a data-for="PerformanceResourceTiming">requested URL</a>.
-          </dd>
-          <dt>
-            <dfn>entryType</dfn>
-          </dt>
-          <dd>
-            The <a>entryType</a> getter steps are to return the DOMString
-            "<code>resource</code>".
-          </dd>
-          <dt>
-            <dfn>startTime</dfn>
-          </dt>
-          <dd>
-            <p data-dfn-for="PerformanceResourceTiming">
-              The <a>startTime</a> getter steps are to <a>convert fetch
-              timestamp</a> for <a>this</a>'s <a data-for=
-              "PerformanceResourceTiming">timing info</a>'s [=fetch timing
-              info/start time=] and <a>this</a>'s <a>relevant global
-              object</a>.
-            </p>
-            <p class='note'>
-              `startTime` is measured right at the start of the [=fetch=],
-              before any redirects. See <a data-cite=
-              "FETCH#fetching">fetching</a>.
-            </p>
-          </dd>
-          <dt>
-            <dfn>duration</dfn>
-          </dt>
-          <dd>
-            <p data-dfn-for="PerformanceResourceTiming">
-              The <a>duration</a> getter steps are to return <a>this</a>'s
-              <a data-for="PerformanceResourceTiming">timing info</a>'s [=fetch
-              timing info/end time=] minus <a>this</a>'s <a data-for=
-              "PerformanceResourceTiming">timing info</a>'s [=fetch timing
-              info/start time=].
-            </p>
-          </dd>
-        </dl>
         <p data-dfn-for="PerformanceResourceTiming">
           When <dfn>toJSON</dfn> is called, run [[WEBIDL]]'s <a data-cite=
           "WEBIDL#default-tojson-operation">default toJSON operation</a>.
@@ -1185,6 +1131,7 @@
           <li>Create a <a>PerformanceResourceTiming</a> object |entry| in
           |global|'s [=global object/realm=].
           </li>
+
           <li>
             <a>Setup the resource timing entry</a> for |entry|, given
             |initiatorType|, |requestedURL|, |timingInfo|, |cacheMode|,
@@ -1213,6 +1160,13 @@
         <ol>
           <li>Assert that |cacheMode| is the empty string,
           "<code>local</code>", or "<code>validated</code>".
+          </li>
+
+          <li>[=initialize a PerformanceEntry|Initialize=] |entry| given
+            the result of <a data-lt="convert fetch timestamp">converting</a> |timingInfo|'s
+            [=fetch timing info/start time=], "<code>resource</code>",
+            |requestedURL|, and the result of <a data-lt="convert fetch timestamp">converting</a>
+            |timingInfo|'s [=fetch timing info/end time=].
           </li>
           <li>Set |entry|'s <a data-for="PerformanceResourceTiming">initiator
           type</a> to |initiatorType|.
