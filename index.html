@@ -845,8 +845,8 @@
           </li>
         </ol>
         <p>
-          To <dfn>add a PerformanceResourceTiming entry</dfn> <i>new entry</i> into the
-          <a data-cite=
+          To <dfn>add a PerformanceResourceTiming entry</dfn> <i>new entry</i>
+          into the <a data-cite=
           'PERFORMANCE-TIMELINE-2/#dfn-performance-entry-buffer'>performance
           entry buffer</a>, run the following steps:
         </p>
@@ -1128,7 +1128,6 @@
           <li>Create a <a>PerformanceResourceTiming</a> object |entry| in
           |global|'s [=global object/realm=].
           </li>
-
           <li>
             <a>Setup the resource timing entry</a> for |entry|, given
             |initiatorType|, |requestedURL|, |timingInfo|, |cacheMode|,
@@ -1158,14 +1157,14 @@
           <li>Assert that |cacheMode| is the empty string,
           "<code>local</code>", or "<code>validated</code>".
           </li>
-
-          <li>Let |global| be |entry|'s [=relevant global object=].</li>
-
-          <li>[=initialize a PerformanceEntry|Initialize=] |entry| given
-            the result of <a data-lt="convert fetch timestamp">converting</a> |timingInfo|'s
-            [=fetch timing info/start time=] given |global|, "<code>resource</code>",
-            |requestedURL|, and the result of <a data-lt="convert fetch timestamp">converting</a>
-            |timingInfo|'s [=fetch timing info/end time=] given |global|.
+          <li>Let |global| be |entry|'s [=relevant global object=].
+          </li>
+          <li>[=initialize a PerformanceEntry|Initialize=] |entry| given the
+          result of <a data-lt="convert fetch timestamp">converting</a>
+          |timingInfo|'s [=fetch timing info/start time=] given |global|,
+          "<code>resource</code>", |requestedURL|, and the result of
+            <a data-lt="convert fetch timestamp">converting</a> |timingInfo|'s
+            [=fetch timing info/end time=] given |global|.
           </li>
           <li>Set |entry|'s <a data-for="PerformanceResourceTiming">initiator
           type</a> to |initiatorType|.
