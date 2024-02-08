@@ -1159,11 +1159,13 @@
           "<code>local</code>", or "<code>validated</code>".
           </li>
 
+          <li>Let |global| be |entry|'s [=relevant global object=].</li>
+
           <li>[=initialize a PerformanceEntry|Initialize=] |entry| given
             the result of <a data-lt="convert fetch timestamp">converting</a> |timingInfo|'s
-            [=fetch timing info/start time=], "<code>resource</code>",
+            [=fetch timing info/start time=] given |global|, "<code>resource</code>",
             |requestedURL|, and the result of <a data-lt="convert fetch timestamp">converting</a>
-            |timingInfo|'s [=fetch timing info/end time=].
+            |timingInfo|'s [=fetch timing info/end time=] given |global|.
           </li>
           <li>Set |entry|'s <a data-for="PerformanceResourceTiming">initiator
           type</a> to |initiatorType|.
