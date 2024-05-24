@@ -205,14 +205,13 @@
       </p>
       <p>
         Throughout this work, all time values are measured in milliseconds
-        since the start of navigation of the document [[HR-TIME-2]]. For
-        example, the <a data-cite=
-        "NAVIGATION-TIMING-2#dom-PerformanceNavigationTiming-startTime">start
+        since the start of navigation of the document [[HR-TIME]]. For
+        example, the <a data-cite="NAVIGATION-TIMING-2#performanceentry">start
         of navigation of the document</a> occurs at time 0.
       </p>
       <p class='note'>
         This definition of time is based on the High Resolution Time
-        specification [[HR-TIME-2]] and is different from the definition of
+        specification [[HR-TIME]] and is different from the definition of
         time used in the Navigation Timing specification
         [[NAVIGATION-TIMING-2]], where time is measured in milliseconds since
         midnight of January 1, 1970 (UTC).
@@ -420,8 +419,8 @@
           "PerformanceResourceTiming"><dfn>render-blocking status</dfn></a>.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
-          When <dfn>toJSON</dfn> is called, run [[WEBIDL]]'s <a data-cite=
-          "WEBIDL#default-tojson-operation">default toJSON operation</a>.
+          When <dfn>toJSON</dfn> is called, run the [=default toJSON steps=]
+          for {{PerformanceResourceTiming}}.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           <dfn>initiatorType</dfn> getter steps are to return the <a data-for=
@@ -760,8 +759,7 @@
           <a>PerformanceResourceTiming</a> objects in the <a data-cite=
           "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
           Timeline</a> [[PERFORMANCE-TIMELINE-2]]. This section extends the
-          <a data-cite=
-          "PERFORMANCE-TIMELINE-2#dom-performance"><code>Performance</code></a>
+          <a data-cite="HR-TIME#dom-performance"><code>Performance</code></a>
           interface to allow controls over the number of
           <a>PerformanceResourceTiming</a> objects stored.
         </p>
@@ -799,7 +797,7 @@
         };
         </pre>
         <p>
-          The <dfn>Performance</dfn> interface is defined in [[HR-TIME-2]].
+          The <dfn>Performance</dfn> interface is defined in [[HR-TIME]].
         </p>
         <p>
           The method <dfn>clearResourceTimings</dfn> runs the following steps:
