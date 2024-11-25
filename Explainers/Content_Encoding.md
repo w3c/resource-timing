@@ -43,9 +43,13 @@ https://github.com/whatwg/fetch/pull/1742
 **issue**: the PR may need work. (including open issues discussed in the next section)
 
 ## Open Design Issues
-- Should we filter the values according to [this list](https://www.iana.org/assignments/http-parameters/http-parameters.xhtml#content-coding)?
 
-- Should the browser check if the value from server is erroneous, i.e., being inconsistent with the response body, or when the reponse body is empty?
+- For `resourceTiming`, Should we expose the `content-encoding` value exactly the same as the value from `fetch`?
+
+- [At `fetch` stage] Should we keep the value exactly the same as the one from server? i.e., we
+do not filter the values according to [this list](https://www.iana.org/assignments/http-parameters/http-parameters.xhtml#content-coding)?
+Neither do we check if the value from server is erroneous, i.e., being inconsistent with the response body, or when the reponse body is empty?
+(Chromium doesn't currently and I think that's a reasonable choice.)
 
 ## Considered alternatives
 None.
