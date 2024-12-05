@@ -42,14 +42,12 @@ https://github.com/whatwg/fetch/pull/1742
 
 **issue**: the PR may need work. (including open issues discussed in the next section)
 
-## Open Design Issues
+## Design details
 
-- For `resourceTiming`, Should we expose the `content-encoding` value exactly the same as the value from `fetch`? I.e, it's in the scope of `fetch` api to determine
-`content-encoding` value, which is one of the `fetch` response headers.
+- At `fetch` stage, an arbitrary `contentEncoding` value in the response header is allowed. This is needed for the case service worker getting resources in proprietary encoding.
 
-- [At `fetch` stage] Should we filter the values according to [this list](https://www.iana.org/assignments/http-parameters/http-parameters.xhtml#content-coding)?
-Or should we do something different to an unrecognized `content-encoding` value?
-Currently Chromium checks the response body for known `content-encoding` values, but unrecognized values pass through.
+- At `resourceTiming`, We filter the values according to [this list](https://www.iana.org/assignments/http-parameters/http-parameters.xhtml#content-coding).
+  An Unknown `contentEncoding` value will be replaced with `Unknown`.
 
 ## Considered alternatives
 None.
