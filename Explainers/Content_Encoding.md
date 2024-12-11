@@ -46,8 +46,9 @@ https://github.com/whatwg/fetch/pull/1742
 
 - At `fetch` stage, an arbitrary `contentEncoding` value in the response header is allowed. This is needed for the case service worker getting resources in proprietary encoding.
 
-- At `resourceTiming`, We filter the values according to [this list](https://www.iana.org/assignments/http-parameters/http-parameters.xhtml#content-coding).
-  An Unknown `contentEncoding` value will be replaced with `Unknown`.
+- The `contentEncoding` value to be exposed to `resourceTiming`(in the [response body info](https://fetch.spec.whatwg.org/#response-body-info)) is subject to filtering. As in 2024/12, allowed values are the following:
+  `br`, `dcb`, `dcz`, `deflate`, `gzip`, `zstd` and "an empty string".
+  Any other unrecognized values are replaced with `unknown`.
 
 ## Considered alternatives
 None.
