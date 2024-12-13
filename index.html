@@ -717,9 +717,11 @@
           [=response body info/content type=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
-          The <dfn>contentEncoding</dfn> getter steps are to return <a>this</a>'s
-          <a data-for="PerformanceResourceTiming">resource info</a>'s
-          [=response body info/content encoding=].
+          The <dfn>contentEncoding</dfn> getter steps are to return a filtered
+          value of <a>this</a>'s <a data-for="PerformanceResourceTiming">
+          resource info</a>'s [=response body info/content encoding=]. If the
+          value is not an empty string and it's not an encoding the browser
+          natively supports, return `unknown` instead.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>renderBlockingStatus</dfn> getter steps are to return
