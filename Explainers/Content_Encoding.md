@@ -23,7 +23,7 @@ A new field `contentEncoding` will be added to the `PerformanceEntry` returned b
 const entry_list = performance.getEntriesByType("resource");
 console.log(entry_list[0].contentEncoding);
 /*
-Possible values are: "dcb", "dcz", "br", "deflate", "gzip", "identity", "zstd" etc.
+Possible values are:  "br", "dcb", "dcz", "deflate", "gzip", "identity", "zstd" etc.
 */
 ```
 
@@ -41,7 +41,7 @@ https://github.com/whatwg/fetch/pull/1796
 - At `fetch` stage, an arbitrary `contentEncoding` value in the response header is allowed. This is needed for the case service worker getting resources in proprietary encoding.
 
 - The `contentEncoding` value to be exposed to `resourceTiming`(in the [response body info](https://fetch.spec.whatwg.org/#response-body-info)) is subject to filtering. As in 2024/12, allowed values are the following:
-  `br`, `dcb`, `dcz`, `deflate`, `gzip`, `zstd` and "an empty string".
+  `br`, `dcb`, `dcz`, `deflate`, `gzip`, `identity`, `zstd`.
   Any other unrecognized values are replaced with `unknown`.
 
 ## Considered alternatives
