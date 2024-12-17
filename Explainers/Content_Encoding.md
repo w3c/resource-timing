@@ -23,7 +23,7 @@ A new field `contentEncoding` will be added to the `PerformanceEntry` returned b
 const entry_list = performance.getEntriesByType("resource");
 console.log(entry_list[0].contentEncoding);
 /*
-Possible values are: "dcb", "dcz", "gzip", "br", "zstd", "deflate", etc.
+Possible values are: "dcb", "dcz", "br", "deflate", "gzip", "identity", "zstd" etc.
 */
 ```
 
