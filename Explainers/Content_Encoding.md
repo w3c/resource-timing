@@ -27,20 +27,14 @@ Possible values are: "dcb", "dcz", "gzip", "br", "zstd", "deflate", etc.
 */
 ```
 
-## Pending Spec changes and the issues
+## Pending Spec changes
 
 ###	Resource timing spec
-https://github.com/w3c/resource-timing/pull/385
- 
- **issue**:
- It should indicate it’s empty if the `Cross-Origin-Resource-Sharing` check fails or it was not specified via the response headers.
+https://github.com/w3c/resource-timing/pull/411
 
 ### Fetch spec
 
-`content-encoding` header is missing from **Fetch** Standard and there is a pending PR:
-https://github.com/whatwg/fetch/pull/1742
-
-**issue**: the PR may need work. (including open issues discussed in the next section)
+https://github.com/whatwg/fetch/pull/1796
 
 ## Design details
 
@@ -135,3 +129,4 @@ Not directly.
 >22.	What should this questionnaire have asked?
 
 Nothing else.
+
