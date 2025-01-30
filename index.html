@@ -717,12 +717,56 @@
           [=response body info/content type=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
-          The <dfn>contentEncoding</dfn> getter steps are to return a filtered
-          value of <a>this</a>'s <a data-for="PerformanceResourceTiming">
-          resource info</a>'s [=response body info/content encoding=]. If the
-          value is not an empty string and it's not an encoding value the
-          browser natively supports, return `unknown` instead.
+          The <dfn>contentEncoding</dfn> getter steps are to perform the following
+          steps:
         </p>
+        <ol>
+          <li>
+            <p>
+              Let <i>codings</i> be <a>this</a>'s <a data-for=
+              "PerformanceResourceTiming">response body info</a>'s [=response
+              body info/content encoding=].
+            </p>
+            <p>
+              <i>codings</i> is a list of strings.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <i>codings</i> is null, return the empty string.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <i>codings</i> contains two strings or more, return
+              "<code>multiple</code>".
+            </p>
+          </li>
+          <li>
+            <p>
+              <i>codings</i> must contain exactly one string.
+            </p>
+            <p>
+              Let <i>coding</i> be the string in <i>codings</i>.
+            </p>
+              If <i>coding</i> is recognized and supported by browser, return
+              <i>coding</i>.
+            </p>
+            <p class='note'>
+              A browser should only recognize the empty string or <i>coding</i> values registered
+              <a href="https://www.iana.org/assignments/http-parameters/http-parameters.xhtml#content-coding">
+              here</a>. "<code>identify</code>" should not be recognized as it
+              is reserved(as detailed
+              <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-content-encoding">
+              here</a>). Not all recognized values are supported by the browser.
+            </p>
+          </li>
+          <li>
+            <p>
+              Otherwise, return "<code>unknown</code>".
+            </p>
+          </li>
+        </ol>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>renderBlockingStatus</dfn> getter steps are to return
           <a data-link-for="RenderBlockingStatusType">blocking</a> if
