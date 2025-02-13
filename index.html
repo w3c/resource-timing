@@ -668,8 +668,7 @@
           info</a>'s [=response body info/decoded size=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
-          The <dfn>transferSize</dfn> getter steps are to perform the following
-          steps:
+          The <dfn>transferSize</dfn> getter steps are the following:
         </p>
         <ol>
           <li>
@@ -717,8 +716,7 @@
           [=response body info/content type=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
-          The <dfn>contentEncoding</dfn> getter steps are to perform the following
-          steps:
+          The <dfn>contentEncoding</dfn> getter steps are the following:
         </p>
         <ol>
           <li>
@@ -726,9 +724,6 @@
               Let <i>codings</i> be <a>this</a>'s <a data-for=
               "PerformanceResourceTiming">response body info</a>'s [=response
               body info/content encoding=].
-            </p>
-            <p>
-              <i>codings</i> is a list of strings.
             </p>
           </li>
           <li>
@@ -744,21 +739,12 @@
           </li>
           <li>
             <p>
-              <i>codings</i> must contain exactly one string.
-            </p>
-            <p>
-              Let <i>coding</i> be the string in <i>codings</i>.
-            </p>
-              If <i>coding</i> is recognized and supported by browser, return
-              <i>coding</i>.
-            </p>
-            <p class='note'>
-              A browser should only recognize the empty string or <i>coding</i> values registered
+              If <i>codings[0]</i> is supported by the user agent, and is listed in the
               <a href="https://www.iana.org/assignments/http-parameters/http-parameters.xhtml#content-coding">
-              here</a>. "<code>identify</code>" should not be recognized as it
-              is reserved(as detailed
+              content encoding registry on IANA</a>, return <i>codings[0]</i>.
+              Note "<code>identity</code>" is never supported as a coding. See details
               <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-content-encoding">
-              here</a>). Not all recognized values are supported by the browser.
+              here</a>.
             </p>
           </li>
           <li>
