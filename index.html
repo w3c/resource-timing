@@ -716,46 +716,10 @@
           [=response body info/content type=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
-          The <dfn>contentEncoding</dfn> getter steps are the following:
+          The <dfn>contentEncoding</dfn> getter steps are to return
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">resource info
+          </a>'s [=response body info/content encoding=].
         </p>
-        <ol>
-          <li>
-            <p>
-              Let <i>codings</i> be <a>this</a>'s <a data-for=
-              "PerformanceResourceTiming">response body info</a>'s [=response
-              body info/content encoding=].
-            </p>
-          </li>
-          <li>
-            <p>
-              If <i>codings</i> is null, return the empty string.
-            </p>
-          </li>
-          <li>
-            <p>
-              If <i>codings</i> contains two strings or more, return
-              "<code>multiple</code>".
-            </p>
-          </li>
-          <li>
-            <p>
-              If <i>codings[0]</i> is the empty string, or it is supported by the user agent,
-              and is listed in the
-              <a href="https://www.iana.org/assignments/http-parameters/http-parameters.xhtml#content-coding">
-              content encoding registry on IANA</a>, return <i>codings[0]</i>.
-            </p>
-            <p class='note'>
-              "<code>identity</code>" is never supported as a coding. See details
-              <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-content-encoding">
-              here</a>.
-            </p>
-          </li>
-          <li>
-            <p>
-              Otherwise, return "<code>unknown</code>".
-            </p>
-          </li>
-        </ol>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>renderBlockingStatus</dfn> getter steps are to return
           <a data-link-for="RenderBlockingStatusType">blocking</a> if
