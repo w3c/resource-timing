@@ -13,15 +13,16 @@ Background information about `PerformanceResourceTiming` can be found [here](htt
     
 ## User Research
 
-[Content-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Encoding) has been used to compress the data that's passed between the server and the client.
-With a reduced size, data is delivered as soon as possible while consuming less bandwidth of the user. `Content-Encoding` is a very widely supported technology and it's a foundation of some
-advanced compression mechanism like [Compression Dictionary Transport](https://www.ietf.org/archive/id/draft-ietf-httpbis-compression-dictionary-19.html).
+Increasing the speed of content delivery significantly enhances user experience by minimizing delays and frustrations associated with slow-loading
+websites; and data compression plays a vital role in increasing content delivery speed. For the purpose of implementing data compression,
+ [Content-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Encoding) has been a very popular tool. It's widely
+ supported and it's a foundation of some advanced compression mechanism like [Compression Dictionary Transport](https://www.ietf.org/archive/id/draft-ietf-httpbis-compression-dictionary-19.html).
 
 When web sites use `Content-Encoding` to optimize content delivery, often they rely on `PerformanceResourceTiming` to collect and analyze the performance data of different compression strategies
 to find out the optimal solution. Often, it's very helpful or necessary to determine what `Content-Encoding` is used for a `PerformanceEntry` reported by `PerformanceResourceTiming`. In the past,
 web sites have been inferring the `Content-Encoding` based on other information like encoded/decoded body size.
 
-Inferring the `Content-Encoding` value has became harder and even impractical, as a larger set of new `Content-Encoding`, such as `zstd`, `Compression Dictionary Transport` are experimented with and deployed.
+Inferring the `Content-Encoding` value has became harder and even impractical, as a larger set of new `Content-Encoding`, such as `zstd` and `Compression Dictionary Transport` are being experimented with and deployed.
 Therefore, we need an explicit exposure of `Content-Encoding` in `PerformanceResourceTiming`.
 
 This incremental proposal is brought up by [this discussion](https://github.com/w3c/resource-timing/issues/381). Example use cases may be found there as well.
