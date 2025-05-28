@@ -13,6 +13,17 @@ Background information about `PerformanceResourceTiming` can be found [here](htt
     
 ## User Research
 
+[Content-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Encoding) has been used to compress the data that's passed between the server and the client.
+With a reduced size, data is delivered as soon as possible while consuming less bandwidth of the user. `Content-Encoding` is a very widely supported technology and it's a foundation of some
+advanced compression mechanism like [Compression Dictionary Transport](https://www.ietf.org/archive/id/draft-ietf-httpbis-compression-dictionary-19.html).
+
+When web sites use `Content-Encoding` to optimize content delivery, often they rely on `PerformanceResourceTiming` to collect and analyze the performance data of different compression strategies
+to find out the optimal solution. Often, it's very helpful or necessary to determine what `Content-Encoding` is used for a `PerformanceEntry` reported by `PerformanceResourceTiming`. In the past,
+web sites have been inferring the `Content-Encoding` based on other information like encoded/decoded body size.
+
+Inferring the `Content-Encoding` value has became harder and even impractical, as a larger set of new `Content-Encoding`, such as `zstd`, `Compression Dictionary Transport` are experimented with and deployed.
+Therefore, we need an explicit exposure of `Content-Encoding` in `PerformanceResourceTiming`.
+
 This incremental proposal is brought up by [this discussion](https://github.com/w3c/resource-timing/issues/381). Example use cases may be found there as well.
 
 ## API Changes and Example Code
@@ -40,9 +51,11 @@ https://github.com/whatwg/fetch/pull/1796
 
 - At `fetch` stage, an arbitrary `contentEncoding` value in the response header is allowed. This is needed for the case service worker getting resources in proprietary encoding.
 
-- The `contentEncoding` value to be exposed to `resourceTiming`(in the [response body info](https://fetch.spec.whatwg.org/#response-body-info)) is subject to filtering. As in 2024/12, allowed values are the following:
-  `br`, `dcb`, `dcz`, `deflate`, `gzip`, `identity`, `zstd`.
-  Any other unrecognized values are replaced with `unknown`.
+- The `contentEncoding` value to be exposed to `resourceTiming`(in the [response body info](https://fetch.spec.whatwg.org/#response-body-info)) is subject to filtering. The value
+  is exposed only if it is a registered value at the [HTTP Content Coding Registry](https://www.iana.org/assignments/http-parameters/http-parameters.xhtml) and it is an encoding
+  supported by the browser. Otherwise, `@unknown` is exposed instead.
+
+  As in 2024/12, allowed values are the following: `br`, `dcb`, `dcz`, `deflate`, `gzip`, `identity`, `zstd`.
 
 ## Considered alternatives
 None.
@@ -83,7 +96,7 @@ No.
 No.
 >7.	Do the features in your specification expose information about the underlying platform to origins?
 
-No.
+Yes. Due to the filtering, this feature can expose the encoding capability of the browser.
 >8.	Does this specification allow an origin to send data to the underlying platform?
 
 No.
@@ -125,7 +138,7 @@ No difference.
 No new errors should be raised.
 >21.	Does your feature allow sites to learn about the users use of assistive technology?
 
-Not directly.
+No.
 >22.	What should this questionnaire have asked?
 
 Nothing else.
