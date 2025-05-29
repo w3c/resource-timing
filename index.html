@@ -372,9 +372,7 @@
               readonly attribute DOMHighResTimeStamp responseEnd;
               readonly attribute DOMHighResTimeStamp workerRouterEvaluationStart;
               readonly attribute DOMHighResTimeStamp workerCacheLookupStart;
-              // Holds a value from RouterSourceEnum or empty string
               readonly attribute DOMString workerMatchedRouterSource;
-              // Holds a value from RouterSourceEnum (excluding "race-network-and-fetch-handler") or empty string
               readonly attribute DOMString workerFinalRouterSource;
               readonly attribute unsigned long long  transferSize;
               readonly attribute unsigned long long  encodedBodySize;
@@ -425,11 +423,6 @@
           A <a>PerformanceResourceTiming</a> has an associated
           {{RenderBlockingStatusType}} <a data-dfn-for=
           "PerformanceResourceTiming"><dfn>render-blocking status</dfn></a>.
-        </p>
-        <p>
-          A <a>PerformanceResourceTiming</a> has an associated
-          [=service worker timing info=] <a data-dfn-for=
-          "ServiceWorkerTiming"><dfn>service worker timing</dfn></a>.
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           When <dfn>toJSON</dfn> is called, run the [=default toJSON steps=]
@@ -735,23 +728,27 @@
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerRouterEvaluationStart</dfn> getter steps are to return
-          <a>this</a>'s <a data-for="PerformanceResourceTiming">service worker
-            timing info</a>'s [=service worker timing info/worker router evaluation start=].
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">timing info</a>'s
+          [=fetch timing info/service worker timing info=]'s
+          [=service worker timing info/worker router evaluation start=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerCacheLookupStart</dfn> getter steps are to return
-          <a>this</a>'s <a data-for="PerformanceResourceTiming">service worker
-            timing info</a>'s [=service worker timing info/worker cache lookup start=].
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">timing info</a>'s
+          [=fetch timing info/service worker timing info=]'s
+          [=service worker timing info/worker cache lookup start=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerMatchedRouterSource</dfn> getter steps are to return
-          <a>this</a>'s <a data-for="PerformanceResourceTiming">service worker
-            timing info</a>'s [=service worker timing info/worker matched router source=].
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">timing info</a>'s
+          [=fetch timing info/service worker timing info=]'s
+          [=service worker timing info/worker matched router source=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerFinalRouterSource</dfn> getter steps are to return
-          <a>this</a>'s <a data-for="PerformanceResourceTiming">service worker
-            timing info</a>'s [=service worker timing info/worker final router source=].
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">timing info</a>'s
+          [=fetch timing info/service worker timing info=]'s
+          [=service worker timing info/worker final router source=].
         </p>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
