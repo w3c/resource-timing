@@ -66,7 +66,7 @@
     github: "https://github.com/w3c/resource-timing/",
     caniuse: "resource-timing",
     xref: {
-      specs: ["hr-time-3", "performance-timeline", "xhr"],
+      specs: ["hr-time-3", "performance-timeline", "service-workers" ,"xhr"],
       profile: "web-platform",
     },
 
@@ -382,6 +382,10 @@
               readonly attribute DOMHighResTimeStamp firstInterimResponseStart;
               readonly attribute DOMHighResTimeStamp responseStart;
               readonly attribute DOMHighResTimeStamp responseEnd;
+              readonly attribute DOMHighResTimeStamp workerRouterEvaluationStart;
+              readonly attribute DOMHighResTimeStamp workerCacheLookupStart;
+              readonly attribute DOMString workerMatchedRouterSource;
+              readonly attribute DOMString workerFinalRouterSource;
               readonly attribute unsigned long long  transferSize;
               readonly attribute unsigned long long  encodedBodySize;
               readonly attribute unsigned long long  decodedBodySize;
@@ -772,6 +776,30 @@
           <a>this</a>'s <a data-for="PerformanceResourceTiming">timing
           info</a>'s [=fetch timing info/render-blocking=] is true; otherwise
           <a data-link-for="RenderBlockingStatusType">non-blocking</a>.
+        </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>workerRouterEvaluationStart</dfn> getter steps are to return
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">timing info</a>'s
+          [=fetch timing info/service worker timing info=]'s
+          [=service worker timing info/worker router evaluation start=].
+        </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>workerCacheLookupStart</dfn> getter steps are to return
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">timing info</a>'s
+          [=fetch timing info/service worker timing info=]'s
+          [=service worker timing info/worker cache lookup start=].
+        </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>workerMatchedRouterSource</dfn> getter steps are to return
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">timing info</a>'s
+          [=fetch timing info/service worker timing info=]'s
+          [=service worker timing info/worker matched router source=].
+        </p>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>workerFinalRouterSource</dfn> getter steps are to return
+          <a>this</a>'s <a data-for="PerformanceResourceTiming">timing info</a>'s
+          [=fetch timing info/service worker timing info=]'s
+          [=service worker timing info/worker final router source=].
         </p>
         <p class='note'>
           A user agent implementing <a>PerformanceResourceTiming</a> would need
