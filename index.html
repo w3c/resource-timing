@@ -66,20 +66,20 @@
     github: "https://github.com/w3c/resource-timing/",
     caniuse: "resource-timing",
     xref: {
-      specs: ["hr-time-3", "performance-timeline", "service-workers" ,"xhr"],
+      specs: ["hr-time-3", "performance-timeline", "service-workers", "xhr"],
       profile: "web-platform",
-    },
-
-    localBiblio: {
-      INCREMENTAL_FONT_TRANSFER: {
-         title: "Incremental Font Transfer",
-         href: "https://www.w3.org/TR/IFT/",
       },
-      EARLY_HINTS: {
-         title: "Early hints",
-         href: "https://httpwg.org/specs/rfc8297.html",
-      }
-    },
+
+      localBiblio: {
+        INCREMENTAL_FONT_TRANSFER: {
+          title: "Incremental Font Transfer",
+          href: "https://www.w3.org/TR/IFT/",
+        },
+        EARLY_HINTS: {
+          title: "Early hints",
+          href: "https://httpwg.org/specs/rfc8297.html",
+        }
+      },
 
     };
     </script>
@@ -458,20 +458,21 @@
               <code>"body"</code>, if the request is a result of processing the
               [^body^] element's <code>background</code> attribute that's
               already obsolete.
-            </li>
-            <li>
-              <p>
+              </li>
+              <li>
+                <p>
                 <code>"css"</code>, if the request is a result of processing a
-                CSS <a data-cite="css-values-4" data-xref-type=
-                "css-function">url()</a> directive such as <code>@import
-                url()</code> or <code>background: url()</code>; [[CSS-VALUES]]
-              </p>
-              <p>
-                Note: the request for a font resource specified with
-                <code>@font-face</code> in CSS is a result of processing a CSS
-                directive. Therefore, the `initiatorType` for this font
-                resource is <code>"css"</code>.
-              </p>
+                CSS <a data-cite="css-values-4" data-xref-type="css-function">url()</a> directive such as <code>@import
+                                                                                                                url()</code> or
+                <code>background: url()</code>;
+                [[CSS-VALUES]]
+                </p>
+                <p>
+                  Note: the request for a font resource specified with
+                  <code>@font-face</code> in CSS is a result of processing a CSS
+                  directive. Therefore, the `initiatorType` for this font
+                  resource is <code>"css"</code>.
+                </p>
             </li>
             <li>
               <code>"script"</code>, if the request is a result of loading any
@@ -486,8 +487,8 @@
               <code>"font"</code>, if the request is the result of processing
               fonts. This can happen when fonts request subsequent resources,
               e.g, when [[[INCREMENTAL_FONT_TRANSFER]]] is used.
-            </li>
-            <li>
+              </li>
+              <li>
               <code>"fetch"</code>, if the request is the result of processing
               the {{WindowOrWorkerGlobalScope/fetch()}} method;
             </li>
@@ -535,20 +536,20 @@
             <li>
               <code>"embed"</code>, if the request is the result of processing
               an [^embed^] element's [^embed/src^].
-            </li>
-            <li>
-              <code>"link"</code>, if the request is the result of processing
-              an [^link^] element.
-            </li>
-            <li>
-              <code>"object"</code>, if the request is the result of processing
-              an [^object^] element.
-            </li>
-            <li>
-              <code>"early-hints"</code>, if the request is the result of
-              processing an [[[EARLY_HINTS]]] response.
-            </li>
-            <li>
+              </li>
+              <li>
+                <code>"link"</code>, if the request is the result of processing
+                an [^link^] element.
+              </li>
+              <li>
+                <code>"object"</code>, if the request is the result of processing
+                an [^object^] element.
+              </li>
+              <li>
+                <code>"early-hints"</code>, if the request is the result of
+                processing an [[[EARLY_HINTS]]] response.
+              </li>
+              <li>
               <code>"other"</code>, if none of the above conditions match.
             </li>
           </ul>
@@ -768,9 +769,9 @@
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>contentEncoding</dfn> getter steps are to return
           <a>this</a>'s <a data-for="PerformanceResourceTiming">resource
-          info</a> 's [=response body info/content encoding=].
-        </p>
-        <p data-dfn-for="PerformanceResourceTiming">
+            info</a> 's [=response body info/content encoding=].
+          </p>
+          <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>renderBlockingStatus</dfn> getter steps are to return
           <a data-link-for="RenderBlockingStatusType">blocking</a> if
           <a>this</a>'s <a data-for="PerformanceResourceTiming">timing
@@ -780,25 +781,25 @@
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerRouterEvaluationStart</dfn> getter steps are to return
           <a>this</a>'s <a data-for="PerformanceResourceTiming">timing
-          info</a>'s [=fetch timing info/service worker timing info=]'s
+            info</a>'s [=fetch timing info/service worker timing info=]'s
           [=service worker timing info/worker router evaluation start=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerCacheLookupStart</dfn> getter steps are to return
           <a>this</a>'s <a data-for="PerformanceResourceTiming">timing
-          info</a>'s [=fetch timing info/service worker timing info=]'s
+            info</a>'s [=fetch timing info/service worker timing info=]'s
           [=service worker timing info/worker cache lookup start=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerMatchedRouterSource</dfn> getter steps are to return
           <a>this</a>'s <a data-for="PerformanceResourceTiming">timing
-          info</a>'s [=fetch timing info/service worker timing info=]'s
+            info</a>'s [=fetch timing info/service worker timing info=]'s
           [=service worker timing info/worker matched router source=].
         </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>workerFinalRouterSource</dfn> getter steps are to return
           <a>this</a>'s <a data-for="PerformanceResourceTiming">timing
-          info</a>'s [=fetch timing info/service worker timing info=]'s
+            info</a>'s [=fetch timing info/service worker timing info=]'s
           [=service worker timing info/worker final router source=].
         </p>
         <p class='note'>
@@ -1061,7 +1062,7 @@ included as <a>PerformanceResourceTiming</a> objects in the
           entries have most of their attributes masked in order to prevent
           leaking cross-origin data that isn't otherwise exposed. So, for an
           [=create an opaque timing info|opaque entry=], the following
-          attributes will be set to zero:
+          attributes will always return zero or the empty string:
           {{PerformanceResourceTiming/redirectStart}},
           {{PerformanceResourceTiming/redirectEnd}},
           {{PerformanceResourceTiming/workerStart}},
@@ -1073,13 +1074,11 @@ included as <a>PerformanceResourceTiming</a> objects in the
           {{PerformanceResourceTiming/firstInterimResponseStart}},
           {{PerformanceResourceTiming/finalResponseHeadersStart}},
           {{PerformanceResourceTiming/responseStart}},
-        {{PerformanceResourceTiming/secureConnectionStart}}. Further, the
-        {{PerformanceResourceTiming/nextHopProtocol}} attribute will be set
-        to the empty string.
+        {{PerformanceResourceTiming/secureConnectionStart}}, and {{PerformanceResourceTiming/nextHopProtocol}}.
         </p>
         <p>
-        Some of the properties, like {{PerformanceResourceTiming/contentType}},
-        {{PerformanceResourceTiming/encodedBodySize}}, and
+          Some of the properties, like {{PerformanceResourceTiming/contentType}},
+          {{PerformanceResourceTiming/encodedBodySize}}, and
         {{PerformanceResourceTiming/decodedBodySize}} are set to zero (or the empty string in the case of
         {{PerformanceResourceTiming/contentType}}) when the response is <a
           data-cite="HTML#cors-cross-origin">CORS-cross-origin</a>.
@@ -1100,6 +1099,15 @@ included as <a>PerformanceResourceTiming</a> objects in the
             allow check</a>.
           To get the full information about those fetches, the service worker's own performance timeline
           can be inspected. [[SERVICE-WORKERS]]
+        
+        <p>
+          For more details, see <a data-cite="FETCH#concept-http-fetch">HTTP Fetch</a> #4 - the <a
+            data-cite="FETCH#concept-tao-check">timing
+            allow check</a> is only performed when there is no response from the service worker.
+          In addition, the [=response=] cloned in the {{FetchEvent/respondWith()}} algorithm does not carry the [=/fetch timing
+          info=]
+          of the internal fetch, as that information is attached to a fetch rather than to a [=response=].
+        </p>
         </p>
         </section>
         <section id="sec-timing-allow-origin">
