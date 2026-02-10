@@ -462,9 +462,8 @@
               <li>
                 <p>
                 <code>"css"</code>, if the request is a result of processing a
-                CSS <a data-cite="css-values-4" data-xref-type="css-function">url()</a> directive such as
-                <code>@import
-                                                                                                                                url()</code> or
+                CSS <a data-cite="css-values-4" data-xref-type="css-function">url()</a> directive such as <code>@import
+                                                                                                                url()</code> or
                 <code>background: url()</code>;
                 [[CSS-VALUES]]
                 </p>
@@ -1079,13 +1078,13 @@ included as <a>PerformanceResourceTiming</a> objects in the
         </p>
         <p>
           Some of the properties, like {{PerformanceResourceTiming/contentType}},
-          and {{PerformanceResourceTiming/decodedBodySize}} are set to zero (or the empty string in the case of
-          {{PerformanceResourceTiming/contentType}}) when the response is <a
-            data-cite="HTML#cors-cross-origin">CORS-cross-origin</a>.
+          {{PerformanceResourceTiming/encodedBodySize}}, and
+        {{PerformanceResourceTiming/decodedBodySize}} are set to zero (or the empty string in the case of
+        {{PerformanceResourceTiming/contentType}}) when the response is <a
+          data-cite="HTML#cors-cross-origin">CORS-cross-origin</a>.
         
-          {{PerformanceResourceTiming/encodedBodySize}} and {{PerformanceResourceTiming/transferSize}} are affected both by the
-          <a data-cite="FETCH#concept-tao-check">timing
-            allow check</a> and by the <a data-cite="HTML#cors-cross-origin">CORS-cross-origin</a> status.
+        {{PerformanceResourceTiming/transferSize}} is affected both by the <a data-cite="FETCH#concept-tao-check">timing
+          allow check</a> and by the <a data-cite="HTML#cors-cross-origin">CORS-cross-origin</a> status.
         </p>
         
         <p>
