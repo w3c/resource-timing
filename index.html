@@ -1043,13 +1043,20 @@
         <h3>
           Cross-origin Resources
         </h3>
-        <p class="note" data-dfn-for="PerformanceResourceTiming">
-          As detailed in [=Fetch=], requests for cross-origin resources are
-          included as <a>PerformanceResourceTiming</a> objects in the
-          <a data-cite=
-          "PERFORMANCE-TIMELINE-2#performance-timeline">Performance
-          Timeline</a>. If the <a data-cite="FETCH#concept-tao-check">timing
-          allow check</a> algorithm fails for a cross-origin resource, the
+<h4>
+  Introduction
+</h4>
+<p>
+  This section is non-normative.
+</p>
+
+As detailed in [=Fetch=], requests for cross-origin resources are
+included as <a>PerformanceResourceTiming</a> objects in the
+        <a data-cite="PERFORMANCE-TIMELINE-2#performance-timeline">Performance
+          Timeline</a>.
+        <p>
+          If the <a data-cite="FETCH#concept-tao-check">timing
+            allow check</a> algorithm fails for a cross-origin resource, the
           entry will be an [=create an opaque timing info|opaque entry=]. Such
           entries have most of their attributes masked in order to prevent
           leaking cross-origin data that isn't otherwise exposed. So, for an
@@ -1066,23 +1073,45 @@
           {{PerformanceResourceTiming/firstInterimResponseStart}},
           {{PerformanceResourceTiming/finalResponseHeadersStart}},
           {{PerformanceResourceTiming/responseStart}},
-          {{PerformanceResourceTiming/secureConnectionStart}},
-          {{PerformanceResourceTiming/transferSize}},
-          {{PerformanceResourceTiming/encodedBodySize}}, and
-          {{PerformanceResourceTiming/decodedBodySize}}. Further, the
-          {{PerformanceResourceTiming/nextHopProtocol}} attribute will be set
-          to the empty string.
+        {{PerformanceResourceTiming/secureConnectionStart}}. Further, the
+        {{PerformanceResourceTiming/nextHopProtocol}} attribute will be set
+        to the empty string.
         </p>
         <p>
+        Some of the properties, like {{PerformanceResourceTiming/contentType}},
+        {{PerformanceResourceTiming/encodedBodySize}}, and
+        {{PerformanceResourceTiming/decodedBodySize}} are set to zero (or the empty string in the case of
+        {{PerformanceResourceTiming/contentType}}) when the response is <a
+          data-cite="HTML#cors-cross-origin">CORS-cross-origin</a>.
+        
+        {{PerformanceResourceTiming/transferSize}} is affected both by the <a data-cite="FETCH#concept-tao-check">timing
+          allow check</a> and by the <a data-cite="HTML#cors-cross-origin">CORS-cross-origin</a> status.
+        </p>
+        
+        <p>
+          For requests handled by a [=service worker=] using {{FetchEvent/respondWith()}}, the reported timing data reflects the
+          interaction between
+          the client and the service worker,
+          rather than the service worker's own internal network activity.
+          For example, the service worker might respond to a same-origin request with a cross-origin response or vice versa,
+          or return a cached or synthetic response to either.
+          Given that, resources forwarded from a service worker do not tell the whole story
+          of fetching the resource, and do not go through the <a data-cite="FETCH#concept-tao-check">timing
+            allow check</a>.
+          To get the full information about those fetches, the service worker's own performance timeline
+          can be inspected. [[SERVICE-WORKERS]]
+        </p>
+        </section>
+        <section id="sec-timing-allow-origin">
+          <h4>
+            <code>Timing-Allow-Origin</code> Response Header
+          </h4>
+          <p>
           Server-side applications may return the <a>Timing-Allow-Origin</a>
           HTTP response header to allow the User Agent to fully expose, to the
           document origin(s) specified, the values of attributes that would
           have been zero due to those cross-origin restrictions.
         </p>
-        <section id="sec-timing-allow-origin">
-          <h4>
-            <code>Timing-Allow-Origin</code> Response Header
-          </h4>
           <p>
             The <dfn>Timing-Allow-Origin</dfn> HTTP response header field can
             be used to communicate a policy indicating origin(s) that may be
