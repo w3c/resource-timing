@@ -13,6 +13,7 @@ jobs:
       - uses: w3c/spec-prod@v2
         with:
           TOOLCHAIN: bikeshed
+          GH_PAGES_BRANCH: gh-pages
           W3C_ECHIDNA_TOKEN: ${{ secrets.ECHIDNA_TOKEN }}
           # Replace following with appropriate value. See options.md for details.
           W3C_WG_DECISION_URL: https://w3c.github.io/web-performance/meetings/2021/2021-04-01/index.html
