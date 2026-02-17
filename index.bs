@@ -5,7 +5,7 @@ Status: ED
 Group: webperf
 URL: https://w3c.github.io/resource-timing/
 TR: https://www.w3.org/TR/resource-timing/
-Editor: Yoav Weiss, Google https://google.com/, https://blog.yoav.ws/, w3cid 58673
+Editor: Yoav Weiss, Shopify https://shopify.com/, https://blog.yoav.ws/, w3cid 58673
 Editor: Noam Rosenthal, Google https://google.com/, nrosenthal@chromium.org, w3cid 121539
 Former Editor: Ilya Grigorik, Google https://google.com/, https://www.igvita.com/, w3cid 56102
 Former Editor: Todd Reifsteck, Microsoft Corp., toddreif@microsoft.com, w3cid 76565
