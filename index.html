@@ -368,6 +368,7 @@
               readonly attribute DOMString initiatorType;
               readonly attribute DOMString deliveryType;
               readonly attribute ByteString nextHopProtocol;
+              readonly attribute ByteString httpMethod;
               readonly attribute DOMHighResTimeStamp workerStart;
               readonly attribute DOMHighResTimeStamp redirectStart;
               readonly attribute DOMHighResTimeStamp redirectEnd;
@@ -416,6 +417,10 @@
           <a data-dfn-for="PerformanceResourceTiming"><dfn>cache mode</dfn></a>
           (the empty string, "<code>local</code>", or
           "<code>validated</code>").
+        </p>
+        <p>
+          A <a>PerformanceResourceTiming</a> has an associated ByteString
+          <a data-dfn-for="PerformanceResourceTiming"><dfn>http method</dfn></a>
         </p>
         <p>
           A <a>PerformanceResourceTiming</a> has an associated [=fetch timing
@@ -749,6 +754,11 @@
             </p>
           </li>
         </ol>
+        <p data-dfn-for="PerformanceResourceTiming">
+          The <dfn>httpMethod</dfn> getter steps are to return
+          <a>this</a>'s <a data-cite="FETCH#concept-method-normalize">normalized</a>
+           <a data-for="PerformanceResourceTiming">http method</a>.
+        </p>
         <p data-dfn-for="PerformanceResourceTiming">
           The <dfn>responseStatus</dfn> getter steps are to return
           <a>this</a>'s <a data-for="PerformanceResourceTiming">response
