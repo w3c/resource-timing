@@ -9,14 +9,14 @@ jobs:
     name: Build, Validate and Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: w3c/spec-prod@v2
         with:
+          TOOLCHAIN: bikeshed
           W3C_ECHIDNA_TOKEN: ${{ secrets.ECHIDNA_TOKEN }}
           # Replace following with appropriate value. See options.md for details.
           W3C_WG_DECISION_URL: https://w3c.github.io/web-performance/meetings/2021/2021-04-01/index.html
           W3C_BUILD_OVERRIDE: |
-             shortName: resource-timing
-             specStatus: CRD
-             implementationReportURI: "https://w3c.github.io/test-results/resource-timing/all.html"
-             crEnd: "2022-11-15"
+             status: CRD
+             Implementation Report: https://w3c.github.io/test-results/resource-timing/all.html
+             Deadline: 2022-11-15
