@@ -1127,7 +1127,7 @@ sufficiently (by calling
     Creating a resource timing entry
   </h2>
   <p>
-    To <dfn export>mark resource timing</dfn> given a [=/fetch
+    To <dfn export oldids="dfn-mark-resource-timing">mark resource timing</dfn> given a [=/fetch
     timing info=] |timingInfo|, a DOMString |requestedURL|, a DOMString
     |initiatorType| a <a>global object</a> |global|, a string
     |cacheMode|, a [=/response body info=] |bodyInfo|, a
@@ -1152,7 +1152,7 @@ sufficiently (by calling
     </li>
   </ol>
   <p>
-    To <dfn export>setup the resource timing entry</dfn> for
+    To <dfn export oldids="dfn-setup-the-resource-timing-entry">setup the resource timing entry</dfn> for
     {{PerformanceResourceTiming}} |entry| given DOMString
     |initiatorType|, DOMString |requestedURL|, [=/fetch timing info=]
     |timingInfo|, a DOMString |cacheMode|, a [=response body info=]
