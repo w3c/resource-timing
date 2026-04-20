@@ -5,9 +5,9 @@
   <title>Resource Timing</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 0ef803fdf, updated Tue Jan 6 11:59:39 2026 -0800" name="generator">
+  <meta content="Bikeshed version 5d4d5b9a8, updated Fri Apr 17 13:49:40 2026 -0700" name="generator">
   <link href="https://www.w3.org/TR/resource-timing/" rel="canonical">
-  <meta content="a69325340749db8d6c060f8624b8a153871f434b" name="revision">
+  <meta content="316a0479fc9a8a9cf49a4ee96125c850be966e25" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -303,7 +303,7 @@ pre .property::before, pre .property::after {
 </style>
 <style>/* Boilerplate: style-counters */
 body {
-    counter-reset: example figure issue;
+    counter-reset: example figure issue table;
 }
 .issue {
     counter-increment: issue;
@@ -328,6 +328,13 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
+}
+
+figure.table figcaption {
+    counter-increment: table;
+}
+figure.table figcaption:not(.no-marker)::before {
+    content: "Table " counter(table) " ";
 }
 </style>
 <style>/* Boilerplate: style-dfn-panel */
@@ -914,6 +921,30 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
     c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
 }
+
+@media print {
+    /* Darken colors for print that would otherwise print too faintly */
+    c-[c]  { color: #555555 } /* Comment */
+    c-[d]  { color: #555555 } /* Comment.Multiline */
+    c-[cp] { color: #555555 } /* Comment.Preproc */
+    c-[c1] { color: #555555 } /* Comment.Single */
+    c-[cs] { color: #555555 } /* Comment.Special */
+    c-[o]  { color: #222222 } /* Operator */
+    c-[p]  { color: #222222 } /* Punctuation */
+    c-[ow] { color: #222222 } /* Operator.Word */
+    c-[s]  { color: #664400 } /* Literal.String */
+    c-[t]  { color: #664400 } /* Literal.String.Single */
+    c-[u]  { color: #664400 } /* Literal.String.Double */
+    c-[sb] { color: #664400 } /* Literal.String.Backtick */
+    c-[sc] { color: #664400 } /* Literal.String.Char */
+    c-[sd] { color: #664400 } /* Literal.String.Doc */
+    c-[se] { color: #664400 } /* Literal.String.Escape */
+    c-[sh] { color: #664400 } /* Literal.String.Heredoc */
+    c-[si] { color: #664400 } /* Literal.String.Interpol */
+    c-[sx] { color: #664400 } /* Literal.String.Other */
+    c-[sr] { color: #664400 } /* Literal.String.Regex */
+    c-[ss] { color: #664400 } /* Literal.String.Symbol */
+}
 </style>
  <body class="h-entry">
   <div class="head">
@@ -923,7 +954,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </p>
    <h1 class="no-ref p-name" id="title">Resource Timing</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-03-23">23 March 2026</time></p>
+    <time class="dt-updated" datetime="2026-04-20">20 April 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1054,7 +1085,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
-      <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
+      <li><a href="#informative"><span class="secno"></span> <span class="content">Non-Normative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
    </ol>
@@ -1498,51 +1529,51 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       </p>
      </div>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-workerstart">workerStart</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp">convert fetch
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-workerstart">workerStart</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-service-worker-start-time" id="ref-for-fetch-timing-info-final-service-worker-start-time">final service worker start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant global
       object</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-fetch" id="ref-for-concept-http-fetch">HTTP fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-redirectstart">redirectStart</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp①">convert fetch
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-redirectstart">redirectStart</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-redirect-start-time" id="ref-for-fetch-timing-info-redirect-start-time">redirect start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-redirect-fetch" id="ref-for-concept-http-redirect-fetch">HTTP-redirect fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-redirectend">redirectEnd</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp②">convert fetch
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-redirectend">redirectEnd</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp②">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info②">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-redirect-end-time" id="ref-for-fetch-timing-info-redirect-end-time">redirect end time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global②">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑦">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-redirect-fetch" id="ref-for-concept-http-redirect-fetch①">HTTP-redirect fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-fetchstart">fetchStart</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp③">convert fetch
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-fetchstart">fetchStart</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp③">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑧">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info③">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-post-redirect-start-time" id="ref-for-fetch-timing-info-post-redirect-start-time">post-redirect start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global③">relevant global object</a>
       for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑨">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-fetch" id="ref-for-concept-http-fetch①">HTTP fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-domainlookupstart">domainLookupStart</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp④">convert fetch
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-domainlookupstart">domainLookupStart</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp④">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⓪">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info④">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-domain-lookup-start-time" id="ref-for-connection-timing-info-domain-lookup-start-time">domain lookup start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global④">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①①">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info">Recording connection timing info</a> for more
       info.
     </p>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-domainlookupend">domainLookupEnd</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp⑤">convert fetch
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-domainlookupend">domainLookupEnd</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑤">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①②">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info⑤">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info①">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-domain-lookup-end-time" id="ref-for-connection-timing-info-domain-lookup-end-time">domain lookup end time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global⑤">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①③">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info①">Recording connection timing info</a> for more
       info.
     </p>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-connectstart">connectStart</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp⑥">convert fetch
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-connectstart">connectStart</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑥">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①④">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info⑥">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info②">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-connection-start-time" id="ref-for-connection-timing-info-connection-start-time">connection start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global⑥">relevant global object</a>
       for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑤">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info②">Recording connection timing info</a> for more
       info.
     </p>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-connectend">connectEnd</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp⑦">convert fetch
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-connectend">connectEnd</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑦">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑥">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info⑦">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info③">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-connection-end-time" id="ref-for-connection-timing-info-connection-end-time">connection end time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global⑦">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑦">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info③">Recording connection timing info</a> for more
       info.
     </p>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-secureconnectionstart">secureConnectionStart</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp⑧">convert
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-secureconnectionstart">secureConnectionStart</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑧">convert
       fetch timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑧">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info⑧">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info④">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-secure-connection-start-time" id="ref-for-connection-timing-info-secure-connection-start-time">secure connection start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global⑧">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑨">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info④">Recording connection timing info</a> for more
       info.
@@ -1558,18 +1589,18 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       the user’s network configuration.
     </p>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-requeststart">requestStart</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp⑨">convert fetch
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-requeststart">requestStart</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑨">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②①">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①⓪">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-network-request-start-time" id="ref-for-fetch-timing-info-final-network-request-start-time">final network-request start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global⑨">relevant global
       object</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②②">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-fetch" id="ref-for-concept-http-fetch②">HTTP fetch</a> for more info.
     </p>
      <p>
       The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-firstinterimresponsestart">firstInterimResponseStart</dfn> getter steps are to
-      <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp①⓪">convert fetch timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②③">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①①">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-first-interim-network-response-start-time" id="ref-for-fetch-timing-info-first-interim-network-response-start-time">first interim network-response start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①⓪">relevant
+      <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①⓪">convert fetch timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②③">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①①">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-first-interim-network-response-start-time" id="ref-for-fetch-timing-info-first-interim-network-response-start-time">first interim network-response start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①⓪">relevant
       global object</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②④">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-fetch" id="ref-for-concept-http-fetch③">HTTP fetch</a> for more info.
     </p>
      <p>
       The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-finalresponseheadersstart">finalResponseHeadersStart</dfn> getter steps are to
-      <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp①①">convert fetch timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑤">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①②">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-network-response-start-time" id="ref-for-fetch-timing-info-final-network-response-start-time">final network-response start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①①">relevant global
+      <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①①">convert fetch timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑤">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①②">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-network-response-start-time" id="ref-for-fetch-timing-info-final-network-response-start-time">final network-response start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①①">relevant global
       object</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑥">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-fetch" id="ref-for-concept-http-fetch④">HTTP fetch</a> for more info.
     </p>
      <p>
@@ -1579,7 +1610,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <code class="idl"><a data-link-type="idl" href="#dom-performanceresourcetiming-finalresponseheadersstart" id="ref-for-dom-performanceresourcetiming-finalresponseheadersstart">finalResponseHeadersStart</a></code>.
     </p>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-responseend">responseEnd</dfn> getter steps are to <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp①②">convert fetch
+      The <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-responseend">responseEnd</dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①②">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑨">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①③">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-end-time" id="ref-for-fetch-timing-info-end-time">end time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①②">relevant global object</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③⓪">this</a>. See
       <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch" id="ref-for-concept-fetch①⑤">fetch</a> for more info.
     </p>
@@ -1780,7 +1811,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       below.
     </p>
      <p>
-      To check if <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-can-add-resource-timing-entry">can add resource timing entry</dfn>, run the
+      To check if <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="dfn-can-add-resource-timing-entry">can add resource timing entry</dfn>, run the
       following steps:
     </p>
      <ol>
@@ -1790,11 +1821,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li>Return false.
       
      </ol>
-     <p>To <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-add-a-performanceresourcetiming-entry">add a PerformanceResourceTiming entry</dfn> <i>new entry</i>
+     <p>To <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="dfn-add-a-PerformanceResourceTiming-entry">add a PerformanceResourceTiming entry</dfn> <i>new entry</i>
 into the <a data-link-type="dfn" href="https://www.w3.org/TR/performance-timeline/#dfn-performance-entry-buffer" id="ref-for-dfn-performance-entry-buffer②">performance entry buffer</a>, run the following steps:</p>
      <ol>
       <li>
-       If <a data-link-type="dfn" href="#performance-can-add-resource-timing-entry" id="ref-for-performance-can-add-resource-timing-entry">can add resource timing entry</a> returns true and
+       If <a data-link-type="dfn" href="#dfn-can-add-resource-timing-entry" id="ref-for-dfn-can-add-resource-timing-entry">can add resource timing entry</a> returns true and
 <a data-link-type="dfn" href="#performance-resource-timing-buffer-full-event-pending-flag" id="ref-for-performance-resource-timing-buffer-full-event-pending-flag">resource timing buffer full event pending flag</a> is false, run
 the following substeps:
 
@@ -1810,18 +1841,18 @@ false, run the following substeps:
        <ol style="list-style-type: lower-latin;">
         <li>Set <a data-link-type="dfn" href="#performance-resource-timing-buffer-full-event-pending-flag" id="ref-for-performance-resource-timing-buffer-full-event-pending-flag②">resource timing buffer full event pending flag</a> to
 true.
-        <li><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task">Queue a task</a> on the <a data-link-type="dfn" href="https://www.w3.org/TR/performance-timeline/#dfn-performance-timeline-task-source" id="ref-for-dfn-performance-timeline-task-source">performance timeline task source</a> to run <a data-link-type="dfn" href="#performance-fire-a-buffer-full-event" id="ref-for-performance-fire-a-buffer-full-event">fire a buffer full event</a>.
+        <li><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task">Queue a task</a> on the <a data-link-type="dfn" href="https://www.w3.org/TR/performance-timeline/#dfn-performance-timeline-task-source" id="ref-for-dfn-performance-timeline-task-source">performance timeline task source</a> to run <a data-link-type="dfn" href="#dfn-fire-a-buffer-full-event" id="ref-for-dfn-fire-a-buffer-full-event">fire a buffer full event</a>.
        </ol>
       <li>Add <i>new entry</i> to the <a data-link-type="dfn" href="#performance-resource-timing-secondary-buffer" id="ref-for-performance-resource-timing-secondary-buffer">resource timing secondary
 buffer</a>.
       <li>Increase <a data-link-type="dfn" href="#performance-resource-timing-secondary-buffer-current-size" id="ref-for-performance-resource-timing-secondary-buffer-current-size">resource timing secondary buffer current size</a> by
 1.
      </ol>
-     <p>To <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-copy-secondary-buffer">copy secondary buffer</dfn>, run the following steps:</p>
+     <p>To <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="dfn-copy-secondary-buffer">copy secondary buffer</dfn>, run the following steps:</p>
      <ol>
       <li>
        While <a data-link-type="dfn" href="#performance-resource-timing-secondary-buffer" id="ref-for-performance-resource-timing-secondary-buffer①">resource timing secondary buffer</a> is not empty and
-<a data-link-type="dfn" href="#performance-can-add-resource-timing-entry" id="ref-for-performance-can-add-resource-timing-entry①">can add resource timing entry</a> returns true, run the following
+<a data-link-type="dfn" href="#dfn-can-add-resource-timing-entry" id="ref-for-dfn-can-add-resource-timing-entry①">can add resource timing entry</a> returns true, run the following
 substeps:
 
        <ol>
@@ -1834,7 +1865,7 @@ buffer</a>.
         <li>Decrement <a data-link-type="dfn" href="#performance-resource-timing-secondary-buffer-current-size" id="ref-for-performance-resource-timing-secondary-buffer-current-size①">resource timing secondary buffer current size</a> by 1.
        </ol>
      </ol>
-     <p>To <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-fire-a-buffer-full-event">fire a buffer full event</dfn>, run the following steps:</p>
+     <p>To <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="dfn-fire-a-buffer-full-event">fire a buffer full event</dfn>, run the following steps:</p>
      <ol>
       <li>
        While <a data-link-type="dfn" href="#performance-resource-timing-secondary-buffer" id="ref-for-performance-resource-timing-secondary-buffer④">resource timing secondary buffer</a> is not empty, run
@@ -1843,10 +1874,10 @@ the following substeps:
        <ol>
         <li>Let <i>number of excess entries before</i> be <a data-link-type="dfn" href="#performance-resource-timing-secondary-buffer-current-size" id="ref-for-performance-resource-timing-secondary-buffer-current-size②">resource
 timing secondary buffer current size</a>.
-        <li>If <a data-link-type="dfn" href="#performance-can-add-resource-timing-entry" id="ref-for-performance-can-add-resource-timing-entry②">can add resource timing entry</a> returns false, then
+        <li>If <a data-link-type="dfn" href="#dfn-can-add-resource-timing-entry" id="ref-for-dfn-can-add-resource-timing-entry②">can add resource timing entry</a> returns false, then
 <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire" id="ref-for-concept-event-fire">fire an event</a> named <code>resourcetimingbufferfull</code> at
 the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/hr-time/#performance" id="ref-for-performance①">Performance</a></code> object.
-        <li>Run <a data-link-type="dfn" href="#performance-copy-secondary-buffer" id="ref-for-performance-copy-secondary-buffer">copy secondary buffer</a>.
+        <li>Run <a data-link-type="dfn" href="#dfn-copy-secondary-buffer" id="ref-for-dfn-copy-secondary-buffer">copy secondary buffer</a>.
         <li>Let <i>number of excess entries after</i> be <a data-link-type="dfn" href="#performance-resource-timing-secondary-buffer-current-size" id="ref-for-performance-resource-timing-secondary-buffer-current-size③">resource
 timing secondary buffer current size</a>.
         <li>If <i>number of excess entries before</i> is lower than or
@@ -2088,7 +2119,7 @@ sufficiently (by calling
      <li>
       <a data-link-type="dfn" href="https://www.w3.org/TR/performance-timeline/#dfn-queue-a-performanceentry" id="ref-for-dfn-queue-a-performanceentry">Queue a PerformanceEntry</a> <var>entry</var>.
     
-     <li><a data-link-type="dfn" href="#performance-add-a-performanceresourcetiming-entry" id="ref-for-performance-add-a-performanceresourcetiming-entry">Add</a> <var>entry</var> to
+     <li><a data-link-type="dfn" href="#dfn-add-a-PerformanceResourceTiming-entry" id="ref-for-dfn-add-a-PerformanceResourceTiming-entry">Add</a> <var>entry</var> to
     <var>global</var>’s <a data-link-type="dfn" href="https://www.w3.org/TR/performance-timeline/#dfn-performance-entry-buffer" id="ref-for-dfn-performance-entry-buffer⑤">performance entry buffer</a>.
     
     </ol>
@@ -2108,10 +2139,10 @@ sufficiently (by calling
      <li>Let <var>global</var> be <var>entry</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①③">relevant global object</a>.
     
      <li><a data-link-type="dfn" href="https://www.w3.org/TR/performance-timeline/#dfn-initialize-a-performanceentry" id="ref-for-dfn-initialize-a-performanceentry">Initialize</a> <var>entry</var> given the
-    result of <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp①③">converting</a>
+    result of <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①③">converting</a>
     <var>timingInfo</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-start-time" id="ref-for-fetch-timing-info-start-time">start time</a> given <var>global</var>,
     "<code>resource</code>", <var>requestedURL</var>, and the result of
-      <a data-link-type="dfn" href="#convert-fetch-timestamp" id="ref-for-convert-fetch-timestamp①④">converting</a> <var>timingInfo</var>’s
+      <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①④">converting</a> <var>timingInfo</var>’s
       <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-end-time" id="ref-for-fetch-timing-info-end-time①">end time</a> given <var>global</var>.
     
      <li>Set <var>entry</var>’s <a data-link-type="dfn" href="#performanceresourcetiming-initiator-type" id="ref-for-performanceresourcetiming-initiator-type①">initiator
@@ -2140,7 +2171,7 @@ sufficiently (by calling
     
     </ol>
     <p>
-    To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="convert-fetch-timestamp">convert fetch timestamp</dfn> given <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/hr-time/#typedefdef-domhighrestimestamp" id="ref-for-typedefdef-domhighrestimestamp①⑥">DOMHighResTimeStamp</a></code>
+    To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="dfn-convert-fetch-timestamp">convert fetch timestamp</dfn> given <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/hr-time/#typedefdef-domhighrestimestamp" id="ref-for-typedefdef-domhighrestimestamp①⑥">DOMHighResTimeStamp</a></code>
     <var>ts</var> and <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#global-object" id="ref-for-global-object①">global object</a> <var>global</var>, do the following:
   </p>
     <ol>
@@ -2257,11 +2288,11 @@ sufficiently (by calling
   <h2 class="heading no-num no-ref settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="heading no-num no-ref settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#performance-add-a-performanceresourcetiming-entry">add a PerformanceResourceTiming entry</a><span>, in § 3.4</span>
+   <li><a href="#dfn-add-a-PerformanceResourceTiming-entry">add a PerformanceResourceTiming entry</a><span>, in § 3.4</span>
    <li><a href="#dom-renderblockingstatustype-blocking">"blocking"</a><span>, in § 3.3.1</span>
    <li><a href="#renderblockingstatustype-blocking">blocking</a><span>, in § 3.3.1</span>
    <li><a href="#performanceresourcetiming-cache-mode">cache mode</a><span>, in § 3.3</span>
-   <li><a href="#performance-can-add-resource-timing-entry">can add resource timing entry</a><span>, in § 3.4</span>
+   <li><a href="#dfn-can-add-resource-timing-entry">can add resource timing entry</a><span>, in § 3.4</span>
    <li><a href="#performance-clearresourcetimings">clearResourceTimings</a><span>, in § 3.4</span>
    <li><a href="#dom-performance-clearresourcetimings">clearResourceTimings()</a><span>, in § 3.4</span>
    <li>
@@ -2288,8 +2319,8 @@ sufficiently (by calling
      <li><a href="#dom-performanceresourcetiming-contenttype">attribute for PerformanceResourceTiming</a><span>, in § 3.3</span>
      <li><a href="#performanceresourcetiming-contenttype">dfn for PerformanceResourceTiming</a><span>, in § 3.3</span>
     </ul>
-   <li><a href="#convert-fetch-timestamp">convert fetch timestamp</a><span>, in § 4</span>
-   <li><a href="#performance-copy-secondary-buffer">copy secondary buffer</a><span>, in § 3.4</span>
+   <li><a href="#dfn-convert-fetch-timestamp">convert fetch timestamp</a><span>, in § 4</span>
+   <li><a href="#dfn-copy-secondary-buffer">copy secondary buffer</a><span>, in § 3.4</span>
    <li>
     decodedBodySize
     <ul>
@@ -2333,7 +2364,7 @@ sufficiently (by calling
      <li><a href="#dom-performanceresourcetiming-finalresponseheadersstart">attribute for PerformanceResourceTiming</a><span>, in § 3.3</span>
      <li><a href="#performanceresourcetiming-finalresponseheadersstart">dfn for PerformanceResourceTiming</a><span>, in § 3.3</span>
     </ul>
-   <li><a href="#performance-fire-a-buffer-full-event">fire a buffer full event</a><span>, in § 3.4</span>
+   <li><a href="#dfn-fire-a-buffer-full-event">fire a buffer full event</a><span>, in § 3.4</span>
    <li>
     firstInterimResponseStart
     <ul>
@@ -2629,7 +2660,7 @@ sufficiently (by calling
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
   </dl>
-  <h3 class="heading no-num no-ref settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
+  <h3 class="heading no-num no-ref settled" id="informative"><span class="content">Non-Normative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-beacon">[BEACON]
    <dd>Ilya Grigorik; Alois Reitbauer. <a href="https://w3c.github.io/beacon/"><cite>Beacon</cite></a>. URL: <a href="https://w3c.github.io/beacon/">https://w3c.github.io/beacon/</a>
@@ -2650,7 +2681,7 @@ sufficiently (by calling
    <dt id="biblio-svg11">[SVG11]
    <dd>Erik Dahlström; et al. <a href="https://www.w3.org/TR/SVG11/"><cite>Scalable Vector Graphics (SVG) 1.1 (Second Edition)</cite></a>. 16 August 2011. REC. URL: <a href="https://www.w3.org/TR/SVG11/">https://www.w3.org/TR/SVG11/</a>
    <dt id="biblio-svg2">[SVG2]
-   <dd>Amelia Bellamy-Royds; et al. <a href="https://svgwg.org/svg2-draft/"><cite>Scalable Vector Graphics (SVG) 2</cite></a>. URL: <a href="https://svgwg.org/svg2-draft/">https://svgwg.org/svg2-draft/</a>
+   <dd>Amelia Bellamy-Royds; et al. <a href="https://w3c.github.io/svgwg/svg2-draft/"><cite>Scalable Vector Graphics (SVG) 2</cite></a>. URL: <a href="https://w3c.github.io/svgwg/svg2-draft/">https://w3c.github.io/svgwg/svg2-draft/</a>
    <dt id="biblio-xhr">[XHR]
    <dd>Anne van Kesteren. <a href="https://xhr.spec.whatwg.org/"><cite>XMLHttpRequest Standard</cite></a>. Living Standard. URL: <a href="https://xhr.spec.whatwg.org/">https://xhr.spec.whatwg.org/</a>
   </dl>
@@ -3401,7 +3432,6 @@ let dfnPanelData = {
 "c60ed63a": {"dfnID":"c60ed63a","dfnText":"service worker","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-service-worker"}],"title":"3.5.1. \n        Introduction\n      "}],"url":"https://w3c.github.io/ServiceWorker/#dfn-service-worker"},
 "c7bafbd7": {"dfnID":"c7bafbd7","dfnText":"first interim network-response start time","external":true,"refSections":[{"refs":[{"id":"ref-for-fetch-timing-info-first-interim-network-response-start-time"}],"title":"3.3. \n      The PerformanceResourceTiming Interface\n    "}],"url":"https://fetch.spec.whatwg.org/#fetch-timing-info-first-interim-network-response-start-time"},
 "ca2b0d80": {"dfnID":"ca2b0d80","dfnText":"src (for audio)","external":true,"refSections":[{"refs":[{"id":"ref-for-attr-media-src"},{"id":"ref-for-attr-media-src\u2460"}],"title":"3.3. \n      The PerformanceResourceTiming Interface\n    "}],"url":"https://html.spec.whatwg.org/multipage/media.html#attr-media-src"},
-"convert-fetch-timestamp": {"dfnID":"convert-fetch-timestamp","dfnText":"convert fetch timestamp","external":false,"refSections":[{"refs":[{"id":"ref-for-convert-fetch-timestamp"},{"id":"ref-for-convert-fetch-timestamp\u2460"},{"id":"ref-for-convert-fetch-timestamp\u2461"},{"id":"ref-for-convert-fetch-timestamp\u2462"},{"id":"ref-for-convert-fetch-timestamp\u2463"},{"id":"ref-for-convert-fetch-timestamp\u2464"},{"id":"ref-for-convert-fetch-timestamp\u2465"},{"id":"ref-for-convert-fetch-timestamp\u2466"},{"id":"ref-for-convert-fetch-timestamp\u2467"},{"id":"ref-for-convert-fetch-timestamp\u2468"},{"id":"ref-for-convert-fetch-timestamp\u2460\u24ea"},{"id":"ref-for-convert-fetch-timestamp\u2460\u2460"},{"id":"ref-for-convert-fetch-timestamp\u2460\u2461"}],"title":"3.3. The PerformanceResourceTiming Interface"},{"refs":[{"id":"ref-for-convert-fetch-timestamp\u2460\u2462"},{"id":"ref-for-convert-fetch-timestamp\u2460\u2463"}],"title":"4. Creating a resource timing entry"}],"url":"#convert-fetch-timestamp"},
 "d06b2b8c": {"dfnID":"d06b2b8c","dfnText":"XMLHttpRequest","external":true,"refSections":[{"refs":[{"id":"ref-for-xmlhttprequest"}],"title":"3.1. \n      Introduction\n    "},{"refs":[{"id":"ref-for-xmlhttprequest\u2460"}],"title":"3.3. \n      The PerformanceResourceTiming Interface\n    "}],"url":"https://xhr.spec.whatwg.org/#xmlhttprequest"},
 "d3143ca1": {"dfnID":"d3143ca1","dfnText":"src (for embed)","external":true,"refSections":[{"refs":[{"id":"ref-for-attr-embed-src"}],"title":"3.3. \n      The PerformanceResourceTiming Interface\n    "}],"url":"https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-embed-src"},
 "d50e54bd": {"dfnID":"d50e54bd","dfnText":"relative high resolution coarse time","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-relative-high-resolution-coarse-time"}],"title":"4. \n    Creating a resource timing entry\n  "}],"url":"https://w3c.github.io/hr-time/#dfn-relative-high-resolution-coarse-time"},
@@ -3411,6 +3441,11 @@ let dfnPanelData = {
 "dc126c10": {"dfnID":"dc126c10","dfnText":"ALPN negotiated protocol","external":true,"refSections":[{"refs":[{"id":"ref-for-connection-timing-info-alpn-negotiated-protocol"}],"title":"3.3. \n      The PerformanceResourceTiming Interface\n    "}],"url":"https://fetch.spec.whatwg.org/#connection-timing-info-alpn-negotiated-protocol"},
 "dc7feabb": {"dfnID":"dc7feabb","dfnText":"default toJSON steps","external":true,"refSections":[{"refs":[{"id":"ref-for-default-tojson-steps"}],"title":"3.3. \n      The PerformanceResourceTiming Interface\n    "}],"url":"https://webidl.spec.whatwg.org/#default-tojson-steps"},
 "deddc6fc": {"dfnID":"deddc6fc","dfnText":"src (for iframe)","external":true,"refSections":[{"refs":[{"id":"ref-for-attr-iframe-src"}],"title":"3.3. \n      The PerformanceResourceTiming Interface\n    "}],"url":"https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-src"},
+"dfn-add-a-PerformanceResourceTiming-entry": {"dfnID":"dfn-add-a-PerformanceResourceTiming-entry","dfnText":"add a PerformanceResourceTiming entry","external":false,"refSections":[{"refs":[{"id":"ref-for-dfn-add-a-PerformanceResourceTiming-entry"}],"title":"4. Creating a resource timing entry"}],"url":"#dfn-add-a-PerformanceResourceTiming-entry"},
+"dfn-can-add-resource-timing-entry": {"dfnID":"dfn-can-add-resource-timing-entry","dfnText":"can add resource timing entry","external":false,"refSections":[{"refs":[{"id":"ref-for-dfn-can-add-resource-timing-entry"},{"id":"ref-for-dfn-can-add-resource-timing-entry\u2460"},{"id":"ref-for-dfn-can-add-resource-timing-entry\u2461"}],"title":"3.4. Extensions to the Performance Interface"}],"url":"#dfn-can-add-resource-timing-entry"},
+"dfn-convert-fetch-timestamp": {"dfnID":"dfn-convert-fetch-timestamp","dfnText":"convert fetch timestamp","external":false,"refSections":[{"refs":[{"id":"ref-for-dfn-convert-fetch-timestamp"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2460"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2461"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2462"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2463"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2464"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2465"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2466"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2467"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2468"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2460\u24ea"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2460\u2460"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2460\u2461"}],"title":"3.3. The PerformanceResourceTiming Interface"},{"refs":[{"id":"ref-for-dfn-convert-fetch-timestamp\u2460\u2462"},{"id":"ref-for-dfn-convert-fetch-timestamp\u2460\u2463"}],"title":"4. Creating a resource timing entry"}],"url":"#dfn-convert-fetch-timestamp"},
+"dfn-copy-secondary-buffer": {"dfnID":"dfn-copy-secondary-buffer","dfnText":"copy secondary buffer","external":false,"refSections":[{"refs":[{"id":"ref-for-dfn-copy-secondary-buffer"}],"title":"3.4. Extensions to the Performance Interface"}],"url":"#dfn-copy-secondary-buffer"},
+"dfn-fire-a-buffer-full-event": {"dfnID":"dfn-fire-a-buffer-full-event","dfnText":"fire a buffer full event","external":false,"refSections":[{"refs":[{"id":"ref-for-dfn-fire-a-buffer-full-event"}],"title":"3.4. Extensions to the Performance Interface"}],"url":"#dfn-fire-a-buffer-full-event"},
 "dom-performance-clearresourcetimings": {"dfnID":"dom-performance-clearresourcetimings","dfnText":"clearResourceTimings","external":false,"refSections":[],"url":"#dom-performance-clearresourcetimings"},
 "dom-performance-onresourcetimingbufferfull": {"dfnID":"dom-performance-onresourcetimingbufferfull","dfnText":"onresourcetimingbufferfull","external":false,"refSections":[],"url":"#dom-performance-onresourcetimingbufferfull"},
 "dom-performance-setresourcetimingbuffersize": {"dfnID":"dom-performance-setresourcetimingbuffersize","dfnText":"setResourceTimingBufferSize","external":false,"refSections":[],"url":"#dom-performance-setresourcetimingbuffersize"},
@@ -3460,11 +3495,7 @@ let dfnPanelData = {
 "f4531911": {"dfnID":"f4531911","dfnText":"Default","external":true,"refSections":[{"refs":[{"id":"ref-for-Default"}],"title":"3.3. \n      The PerformanceResourceTiming Interface\n    "}],"url":"https://webidl.spec.whatwg.org/#Default"},
 "fd8ed7d1": {"dfnID":"fd8ed7d1","dfnText":"final network-request start time","external":true,"refSections":[{"refs":[{"id":"ref-for-fetch-timing-info-final-network-request-start-time"}],"title":"3.3. \n      The PerformanceResourceTiming Interface\n    "}],"url":"https://fetch.spec.whatwg.org/#fetch-timing-info-final-network-request-start-time"},
 "mark-resource-timing": {"dfnID":"mark-resource-timing","dfnText":"mark resource timing","external":false,"refSections":[],"url":"#mark-resource-timing"},
-"performance-add-a-performanceresourcetiming-entry": {"dfnID":"performance-add-a-performanceresourcetiming-entry","dfnText":"add a PerformanceResourceTiming entry","external":false,"refSections":[{"refs":[{"id":"ref-for-performance-add-a-performanceresourcetiming-entry"}],"title":"4. Creating a resource timing entry"}],"url":"#performance-add-a-performanceresourcetiming-entry"},
-"performance-can-add-resource-timing-entry": {"dfnID":"performance-can-add-resource-timing-entry","dfnText":"can add resource timing entry","external":false,"refSections":[{"refs":[{"id":"ref-for-performance-can-add-resource-timing-entry"},{"id":"ref-for-performance-can-add-resource-timing-entry\u2460"},{"id":"ref-for-performance-can-add-resource-timing-entry\u2461"}],"title":"3.4. Extensions to the Performance Interface"}],"url":"#performance-can-add-resource-timing-entry"},
 "performance-clearresourcetimings": {"dfnID":"performance-clearresourcetimings","dfnText":"clearResourceTimings","external":false,"refSections":[],"url":"#performance-clearresourcetimings"},
-"performance-copy-secondary-buffer": {"dfnID":"performance-copy-secondary-buffer","dfnText":"copy secondary buffer","external":false,"refSections":[{"refs":[{"id":"ref-for-performance-copy-secondary-buffer"}],"title":"3.4. Extensions to the Performance Interface"}],"url":"#performance-copy-secondary-buffer"},
-"performance-fire-a-buffer-full-event": {"dfnID":"performance-fire-a-buffer-full-event","dfnText":"fire a buffer full event","external":false,"refSections":[{"refs":[{"id":"ref-for-performance-fire-a-buffer-full-event"}],"title":"3.4. Extensions to the Performance Interface"}],"url":"#performance-fire-a-buffer-full-event"},
 "performance-onresourcetimingbufferfull": {"dfnID":"performance-onresourcetimingbufferfull","dfnText":"onresourcetimingbufferfull","external":false,"refSections":[],"url":"#performance-onresourcetimingbufferfull"},
 "performance-performance": {"dfnID":"performance-performance","dfnText":"Performance","external":false,"refSections":[],"url":"#performance-performance"},
 "performance-resource-timing-buffer-current-size": {"dfnID":"performance-resource-timing-buffer-current-size","dfnText":"resource timing buffer current size","external":false,"refSections":[{"refs":[{"id":"ref-for-performance-resource-timing-buffer-current-size"},{"id":"ref-for-performance-resource-timing-buffer-current-size\u2460"},{"id":"ref-for-performance-resource-timing-buffer-current-size\u2461"},{"id":"ref-for-performance-resource-timing-buffer-current-size\u2462"},{"id":"ref-for-performance-resource-timing-buffer-current-size\u2463"}],"title":"3.4. Extensions to the Performance Interface"}],"url":"#performance-resource-timing-buffer-current-size"},
@@ -3960,7 +3991,11 @@ window.addEventListener("resize", repositionAnnoPanels);
 "use strict";
 {
 let refsData = {
-"#convert-fetch-timestamp": {"displayText":"convert fetch timestamp","export":true,"for_":[],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"convert fetch timestamp","type":"dfn","url":"#convert-fetch-timestamp"},
+"#dfn-add-a-PerformanceResourceTiming-entry": {"displayText":"add a performanceresourcetiming entry","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"add a performanceresourcetiming entry","type":"dfn","url":"#dfn-add-a-PerformanceResourceTiming-entry"},
+"#dfn-can-add-resource-timing-entry": {"displayText":"can add resource timing entry","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"can add resource timing entry","type":"dfn","url":"#dfn-can-add-resource-timing-entry"},
+"#dfn-convert-fetch-timestamp": {"displayText":"convert fetch timestamp","export":true,"for_":[],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"convert fetch timestamp","type":"dfn","url":"#dfn-convert-fetch-timestamp"},
+"#dfn-copy-secondary-buffer": {"displayText":"copy secondary buffer","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"copy secondary buffer","type":"dfn","url":"#dfn-copy-secondary-buffer"},
+"#dfn-fire-a-buffer-full-event": {"displayText":"fire a buffer full event","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"fire a buffer full event","type":"dfn","url":"#dfn-fire-a-buffer-full-event"},
 "#dom-performanceresourcetiming-connectend": {"displayText":"connectEnd","export":true,"for_":["PerformanceResourceTiming"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"connectEnd","type":"attribute","url":"#dom-performanceresourcetiming-connectend"},
 "#dom-performanceresourcetiming-connectstart": {"displayText":"connectStart","export":true,"for_":["PerformanceResourceTiming"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"connectStart","type":"attribute","url":"#dom-performanceresourcetiming-connectstart"},
 "#dom-performanceresourcetiming-contenttype": {"displayText":"contentType","export":true,"for_":["PerformanceResourceTiming"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"contentType","type":"attribute","url":"#dom-performanceresourcetiming-contenttype"},
@@ -3979,10 +4014,6 @@ let refsData = {
 "#dom-performanceresourcetiming-transfersize": {"displayText":"transferSize","export":true,"for_":["PerformanceResourceTiming"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"transferSize","type":"attribute","url":"#dom-performanceresourcetiming-transfersize"},
 "#dom-performanceresourcetiming-workerstart": {"displayText":"workerStart","export":true,"for_":["PerformanceResourceTiming"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"workerStart","type":"attribute","url":"#dom-performanceresourcetiming-workerstart"},
 "#enumdef-renderblockingstatustype": {"displayText":"RenderBlockingStatusType","export":true,"for_":[],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"RenderBlockingStatusType","type":"enum","url":"#enumdef-renderblockingstatustype"},
-"#performance-add-a-performanceresourcetiming-entry": {"displayText":"add a performanceresourcetiming entry","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"add a performanceresourcetiming entry","type":"dfn","url":"#performance-add-a-performanceresourcetiming-entry"},
-"#performance-can-add-resource-timing-entry": {"displayText":"can add resource timing entry","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"can add resource timing entry","type":"dfn","url":"#performance-can-add-resource-timing-entry"},
-"#performance-copy-secondary-buffer": {"displayText":"copy secondary buffer","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"copy secondary buffer","type":"dfn","url":"#performance-copy-secondary-buffer"},
-"#performance-fire-a-buffer-full-event": {"displayText":"fire a buffer full event","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"fire a buffer full event","type":"dfn","url":"#performance-fire-a-buffer-full-event"},
 "#performance-resource-timing-buffer-current-size": {"displayText":"resource timing buffer current size","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"resource timing buffer current size","type":"dfn","url":"#performance-resource-timing-buffer-current-size"},
 "#performance-resource-timing-buffer-full-event-pending-flag": {"displayText":"resource timing buffer full event pending flag","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"resource timing buffer full event pending flag","type":"dfn","url":"#performance-resource-timing-buffer-full-event-pending-flag"},
 "#performance-resource-timing-buffer-size-limit": {"displayText":"resource timing buffer size limit","export":true,"for_":["Performance"],"level":"","normative":true,"shortname":"resource-timing","spec":"resource-timing","status":"local","text":"resource timing buffer size limit","type":"dfn","url":"#performance-resource-timing-buffer-size-limit"},
