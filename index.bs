@@ -836,7 +836,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       below.
     </p>
     <p>
-      To check if <dfn>can add resource timing entry</dfn>, run the
+      To check if <dfn id="dfn-can-add-resource-timing-entry">can add resource timing entry</dfn>, run the
       following steps:
     </p>
     <ol>
@@ -847,7 +847,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       </li>
     </ol>
 
-<p>To <dfn>add a PerformanceResourceTiming entry</dfn> <i>new entry</i>
+<p>To <dfn id="dfn-add-a-PerformanceResourceTiming-entry">add a PerformanceResourceTiming entry</dfn> <i>new entry</i>
 into the <a>performance entry buffer</a>, run the following steps:</p>
 <ol>
 <li>If <a>can add resource timing entry</a> returns true and
@@ -872,7 +872,7 @@ buffer</a>.</li>
 <li>Increase <a>resource timing secondary buffer current size</a> by
 1.</li>
 </ol>
-<p>To <dfn>copy secondary buffer</dfn>, run the following steps:</p>
+<p>To <dfn id="dfn-copy-secondary-buffer">copy secondary buffer</dfn>, run the following steps:</p>
 <ol>
 <li>While <a>resource timing secondary buffer</a> is not empty and
 <a>can add resource timing entry</a> returns true, run the following
@@ -888,7 +888,7 @@ buffer</a>.</li>
 </ol>
 </li>
 </ol>
-<p>To <dfn>fire a buffer full event</dfn>, run the following steps:</p>
+<p>To <dfn id="dfn-fire-a-buffer-full-event">fire a buffer full event</dfn>, run the following steps:</p>
 <ol>
 <li>While <a>resource timing secondary buffer</a> is not empty, run
 the following substeps:
@@ -1199,7 +1199,7 @@ sufficiently (by calling
     </li>
   </ol>
   <p>
-    To <dfn>convert fetch timestamp</dfn> given {{DOMHighResTimeStamp}}
+    To <dfn id="dfn-convert-fetch-timestamp">convert fetch timestamp</dfn> given {{DOMHighResTimeStamp}}
     |ts| and <a>global object</a> |global|, do the following:
   </p>
   <ol>
