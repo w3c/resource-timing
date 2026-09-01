@@ -370,7 +370,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       for {{PerformanceResourceTiming}}.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      <dfn export>initiatorType</dfn> getter steps are to return the <a for=
+      <dfn attribute export>initiatorType</dfn> getter steps are to return the <a for=
       "PerformanceResourceTiming">initiator type</a> for <a>this</a>.
     </p>
     <div class='note'>
@@ -487,7 +487,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       a resource timing entry is reported, such as the [=fetch=] standard.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      <dfn export>deliveryType</dfn> getter steps are to return the <a for=
+      <dfn attribute export>deliveryType</dfn> getter steps are to return the <a for=
       "PerformanceResourceTiming">delivery type</a> for <a>this</a>.
     </p>
     <div class='note'>
@@ -511,35 +511,35 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       </p>
     </div>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>workerStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export>workerStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final service worker start time=] and the <a>relevant global
       object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>redirectStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export>redirectStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/redirect start time=] and the <a>relevant global object</a> for
       <a>this</a>. See [=/HTTP-redirect fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>redirectEnd</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export>redirectEnd</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/redirect end time=] and the <a>relevant global object</a> for
       <a>this</a>. See [=/HTTP-redirect fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>fetchStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export>fetchStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/post-redirect start time=] and the <a>relevant global object</a>
       for <a>this</a>. See [=/HTTP fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>domainLookupStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export>domainLookupStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final connection timing info=]'s [=connection timing info/domain
@@ -548,7 +548,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>domainLookupEnd</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export>domainLookupEnd</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final connection timing info=]'s [=connection timing info/domain
@@ -557,7 +557,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>connectStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export>connectStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final connection timing info=]'s [=connection timing
@@ -566,7 +566,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>connectEnd</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export>connectEnd</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final connection timing info=]'s [=connection timing
@@ -575,7 +575,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>secureConnectionStart</dfn> getter steps are to <a>convert
+      The <dfn attribute export>secureConnectionStart</dfn> getter steps are to <a>convert
       fetch timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final connection timing info=]'s [=connection timing info/secure
@@ -584,7 +584,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>nextHopProtocol</dfn> getter steps are to [=/isomorphic
+      The <dfn attribute export>nextHopProtocol</dfn> getter steps are to [=/isomorphic
       decode=] <a>this</a>'s [=PerformanceResourceTiming/timing info=]'s
       [=fetch timing info/final connection timing info=]'s [=connection
       timing info/ALPN negotiated protocol=]. See <a>Recording connection
@@ -597,51 +597,51 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       the user's network configuration.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>requestStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export>requestStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final network-request start time=] and the <a>relevant global
       object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>firstInterimResponseStart</dfn> getter steps are to
+      The <dfn attribute export>firstInterimResponseStart</dfn> getter steps are to
       <a>convert fetch timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/first interim network-response start time=] and the <a>relevant
       global object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>finalResponseHeadersStart</dfn> getter steps are to
+      The <dfn attribute export>finalResponseHeadersStart</dfn> getter steps are to
       <a>convert fetch timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final network-response start time=] and the <a>relevant global
       object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>responseStart</dfn> getter steps are to return <a>this</a>'s
+      The <dfn attribute export>responseStart</dfn> getter steps are to return <a>this</a>'s
       {{PerformanceResourceTiming/firstInterimResponseStart}} if it is not
       0; Otherwise <a>this</a>'s
       {{PerformanceResourceTiming/finalResponseHeadersStart}}.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>responseEnd</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export>responseEnd</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing info/end
       time=] and the <a>relevant global object</a> for <a>this</a>. See
       [=/fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>encodedBodySize</dfn> getter steps are to return
+      The <dfn attribute export>encodedBodySize</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">resource
       info</a>'s [=response body info/encoded size=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>decodedBodySize</dfn> getter steps are to return
+      The <dfn attribute export>decodedBodySize</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">resource
       info</a>'s [=response body info/decoded size=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>transferSize</dfn> getter steps are:
+      The <dfn attribute export>transferSize</dfn> getter steps are:
     </p>
     <ol>
       <li>
@@ -672,7 +672,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       </li>
     </ol>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>responseStatus</dfn> getter steps are to return
+      The <dfn attribute export>responseStatus</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">response
       status</a>.
     </p>
@@ -684,42 +684,42 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       response</a>.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>contentType</dfn> getter steps are to return <a>this</a>'s
+      The <dfn attribute export>contentType</dfn> getter steps are to return <a>this</a>'s
       <a for="PerformanceResourceTiming">resource info</a>'s
       [=response body info/content type=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>contentEncoding</dfn> getter steps are to return
+      The <dfn attribute export>contentEncoding</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">resource
         info</a>'s [=response body info/content encoding=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>renderBlockingStatus</dfn> getter steps are to return
+      The <dfn attribute export>renderBlockingStatus</dfn> getter steps are to return
       <a for="RenderBlockingStatusType">blocking</a> if
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
       info</a>'s [=fetch timing info/render-blocking=] is true; otherwise
       <a for="RenderBlockingStatusType">non-blocking</a>.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>workerRouterEvaluationStart</dfn> getter steps are to return
+      The <dfn attribute export>workerRouterEvaluationStart</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
         info</a>'s [=fetch timing info/service worker timing info=]'s
       [=service worker timing info/worker router evaluation start=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>workerCacheLookupStart</dfn> getter steps are to return
+      The <dfn attribute export>workerCacheLookupStart</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
         info</a>'s [=fetch timing info/service worker timing info=]'s
       [=service worker timing info/worker cache lookup start=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>workerMatchedRouterSource</dfn> getter steps are to return
+      The <dfn attribute export>workerMatchedRouterSource</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
         info</a>'s [=fetch timing info/service worker timing info=]'s
       [=service worker timing info/worker matched router source=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn export>workerFinalRouterSource</dfn> getter steps are to return
+      The <dfn attribute export>workerFinalRouterSource</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
         info</a>'s [=fetch timing info/service worker timing info=]'s
       [=service worker timing info/worker final router source=].
