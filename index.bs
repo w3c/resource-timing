@@ -200,6 +200,35 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
     </p>
   </section>
   <section>
+    <h3 id='performanceentry'>Relation to the {{PerformanceEntry}} interface</h3>
+
+    {{PerformanceResourceTiming}} interface extends the following
+    attributes of {{PerformanceEntry}} interface:
+
+    <ul>
+      <li>The <code>entryType</code>
+      getter step is to return the {{DOMString}} "<code id="perf-resource">resource</code>".
+      </li>
+      <li>The {{PerformanceEntry/startTime}}
+      getter step is to return a {{DOMHighResTimeStamp}}
+      with a time value of [=/fetch
+      timing info=] |timingInfo|'s [=fetch timing info/start time=].
+      </li>
+      <li>The {{PerformanceEntry/duration}}
+      getter step is to return a {{DOMHighResTimeStamp}} equal to the
+      difference between [=/fetch
+      timing info=] |timingInfo|'s [=fetch timing info/end time=] and [=this=]'s {{PerformanceEntry/startTime}}.
+      </li>
+    </ul>
+
+    <p class='note'>
+      A user agent implementing {{PerformanceResourceTiming}} would need
+      to include <code>"resource"</code> in
+      {{PerformanceObserver/supportedEntryTypes}}. This allows developers
+      to detect support for Resource Timing.
+    </p>
+  </section>
+  <section>
     <h3 id="resources-included-in-the-performanceresourcetiming-interface">
       Resources Included in the {{PerformanceResourceTiming}} Interface
     </h3>
@@ -723,12 +752,6 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
         info</a>'s [=fetch timing info/service worker timing info=]'s
       [=service worker timing info/worker final router source=].
-    </p>
-    <p class='note'>
-      A user agent implementing {{PerformanceResourceTiming}} would need
-      to include <code>"resource"</code> in
-      {{PerformanceObserver/supportedEntryTypes}}. This allows developers
-      to detect support for Resource Timing.
     </p>
     <section>
       <h4 id="sec-render-blocking-status-types">
