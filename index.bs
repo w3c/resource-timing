@@ -80,7 +80,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
     For example, the following JavaScript shows a simple attempt to measure
     the time it takes to fetch a resource:
   </p>
-  <pre class='example' highlight='html'>
+  <pre class='example' highlight='html' oldids="example-1">
     &lt;!doctype html&gt;
     &lt;html&gt;
       &lt;head&gt;
@@ -126,7 +126,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
     further measure the amount of time it takes in every phase of fetching
     a resource with the {{PerformanceResourceTiming}} interface.
   </p>
-  <pre class='example' highlight='html'>
+  <pre class='example' highlight='html' oldids="example-2">
     &lt;!doctype html&gt;
     &lt;html&gt;
       &lt;head&gt;
@@ -185,7 +185,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
     Resource Timing
   </h2>
   <section class='informative'>
-    <h3 id="sec-resource-timing-intro">
+    <h3 id="sec-resource-timing-intro" oldids="introduction-0">
       Introduction
     </h3>
     <p>
@@ -287,7 +287,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
     </ul>
   </section>
   <section>
-    <h3 id="sec-performanceresourcetiming">
+    <h3 id="sec-performanceresourcetiming" oldids="dom-performanceresourcetiming,idl-def-performanceresourcetiming">
       The PerformanceResourceTiming Interface
     </h3>
     <pre class='idl'>
@@ -326,51 +326,51 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
     </pre>
     <p>
       A {{PerformanceResourceTiming}} has an associated DOMString
-      <dfn for="PerformanceResourceTiming">initiator
+      <dfn for="PerformanceResourceTiming" oldids="dfn-initiator-type">initiator
       type</dfn>.
     </p>
     <p>
       A {{PerformanceResourceTiming}} has an associated DOMString
-      <dfn for="PerformanceResourceTiming">delivery
+      <dfn for="PerformanceResourceTiming" oldids="dfn-delivery-type">delivery
       type</dfn>.
     </p>
     <p>
       A {{PerformanceResourceTiming}} has an associated DOMString
-      <dfn for="PerformanceResourceTiming">requested
+      <dfn for="PerformanceResourceTiming" oldids="dfn-requested-url">requested
       URL</dfn>.
     </p>
     <p>
       A {{PerformanceResourceTiming}} has an associated DOMString
-      <dfn for="PerformanceResourceTiming">cache mode</dfn>
+      <dfn for="PerformanceResourceTiming" oldids="dfn-cache-mode">cache mode</dfn>
       (the empty string, "<code>local</code>", or
       "<code>validated</code>").
     </p>
     <p>
       A {{PerformanceResourceTiming}} has an associated [=fetch timing
-      info=] <dfn for="PerformanceResourceTiming">timing
+      info=] <dfn for="PerformanceResourceTiming" oldids="dfn-timing-info">timing
       info</dfn>.
     </p>
     <p>
       A {{PerformanceResourceTiming}} has an associated [=response body
-      info=] <dfn for="PerformanceResourceTiming">resource
+      info=] <dfn for="PerformanceResourceTiming" oldids="dfn-resource-info">resource
       info</dfn>.
     </p>
     <p>
       A {{PerformanceResourceTiming}} has an associated
       <a href="https://fetch.spec.whatwg.org/#concept-status">status</a>
-      <dfn for="PerformanceResourceTiming">response status</dfn>.
+      <dfn for="PerformanceResourceTiming" oldids="dfn-response-status">response status</dfn>.
     </p>
     <p>
       A {{PerformanceResourceTiming}} has an associated
       {{RenderBlockingStatusType}} <dfn export for=
-      "PerformanceResourceTiming">render-blocking status</dfn>.
+      "PerformanceResourceTiming" oldids="dfn-render-blocking-status">render-blocking status</dfn>.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      When <dfn export>toJSON</dfn> is called, run the [=default toJSON steps=]
+      When <dfn export oldids="idl-def-performanceresourcetiming-tojson">toJSON</dfn> is called, run the [=default toJSON steps=]
       for {{PerformanceResourceTiming}}.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      <dfn attribute export>initiatorType</dfn> getter steps are to return the <a for=
+      <dfn attribute export oldids="idl-def-performanceresourcetiming-initiatortype">initiatorType</dfn> getter steps are to return the <a for=
       "PerformanceResourceTiming">initiator type</a> for <a>this</a>.
     </p>
     <div class='note'>
@@ -487,7 +487,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       a resource timing entry is reported, such as the [=fetch=] standard.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      <dfn attribute export>deliveryType</dfn> getter steps are to return the <a for=
+      <dfn attribute export oldids="idl-def-performanceresourcetiming-deliverytype">deliveryType</dfn> getter steps are to return the <a for=
       "PerformanceResourceTiming">delivery type</a> for <a>this</a>.
     </p>
     <div class='note'>
@@ -511,35 +511,35 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       </p>
     </div>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>workerStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-workerstart">workerStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final service worker start time=] and the <a>relevant global
       object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>redirectStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-redirectstart">redirectStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/redirect start time=] and the <a>relevant global object</a> for
       <a>this</a>. See [=/HTTP-redirect fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>redirectEnd</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-redirectend">redirectEnd</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/redirect end time=] and the <a>relevant global object</a> for
       <a>this</a>. See [=/HTTP-redirect fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>fetchStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-fetchstart">fetchStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/post-redirect start time=] and the <a>relevant global object</a>
       for <a>this</a>. See [=/HTTP fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>domainLookupStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-domainlookupstart">domainLookupStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final connection timing info=]'s [=connection timing info/domain
@@ -548,7 +548,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>domainLookupEnd</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-domainlookupend">domainLookupEnd</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final connection timing info=]'s [=connection timing info/domain
@@ -557,7 +557,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>connectStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-connectstart">connectStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final connection timing info=]'s [=connection timing
@@ -566,7 +566,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>connectEnd</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-connectend">connectEnd</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final connection timing info=]'s [=connection timing
@@ -575,7 +575,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>secureConnectionStart</dfn> getter steps are to <a>convert
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-secureconnectionstart">secureConnectionStart</dfn> getter steps are to <a>convert
       fetch timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final connection timing info=]'s [=connection timing info/secure
@@ -584,7 +584,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>nextHopProtocol</dfn> getter steps are to [=/isomorphic
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-nexthopprotocol">nextHopProtocol</dfn> getter steps are to [=/isomorphic
       decode=] <a>this</a>'s [=PerformanceResourceTiming/timing info=]'s
       [=fetch timing info/final connection timing info=]'s [=connection
       timing info/ALPN negotiated protocol=]. See <a>Recording connection
@@ -597,51 +597,51 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       the user's network configuration.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>requestStart</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-requeststart">requestStart</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final network-request start time=] and the <a>relevant global
       object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>firstInterimResponseStart</dfn> getter steps are to
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-firstinterimresponsestart">firstInterimResponseStart</dfn> getter steps are to
       <a>convert fetch timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/first interim network-response start time=] and the <a>relevant
       global object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>finalResponseHeadersStart</dfn> getter steps are to
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-finalresponseheadersstart">finalResponseHeadersStart</dfn> getter steps are to
       <a>convert fetch timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing
       info/final network-response start time=] and the <a>relevant global
       object</a> for <a>this</a>. See [=/HTTP fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>responseStart</dfn> getter steps are to return <a>this</a>'s
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-responsestart">responseStart</dfn> getter steps are to return <a>this</a>'s
       {{PerformanceResourceTiming/firstInterimResponseStart}} if it is not
       0; Otherwise <a>this</a>'s
       {{PerformanceResourceTiming/finalResponseHeadersStart}}.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>responseEnd</dfn> getter steps are to <a>convert fetch
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-responseend">responseEnd</dfn> getter steps are to <a>convert fetch
       timestamp</a> for <a>this</a>'s <a for=
       "PerformanceResourceTiming">timing info</a>'s [=fetch timing info/end
       time=] and the <a>relevant global object</a> for <a>this</a>. See
       [=/fetch=] for more info.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>encodedBodySize</dfn> getter steps are to return
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-encodedbodysize">encodedBodySize</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">resource
       info</a>'s [=response body info/encoded size=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>decodedBodySize</dfn> getter steps are to return
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-decodedbodysize">decodedBodySize</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">resource
       info</a>'s [=response body info/decoded size=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>transferSize</dfn> getter steps are:
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-transfersize">transferSize</dfn> getter steps are:
     </p>
     <ol>
       <li>
@@ -672,7 +672,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       </li>
     </ol>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>responseStatus</dfn> getter steps are to return
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-responsestatus">responseStatus</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">response
       status</a>.
     </p>
@@ -684,42 +684,42 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       response</a>.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>contentType</dfn> getter steps are to return <a>this</a>'s
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-contenttype">contentType</dfn> getter steps are to return <a>this</a>'s
       <a for="PerformanceResourceTiming">resource info</a>'s
       [=response body info/content type=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>contentEncoding</dfn> getter steps are to return
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-contentencoding">contentEncoding</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">resource
         info</a>'s [=response body info/content encoding=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>renderBlockingStatus</dfn> getter steps are to return
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-renderblockingstatus">renderBlockingStatus</dfn> getter steps are to return
       <a for="RenderBlockingStatusType">blocking</a> if
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
       info</a>'s [=fetch timing info/render-blocking=] is true; otherwise
       <a for="RenderBlockingStatusType">non-blocking</a>.
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>workerRouterEvaluationStart</dfn> getter steps are to return
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-workerrouterevaluationstart">workerRouterEvaluationStart</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
         info</a>'s [=fetch timing info/service worker timing info=]'s
       [=service worker timing info/worker router evaluation start=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>workerCacheLookupStart</dfn> getter steps are to return
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-workercachelookupstart">workerCacheLookupStart</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
         info</a>'s [=fetch timing info/service worker timing info=]'s
       [=service worker timing info/worker cache lookup start=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>workerMatchedRouterSource</dfn> getter steps are to return
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-workermatchedroutersource">workerMatchedRouterSource</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
         info</a>'s [=fetch timing info/service worker timing info=]'s
       [=service worker timing info/worker matched router source=].
     </p>
     <p dfn-for="PerformanceResourceTiming">
-      The <dfn attribute export>workerFinalRouterSource</dfn> getter steps are to return
+      The <dfn attribute export oldids="idl-def-performanceresourcetiming-workerfinalroutersource">workerFinalRouterSource</dfn> getter steps are to return
       <a>this</a>'s <a for="PerformanceResourceTiming">timing
         info</a>'s [=fetch timing info/service worker timing info=]'s
       [=service worker timing info/worker final router source=].
@@ -731,7 +731,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       to detect support for Resource Timing.
     </p>
     <section>
-      <h4 id="sec-render-blocking-status-types">
+      <h4 id="sec-render-blocking-status-types" oldids="dom-renderblockingstatustype,idl-def-renderblockingstatustype">
         RenderBlockingStatusType enum
       </h4>
       <pre class='idl'>
@@ -783,33 +783,33 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       environment</a> has:
     </p>
     <ul>
-      <li>A <dfn>resource timing buffer size limit</dfn> which should
+      <li>A <dfn oldids="dfn-resource-timing-buffer-size-limit">resource timing buffer size limit</dfn> which should
       initially be 250 or greater.
       </li>
-      <li>A <dfn>resource timing buffer current size</dfn> which is
+      <li>A <dfn oldids="dfn-resource-timing-buffer-current-size">resource timing buffer current size</dfn> which is
       initially 0.
       </li>
-      <li>A <dfn>resource timing buffer full event pending flag</dfn> which
+      <li>A <dfn oldids="dfn-resource-timing-buffer-full-event-pending-flag">resource timing buffer full event pending flag</dfn> which
       is initially false.
       </li>
-      <li>A <dfn>resource timing secondary buffer current size</dfn> which
+      <li>A <dfn oldids="dfn-resource-timing-secondary-buffer-current-size">resource timing secondary buffer current size</dfn> which
       is initially 0.
       </li>
-      <li>A <dfn>resource timing secondary buffer</dfn> to store
+      <li>A <dfn oldids="dfn-resource-timing-secondary-buffer">resource timing secondary buffer</dfn> to store
       {{PerformanceResourceTiming}} objects that is initially empty.
       </li>
     </ul>
-    <pre class="idl">partial interface Performance {
+    <pre class="idl" id=idl-def-performance-partial-1>partial interface Performance {
       undefined clearResourceTimings ();
       undefined setResourceTimingBufferSize (unsigned long maxSize);
       attribute EventHandler onresourcetimingbufferfull;
     };
     </pre>
     <p>
-      The <dfn export>Performance</dfn> interface is defined in [[HR-TIME]].
+      The <dfn export oldids="dom-performance">Performance</dfn> interface is defined in [[HR-TIME]].
     </p>
     <p>
-      The method <dfn export>clearResourceTimings</dfn> runs the following steps:
+      The method <dfn export oldids="idl-def-performance-clearresourcetimings">clearResourceTimings</dfn> runs the following steps:
     </p>
     <ol>
       <li>Remove all {{PerformanceResourceTiming}} objects in the
@@ -819,7 +819,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       </li>
     </ol>
     <p>
-      The <dfn>setResourceTimingBufferSize</dfn> method runs the following
+      The <dfn oldids="idl-def-performance-setresourcetimingbuffersize-maxsize">setResourceTimingBufferSize</dfn> method runs the following
       steps:
     </p>
     <ol>
@@ -831,7 +831,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       </li>
     </ol>
     <p>
-      The attribute <dfn export>onresourcetimingbufferfull</dfn> is the event
+      The attribute <dfn export oldids="idl-def-performance-onresourcetimingbufferfull">onresourcetimingbufferfull</dfn> is the event
       handler for the <code>resourcetimingbufferfull</code> event described
       below.
     </p>
@@ -847,7 +847,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
       </li>
     </ol>
 
-<p>To <dfn id="dfn-add-a-PerformanceResourceTiming-entry">add a PerformanceResourceTiming entry</dfn> <i>new entry</i>
+<p>To <dfn id="dfn-add-a-PerformanceResourceTiming-entry" oldids="dfn-add-a-performanceresourcetiming-entry">add a PerformanceResourceTiming entry</dfn> <i>new entry</i>
 into the <a>performance entry buffer</a>, run the following steps:</p>
 <ol>
 <li>If <a>can add resource timing entry</a> returns true and
@@ -1008,7 +1008,7 @@ sufficiently (by calling
         have been zero due to those cross-origin restrictions.
       </p>
       <p>
-        The <dfn>Timing-Allow-Origin</dfn> HTTP response header field can
+        The <dfn oldids="dfn-timing-allow-origin">Timing-Allow-Origin</dfn> HTTP response header field can
         be used to communicate a policy indicating origin(s) that may be
         allowed to see values of attributes that would have been zero due
         to the cross-origin restrictions. The header's value is represented
@@ -1108,7 +1108,7 @@ sufficiently (by calling
       agents may perform internal processing in between timings, which
       allow for non-normative intervals between timings.
     </p>
-    <figure data-lt='Timing attributes'>
+    <figure data-lt='Timing attributes' id=fig-this-figure-illustrates-the-timing-attributes-defined-by-the-performanceresourcetiming-interface-attributes-in-parenthesis-indicate-that-they-may-not-be-available-if-the-resource-fails-the-timing-allow-check-algorithm>
       <figcaption>
         This figure illustrates the timing attributes defined by the
         {{PerformanceResourceTiming}} interface. Attributes in
@@ -1255,3 +1255,5 @@ sufficiently (by calling
     Chan, and Alex Christensen for their contributions to this work.
   </p>
 </section>
+<!-- Keeps ReSpec's #conformance anchor working; Bikeshed's Conformance section is #w3c-conformance. -->
+<div id=conformance></div>
