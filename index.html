@@ -5,9 +5,9 @@
   <title>Resource Timing</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version ac92c2f0d, updated Fri Aug 21 16:01:29 2026 -0700" name="generator">
+  <meta content="Bikeshed version 49e9fdd4f, updated Tue Oct 13 14:27:53 2026 -0700" name="generator">
   <link href="https://www.w3.org/TR/resource-timing/" rel="canonical">
-  <meta content="1f9ef25ab643a02d3192ae4442dee532b1bf37d2" name="revision">
+  <meta content="b689926ce0eeccd5c07c8a08d118e70a902c858a" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -559,11 +559,10 @@ a[href].issue-return {
 	vertical-align: top;
 }
 .mdn-anno > .feature {
-	margin-top: 20px;
+	margin-top: 6px;
 }
 .mdn-anno > .feature:not(:first-of-type) {
 	border-top: 1px solid #999;
-	margin-top: 6px;
 	padding-top: 2px;
 }
 .mdn-anno > .feature > .less-than-two-engines-text {
@@ -954,7 +953,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </p>
    <h1 class="no-ref p-name" id="title">Resource Timing</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-09-01">1 September 2026</time></p>
+    <time class="dt-updated" datetime="2026-11-02">2 November 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1110,7 +1109,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     For example, the following JavaScript shows a simple attempt to measure
     the time it takes to fetch a resource:
   </p>
-<pre class="example highlight" id="example-2e58c1cd"><a class="self-link" href="#example-2e58c1cd"></a><c- cp>&lt;!doctype html></c->
+<pre class="example highlight" id="example-2e58c1cd"><a class="self-link" href="#example-2e58c1cd"></a><span class="bs-old-id" id="example-1"></span><c- cp>&lt;!doctype html></c->
 <c- p>&lt;</c-><c- f>html</c-><c- p>></c->
   <c- p>&lt;</c-><c- f>head</c-><c- p>></c->
   <c- p>&lt;/</c-><c- f>head</c-><c- p>></c->
@@ -1155,7 +1154,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     further measure the amount of time it takes in every phase of fetching
     a resource with the <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming②">PerformanceResourceTiming</a></code> interface.
   </p>
-<pre class="example highlight" id="example-c9b29cb1"><a class="self-link" href="#example-c9b29cb1"></a><c- cp>&lt;!doctype html></c->
+<pre class="example highlight" id="example-c9b29cb1"><a class="self-link" href="#example-c9b29cb1"></a><span class="bs-old-id" id="example-2"></span><c- cp>&lt;!doctype html></c->
 <c- p>&lt;</c-><c- f>html</c-><c- p>></c->
   <c- p>&lt;</c-><c- f>head</c-><c- p>></c->
   <c- p>&lt;/</c-><c- f>head</c-><c- p>></c->
@@ -1213,7 +1212,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     Resource Timing
   </span><a class="self-link" href="#sec-resource-timing"></a></h2>
     <section class="informative">
-     <h3 class="heading settled" data-level="3.1" id="sec-resource-timing-intro"><span class="secno">3.1. </span><span class="content">
+     <h3 class="heading settled" data-level="3.1" id="sec-resource-timing-intro"><span class="secno">3.1. </span><span class="bs-old-id" id="introduction-0"></span><span class="content">
       Introduction
     </span><a class="self-link" href="#sec-resource-timing-intro"></a></h3>
      <p>
@@ -1314,7 +1313,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      </ul>
     </section>
     <section>
-     <h3 class="heading settled" data-level="3.3" id="sec-performanceresourcetiming"><span class="secno">3.3. </span><span class="content">
+     <h3 class="heading settled" data-level="3.3" id="sec-performanceresourcetiming"><span class="secno">3.3. </span><span class="bs-old-id" id="idl-def-performanceresourcetiming"></span><span class="bs-old-id" id="dom-performanceresourcetiming"></span><span class="content">
       The PerformanceResourceTiming Interface
     </span><a class="self-link" href="#sec-performanceresourcetiming"></a></h3>
 <pre class="def highlight idl">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>Worker</c->)]
@@ -1352,48 +1351,48 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </pre>
      <p>
       A <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming①⑦">PerformanceResourceTiming</a></code> has an associated DOMString
-      <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-lt="initiator type" data-noexport id="performanceresourcetiming-initiator-type">initiator
+      <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-lt="initiator type" data-noexport id="performanceresourcetiming-initiator-type"><span class="bs-old-id" id="dfn-initiator-type"></span>initiator
       type</dfn>.
     </p>
      <p>
       A <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming①⑧">PerformanceResourceTiming</a></code> has an associated DOMString
-      <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-lt="delivery type" data-noexport id="performanceresourcetiming-delivery-type">delivery
+      <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-lt="delivery type" data-noexport id="performanceresourcetiming-delivery-type"><span class="bs-old-id" id="dfn-delivery-type"></span>delivery
       type</dfn>.
     </p>
      <p>
       A <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming①⑨">PerformanceResourceTiming</a></code> has an associated DOMString
-      <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-lt="requested URL" data-noexport id="performanceresourcetiming-requested-url">requested
+      <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-lt="requested URL" data-noexport id="performanceresourcetiming-requested-url"><span class="bs-old-id" id="dfn-requested-url"></span>requested
       URL</dfn>.
     </p>
      <p>
       A <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming②⓪">PerformanceResourceTiming</a></code> has an associated DOMString
-      <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-noexport id="performanceresourcetiming-cache-mode">cache mode</dfn>
+      <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-noexport id="performanceresourcetiming-cache-mode"><span class="bs-old-id" id="dfn-cache-mode"></span>cache mode</dfn>
       (the empty string, "<code>local</code>", or
       "<code>validated</code>").
     </p>
      <p>
-      A <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming②①">PerformanceResourceTiming</a></code> has an associated <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info" id="ref-for-fetch-timing-info">fetch timing info</a> <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-lt="timing info" data-noexport id="performanceresourcetiming-timing-info">timing
+      A <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming②①">PerformanceResourceTiming</a></code> has an associated <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info" id="ref-for-fetch-timing-info">fetch timing info</a> <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-lt="timing info" data-noexport id="performanceresourcetiming-timing-info"><span class="bs-old-id" id="dfn-timing-info"></span>timing
       info</dfn>.
     </p>
      <p>
-      A <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming②②">PerformanceResourceTiming</a></code> has an associated <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#response-body-info" id="ref-for-response-body-info">response body info</a> <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-lt="resource info" data-noexport id="performanceresourcetiming-resource-info">resource
+      A <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming②②">PerformanceResourceTiming</a></code> has an associated <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#response-body-info" id="ref-for-response-body-info">response body info</a> <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-lt="resource info" data-noexport id="performanceresourcetiming-resource-info"><span class="bs-old-id" id="dfn-resource-info"></span>resource
       info</dfn>.
     </p>
      <p>
       A <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming②③">PerformanceResourceTiming</a></code> has an associated
       <a href="https://fetch.spec.whatwg.org/#concept-status">status</a>
-      <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-noexport id="performanceresourcetiming-response-status">response status</dfn>.
+      <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-noexport id="performanceresourcetiming-response-status"><span class="bs-old-id" id="dfn-response-status"></span>response status</dfn>.
     </p>
      <p>
       A <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming②④">PerformanceResourceTiming</a></code> has an associated
-      <code class="idl"><a data-link-type="idl" href="#enumdef-renderblockingstatustype" id="ref-for-enumdef-renderblockingstatustype①">RenderBlockingStatusType</a></code> <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-render-blocking-status">render-blocking status</dfn>.
+      <code class="idl"><a data-link-type="idl" href="#enumdef-renderblockingstatustype" id="ref-for-enumdef-renderblockingstatustype①">RenderBlockingStatusType</a></code> <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-render-blocking-status"><span class="bs-old-id" id="dfn-render-blocking-status"></span>render-blocking status</dfn>.
     </p>
      <p>
-      When <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-tojson">toJSON</dfn> is called, run the <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#default-tojson-steps" id="ref-for-default-tojson-steps">default toJSON steps</a>
+      When <dfn class="dfn-paneled" data-dfn-for="PerformanceResourceTiming" data-dfn-type="dfn" data-export id="performanceresourcetiming-tojson"><span class="bs-old-id" id="idl-def-performanceresourcetiming-tojson"></span>toJSON</dfn> is called, run the <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#default-tojson-steps" id="ref-for-default-tojson-steps">default toJSON steps</a>
       for <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming②⑤">PerformanceResourceTiming</a></code>.
     </p>
      <p>
-      <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-initiatortype"><code>initiatorType</code></dfn> getter steps are to return the <a data-link-type="dfn" href="#performanceresourcetiming-initiator-type" id="ref-for-performanceresourcetiming-initiator-type">initiator type</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this">this</a>.
+      <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-initiatortype"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-initiatortype"></span><code>initiatorType</code></code></dfn> getter steps are to return the <a data-link-type="dfn" href="#performanceresourcetiming-initiator-type" id="ref-for-performanceresourcetiming-initiator-type">initiator type</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this">this</a>.
     </p>
      <div class="note" role="note">
       <p>
@@ -1507,7 +1506,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       a resource timing entry is reported, such as the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch" id="ref-for-concept-fetch①④">fetch</a> standard.
     </p>
      <p>
-      <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-deliverytype"><code>deliveryType</code></dfn> getter steps are to return the <a data-link-type="dfn" href="#performanceresourcetiming-delivery-type" id="ref-for-performanceresourcetiming-delivery-type">delivery type</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①">this</a>.
+      <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-deliverytype"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-deliverytype"></span><code>deliveryType</code></code></dfn> getter steps are to return the <a data-link-type="dfn" href="#performanceresourcetiming-delivery-type" id="ref-for-performanceresourcetiming-delivery-type">delivery type</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①">this</a>.
     </p>
      <div class="note" role="note">
       <p>
@@ -1529,57 +1528,57 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       </p>
      </div>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-workerstart"><code>workerStart</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp">convert fetch
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-workerstart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-workerstart"></span><code>workerStart</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-service-worker-start-time" id="ref-for-fetch-timing-info-final-service-worker-start-time">final service worker start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant global
       object</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-fetch" id="ref-for-concept-http-fetch">HTTP fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-redirectstart"><code>redirectStart</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①">convert fetch
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-redirectstart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-redirectstart"></span><code>redirectStart</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-redirect-start-time" id="ref-for-fetch-timing-info-redirect-start-time">redirect start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑤">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-redirect-fetch" id="ref-for-concept-http-redirect-fetch">HTTP-redirect fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-redirectend"><code>redirectEnd</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp②">convert fetch
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-redirectend"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-redirectend"></span><code>redirectEnd</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp②">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑥">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info②">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-redirect-end-time" id="ref-for-fetch-timing-info-redirect-end-time">redirect end time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global②">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑦">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-redirect-fetch" id="ref-for-concept-http-redirect-fetch①">HTTP-redirect fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-fetchstart"><code>fetchStart</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp③">convert fetch
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-fetchstart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-fetchstart"></span><code>fetchStart</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp③">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑧">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info③">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-post-redirect-start-time" id="ref-for-fetch-timing-info-post-redirect-start-time">post-redirect start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global③">relevant global object</a>
       for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this⑨">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-fetch" id="ref-for-concept-http-fetch①">HTTP fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-domainlookupstart"><code>domainLookupStart</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp④">convert fetch
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-domainlookupstart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-domainlookupstart"></span><code>domainLookupStart</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp④">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⓪">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info④">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-domain-lookup-start-time" id="ref-for-connection-timing-info-domain-lookup-start-time">domain lookup start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global④">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①①">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info">Recording connection timing info</a> for more
       info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-domainlookupend"><code>domainLookupEnd</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑤">convert fetch
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-domainlookupend"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-domainlookupend"></span><code>domainLookupEnd</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑤">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①②">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info⑤">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info①">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-domain-lookup-end-time" id="ref-for-connection-timing-info-domain-lookup-end-time">domain lookup end time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global⑤">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①③">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info①">Recording connection timing info</a> for more
       info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-connectstart"><code>connectStart</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑥">convert fetch
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-connectstart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-connectstart"></span><code>connectStart</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑥">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①④">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info⑥">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info②">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-connection-start-time" id="ref-for-connection-timing-info-connection-start-time">connection start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global⑥">relevant global object</a>
       for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑤">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info②">Recording connection timing info</a> for more
       info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-connectend"><code>connectEnd</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑦">convert fetch
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-connectend"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-connectend"></span><code>connectEnd</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑦">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑥">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info⑦">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info③">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-connection-end-time" id="ref-for-connection-timing-info-connection-end-time">connection end time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global⑦">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑦">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info③">Recording connection timing info</a> for more
       info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-secureconnectionstart"><code>secureConnectionStart</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑧">convert
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-secureconnectionstart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-secureconnectionstart"></span><code>secureConnectionStart</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑧">convert
       fetch timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑧">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info⑧">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info④">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-secure-connection-start-time" id="ref-for-connection-timing-info-secure-connection-start-time">secure connection start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global⑧">relevant global object</a> for
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①⑨">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info④">Recording connection timing info</a> for more
       info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-nexthopprotocol"><code>nextHopProtocol</code></dfn> getter steps are to <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#isomorphic-decode" id="ref-for-isomorphic-decode">isomorphic decode</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info⑨">timing info</a>’s
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-nexthopprotocol"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-nexthopprotocol"></span><code>nextHopProtocol</code></code></dfn> getter steps are to <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#isomorphic-decode" id="ref-for-isomorphic-decode">isomorphic decode</a> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⓪">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info⑨">timing info</a>’s
       <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-connection-timing-info" id="ref-for-fetch-timing-info-final-connection-timing-info⑤">final connection timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#connection-timing-info-alpn-negotiated-protocol" id="ref-for-connection-timing-info-alpn-negotiated-protocol">ALPN negotiated protocol</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#record-connection-timing-info" id="ref-for-record-connection-timing-info⑤">Recording connection
       timing info</a> for more info.
     </p>
@@ -1589,43 +1588,43 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       the user’s network configuration.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-requeststart"><code>requestStart</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑨">convert fetch
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-requeststart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-requeststart"></span><code>requestStart</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp⑨">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②①">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①⓪">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-network-request-start-time" id="ref-for-fetch-timing-info-final-network-request-start-time">final network-request start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global⑨">relevant global
       object</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②②">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-fetch" id="ref-for-concept-http-fetch②">HTTP fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-firstinterimresponsestart"><code>firstInterimResponseStart</code></dfn> getter steps are to
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-firstinterimresponsestart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-firstinterimresponsestart"></span><code>firstInterimResponseStart</code></code></dfn> getter steps are to
       <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①⓪">convert fetch timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②③">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①①">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-first-interim-network-response-start-time" id="ref-for-fetch-timing-info-first-interim-network-response-start-time">first interim network-response start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①⓪">relevant
       global object</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②④">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-fetch" id="ref-for-concept-http-fetch③">HTTP fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-finalresponseheadersstart"><code>finalResponseHeadersStart</code></dfn> getter steps are to
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-finalresponseheadersstart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-finalresponseheadersstart"></span><code>finalResponseHeadersStart</code></code></dfn> getter steps are to
       <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①①">convert fetch timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑤">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①②">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-final-network-response-start-time" id="ref-for-fetch-timing-info-final-network-response-start-time">final network-response start time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①①">relevant global
       object</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑥">this</a>. See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-fetch" id="ref-for-concept-http-fetch④">HTTP fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-responsestart"><code>responseStart</code></dfn> getter steps are to return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑦">this</a>’s
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-responsestart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-responsestart"></span><code>responseStart</code></code></dfn> getter steps are to return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑦">this</a>’s
       <code class="idl"><a data-link-type="idl" href="#dom-performanceresourcetiming-firstinterimresponsestart" id="ref-for-dom-performanceresourcetiming-firstinterimresponsestart①">firstInterimResponseStart</a></code> if it is not
       0; Otherwise <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑧">this</a>’s
       <code class="idl"><a data-link-type="idl" href="#dom-performanceresourcetiming-finalresponseheadersstart" id="ref-for-dom-performanceresourcetiming-finalresponseheadersstart①">finalResponseHeadersStart</a></code>.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-responseend"><code>responseEnd</code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①②">convert fetch
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-responseend"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-responseend"></span><code>responseEnd</code></code></dfn> getter steps are to <a data-link-type="dfn" href="#dfn-convert-fetch-timestamp" id="ref-for-dfn-convert-fetch-timestamp①②">convert fetch
       timestamp</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②⑨">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①③">timing info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-end-time" id="ref-for-fetch-timing-info-end-time">end time</a> and the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①②">relevant global object</a> for <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③⓪">this</a>. See
       <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch" id="ref-for-concept-fetch①⑤">fetch</a> for more info.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-encodedbodysize"><code>encodedBodySize</code></dfn> getter steps are to return
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-encodedbodysize"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-encodedbodysize"></span><code>encodedBodySize</code></code></dfn> getter steps are to return
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③①">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-resource-info" id="ref-for-performanceresourcetiming-resource-info">resource
       info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-encoded-body-size" id="ref-for-fetch-timing-info-encoded-body-size">encoded size</a>.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-decodedbodysize"><code>decodedBodySize</code></dfn> getter steps are to return
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-decodedbodysize"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-decodedbodysize"></span><code>decodedBodySize</code></code></dfn> getter steps are to return
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③②">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-resource-info" id="ref-for-performanceresourcetiming-resource-info①">resource
       info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-decoded-body-size" id="ref-for-fetch-timing-info-decoded-body-size">decoded size</a>.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-transfersize"><code>transferSize</code></dfn> getter steps are:
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-transfersize"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-transfersize"></span><code>transferSize</code></code></dfn> getter steps are:
     </p>
      <ol>
       <li>
@@ -1650,7 +1649,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         </p>
      </ol>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-responsestatus"><code>responseStatus</code></dfn> getter steps are to return
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-responsestatus"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-responsestatus"></span><code>responseStatus</code></code></dfn> getter steps are to return
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③⑥">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-response-status" id="ref-for-performanceresourcetiming-response-status">response
       status</a>.
     </p>
@@ -1661,42 +1660,42 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       response</a>.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-contenttype"><code>contentType</code></dfn> getter steps are to return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③⑦">this</a>’s
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-contenttype"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-contenttype"></span><code>contentType</code></code></dfn> getter steps are to return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③⑦">this</a>’s
       <a data-link-type="dfn" href="#performanceresourcetiming-resource-info" id="ref-for-performanceresourcetiming-resource-info③">resource info</a>’s
       <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#response-body-info-content-type" id="ref-for-response-body-info-content-type">content type</a>.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-contentencoding"><code>contentEncoding</code></dfn> getter steps are to return
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-contentencoding"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-contentencoding"></span><code>contentEncoding</code></code></dfn> getter steps are to return
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③⑧">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-resource-info" id="ref-for-performanceresourcetiming-resource-info④">resource
         info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#response-body-info-content-encoding" id="ref-for-response-body-info-content-encoding">content encoding</a>.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-renderblockingstatus"><code>renderBlockingStatus</code></dfn> getter steps are to return
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-renderblockingstatus"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-renderblockingstatus"></span><code>renderBlockingStatus</code></code></dfn> getter steps are to return
       <a data-link-type="dfn" href="#renderblockingstatustype-blocking" id="ref-for-renderblockingstatustype-blocking">blocking</a> if
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this③⑨">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①④">timing
       info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-render-blocking" id="ref-for-fetch-timing-info-render-blocking">render-blocking</a> is true; otherwise
       <a data-link-type="dfn" href="#renderblockingstatustype-non-blocking" id="ref-for-renderblockingstatustype-non-blocking">non-blocking</a>.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-workerrouterevaluationstart"><code>workerRouterEvaluationStart</code></dfn> getter steps are to return
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-workerrouterevaluationstart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-workerrouterevaluationstart"></span><code>workerRouterEvaluationStart</code></code></dfn> getter steps are to return
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④⓪">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①⑤">timing
         info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-service-worker-timing-info" id="ref-for-fetch-timing-info-service-worker-timing-info">service worker timing info</a>’s
       <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#service-worker-timing-info-worker-router-evaluation-start" id="ref-for-service-worker-timing-info-worker-router-evaluation-start">worker router evaluation start</a>.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-workercachelookupstart"><code>workerCacheLookupStart</code></dfn> getter steps are to return
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-workercachelookupstart"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-workercachelookupstart"></span><code>workerCacheLookupStart</code></code></dfn> getter steps are to return
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④①">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①⑥">timing
         info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-service-worker-timing-info" id="ref-for-fetch-timing-info-service-worker-timing-info①">service worker timing info</a>’s
       <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#service-worker-timing-info-worker-cache-lookup-start" id="ref-for-service-worker-timing-info-worker-cache-lookup-start">worker cache lookup start</a>.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-workermatchedroutersource"><code>workerMatchedRouterSource</code></dfn> getter steps are to return
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-workermatchedroutersource"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-workermatchedroutersource"></span><code>workerMatchedRouterSource</code></code></dfn> getter steps are to return
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④②">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①⑦">timing
         info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-service-worker-timing-info" id="ref-for-fetch-timing-info-service-worker-timing-info②">service worker timing info</a>’s
       <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#service-worker-timing-info-worker-matched-router-source" id="ref-for-service-worker-timing-info-worker-matched-router-source">worker matched router source</a>.
     </p>
      <p>
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-workerfinalroutersource"><code>workerFinalRouterSource</code></dfn> getter steps are to return
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="PerformanceResourceTiming" data-dfn-type="attribute" data-export id="dom-performanceresourcetiming-workerfinalroutersource"><code><span class="bs-old-id" id="idl-def-performanceresourcetiming-workerfinalroutersource"></span><code>workerFinalRouterSource</code></code></dfn> getter steps are to return
       <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this④③">this</a>’s <a data-link-type="dfn" href="#performanceresourcetiming-timing-info" id="ref-for-performanceresourcetiming-timing-info①⑧">timing
         info</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#fetch-timing-info-service-worker-timing-info" id="ref-for-fetch-timing-info-service-worker-timing-info③">service worker timing info</a>’s
       <a data-link-type="dfn" href="https://w3c.github.io/ServiceWorker/#service-worker-timing-info-worker-final-router-source" id="ref-for-service-worker-timing-info-worker-final-router-source">worker final router source</a>.
@@ -1708,7 +1707,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       to detect support for Resource Timing.
     </p>
      <section>
-      <h4 class="heading settled" data-level="3.3.1" id="sec-render-blocking-status-types"><span class="secno">3.3.1. </span><span class="content">
+      <h4 class="heading settled" data-level="3.3.1" id="sec-render-blocking-status-types"><span class="secno">3.3.1. </span><span class="bs-old-id" id="idl-def-renderblockingstatustype"></span><span class="bs-old-id" id="dom-renderblockingstatustype"></span><span class="content">
         RenderBlockingStatusType enum
       </span><a class="self-link" href="#sec-render-blocking-status-types"></a></h4>
 <pre class="def highlight idl"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-renderblockingstatustype"><code><c- g>RenderBlockingStatusType</c-></code></dfn> {
@@ -1758,33 +1757,33 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       environment</a> has:
     </p>
      <ul>
-      <li>A <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-resource-timing-buffer-size-limit">resource timing buffer size limit</dfn> which should
+      <li>A <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-resource-timing-buffer-size-limit"><span class="bs-old-id" id="dfn-resource-timing-buffer-size-limit"></span>resource timing buffer size limit</dfn> which should
       initially be 250 or greater.
       
-      <li>A <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-resource-timing-buffer-current-size">resource timing buffer current size</dfn> which is
+      <li>A <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-resource-timing-buffer-current-size"><span class="bs-old-id" id="dfn-resource-timing-buffer-current-size"></span>resource timing buffer current size</dfn> which is
       initially 0.
       
-      <li>A <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-resource-timing-buffer-full-event-pending-flag">resource timing buffer full event pending flag</dfn> which
+      <li>A <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-resource-timing-buffer-full-event-pending-flag"><span class="bs-old-id" id="dfn-resource-timing-buffer-full-event-pending-flag"></span>resource timing buffer full event pending flag</dfn> which
       is initially false.
       
-      <li>A <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-resource-timing-secondary-buffer-current-size">resource timing secondary buffer current size</dfn> which
+      <li>A <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-resource-timing-secondary-buffer-current-size"><span class="bs-old-id" id="dfn-resource-timing-secondary-buffer-current-size"></span>resource timing secondary buffer current size</dfn> which
       is initially 0.
       
-      <li>A <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-resource-timing-secondary-buffer">resource timing secondary buffer</dfn> to store
+      <li>A <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-resource-timing-secondary-buffer"><span class="bs-old-id" id="dfn-resource-timing-secondary-buffer"></span>resource timing secondary buffer</dfn> to store
       <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming③⓪">PerformanceResourceTiming</a></code> objects that is initially empty.
       
      </ul>
-<pre class="def highlight idl"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://w3c.github.io/hr-time/#performance" id="ref-for-performance"><c- g>Performance</c-></a> {
+<pre class="def highlight idl" id="idl-def-performance-partial-1"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://w3c.github.io/hr-time/#performance" id="ref-for-performance"><c- g>Performance</c-></a> {
       <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined"><c- b>undefined</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Performance" data-dfn-type="method" data-export data-lt="clearResourceTimings()" id="dom-performance-clearresourcetimings"><code><c- g>clearResourceTimings</c-></code></dfn> ();
       <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①"><c- b>undefined</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Performance" data-dfn-type="method" data-export data-lt="setResourceTimingBufferSize(maxSize)" id="dom-performance-setresourcetimingbuffersize"><code><c- g>setResourceTimingBufferSize</c-></code></dfn> (<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long" id="ref-for-idl-unsigned-long"><c- b>unsigned</c-> <c- b>long</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Performance/setResourceTimingBufferSize(maxSize)" data-dfn-type="argument" data-export id="dom-performance-setresourcetimingbuffersize-maxsize-maxsize"><code><c- g>maxSize</c-></code></dfn>);
       <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Performance" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-performance-onresourcetimingbufferfull"><code><c- g>onresourcetimingbufferfull</c-></code></dfn>;
     };
 </pre>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-export id="performance-performance">Performance</dfn> interface is defined in <a data-link-type="biblio" href="#biblio-hr-time" title="High Resolution Time">[HR-TIME]</a>.
+      The <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-export id="performance-performance"><span class="bs-old-id" id="dom-performance"></span>Performance</dfn> interface is defined in <a data-link-type="biblio" href="#biblio-hr-time" title="High Resolution Time">[HR-TIME]</a>.
     </p>
      <p>
-      The method <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-export id="performance-clearresourcetimings">clearResourceTimings</dfn> runs the following steps:
+      The method <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-export id="performance-clearresourcetimings"><span class="bs-old-id" id="idl-def-performance-clearresourcetimings"></span>clearResourceTimings</dfn> runs the following steps:
     </p>
      <ol>
       <li>Remove all <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming③①">PerformanceResourceTiming</a></code> objects in the
@@ -1794,7 +1793,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       
      </ol>
      <p>
-      The <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-setresourcetimingbuffersize">setResourceTimingBufferSize</dfn> method runs the following
+      The <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="performance-setresourcetimingbuffersize"><span class="bs-old-id" id="idl-def-performance-setresourcetimingbuffersize-maxsize"></span>setResourceTimingBufferSize</dfn> method runs the following
       steps:
     </p>
      <ol>
@@ -1806,7 +1805,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       
      </ol>
      <p>
-      The attribute <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-export id="performance-onresourcetimingbufferfull">onresourcetimingbufferfull</dfn> is the event
+      The attribute <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-export id="performance-onresourcetimingbufferfull"><span class="bs-old-id" id="idl-def-performance-onresourcetimingbufferfull"></span>onresourcetimingbufferfull</dfn> is the event
       handler for the <code>resourcetimingbufferfull</code> event described
       below.
     </p>
@@ -1821,7 +1820,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li>Return false.
       
      </ol>
-     <p>To <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="dfn-add-a-PerformanceResourceTiming-entry">add a PerformanceResourceTiming entry</dfn> <i>new entry</i>
+     <p>To <dfn class="dfn-paneled" data-dfn-for="Performance" data-dfn-type="dfn" data-noexport id="dfn-add-a-PerformanceResourceTiming-entry"><span class="bs-old-id" id="dfn-add-a-performanceresourcetiming-entry"></span>add a PerformanceResourceTiming entry</dfn> <i>new entry</i>
 into the <a data-link-type="dfn" href="https://www.w3.org/TR/performance-timeline/#dfn-performance-entry-buffer" id="ref-for-dfn-performance-entry-buffer②">performance entry buffer</a>, run the following steps:</p>
      <ol>
       <li>
@@ -1986,7 +1985,7 @@ sufficiently (by calling
         have been zero due to those cross-origin restrictions.
       </p>
       <p>
-        The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="timing-allow-origin">Timing-Allow-Origin</dfn> HTTP response header field can
+        The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="timing-allow-origin"><span class="bs-old-id" id="dfn-timing-allow-origin"></span>Timing-Allow-Origin</dfn> HTTP response header field can
         be used to communicate a policy indicating origin(s) that may be
         allowed to see values of attributes that would have been zero due
         to the cross-origin restrictions. The header’s value is represented
@@ -2081,7 +2080,7 @@ sufficiently (by calling
       agents may perform internal processing in between timings, which
       allow for non-normative intervals between timings.
     </p>
-     <figure data-lt="Timing attributes">
+     <figure data-lt="Timing attributes" id="fig-this-figure-illustrates-the-timing-attributes-defined-by-the-performanceresourcetiming-interface-attributes-in-parenthesis-indicate-that-they-may-not-be-available-if-the-resource-fails-the-timing-allow-check-algorithm">
       <figcaption>
         This figure illustrates the timing attributes defined by the
         <code class="idl"><a data-link-type="idl" href="#performanceresourcetiming" id="ref-for-performanceresourcetiming③⑤">PerformanceResourceTiming</a></code> interface. Attributes in
@@ -2227,6 +2226,7 @@ sufficiently (by calling
     Chan, and Alex Christensen for their contributions to this work.
   </p>
    </section>
+   <div id="conformance"></div>
   </main>
   <div data-fill-with="conformance">
    <h2 class="heading no-num no-ref settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
@@ -2541,7 +2541,7 @@ sufficiently (by calling
    <dt id="biblio-svg11">[SVG11]
    <dd>Erik Dahlström; et al. <a href="https://www.w3.org/TR/SVG11/"><cite>Scalable Vector Graphics (SVG) 1.1 (Second Edition)</cite></a>. 16 August 2011. REC. URL: <a href="https://www.w3.org/TR/SVG11/">https://www.w3.org/TR/SVG11/</a>
    <dt id="biblio-svg2">[SVG2]
-   <dd>Amelia Bellamy-Royds; et al. <a href="https://w3c.github.io/svgwg/svg2-draft/"><cite>Scalable Vector Graphics (SVG) 2</cite></a>. URL: <a href="https://w3c.github.io/svgwg/svg2-draft/">https://w3c.github.io/svgwg/svg2-draft/</a>
+   <dd>Karl Dubost; et al. <a href="https://w3c.github.io/svgwg/svg2-draft/"><cite>Scalable Vector Graphics (SVG) 2</cite></a>. URL: <a href="https://w3c.github.io/svgwg/svg2-draft/">https://w3c.github.io/svgwg/svg2-draft/</a>
    <dt id="biblio-xhr">[XHR]
    <dd>Anne van Kesteren. <a href="https://xhr.spec.whatwg.org/"><cite>XMLHttpRequest Standard</cite></a>. Living Standard. URL: <a href="https://xhr.spec.whatwg.org/">https://xhr.spec.whatwg.org/</a>
   </dl>
@@ -2591,429 +2591,83 @@ sufficiently (by calling
     };
 
 </pre>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performance-clearresourcetimings">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performance-clearresourcetimings" data-mdn="v1|API/Performance/clearResourceTimings|9|35,11,46,@!,79,12,10,@!,@!,@!,@!,@!,@!,-">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/clearResourceTimings" title="The clearResourceTimings() method removes all performance entries with an entryType of &quot;resource&quot; from the browser&apos;s performance timeline and sets the size of the performance resource data buffer to zero.">Performance/clearResourceTimings</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>35+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>46+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-     <hr>
-     <span class="no nodejs"><span>Node.js</span><span>None</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performance-onresourcetimingbufferfull">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performance-onresourcetimingbufferfull" data-mdn="v1|API/Performance/resourcetimingbufferfull_event|9|35,11,46,-,79,@?,-,@!,@!,@!,@!,@!,@!,-">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/resourcetimingbufferfull_event" title="The resourcetimingbufferfull event is fired when the browser&apos;s resource timing buffer is full.">Performance/resourcetimingbufferfull_event</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>35+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>46+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>None</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge no"><span>Edge (Legacy)</span><span>?</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-     <hr>
-     <span class="no nodejs"><span>Node.js</span><span>None</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performance-setresourcetimingbuffersize">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performance-setresourcetimingbuffersize" data-mdn="v1|API/Performance/setResourceTimingBufferSize|9|35,11,46,@!,79,12,10,@!,@!,@!,@!,@!,@!,-">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/setResourceTimingBufferSize" title="The setResourceTimingBufferSize() method sets the desired size of the browser&apos;s resource timing buffer which stores the &quot;resource&quot; performance entries.">Performance/setResourceTimingBufferSize</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>35+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>46+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-     <hr>
-     <span class="no nodejs"><span>Node.js</span><span>None</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="sec-extensions-performance-interface">
+  <details class="mdn-anno unpositioned" data-anno-for="sec-extensions-performance-interface" data-mdn="v1|API/Performance|9|7,8,6,@!,79,12,9,@!,9,@!,37,@!,@!,*8.5.0">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance" title="The Performance interface provides access to performance-related information for the current page.">Performance</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>7+</span></span><span class="safari yes"><span>Safari</span><span>8+</span></span><span class="chrome yes"><span>Chrome</span><span>6+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>9+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios yes"><span>iOS Safari</span><span>9+</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="webview_android yes"><span>Android WebView</span><span>37+</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-     <hr>
-     <span class="no nodejs"><span>Node.js</span><span>None</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-connectend">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-connectend" data-mdn="v1|API/PerformanceResourceTiming/connectEnd|9|31,11,43,32,79,12,10,@!,@!,@!,@!,@!,32,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectEnd" title="The connectEnd read-only property returns the timestamp immediately after the browser finishes establishing the connection to the server to retrieve the resource. The timestamp value includes the time interval to establish the transport connection, as well as other time intervals such as TLS handshake and SOCKS authentication.">PerformanceResourceTiming/connectEnd</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="opera yes"><span>Opera</span><span>32+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>32+</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-connectstart">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-connectstart" data-mdn="v1|API/PerformanceResourceTiming/connectStart|9|31,11,43,32,79,12,10,@!,@!,@!,@!,@!,32,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart" title="The connectStart read-only property returns the timestamp immediately before the user agent starts establishing the connection to the server to retrieve the resource.">PerformanceResourceTiming/connectStart</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="opera yes"><span>Opera</span><span>32+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>32+</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-decodedbodysize">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-decodedbodysize" data-mdn="v1|API/PerformanceResourceTiming/decodedBodySize|9|45,16.4,54,@!,79,17,-,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/decodedBodySize" title="The decodedBodySize read-only property returns the size (in octets) received from the fetch (HTTP or cache) of the message body after removing any applied content encoding (like gzip or Brotli). If the resource is retrieved from an application cache or local resources, it returns the size of the payload after removing any applied content encoding.">PerformanceResourceTiming/decodedBodySize</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>45+</span></span><span class="safari yes"><span>Safari</span><span>16.4+</span></span><span class="chrome yes"><span>Chrome</span><span>54+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>17+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-domainlookupend">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-domainlookupend" data-mdn="v1|API/PerformanceResourceTiming/domainLookupEnd|9|31,11,43,@!,79,12,10,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupEnd" title="The domainLookupEnd read-only property returns the timestamp immediately after the browser finishes the domain-name lookup for the resource.">PerformanceResourceTiming/domainLookupEnd</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-domainlookupstart">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-domainlookupstart" data-mdn="v1|API/PerformanceResourceTiming/domainLookupStart|9|31,11,43,@!,79,12,10,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupStart" title="The domainLookupStart read-only property returns the timestamp immediately before the browser starts the domain name lookup for the resource.">PerformanceResourceTiming/domainLookupStart</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-encodedbodysize">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-encodedbodysize" data-mdn="v1|API/PerformanceResourceTiming/encodedBodySize|9|45,16.4,54,@!,79,17,-,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/encodedBodySize" title="The encodedBodySize read-only property represents the size (in octets) received from the fetch (HTTP or cache) of the payload body before removing any applied content encodings (like gzip or Brotli). If the resource is retrieved from an application cache or a local resource, it must return the size of the payload body before removing any applied content encoding.">PerformanceResourceTiming/encodedBodySize</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>45+</span></span><span class="safari yes"><span>Safari</span><span>16.4+</span></span><span class="chrome yes"><span>Chrome</span><span>54+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>17+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-fetchstart">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-fetchstart" data-mdn="v1|API/PerformanceResourceTiming/fetchStart|9|31,11,43,@!,79,12,10,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/fetchStart" title="The fetchStart read-only property represents a timestamp immediately before the browser starts to fetch the resource.">PerformanceResourceTiming/fetchStart</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-initiatortype">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-initiatortype" data-mdn="v1|API/PerformanceResourceTiming/initiatorType|9|31,11,43,@!,79,12,10,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/initiatorType" title="The initiatorType read-only property is a string representing web platform feature that initiated the resource load.">PerformanceResourceTiming/initiatorType</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-nexthopprotocol">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-nexthopprotocol" data-mdn="v1|API/PerformanceResourceTiming/nextHopProtocol|9|45,11,61,@!,79,17,-,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/nextHopProtocol" title="The nextHopProtocol read-only property is a string representing the network protocol used to fetch the resource, as identified by the ALPN Protocol ID (RFC7301).">PerformanceResourceTiming/nextHopProtocol</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>45+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>61+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>17+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-redirectend">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-redirectend" data-mdn="v1|API/PerformanceResourceTiming/redirectEnd|9|31,11,43,@!,79,12,10,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/redirectEnd" title="The redirectEnd read-only property returns a timestamp immediately after receiving the last byte of the response of the last redirect.">PerformanceResourceTiming/redirectEnd</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-redirectstart">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-redirectstart" data-mdn="v1|API/PerformanceResourceTiming/redirectStart|9|31,11,43,@!,79,12,10,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/redirectStart" title="The redirectStart read-only property returns a timestamp representing the start time of the fetch which that initiates the redirect.">PerformanceResourceTiming/redirectStart</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-renderblockingstatus">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-renderblockingstatus" data-mdn="v1|API/PerformanceResourceTiming/renderBlockingStatus|1|-,-,107,@!,107,@?,-,@-,@-,@!,@!,@!,@!,">
    <summary><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/renderBlockingStatus" title="The renderBlockingStatus read-only property returns the render-blocking status of the resource.">PerformanceResourceTiming/renderBlockingStatus</a></p>
-    <p class="less-than-two-engines-text">In only one current engine.</p>
-    <div class="support">
-     <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="no safari"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>107+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>107+</span></span>
-     <hr>
-     <span class="edge no"><span>Edge (Legacy)</span><span>?</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-requeststart">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-requeststart" data-mdn="v1|API/PerformanceResourceTiming/requestStart|9|31,11,43,@!,79,12,10,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/requestStart" title="The requestStart read-only property returns a timestamp of the time immediately before the browser starts requesting the resource from the server, cache, or local resource. If the transport connection fails and the browser retires the request, the value returned will be the start of the retry request.">PerformanceResourceTiming/requestStart</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-responseend">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-responseend" data-mdn="v1|API/PerformanceResourceTiming/responseEnd|9|31,11,43,@!,79,12,10,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseEnd" title="The responseEnd read-only property returns a timestamp immediately after the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first.">PerformanceResourceTiming/responseEnd</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-responsestart">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-responsestart" data-mdn="v1|API/PerformanceResourceTiming/responseStart|9|31,11,43,@!,79,12,10,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStart" title="The responseStart read-only property returns a timestamp immediately after the browser receives the first byte of the response from the server, cache, or local resource.">PerformanceResourceTiming/responseStart</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-responsestatus">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-responsestatus" data-mdn="v1|API/PerformanceResourceTiming/responseStatus|1|-,-,109,@!,109,@?,-,@-,@-,@!,@!,@!,@!,">
    <summary><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStatus" title="The responseStatus read-only property represents the HTTP response status code returned when fetching the resource.">PerformanceResourceTiming/responseStatus</a></p>
-    <p class="less-than-two-engines-text">In only one current engine.</p>
-    <div class="support">
-     <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="no safari"><span>Safari</span><span>None</span></span><span class="chrome yes"><span>Chrome</span><span>109+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>109+</span></span>
-     <hr>
-     <span class="edge no"><span>Edge (Legacy)</span><span>?</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-secureconnectionstart">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-secureconnectionstart" data-mdn="v1|API/PerformanceResourceTiming/secureConnectionStart|9|31,11,43,@!,79,=18,-,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/secureConnectionStart" title="The secureConnectionStart read-only property returns a timestamp immediately before the browser starts the handshake process to secure the current connection. If a secure connection is not used, the property returns zero.">PerformanceResourceTiming/secureConnectionStart</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>43+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>18</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-tojson">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-tojson" data-mdn="v1|API/PerformanceResourceTiming/toJSON|9|34,11,45,@!,79,16,-,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/toJSON" title="The toJSON() method of the PerformanceResourceTiming interface is a serializer; it returns a JSON representation of the PerformanceResourceTiming object.">PerformanceResourceTiming/toJSON</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>34+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>45+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>16+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-transfersize">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-transfersize" data-mdn="v1|API/PerformanceResourceTiming/transferSize|9|45,16.4,54,@!,79,17,-,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/transferSize" title="The transferSize read-only property represents the size (in octets) of the fetched resource. The size includes the response header fields plus the response payload body (as defined by RFC7230).">PerformanceResourceTiming/transferSize</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>45+</span></span><span class="safari yes"><span>Safari</span><span>16.4+</span></span><span class="chrome yes"><span>Chrome</span><span>54+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>17+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-workerstart">
+  <details class="mdn-anno unpositioned" data-anno-for="dom-performanceresourcetiming-workerstart" data-mdn="v1|API/PerformanceResourceTiming/workerStart|9|58,11,46,32,79,16,-,@!,@!,@!,@!,@!,32,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/workerStart" title="The workerStart read-only property of the PerformanceResourceTiming interface returns a DOMHighResTimeStamp immediately before dispatching the FetchEvent if a Service Worker thread is already running, or immediately before starting the Service Worker thread if it is not already running. If the resource is not intercepted by a Service Worker the property will always return 0.">PerformanceResourceTiming/workerStart</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>58+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>46+</span></span>
-     <hr>
-     <span class="opera yes"><span>Opera</span><span>32+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>16+</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Mobile</span><span>32+</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="resources-included-in-the-performanceresourcetiming-interface">
+  <details class="mdn-anno unpositioned" data-anno-for="resources-included-in-the-performanceresourcetiming-interface" data-mdn="v1|API/PerformanceResourceTiming|9|31,11,29,@!,79,12,10,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming" title="The PerformanceResourceTiming interface enables retrieval and analysis of detailed network timing data regarding the loading of an application&apos;s resources. An application can use the timing metrics to determine, for example, the length of time it takes to fetch a specific resource, such as an XMLHttpRequest, <SVG>, image, or script.">PerformanceResourceTiming</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>31+</span></span><span class="safari yes"><span>Safari</span><span>11+</span></span><span class="chrome yes"><span>Chrome</span><span>29+</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span>
-     <hr>
-     <span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>IE</span><span>10+</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
-  <details class="mdn-anno unpositioned" data-anno-for="sec-timing-allow-origin">
+  <details class="mdn-anno unpositioned" data-anno-for="sec-timing-allow-origin" data-mdn="v1|HTTP/Headers/Timing-Allow-Origin|9|!,!,!,@!,!,-,?,@!,@!,@!,@!,@!,@!,">
    <summary><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></summary>
-   <div class="feature">
-    <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Timing-Allow-Origin" title="The Timing-Allow-Origin response header specifies origins that are allowed to see values of attributes retrieved via features of the Resource Timing API, which would otherwise be reported as zero due to cross-origin restrictions.">Headers/Timing-Allow-Origin</a></p>
-    <p class="all-engines-text">In all current engines.</p>
-    <div class="support">
-     <span class="firefox yes"><span>Firefox</span><span>Yes</span></span><span class="safari yes"><span>Safari</span><span>Yes</span></span><span class="chrome yes"><span>Chrome</span><span>Yes</span></span>
-     <hr>
-     <span class="no opera"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>Yes</span></span>
-     <hr>
-     <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>?</span></span>
-     <hr>
-     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="no safari_ios"><span>iOS Safari</span><span>?</span></span><span class="chrome_android no"><span>Chrome for Android</span><span>?</span></span><span class="no webview_android"><span>Android WebView</span><span>?</span></span><span class="no samsunginternet_android"><span>Samsung Internet</span><span>?</span></span><span class="no opera_android"><span>Opera Mobile</span><span>?</span></span>
-    </div>
-   </div>
   </details>
 <script>/* Boilerplate: script-dom-helper */
 "use strict";
@@ -3760,6 +3414,213 @@ function genLinkingSyntaxes(dfn) {
         )
     ];
 }
+}
+</script>
+<script>/* Boilerplate: script-mdn-anno */
+"use strict";
+{
+'use strict';
+// File copied from https://github.com/whatwg/whatwg.org/blob/main/resources.whatwg.org/standard-mdn-annos.js
+
+// Builds MDN annotation panels on demand from the compact `data-mdn` attribute written by
+// the spec generator (wattsi's EncodeMDNAnnotations; Bikeshed's mdnspeclinks.py builds its
+// panels eagerly for now). Only the wire format is shared: the browser labels, the
+// engine-support strings and the render grouping all live here.
+//
+// Archived commit snapshots load this file forever, so every format version this script
+// has ever understood has to keep working. Evolve the format by adding a branch in
+// `hydrate`, never by redefining a version that has already shipped.
+
+const MDN_URL = 'https://developer.mozilla.org/en-US/docs/Web/';
+const CANIUSE_URL = 'https://caniuse.com/#feat=';
+
+// Render groups, in the order they appear in a panel, separated by <hr>.
+const CURRENT_ENGINES = 0;
+const BORROWED_ENGINES = 1;
+const RETIRED_ENGINES = 2;
+const MOBILE = 3;
+const NON_BROWSER = 4;
+const GROUP_COUNT = 5;
+
+// Cell slots, in the order they appear in `data-mdn`. APPEND-ONLY: a new browser goes at
+// the end and is never inserted, so that old data still lines up and old copies of this
+// script can keep ignoring the cells they don't know about. `group` is what decides where
+// a row is rendered, so appending to this list doesn't constrain where the row shows up.
+const SLOTS = [
+  { id: 'firefox', label: 'Firefox', group: CURRENT_ENGINES },
+  { id: 'safari', label: 'Safari', group: CURRENT_ENGINES },
+  { id: 'chrome', label: 'Chrome', group: CURRENT_ENGINES },
+  { id: 'opera', label: 'Opera', group: BORROWED_ENGINES, mirrors: 'Chrome' },
+  { id: 'edge_blink', label: 'Edge', group: BORROWED_ENGINES },
+  { id: 'edge', label: 'Edge (Legacy)', group: RETIRED_ENGINES },
+  { id: 'ie', label: 'IE', group: RETIRED_ENGINES },
+  { id: 'firefox_android', label: 'Firefox for Android', group: MOBILE, mirrors: 'Firefox' },
+  { id: 'safari_ios', label: 'iOS Safari', group: MOBILE, mirrors: 'Safari' },
+  { id: 'chrome_android', label: 'Chrome for Android', group: MOBILE, mirrors: 'Chrome' },
+  { id: 'webview_android', label: 'Android WebView', group: MOBILE, mirrors: 'Chrome' },
+  { id: 'samsunginternet_android', label: 'Samsung Internet', group: MOBILE, mirrors: 'Chrome' },
+  { id: 'opera_android', label: 'Opera Mobile', group: MOBILE, mirrors: 'Chrome' },
+  { id: 'nodejs', label: 'Node.js', group: NON_BROWSER },
+];
+
+// One mnemonic character per engine-support note.
+const LEVELS = {
+  '0': { class: 'less-than-two-engines-text', text: 'In no current engines.' },
+  '1': { class: 'less-than-two-engines-text', text: 'In only one current engine.' },
+  '9': { class: 'all-engines-text', text: 'In all current engines.' },
+  's': { class: 'less-than-two-engines-text', text: 'Support in one engine under other name.' },
+  'S': { class: 'less-than-two-engines-text', text: 'Support in some engines under other name.' },
+  'v': { class: 'less-than-two-engines-text', text: 'Prefixed support in one engine.' },
+  'V': { class: 'less-than-two-engines-text', text: 'Prefixed support in some engines.' },
+  'p': { class: 'less-than-two-engines-text', text: 'Partial support in one engine.' },
+  'P': { class: 'less-than-two-engines-text', text: 'Partial support in some engines.' },
+};
+
+// Leading character of a cell, qualifying how the version after it should be read. `flag`
+// is whether to mark the version with 🔰 as well as explaining it in a tooltip.
+const CAVEATS = {
+  '*': { flag: true, title: () => 'Partial implementation.' },
+  '^': { flag: true, title: () => 'Requires setting a user preference or runtime flag.' },
+  '$': { flag: true, title: () => 'Requires a prefix or alternative name.' },
+  // Mirrored support is far too common to flag every occurrence; the tooltip is enough.
+  '@': { flag: false, title: (slot) => `Support is mirrored from ${slot.mirrors ?? 'the upstream browser'}.` },
+};
+
+const FLAG = '\u{1F530}'; // 🔰, marks a version that comes with a caveat
+const EN_DASH = '–';
+
+function element(name, attributes, ...children) {
+  const node = document.createElement(name);
+  for (const [attribute, value] of Object.entries(attributes)) {
+    if (value !== undefined) {
+      node.setAttribute(attribute, value);
+    }
+  }
+  node.append(...children);
+  return node;
+}
+
+function splitOnce(string, separator) {
+  const at = string.indexOf(separator);
+  return at === -1 ? [string, undefined] : [string.slice(0, at), string.slice(at + 1)];
+}
+
+// A version body says both whether the browser supports the feature and since when.
+function readVersion(body) {
+  if (body === '?') {
+    return { state: 'unknown', version: '?' };
+  }
+  if (body === '-') {
+    return { state: 'no', version: 'None' };
+  }
+  if (body === '!') {
+    return { state: 'yes', version: 'Yes' };
+  }
+  if (body.startsWith('=')) {
+    // A version that will never be superseded, so no trailing "+".
+    return { state: 'yes', version: body.slice(1) };
+  }
+  const [added, removed] = body.split('-');
+  if (removed !== undefined) {
+    return { state: 'no', version: added + EN_DASH + removed };
+  }
+  return { state: 'yes', version: added + '+' };
+}
+
+function readCell(cell, slot) {
+  const caveat = CAVEATS[cell[0]];
+  const { state, version } = readVersion(caveat ? cell.slice(1) : cell);
+  return {
+    state,
+    version: caveat?.flag ? `${FLAG} ${version}` : version,
+    title: caveat?.title(slot),
+  };
+}
+
+// A browser row is the browser's name in one cell and its version in the next. The logo
+// comes from CSS, keyed off the browser id in the row's class.
+function browserRow(slot, cell) {
+  const { state, version, title } = readCell(cell, slot);
+  return element('span', { class: `${slot.id} ${state}` },
+    element('span', {}, slot.label),
+    element('span', { title }, version));
+}
+
+// The caniuse row has a single cell instead, since its logo needs no label beside it.
+function caniuseRow(field) {
+  const [feature, title] = splitOnce(field, ',');
+  const link = element('a', { href: CANIUSE_URL + feature, title }, 'caniuse.com table');
+  return element('span', { class: 'caniuse' }, element('span', {}, link));
+}
+
+function supportTable(cells, caniuse) {
+  const groups = Array.from({ length: GROUP_COUNT }, () => []);
+  SLOTS.forEach((slot, slotIndex) => {
+    // An empty cell means this browser gets no row at all. Cells beyond SLOTS are
+    // browsers added after this copy of the script was written; ignore them.
+    if (cells[slotIndex]) {
+      groups[slot.group].push(browserRow(slot, cells[slotIndex]));
+    }
+  });
+  if (caniuse !== undefined) {
+    groups.push([caniuseRow(caniuse)]);
+  }
+
+  const table = element('div', { class: 'support' });
+  for (const rows of groups.filter((rows) => rows.length > 0)) {
+    if (table.hasChildNodes()) {
+      table.append(element('hr', {}));
+    }
+    table.append(...rows);
+  }
+  return table;
+}
+
+function featurePanel(record) {
+  const [slug, level, cells, caniuse] = record.split('|');
+
+  const article = element('a', { href: MDN_URL + slug }, slug.slice(slug.indexOf('/') + 1));
+  const panel = element('div', { class: 'feature' }, element('p', {}, article));
+
+  if (level in LEVELS) {
+    panel.append(element('p', { class: LEVELS[level].class }, LEVELS[level].text));
+  }
+  if (cells) {
+    panel.append(supportTable(cells.split(','), caniuse));
+  }
+  return panel;
+}
+
+function hydrate(anno) {
+  const [version, features] = splitOnce(anno.dataset.mdn, '|');
+  delete anno.dataset.mdn; // Only ever hydrate a panel once.
+
+  if (version !== 'v1') {
+    console.warn(`Unsupported MDN annotation data version "${version}".`, anno);
+    return;
+  }
+  anno.append(...features.split('~').map(featurePanel));
+}
+
+function hydrateIfNeeded(node) {
+  if (node instanceof Element && node.matches('.mdn-anno[data-mdn]')) {
+    hydrate(node);
+  }
+}
+
+// A click on the summary arrives before the browser opens the <details>, so hydrating
+// from it means the panel never flashes empty. That covers pointers and the keyboard,
+// since activating a summary dispatches a click either way.
+document.addEventListener('click', (event) => {
+  if (event.target instanceof Element) {
+    hydrateIfNeeded(event.target.closest('summary')?.parentElement);
+  }
+}, true);
+
+// And `toggle` is the catch-all for a panel opened some other way, such as find-in-page
+// or a fragment navigation into it. It fires a task after the state has already changed,
+// and it doesn't bubble, so it has to be a capture listener.
+document.addEventListener('toggle', (event) => hydrateIfNeeded(event.target), true);
 }
 </script>
 <script>/* Boilerplate: script-position-annos */
