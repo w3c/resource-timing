@@ -175,7 +175,7 @@ urlPrefix: https://fetch.spec.whatwg.org/; spec: FETCH; type: dfn
   <p class='note'>
     This definition of time is based on the High Resolution Time
     specification [[HR-TIME]] and is different from the definition of time
-    used in the Navigation Timing specification [[NAVIGATION-TIMING-2]],
+    used by the legacy Navigation Timing Level 1 interface,
     where time is measured in milliseconds since midnight of January 1,
     1970 (UTC).
   </p>
